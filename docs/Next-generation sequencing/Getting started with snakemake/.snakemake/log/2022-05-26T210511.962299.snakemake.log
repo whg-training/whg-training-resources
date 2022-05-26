@@ -1,0 +1,4 @@
+Building DAG of jobs...
+MissingInputException in line 22 of /Users/gav/Projects/Teaching/GMS/whg-training-resources/docs/Next-generation sequencing/Getting started with snakemake/align.snakefile:
+Missing input files for rule align:
+reference/GRCh38/GRCh38DH/GRCh38_full_analysis_set_plus_decoy_hla.fa

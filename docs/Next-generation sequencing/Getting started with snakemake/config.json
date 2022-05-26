@@ -1,0 +1,9 @@
+{
+	"reads": {
+		"sample1": "data/test_data/sample1_{read}.fq",
+		"sample2": "data/test_data/sample1_{read}.fq"
+	},
+	"assemblies": {
+		"GRCh38DH": "reference/GRCh38/GRCh38DH/GRCh38_full_analysis_set_plus_decoy_hla.fa"
+	}
+}
