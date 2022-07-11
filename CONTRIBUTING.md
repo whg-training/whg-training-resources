@@ -65,5 +65,5 @@ See the [Wikipedia page DNA sequencing](https://en.wikipedia.org/wiki/DNA_sequen
 Docusaurus will know what to do with these.  These files should be checked into the github repo like other files.
 
 **Note.** Please do not include large files in this way - up to a maximum of a few tens of Kb is a good guide.  These files will take space in the github 
-repo which will not handle large files well.  For larger data, alternate storage is required, we are working on a solution.
+repo which will not handle large files well.  For larger data, files should currently be stored externally (e.g. on personal web space) and linked to.
 
