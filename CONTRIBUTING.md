@@ -2,10 +2,12 @@
 
 Contributions to `whg-training-resources` are by invitation - you will need to be part of the `whg-training` github organisation or otherwise be given access.
 
-If you have access, there are three ways to make changes to the repository:
+If you have access, there are two ways to make changes to the repository:
 
 1. you can edit the repository directly through the github interface.  This is the simple and easy, but you won't be able to immediately see the published form of your changes.
 2. you can clone the repository onto your local computer, make changes there and push them back to the main repository.  This involves a working knowledge of `git`.
+
+With option 2 you can also set up a local docusaurus installation, which lets you view your changes on the fly just as they will appear online.
 
 ## Using a local docusaurus install.
 
