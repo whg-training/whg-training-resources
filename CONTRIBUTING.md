@@ -46,12 +46,16 @@ sidebar_position: 2
 
 at which point the title will appear as `My new document` in the sidebar, and it will appear 2nd in the sidebar.
 
-* Other pages can be linked to via relative links, such as:
+* Other pages on this site can be linked to via relative links, such as:
 
 ```
 See the [setup instructions](./Getting_setup.md).
 ```
-Docusaurus will automatically fix the links on the built page.
+Docusaurus will automatically fix the links on the built page.  Links to external pages can be included in a similar way:
+
+```
+See the [Wikipedia page DNA sequencing](https://en.wikipedia.org/wiki/DNA_sequencing).
+```
 
 * Similarly, images or other files can be included in the same directory structure and linked to, e.g.:
 ```
