@@ -44,7 +44,7 @@ sidebar_position: 2
 ---
 ```
 
-at which point the title will appear as `My new document` in the sidebar, and it will be in position 2 (assuming there are 9 others.)
+at which point the title will appear as `My new document` in the sidebar, and it will appear 2nd in the sidebar.
 
 * Other pages can be linked to via relative links, such as:
 
