@@ -1,6 +1,8 @@
 ---
 title: "R: Introduction to Basic Features"
-output: word_document
+output:
+   md_document: default
+   word_document: default
 ---
 
 ```{r include = FALSE}
