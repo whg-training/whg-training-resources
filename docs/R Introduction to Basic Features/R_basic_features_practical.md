@@ -18,7 +18,7 @@ Commons License and I am grateful to the original authors.
 
 *This document and a variety of extensions to the tutorial material were
 written and developed by Helen Lockstone, with contributions from Ben
-Wright. All the material for today’s course is available from this link:
+Wright. All the material for today's course is available from this link:
 <https://www.well.ox.ac.uk/bioinformatics/training/R_Basic_Features>*
 
 You can open a copy of this tutorial guide on the machine you are using
@@ -37,17 +37,17 @@ check the current working directory with the following command:
 
 The output (directory path) should match the location you are working in
 today, and this folder should also contain the files named
-“inflammation\_data.csv” and “sample.csv”.
+"inflammation\_data.csv" and "sample.csv".
 
 If this is the case, you should have everything you need to run this
 tutorial. If not, please let us know and we will get you started.
 
 If you see an error message at any point, first check the command
-matches that in the tutorial exactly and that you haven’t accidentally
+matches that in the tutorial exactly and that you haven't accidentally
 missed an earlier command out. Pay particular attention to lower/upper
 case letters, underscores, dashes or dots in function or object names,
-and that brackets and quotes are correctly paired. If you can’t spot the
-problem or have a question at any point, please don’t hesitate to ask.
+and that brackets and quotes are correctly paired. If you can't spot the
+problem or have a question at any point, please don't hesitate to ask.
 
 ### Helpful Tips
 
@@ -59,8 +59,8 @@ problem or have a question at any point, please don’t hesitate to ask.
     console panel and executed by R.
 
 -   To save your work, click on the disk icon in the same toolbar as the
-    ‘run’ button. Giving a filename with a .R extension, such as
-    ‘R\_course\_code.R’ saves it as an R script file - this can be
+    'run' button. Giving a filename with a .R extension, such as
+    'R\_course\_code.R' saves it as an R script file - this can be
     opened like any text file but the .R extension is useful to identify
     your files that contain scripts. This is the usually the easiest way
     to work; if you need to close your session and return to it another
@@ -93,8 +93,8 @@ problem or have a question at any point, please don’t hesitate to ask.
 The first thing we need to do is load or read in the data from our files
 so it is accessible in the current R session. There are a few possible
 ways to do this but we will use the function **read.csv** because our
-files are saved in ‘comma-separated values’ or csv format. To find out
-details of how to use this function you can search RStudio’s Help menu
+files are saved in 'comma-separated values' or csv format. To find out
+details of how to use this function you can search RStudio's Help menu
 (bottom right panel) or type:
 
     help(read.csv)
@@ -104,19 +104,19 @@ values where applicable. For example, we see sep=”,”, which means the
 fields in a row will be separated on commas, and header=TRUE, which
 means it is expecting the first row of the file to contain names for
 each column. The first file we will work with is the one named
-‘inflammation\_data.csv’. If we inspect this file in Excel or a text
+'inflammation\_data.csv'. If we inspect this file in Excel or a text
 editor (by opening it directly from its location on your computer) we
 see there are no column names, just a large set of numerical values.
 Therefore, we need to explicitly include the header argument in our
 command, changing it to FALSE to over-ride the default behaviour of the
-function. This is an example of how arguments modify a function’s
+function. This is an example of how arguments modify a function's
 precise behaviour, rather than requiring two separate functions to exist
 for files with/without header rows.
 
     inf.data <- read.csv("inflammation_data.csv", header=FALSE)
 
-*Note: if you see an error message similar to ‘No such file or
-directory’ when trying to read in a file, it is likely that either (i)
+*Note: if you see an error message similar to 'No such file or
+directory' when trying to read in a file, it is likely that either (i)
 the file is not located in the current working directory; (ii) there is
 one (or more) typos in the filename.*
 
@@ -126,8 +126,8 @@ differentiate object names (decided by us) from R functions (pre-defined
 in the language) when looking at R code or commands.
 
 We have given a name for a new object, **inf.data**, in which to store
-the contents of the file ‘inflammation\_data.csv’. Our object name is
-descriptive without being too long, shortening ‘inflammation’ to ‘inf’
+the contents of the file 'inflammation\_data.csv'. Our object name is
+descriptive without being too long, shortening 'inflammation' to 'inf'
 for our convenience. We are using the in-built R function **read.csv**,
 and provide two arguments:
 
@@ -157,7 +157,7 @@ object called **test** and compare this to **inf.data**:
 
 Another object named **test** now appears. We can use the **head**
 command to inspect the first 6 rows of each object. For display
-purposes, we’ll also only include the first 6 columns:
+purposes, we'll also only include the first 6 columns:
 
     head(test [, 1:6])
     head(inf.data[ , 1:6])
@@ -166,8 +166,8 @@ Discuss with a neighbour what you observe.
 
 *This is a good example of how easily something unwanted can happen in R
 and the importance of checking your objects contain what you intend them
-to. Any mistakes can simply be corrected by re-running the command
-e.g. with the appropriate header argument, and overwriting any previous
+to. Any mistakes can simply be corrected by re-running the command e.g.
+with the appropriate header argument, and overwriting any previous
 version of the object.*
 
 ## Two-dimensional data structures
@@ -177,9 +177,9 @@ Our original file contained rows and columns of data, and R has suitable
 dataframes. These can both be thought of as tables of data, analogous to
 an Excel spreadsheet. Matrices require all columns to be of the same
 type, while data frames can have columns of different data types. Given
-that experimental data is often a mixture of numeric values
-(e.g. measurements) and associated descriptive information, data frames
-are a very commonly used data structure in R.
+that experimental data is often a mixture of numeric values (e.g.
+measurements) and associated descriptive information, data frames are a
+very commonly used data structure in R.
 
 *NB while it is possible to hold mixed data types in a matrix object as
 well, R will use its internal hierarchy of data types to choose one that
@@ -191,7 +191,7 @@ In this case, a data frame object has been created:
 
     class(inf.data)
 
-We can check how each column of data has been treated by R e.g. for the
+We can check how each column of data has been treated by R e.g. for the
 first column:
 
     class(inf.data[,1])
@@ -243,7 +243,7 @@ Again we see a way for mistakes to easily creep into data analysis –
 here we have to rely on information given to us second-hand to know what
 is what. What if that information were wrong? Are there any checks we
 can make ourselves to be sure patients are in rows? We are not told how
-many patients were included so simply checking the number of rows won’t
+many patients were included so simply checking the number of rows won't
 help. And what if there were 50 patients and measurements taken over 50
 days?
 
@@ -288,7 +288,7 @@ in a variety of ways to inspect or extract different parts of it.
 How might you select the data in the first 5 rows for the first 5
 columns? Add your command for this below.
 
-    ## If we need to select non-contiguous portions of the object, we’ll need the help of the c() function:
+    ## If we need to select non-contiguous portions of the object, we'll need the help of the c() function:
     inf.data[c(1, 3, 5), c(10, 20)]
 
     ## If you want to display all columns for selected row(s), leave blank space after the comma:
@@ -320,10 +320,10 @@ efficiently in R, starting with an approach that is the opposite (and
 definitely not recommended!).
 
 Suppose we want to find the maximum inflammation score for each patient
-across the 40 days of measurements. Let’s start by calculating it for
+across the 40 days of measurements. Let's start by calculating it for
 patient 1.
 
-Extracting the data for patient 1 (i.e. the first row) is the first
+Extracting the data for patient 1 (i.e. the first row) is the first
 obvious step, and perhaps we decide it makes sense to store the values
 for this patient in a new object:
 
@@ -335,16 +335,16 @@ We can then calculate the maximum value for Patient 1:
 
 Although this seems reasonable enough, there are several issues:
 
--   we’ve created an additional object to store data that is simply a
+-   we've created an additional object to store data that is simply a
     duplicate of what is already contained in our original object
--   it doesn’t scale well to do this for all 60 patients
+-   it doesn't scale well to do this for all 60 patients
 -   the result is output to the console and therefore hard to do
     anything further with
 
 If we did continue with this approach, there would be 60 new objects
 (all with very similar names), a high probability of having made a
-typing mistake somewhere (perhaps overwriting one patient’s data with
-another), and a large set of results that we’d have to manually write
+typing mistake somewhere (perhaps overwriting one patient's data with
+another), and a large set of results that we'd have to manually write
 down or transfer to an Excel spreadsheet - all of which is very messy
 and prone to error.
 
@@ -368,7 +368,7 @@ harder to work out what the code is doing, as well as increase the
 chance of the code not doing as intended – the location of brackets
 becomes vital.*
 
-We’d really like a way to this for all 60 patients without duplicating
+We'd really like a way to this for all 60 patients without duplicating
 the code 60 times. Loops are one option (not discussed here) but the
 **apply** function is the most efficient approach:
 
@@ -415,10 +415,10 @@ very useful information to make an initial inspection of your data.
 
 ## Plotting Data
 
-Visualising data is a vital part of statistical analysis, and R’s
+Visualising data is a vital part of statistical analysis, and R's
 plotting capabilities are a key reason for its popularity. There is a
 related course R: Visualisation that you can take if interested to learn
-more. Here, we introduce ways to make a few simple plots. Let’s take a
+more. Here, we introduce ways to make a few simple plots. Let's take a
 look at the average inflammation over time. Recall that we already
 calculated these values above and saved them in an object named
 **avg\_inf\_day**. Plotting the values is done with the function
@@ -448,7 +448,7 @@ When we are happy with our plots, they can be saved to a file.
     dev.off()
 
 This will be saved to the current working directory by default so if we
-check the folder, a new file named ‘Inflammation\_plots.pdf’ should have
+check the folder, a new file named 'Inflammation\_plots.pdf' should have
 been created. The onefile=T argument instructs R to append additional
 plots to the same file and the **dev.off()** command at the end closes
 the file connection. You can also export plots directly to a pdf file
@@ -456,7 +456,7 @@ from the RStudio plot panel.
 
 ## Data Handling
 
-We’ll next read in data from another file to illustrate a few more
+We'll next read in data from another file to illustrate a few more
 features of data frames and how to work with them in R. In this case the
 file does contain a header row and the default arguments for read.csv
 are appropriate for this file so we only need provide the filename:
@@ -465,7 +465,7 @@ are appropriate for this file so we only need provide the filename:
     head(data2)
 
 This displays the first 6 rows, and we can see immediately that we have
-a range of different types of data in each column. Let’s see how R has
+a range of different types of data in each column. Let's see how R has
 treated it (you can paste the following 4 lines as one block).
 
     for(i in 1:ncol(data2))
@@ -473,10 +473,10 @@ treated it (you can paste the following 4 lines as one block).
         print(class(data2[,i]))
     }
 
-Here, we’ve used a **for** loop to iterate over each column in the
+Here, we've used a **for** loop to iterate over each column in the
 object **data2**, and print to screen the class of each column. The
 output tells us that columns 1:3 are treated as factors, column 5 as
-numeric and the remaining columns as integer values. We haven’t yet
+numeric and the remaining columns as integer values. We haven't yet
 mentioned factors and will only briefly discuss them here but they are
 very important for statistical analysis in R. They are one-dimensional,
 like vectors, and are particularly useful for categorical data.
@@ -498,7 +498,7 @@ be useful to include in the analysis, especially if they are not matched
 across the treatment groups.
 
 R will treat any columns containing character strings (text) as a factor
-by default with **read.csv** or **read.table**. We don’t always want to
+by default with **read.csv** or **read.table**. We don't always want to
 do this though, and indeed it is usually preferable to switch this
 behaviour off, and specifically convert data we do want to treat as
 factors later. This is because factors store data differently and so can
@@ -508,9 +508,9 @@ unless we needed to include it as an additional explanatory factor in
 our analysis model.
 
 The way to switch off this default behaviour is with the argument
-‘stringsAsFactors’ – if you check the help page for **read.csv** again,
-you’ll see it listed among the arguments, and it is TRUE by default
-(although it’s not readily apparent that this is the case).
+'stringsAsFactors' – if you check the help page for **read.csv** again,
+you'll see it listed among the arguments, and it is TRUE by default
+(although it's not readily apparent that this is the case).
 
     data2 <- read.csv("sample.csv", stringsAsFactors=FALSE)
 
@@ -553,7 +553,7 @@ required before embarking on some analysis, and often take longer too!
 It is the topic of the next course in the series, R: Data Handling -
 please sign up if interested.
 
-Well, we have reached the end of today’s course – we hope it was useful
+Well, we have reached the end of today's course – we hope it was useful
 for you and good luck on your R journey! Please see below for further
 reading and information.
 
@@ -598,7 +598,7 @@ There are several online forums used by R programmers, novice and
 expert, to get help and advice from their peers. Searching for your R
 problem will often give results from one of these forums.
 
-One page ‘quick reference’ documents:
+One page 'quick reference' documents:
 <http://www.well.ox.ac.uk/bioinformatics/training/R_materials/r-cheat-sheet.pdf>
 <http://www.well.ox.ac.uk/bioinformatics/training/R_materials/R_reference_card.pdf>
 Full R manual:
@@ -608,12 +608,12 @@ Full R manual:
 
 When freshly installed, R has only its basic functions available. This
 is still a considerable number of functions and is adequate for a great
-many tasks. R’s functionality is extended by the use of packages, each
+many tasks. R's functionality is extended by the use of packages, each
 of which is a self-contained bundle of additional functions. These are
 typically written by people other than the main R developers, but a
 centralised repository of these packages (CRAN) is maintained and
 accessible from within R. For example, to install the package called
-‘limma’, you would use:
+'limma', you would use:
 
     install.packages("limma")
 
@@ -629,7 +629,7 @@ to make a package available in your current session using the command:
     library(limma)
 
 You will need to do this each time you restart R. This step is required
-so you don’t waste memory by loading in packages you don’t need every
+so you don't waste memory by loading in packages you don't need every
 session. Note that the help() function only knows about functions that
 have been made available using the library() command.
 
@@ -640,7 +640,7 @@ specifically geared towards bioinformatics.
 <https://www.bioconductor.org/> Many of the packages in Bioconductor are
 also available via CRAN using the usual package installation method.
 However, Bioconductor has its own preferred installation mechanism which
-gets around some of R’s more annoying limitations with version
+gets around some of R's more annoying limitations with version
 incompatibilities. In particular, the packages in Bioconductor are
 updated more swiftly following the release of a new version of R. To get
 started with Bioconductor, use the following command:
