@@ -8,18 +8,18 @@ the R programming language and how to start using it. We will now do
 some practical exercises working with example data to perform typical
 tasks. First, some important acknowledgements:
 
-*The tutorial that follows is in part adapted from the Software
-Carpentry Foundation (<https://software-carpentry.org/lessons/>)
-Programming with R, specifically the Analysing Patient Data tutorial:
-<http://swcarpentry.github.io/r-novice-inflammation/01-starting-with-data/index.html>
-The Software Caprentry material is available for re-use under a Creative
-Commons License and I am grateful to the original authors.
-<https://creativecommons.org/licenses/by/4.0/>*
+*The tutorial that follows is in part adapted from the [Software
+Carpentry Foundation](https://software-carpentry.org/lessons/)
+Programming with R, specifically the Analysing Patient Data
+[tutorial](http://swcarpentry.github.io/r-novice-inflammation/01-starting-with-data/index.html).
+The Software Carpentry material is available for re-use under a
+[Creative Commons License](https://creativecommons.org/licenses/by/4.0/)
+and I am grateful to the original authors.*
 
 *This document and a variety of extensions to the tutorial material were
 written and developed by Helen Lockstone, with contributions from Ben
-Wright. All the material for today's course is available from this link:
-<https://www.well.ox.ac.uk/bioinformatics/training/R_Basic_Features>*
+Wright. All the material for today's course is available
+[here](https://www.well.ox.ac.uk/bioinformatics/training/R_Basic_Features)*
 
 You can open a copy of this tutorial guide on the machine you are using
 to copy and paste any particularly long commands. Generally, manually
@@ -66,7 +66,7 @@ problem or have a question at any point, please don't hesitate to ask.
     to work; if you need to close your session and return to it another
     time, it is easy to run the code again. If it were appropriate, all
     of the code stored in a script can be executed in R from start to
-    finish with the command
+    finish with the command:
 
 <!-- -->
 
@@ -100,7 +100,7 @@ details of how to use this function you can search RStudio's Help menu
     help(read.csv)
 
 The help page shows us the arguments for this function and their default
-values where applicable. For example, we see sep=”,”, which means the
+values where applicable. For example, we see sep=",", which means the
 fields in a row will be separated on commas, and header=TRUE, which
 means it is expecting the first row of the file to contain names for
 each column. The first file we will work with is the one named
@@ -234,7 +234,7 @@ tutorial provides the following information: *“We are studying
 inflammation in patients who have been given a new treatment for
 arthritis. Each row holds the observations for just one patient. Each
 column holds the inflammation measured in a day, so we have a set of
-values in successive days.”*
+values in successive days."*
 
 Our object has 60 rows and 40 columns, so we infer from the information
 above that there are 60 patients, and 40 days.
@@ -306,9 +306,12 @@ accessed by name (in quotes):
 Suppose you want to determine the maximum inflammation for patient 5
 across days three to seven. To do this you would extract the relevant
 subset from the data frame and calculate the maximum value. Which of the
-following lines of R code gives the correct answer? 1. max(inf.data\[5,
-\]) 2. max(inf.data\[3:7, 5\]) 3. max(inf.data\[5, 3:7\]) 4.
-max(inf.data\[5, 3, 7\])
+following lines of R code gives the correct answer?
+
+1.  max(inf.data\[5, \])
+2.  max(inf.data\[3:7, 5\])
+3.  max(inf.data\[5, 3:7\])
+4.  max(inf.data\[5, 3, 7\])
 
 ## Analysing Data
 
@@ -335,10 +338,10 @@ We can then calculate the maximum value for Patient 1:
 
 Although this seems reasonable enough, there are several issues:
 
--   we've created an additional object to store data that is simply a
+-   We've created an additional object to store data that is simply a
     duplicate of what is already contained in our original object
--   it doesn't scale well to do this for all 60 patients
--   the result is output to the console and therefore hard to do
+-   It doesn't scale well to do this for all 60 patients
+-   The result is output to the console and therefore hard to do
     anything further with
 
 If we did continue with this approach, there would be 60 new objects
@@ -386,9 +389,9 @@ Comparing these two commands will help understand the **apply**
 function, which is not intuitive but highly efficient as we have seen.
 The arguments to apply are:
 
--   the data object
+-   The data object
 -   MARGIN, indicating whether to apply over rows (1) or columns (2)
--   the name of (another) function to be applied
+-   The name of (another) function to be applied
 
 We wanted to find the maximum inflammation score for each patient, so we
 looked across the rows and used the **max** function. To modify the
@@ -559,11 +562,11 @@ reading and information.
 
 ## Further Resources and Useful Information
 
-We have recently helped collate a comprehensive set of R resources with
-IT Services (with particular thanks to Dave Baker for creating the
-website, and contributions from Samantha Curle and Andre Python), which
-lists courses (online and workshops) as well as recommended textbooks,
-websites etc. <https://help.it.ox.ac.uk/courses/R>
+We have helped collate a comprehensive [set of R
+resources](https://help.it.ox.ac.uk/courses/R) with IT Services (with
+particular thanks to Dave Baker for creating the website, and
+contributions from Samantha Curle and Andre Python), which lists courses
+(online and workshops) as well as recommended textbooks, websites etc.
 
 The Software Carpentry Foundation website contains many tutorials for
 learning a variety of programming languages, including R. There is also
@@ -572,20 +575,25 @@ computational skills needed to handle and analyse data - tutorials are
 currently available for Ecology, Genomics, Geospatial Data and Social
 Sciences, with others in development.
 
-<https://software-carpentry.org/lessons/>
-<https://datacarpentry.org/lessons/>
+-   [Software Carpentry
+    lessons](https://software-carpentry.org/lessons/)
+-   [Data Carpentry lessons](https://datacarpentry.org/lessons/)
 
 In particular, the tutorials at the following links give further details
 and examples on some of the ideas already introduced or extend to other
 topics once you feel comfortable interacting with the R environment.
 
-<http://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures/index.html>
-<http://swcarpentry.github.io/r-novice-inflammation/11-supp-read-write-csv/index.html>
-<http://swcarpentry.github.io/r-novice-inflammation/12-supp-factors/index.html>
-<http://swcarpentry.github.io/r-novice-inflammation/10-supp-addressing-data/index.html>
-<http://swcarpentry.github.io/r-novice-inflammation/06-best-practices-R/index.html>
-<https://datacarpentry.org/R-genomics/>
-<https://datacarpentry.org/r-intro-geospatial/>
+-   [Data
+    structures](http://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures/index.html)
+-   [Read and write csv
+    files](http://swcarpentry.github.io/r-novice-inflammation/11-supp-read-write-csv/index.html)
+-   [Factors](http://swcarpentry.github.io/r-novice-inflammation/12-supp-factors/index.html)
+-   [Addressing
+    data](http://swcarpentry.github.io/r-novice-inflammation/10-supp-addressing-data/index.html)
+-   [Best
+    practices](http://swcarpentry.github.io/r-novice-inflammation/06-best-practices-R/index.html)
+-   [R genomics](https://datacarpentry.org/R-genomics/)
+-   [Geospatial data](https://datacarpentry.org/r-intro-geospatial/)
 
 ## Getting Help
 
@@ -598,11 +606,12 @@ There are several online forums used by R programmers, novice and
 expert, to get help and advice from their peers. Searching for your R
 problem will often give results from one of these forums.
 
-One page 'quick reference' documents:
-<http://www.well.ox.ac.uk/bioinformatics/training/R_materials/r-cheat-sheet.pdf>
-<http://www.well.ox.ac.uk/bioinformatics/training/R_materials/R_reference_card.pdf>
-Full R manual:
-<http://www.well.ox.ac.uk/bioinformatics/training/R_materials/R-introduction_manual.pdf>
+One page 'quick reference' documents: - [R cheat
+sheet](http://www.well.ox.ac.uk/bioinformatics/training/R_materials/r-cheat-sheet.pdf) -
+[R reference
+card](http://www.well.ox.ac.uk/bioinformatics/training/R_materials/R_reference_card.pdf)
+Full R manual: - [R
+manual](http://www.well.ox.ac.uk/bioinformatics/training/R_materials/R-introduction_manual.pdf)
 
 ## Installing Packages
 
@@ -635,15 +644,15 @@ have been made available using the library() command.
 
 ## Bioconductor
 
-Bioconductor is a separate third-party repository of R code,
-specifically geared towards bioinformatics.
-<https://www.bioconductor.org/> Many of the packages in Bioconductor are
-also available via CRAN using the usual package installation method.
-However, Bioconductor has its own preferred installation mechanism which
-gets around some of R's more annoying limitations with version
-incompatibilities. In particular, the packages in Bioconductor are
-updated more swiftly following the release of a new version of R. To get
-started with Bioconductor, use the following command:
+[Bioconductor](https://www.bioconductor.org/) is a separate third-party
+repository of R code, specifically geared towards bioinformatics. Many
+of the packages in Bioconductor are also available via CRAN using the
+usual package installation method. However, Bioconductor has its own
+preferred installation mechanism which gets around some of R's more
+annoying limitations with version incompatibilities. In particular, the
+packages in Bioconductor are updated more swiftly following the release
+of a new version of R. To get started with Bioconductor, use the
+following command:
 
     source("https://bioconductor.org/biocLite.R")
 

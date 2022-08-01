@@ -7,6 +7,9 @@ output:
       md_extensions: -smart
    pdf_document:
       md_extensions: -smart
+   html_document:
+      md_extensions: -smart
+urlcolor: blue
 ---
 
 ```{r include = FALSE}
@@ -22,13 +25,11 @@ University of Oxford
 
 Earlier we introduced the R software environment, some key features of the R programming language and how to start using it. We will now do some practical exercises working with example data to perform typical tasks. First, some important acknowledgements:
 
-*The tutorial that follows is in part adapted from the Software Carpentry Foundation (https://software-carpentry.org/lessons/) Programming with R, specifically the Analysing Patient Data tutorial:
-http://swcarpentry.github.io/r-novice-inflammation/01-starting-with-data/index.html
-The Software Carpentry material is available for re-use under a Creative Commons License and I am grateful to the original authors. https://creativecommons.org/licenses/by/4.0/*
+*The tutorial that follows is in part adapted from the [Software Carpentry Foundation](https://software-carpentry.org/lessons/) Programming with R, specifically the Analysing Patient Data [tutorial](http://swcarpentry.github.io/r-novice-inflammation/01-starting-with-data/index.html).
+The Software Carpentry material is available for re-use under a [Creative Commons License](https://creativecommons.org/licenses/by/4.0/) and I am grateful to the original authors.*
 
 *This document and a variety of extensions to the tutorial material were written and developed by Helen Lockstone, with contributions from Ben Wright.
-All the material for today's course is available from this link:
-https://www.well.ox.ac.uk/bioinformatics/training/R_Basic_Features*
+All the material for today's course is available [here](https://www.well.ox.ac.uk/bioinformatics/training/R_Basic_Features)*
 
 You can open a copy of this tutorial guide on the machine you are using to copy and paste any particularly long commands. Generally, manually type in the shorter commands to get used to the R environment and structure of commands – most are very short. Commands are shown within light-grey boxes; remember that lines starting with a # are comments and do not need to be run.
 
@@ -52,7 +53,8 @@ If you see an error message at any point, first check the command matches that i
 * Enter your commands in the top-left panel of RStudio (a text editor) as this means they can be saved to keep a record of what you have done. To run a command written in this panel, make sure the cursor is located somewhere in the line of code and click the Run icon with the green arrow. The command is automatically copied into the lower console panel and executed by R. 
 
 * To save your work, click on the disk icon in the same toolbar as the 'run' button. Giving a filename with a .R extension, such as 'R_course_code.R' saves it as an R script file - this can be opened like any text file but the .R extension is useful to identify your files that contain scripts. 
-This is the usually the easiest way to work; if you need to close your session and return to it another time, it is easy to run the code again. If it were appropriate, all of the code stored in a script can be executed in R from start to finish with the command 
+This is the usually the easiest way to work; if you need to close your session and return to it another time, it is easy to run the code again. If it were appropriate, all of the code stored in a script can be executed in R from start to finish with the command: 
+
 ```{r eval=FALSE}
 source("script_name.R")
 ```
@@ -68,6 +70,7 @@ The first thing we need to do is load or read in the data from our files so it i
 ```{r eval=FALSE}
 help(read.csv)
 ```
+
 The help page shows us the arguments for this function and their default values where applicable. For example, we see sep=",", which means the fields in a row will be separated on commas, and header=TRUE, which means it is expecting the first row of the file to contain names for each column. 
 The first file we will work with is the one named 'inflammation_data.csv'. If we inspect this file in Excel or a text editor (by opening it directly from its location on your computer) we see there are no column names, just a large set of numerical values. 
 Therefore, we need to explicitly include the header argument in our command, changing it to FALSE to over-ride the default behaviour of the function. This is an example of how arguments modify a function's precise behaviour, rather than requiring two separate functions to exist for files with/without header rows. 
@@ -102,6 +105,7 @@ Another object named **test** now appears. We can use the **head** command to in
 head(test [, 1:6])
 head(inf.data[ , 1:6])
 ```
+
 Discuss with a neighbour what you observe.
 
 *This is a good example of how easily something unwanted can happen in R and the importance of checking your objects contain what you intend them to. Any mistakes can simply be corrected by re-running the command e.g. with the appropriate header argument, and overwriting any previous version of the object.*
@@ -124,13 +128,15 @@ class(inf.data[,1])
 
 *In fact, as all the columns contain data of the same type, R could equally well store this data as a matrix object. A data frame has been created because the functions **read.csv** and **read.table** are specifically designed to deal with mixed column classes and produce data frames by default. Another function **scan** can be used to read in matrices, especially large ones.*
 
-It is worth noting that some functions operate on matrix objects, and so converting between classes is sometimes needed. 
+It is worth noting that some functions operate on matrix objects, and so converting between classes is sometimes needed.
+
 ```{r eval=FALSE}
 inf.data <- as.matrix(inf.data)
 class(inf.data)
 ```
 
 We will continue with the matrix form of this object for now, and load a mixed dataset later. Most operations on either kind of 2-dimensional object are the same. For example, we can find the dimensions of a matrix or a data frame with the **dim** function.
+
 ```{r eval=FALSE}
 dim(inf.data)
 ```
@@ -138,13 +144,14 @@ dim(inf.data)
 The output of **dim** is printed to the screen and shows the number of rows the object contains, followed by the number of columns (the convention is always rows, then columns but this can be hard to remember at first as there is no indication). 
 
 If unsure, the functions **nrow** and **ncol** will return the number of rows or columns respectively; these take as their argument the name of the object:
+
 ```{r eval=FALSE}
 nrow(inf.data)
 ncol(inf.data)
 ```
+
 This particular file suffers from the lack of any labels to annotate what data is recorded in the rows and columns. The Software Carpentry tutorial provides the following information:
 *“We are studying inflammation in patients who have been given a new treatment for arthritis. Each row holds the observations for just one patient. Each column holds the inflammation measured in a day, so we have a set of values in successive days."*
-
 
 Our object has 60 rows and 40 columns, so we infer from the information above that there are 60 patients, and 40 days. 
 
@@ -153,10 +160,12 @@ Again we see a way for mistakes to easily creep into data analysis – here we h
 Even with careful scrutiny it would be hard to know how the data are presented (patients in rows or columns) from the data alone. We could perhaps make some plots to help us, or we might spot the zero values in the first column. Scrolling down the object display in the top-left panel or displaying the first column in the console confirms they are all zeroes, and the values in each row tend to rise across the first few columns. We may be reassured by this that the patients are indeed in the rows, since we might expect inflammation to rise over time, and an individual recording 0 on every single day might be unlikely (though not impossible). 
 
 It would be prudent to add some row and column names to reduce the chance of making a mistake later when dealing with this data:
+
 ```{r eval=FALSE}
 rownames(inf.data) <- paste("Patient", 1:60, sep="_")
 colnames(inf.data) <-  paste("Day", 1:40, sep="_")
 ```
+
 This introduces the very useful and versatile function **paste**. Note that adding row and column names does not change the size of the data object, but we can see them displayed by reloading the object. They are similar to the alphabetical columns and numbered rows in an Excel spreadsheet.
 
 ## Accessing Data
@@ -173,6 +182,7 @@ inf.data[1,1] # this pulls out the data value in the first row of the first colu
 inf.data[30, 20] # any single entry can be extracted by specifying the row and column
 
 ```
+
 How might you select the data in the first 5 rows for the first 5 columns? Add your command for this below.
 
 ```{r eval=FALSE}
@@ -188,11 +198,13 @@ inf.data[ , 1:5] # all rows, columns 1 through 5
 ```
 
 We added column names to our object earlier, and columns can also be accessed by name (in quotes):
+
 ```{r eval=FALSE}
 inf.data["Patient_1", ]
 ```
 
 Suppose you want to determine the maximum inflammation for patient 5 across days three to seven. To do this you would extract the relevant subset from the data frame and calculate the maximum value. Which of the following lines of R code gives the correct answer?
+
 1.	max(inf.data[5, ])
 2.	max(inf.data[3:7, 5])
 3.	max(inf.data[5, 3:7])
@@ -205,6 +217,7 @@ We can perform many simple analyses of the data by applying functions such as ma
 Suppose we want to find the maximum inflammation score for each patient across the 40 days of measurements.  Let's start by calculating it for patient 1.
 
 Extracting the data for patient 1 (i.e. the first row) is the first obvious step, and perhaps we decide it makes sense to store the values for this patient in a new object:
+
 ```{r eval=FALSE}
 inf.patient1 <- inf.data[1, ] 
 ```
@@ -215,16 +228,16 @@ We can then calculate the maximum value for Patient 1:
 max(inf.patient1)
 ```
 
-
 Although this seems reasonable enough, there are several issues:
 
-* we've created an additional object to store data that is simply a duplicate of what is already contained in our original object
-* it doesn't scale well to do this for all 60 patients
-* the result is output to the console and therefore hard to do anything further with
+* We've created an additional object to store data that is simply a duplicate of what is already contained in our original object
+* It doesn't scale well to do this for all 60 patients
+* The result is output to the console and therefore hard to do anything further with
 
 If we did continue with this approach, there would be 60 new objects (all with very similar names), a high probability of having made a typing mistake somewhere (perhaps overwriting one patient's data with another), and a large set of results that we'd have to manually write down or transfer to an Excel spreadsheet - all of which is very messy and prone to error. 
 
 We can easily dispense with the intermediate step of creating a new object:
+
 ```{r eval=FALSE}
 # max inflammation for patient 1
 max(inf.data[1, ])
@@ -248,6 +261,7 @@ max_inf_patient <- apply(inf.data, MARGIN=1, max)
 ```
 
 Similarly, we could compute the average inflammation per day with a single line of code:
+
 ```{r eval=FALSE}
 avg_inf_day <- apply(inf.data, MARGIN=2, mean)
 ```
@@ -255,9 +269,9 @@ avg_inf_day <- apply(inf.data, MARGIN=2, mean)
 
 Comparing these two commands will help understand the **apply** function, which is not intuitive but highly efficient as we have seen.  The arguments to apply are:
 
-* the data object
+* The data object
 * MARGIN, indicating whether to apply over rows (1) or columns (2)
-* the name of (another) function to be applied
+* The name of (another) function to be applied
 
 We wanted to find the maximum inflammation score for each patient, so we looked across the rows and used the **max** function. To modify the command to find the average inflammation per day, we switched the MARGIN argument to 2 for columns, and gave the final argument as **mean**. 
 
@@ -266,12 +280,14 @@ We wanted to find the maximum inflammation score for each patient, so we looked 
 
 
 We have also solved the final issue with our initial approach by storing the results in suitably-named objects for further work. 
+
 ```{r eval=FALSE}
 length(max_inf_patient) 
 head(max_inf_patient)
 ```
 
 Another useful function is **summary**. This returns the minimum value, first quartile, median, mean, third quartile and the maximum value, all very useful information to make an initial inspection of your data.
+
 ```{r eval=FALSE}
 summary(inf.data[, 1:4]) # for each of the first 4 days
 ```
@@ -297,10 +313,10 @@ plot(max_inf_patient)
 ## Here, we might decide to use a boxplot instead:
 boxplot(max_inf_patient, main="Maximum Inflammation Scores", ylab="Max_inf_score")
 legend("topright", legend="n=60 patients", cex=0.8) # adding a legend
-
 ```
 
 When we are happy with our plots, they can be saved to a file.
+
 ```{r eval=FALSE}
  pdf("Inflammation_plots.pdf", onefile=T)
 plot(avg_inf_day, main="Inflammation Scores Over Time", xlab="Day", ylab="Average_inflammation_score", pch=4, col="red")
@@ -334,7 +350,6 @@ Here, we've used a **for** loop to iterate over each column in the object **data
 ```{r eval=FALSE}
 length(data2$Group)
 data2$Group
-
 ```
 
 Each of the 100 entries in the Group column are printed to the screen, and at the end is the additional information:
@@ -342,11 +357,9 @@ Each of the 100 entries in the Group column are printed to the screen, and at th
 
 These are the unique set of entries in this column, known as the levels of the factor. You may have come across factors before in the context of experimental design or ANOVA - in this case the experiment might test the effect of 2 treatments (Treatment1 and Treatment2) on blood pressure, perhaps to see if it reduces compared to a control group. Other information about the patients, such as their age and gender may be useful to include in the analysis, especially if they are not matched across the treatment groups. 
 
-
 R will treat any columns containing character strings (text) as a factor by default with **read.csv** or **read.table**. We don't always want to do this though, and indeed it is usually preferable to switch this behaviour off, and specifically convert data we do want to treat as factors later. This is because factors store data differently and so can sometimes behave differently to vectors. For example, here the first column of IDs would preferably be a character vector, as could Gender unless we needed to include it as an additional explanatory factor in our analysis model. 
 
 The way to switch off this default behaviour is with the argument 'stringsAsFactors' – if you  check the help page for **read.csv** again, you'll see it listed among the arguments, and it is TRUE by default (although it's not readily apparent that this is the case). 
-
 
 ```{r eval=FALSE}
 data2 <- read.csv("sample.csv", stringsAsFactors=FALSE)
@@ -359,6 +372,7 @@ for(i in 1:ncol(data2))
 	print(class(data2[,i]))
 }
 ```
+
 We can specifically convert the Group column to a factor:
 
 ```{r eval=FALSE}
@@ -367,10 +381,12 @@ class(data2$Group)
 ```
 
 A very useful summary function is **table**:
+
 ```{r eval=FALSE}
 table(data2$Group)
 table(data2$Gender)
 ```
+
 This alerts us to the fact that data in the Gender column has not been entered consistently, which we might have already spotted from viewing the object in RStudio. 
 
 To fix this, we can make sure F and M are used throughout; this involves determining which rows contain a lowercase f for example, and substituting with F. Similarly for the lowercase case m:
@@ -387,26 +403,24 @@ This last section is just a brief foray into data handling and manipulation in R
 
 Well, we have reached the end of today's course – we hope it was useful for you and good luck on your R journey! Please see below for further reading and information.
 
-
 ## Further Resources and Useful Information
 
-We have recently helped collate a comprehensive set of R resources with IT Services (with particular thanks to Dave Baker for creating the website, and contributions from Samantha Curle and Andre Python), which lists courses (online and workshops) as well as recommended textbooks, websites etc. 
-https://help.it.ox.ac.uk/courses/R
+We have helped collate a comprehensive [set of R resources](https://help.it.ox.ac.uk/courses/R) with IT Services (with particular thanks to Dave Baker for creating the website, and contributions from Samantha Curle and Andre Python), which lists courses (online and workshops) as well as recommended textbooks, websites etc. 
 
 The Software Carpentry Foundation website contains many tutorials for learning a variety of programming languages, including R. There is also a series of domain-specific Data Carpentry courses, which focus on computational skills needed to handle and analyse data - tutorials are currently available for Ecology, Genomics, Geospatial Data and Social Sciences, with others in development. 
 
-https://software-carpentry.org/lessons/
-https://datacarpentry.org/lessons/
+- [Software Carpentry lessons](https://software-carpentry.org/lessons/)
+- [Data Carpentry lessons](https://datacarpentry.org/lessons/)
 
 In particular, the tutorials at the following links give further details and examples on some of the ideas already introduced or extend to other topics once you feel comfortable interacting with the R environment. 
 
-http://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures/index.html
-http://swcarpentry.github.io/r-novice-inflammation/11-supp-read-write-csv/index.html
-http://swcarpentry.github.io/r-novice-inflammation/12-supp-factors/index.html
-http://swcarpentry.github.io/r-novice-inflammation/10-supp-addressing-data/index.html
-http://swcarpentry.github.io/r-novice-inflammation/06-best-practices-R/index.html
-https://datacarpentry.org/R-genomics/
-https://datacarpentry.org/r-intro-geospatial/
+- [Data structures](http://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures/index.html)
+- [Read and write csv files](http://swcarpentry.github.io/r-novice-inflammation/11-supp-read-write-csv/index.html)
+- [Factors](http://swcarpentry.github.io/r-novice-inflammation/12-supp-factors/index.html)
+- [Addressing data](http://swcarpentry.github.io/r-novice-inflammation/10-supp-addressing-data/index.html)
+- [Best practices](http://swcarpentry.github.io/r-novice-inflammation/06-best-practices-R/index.html)
+- [R genomics](https://datacarpentry.org/R-genomics/)
+- [Geospatial data](https://datacarpentry.org/r-intro-geospatial/)
 
 ## Getting Help
 
@@ -415,42 +429,43 @@ As you read the R help pages, you may not find them terribly helpful. The R help
 There are several online forums used by R programmers, novice and expert, to get help and advice from their peers. Searching for your R problem will often give results from one of these forums.
 
 One page 'quick reference' documents:
-http://www.well.ox.ac.uk/bioinformatics/training/R_materials/r-cheat-sheet.pdf
-http://www.well.ox.ac.uk/bioinformatics/training/R_materials/R_reference_card.pdf
+- [R cheat sheet](http://www.well.ox.ac.uk/bioinformatics/training/R_materials/r-cheat-sheet.pdf)
+- [R reference card](http://www.well.ox.ac.uk/bioinformatics/training/R_materials/R_reference_card.pdf)
 Full R manual:
-http://www.well.ox.ac.uk/bioinformatics/training/R_materials/R-introduction_manual.pdf  
+- [R manual](http://www.well.ox.ac.uk/bioinformatics/training/R_materials/R-introduction_manual.pdf)
 
 ## Installing Packages
 
 When freshly installed, R has only its basic functions available. This is still a considerable number of functions and is adequate for a great many tasks. R's functionality is extended by the use of packages, each of which is a self-contained bundle of additional functions. These are typically written by people other than the main R developers, but a centralised repository of these packages (CRAN) is maintained and accessible from within R.
 For example, to install the package called 'limma', you would use:
+
 ```{r eval=FALSE}
 install.packages("limma")
 ```
+
 which downloads the files needed. You may be asked to choose where to download the files from, or asked to confirm that they will be installed to a user directory if you do not have admin permissions for your computer. Some R packages rely on other R packages. R handles all of those dependencies in the background and will download and install every needed package as part of installing the requested one.
 Installing packages does not make them available straight away. You need to tell R to make a package available in your current session using the command:
 
 ```{r eval=FALSE}
 library(limma)
 ```
+
 You will need to do this each time you restart R. This step is required so you don't waste memory by loading in packages you don't need every session.
 Note that the help() function only knows about functions that have been made available using the library() command.
 
 ## Bioconductor
 
-Bioconductor is a separate third-party repository of R code, specifically geared towards bioinformatics.
-https://www.bioconductor.org/
-Many of the packages in Bioconductor are also available via CRAN using the usual package installation method. However, Bioconductor has its own preferred installation mechanism which gets around some of R's more annoying limitations with version incompatibilities. In particular, the packages in Bioconductor are updated more swiftly following the release of a new version of R.
-To get started with Bioconductor, use the following command:
+[Bioconductor](https://www.bioconductor.org/) is a separate third-party repository of R code, specifically geared towards bioinformatics.
+Many of the packages in Bioconductor are also available via CRAN using the usual package installation method. However, Bioconductor has its own preferred installation mechanism which gets around some of R's more annoying limitations with version incompatibilities. In particular, the packages in Bioconductor are updated more swiftly following the release of a new version of R. To get started with Bioconductor, use the following command:
 
 ```{r eval=FALSE}
 source("https://bioconductor.org/biocLite.R")
 ```
+
 This loads an R script hosted on the web that defines a new function. You then use this function in a similar way to how you would use the install.packages() function:
+
 ```{r eval=FALSE}
 biocLite("limma")
 ```
 
 Loading Bioconductor packages this way is typically a longer process but more reliable.
-
-

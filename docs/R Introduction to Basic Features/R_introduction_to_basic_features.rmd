@@ -7,6 +7,9 @@ output:
       md_extensions: -smart
    pdf_document:
       md_extensions: -smart
+   html_document:
+      md_extensions: -smart
+urlcolor: blue
 ---
 
 # R: Introduction to Basic Features 
