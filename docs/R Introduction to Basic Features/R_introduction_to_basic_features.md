@@ -8,8 +8,8 @@ This workshop will introduce you to the R environment, with the aim of
 becoming familiar with how commands are written and structured and how
 to perform basic tasks associated with data analysis using R.
 
-All material can be found at the course link:
-<https://www.well.ox.ac.uk/bioinformatics/training/R_Basic_Features>
+All material can be found
+[here](https://www.well.ox.ac.uk/bioinformatics/training/R_Basic_Features)
 
 For today's session you need a basic installation of the R software and
 the RStudio interface. You can use the desktop machines in front of you,
@@ -29,11 +29,11 @@ prompt (ready to receive another command). Note that something may have
 happened 'behind the scenes' - such as creation of a new object. It is
 important to know what each command has done and it was as intended.
 
-**If you see an error message, first double check that the command is
+*If you see an error message, first double check that the command is
 entered exactly as shown. If you can't find the problem, please ask for
 help. The advantage of copying the commands into the text editor panel
 of RStudio means that you can save the file afterwards to have a record
-of what you have done and can easily re-run again in future.**
+of what you have done and can easily re-run again in future.*
 
 If a command is not valid in the way it is constructed (its syntax), R
 will print an error message to the screen. These can sometimes be hard
@@ -114,10 +114,10 @@ names are helpful for several reasons. You can use capitalization, \_ or
 . to separate parts of an object name but they cannot contain spaces,
 nor start with a number. To avoid confusion or potential issues, it is
 also best not to give them the same name as an R function, which have
-their own defined names. An object named ***raw\_data***,
-***raw.data***, ***rawData*** (or even ***d.raw*** for minimal typing!)
-is fine, but trying to assign a value to a variable named raw data will
-give an error because R cannot parse it correctly.
+their own defined names. An object named **raw\_data**, **raw.data**,
+**rawData** (or even **d.raw** for minimal typing!) is fine, but trying
+to assign a value to a variable named raw data will give an error
+because R cannot parse it correctly.
 
 Elsewhere R ignores whitespace so the following commands are equivalent:
 
