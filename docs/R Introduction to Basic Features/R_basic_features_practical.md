@@ -19,14 +19,14 @@ and I am grateful to the original authors.*
 *This document and a variety of extensions to the tutorial material were
 written and developed by Helen Lockstone, with contributions from Ben
 Wright. All the material for today's course is available
-[here](https://www.well.ox.ac.uk/bioinformatics/training/R_Basic_Features)*
+[here](https://www.well.ox.ac.uk/training/R_Basic_Features)*
 
 You can open a copy of this tutorial guide on the machine you are using
 to copy and paste any particularly long commands. Generally, manually
 type in the shorter commands to get used to the R environment and
 structure of commands – most are very short. Commands are shown within
-light-grey boxes; remember that lines starting with a # are comments and
-do not need to be run.
+light-grey boxes; remember that lines starting with a \# are comments
+and do not need to be run.
 
 ### Setup
 
@@ -72,15 +72,15 @@ problem or have a question at any point, please don't hesitate to ask.
 
     source("script_name.R")
 
--   The # symbol is the comment character in R – lines in a script
-    starting with a # (or more commonly ##) can include comments about
+-   The \# symbol is the comment character in R – lines in a script
+    starting with a \# (or more commonly \##) can include comments about
     what the code is doing. It is strongly recommended to comment your
     code as much as possible because it will help others understand what
     it is doing, including yourself if you revisit it sometime after
-    originally working on it. A # can also be used after a command to
+    originally working on it. A \# can also be used after a command to
     note any result or information relating to that command – everything
-    after the # will be ignored by R but serve as useful information to
-    the programmer. You can also use long lines of # symbols to break
+    after the \# will be ignored by R but serve as useful information to
+    the programmer. You can also use long lines of \# symbols to break
     your code into sections.
 
 -   In the console panel, you can use the up/down arrow keys to scroll
@@ -607,11 +607,11 @@ expert, to get help and advice from their peers. Searching for your R
 problem will often give results from one of these forums.
 
 One page 'quick reference' documents: - [R cheat
-sheet](http://www.well.ox.ac.uk/bioinformatics/training/R_materials/r-cheat-sheet.pdf) -
+sheet](http://www.well.ox.ac.uk/training/R_materials/r-cheat-sheet.pdf) -
 [R reference
-card](http://www.well.ox.ac.uk/bioinformatics/training/R_materials/R_reference_card.pdf)
+card](http://www.well.ox.ac.uk/training/R_materials/R_reference_card.pdf)
 Full R manual: - [R
-manual](http://www.well.ox.ac.uk/bioinformatics/training/R_materials/R-introduction_manual.pdf)
+manual](http://www.well.ox.ac.uk/training/R_materials/R-introduction_manual.pdf)
 
 ## Installing Packages
 

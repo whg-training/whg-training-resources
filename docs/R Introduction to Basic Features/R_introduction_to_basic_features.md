@@ -63,9 +63,9 @@ initially and meet dataframes later on.
 ## R command syntax
 
 The following few commands give some sense of how R stores information
-in objects and how simple manipulations of data can be performed. The #
+in objects and how simple manipulations of data can be performed. The \#
 symbol indicates a comment or output that will be produced by running
-the command - you only need to type the lines without # symbols at the
+the command - you only need to type the lines without \# symbols at the
 start.
 
 The first command assigns the value 1 to a new object we create and name
