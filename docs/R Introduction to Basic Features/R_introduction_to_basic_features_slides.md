@@ -34,7 +34,7 @@ Authors: Helen Lockstone and Matthieu Miossec Bioinformatics Core
 ## R: Basic Features
 
 -   Go to the [workshop
-    link](https://www.well.ox.ac.uk/bioinformatics/training/Core_Skills_Scientific_Computing_2020/R/)
+    link](https://www.well.ox.ac.uk/training/Core_Skills_Scientific_Computing_2020/R/)
 -   This will introduce some features of working in the R environment,
     in particular the creation of objects and storing information in R
     using a data type known as 'vectors'

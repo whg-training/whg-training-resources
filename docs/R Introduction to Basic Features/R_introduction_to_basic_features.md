@@ -9,7 +9,7 @@ becoming familiar with how commands are written and structured and how
 to perform basic tasks associated with data analysis using R.
 
 All material can be found
-[here](https://www.well.ox.ac.uk/bioinformatics/training/R_Basic_Features)
+[here](https://www.well.ox.ac.uk/training/R_Basic_Features)
 
 For today's session you need a basic installation of the R software and
 the RStudio interface. You can use the desktop machines in front of you,
@@ -327,8 +327,8 @@ command in the console.
 You will also need to download two data files by entering the following
 commands:
 
-    download.file("https://www.well.ox.ac.uk/bioinformatics/training/R_materials/
+    download.file("https://www.well.ox.ac.uk/training/R_materials/
     inflammation_data.csv", "./inflammation_data.csv") 
      
-    download.file("https://www.well.ox.ac.uk/bioinformatics/training/R_materials/
+    download.file("https://www.well.ox.ac.uk/training/R_materials/
     sample.csv", "./sample.csv"
