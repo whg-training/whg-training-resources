@@ -29,7 +29,7 @@ Earlier we introduced the R software environment, some key features of the R pro
 The Software Carpentry material is available for re-use under a [Creative Commons License](https://creativecommons.org/licenses/by/4.0/) and I am grateful to the original authors.*
 
 *This document and a variety of extensions to the tutorial material were written and developed by Helen Lockstone, with contributions from Ben Wright.
-All the material for today's course is available [here](https://www.well.ox.ac.uk/bioinformatics/training/R_Basic_Features)*
+All the material for today's course is available [here](https://www.well.ox.ac.uk/training/R_Basic_Features)*
 
 You can open a copy of this tutorial guide on the machine you are using to copy and paste any particularly long commands. Generally, manually type in the shorter commands to get used to the R environment and structure of commands – most are very short. Commands are shown within light-grey boxes; remember that lines starting with a # are comments and do not need to be run.
 
@@ -429,10 +429,10 @@ As you read the R help pages, you may not find them terribly helpful. The R help
 There are several online forums used by R programmers, novice and expert, to get help and advice from their peers. Searching for your R problem will often give results from one of these forums.
 
 One page 'quick reference' documents:
-- [R cheat sheet](http://www.well.ox.ac.uk/bioinformatics/training/R_materials/r-cheat-sheet.pdf)
-- [R reference card](http://www.well.ox.ac.uk/bioinformatics/training/R_materials/R_reference_card.pdf)
+- [R cheat sheet](http://www.well.ox.ac.uk/training/R_materials/r-cheat-sheet.pdf)
+- [R reference card](http://www.well.ox.ac.uk/training/R_materials/R_reference_card.pdf)
 Full R manual:
-- [R manual](http://www.well.ox.ac.uk/bioinformatics/training/R_materials/R-introduction_manual.pdf)
+- [R manual](http://www.well.ox.ac.uk/training/R_materials/R-introduction_manual.pdf)
 
 ## Installing Packages
 
