@@ -11,10 +11,14 @@ that makes it easy to install software for biomedical research.
 
 ## Installing conda
 
-The simplest way is to install `miniconda`. If you are on Mac OS X or linux, download the
-appropriate installer from [the miniconda download
-page](https://docs.conda.io/en/latest/miniconda.html). If you are on Windows, **download the linux
-64-bit version anyway**. This is because we will install it into the Linux subsystem for Windows.
+The recommended way is to install `miniconda` which is a minimal environment that lets you install
+the packages you want.  To get it: 
+
+**If you are on Mac OS X or linux**, download the appropriate installer from
+[the miniconda download page](https://docs.conda.io/en/latest/miniconda.html).
+
+**If you are on Windows**, **download the linux 64-bit version anyway**. This is because we will
+install it into the Linux subsystem for Windows.
 
 **Note.** The installer is a bash (`.sh`) file. On Mac OS X, there are also OS X packages (`.pkg`)
 installers available - run this instead if you want to and skip to the next section.
