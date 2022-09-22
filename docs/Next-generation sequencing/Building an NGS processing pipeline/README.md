@@ -1,3 +1,7 @@
+---
+sidebar_position: 2
+---
+
 # Building an NGS data processing pipeline
 
 Welcome!  Go to the [introduction](Introduction.md) to get started.
