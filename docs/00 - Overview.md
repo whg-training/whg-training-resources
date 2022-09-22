@@ -4,7 +4,7 @@ This folder contains course materials (practicals, notes and datasets) for the t
 [Genomic Medicine and Statistics](https://www.well.ox.ac.uk/study/gms) course at the Wellcome
 Centre for Human Genetics, University of Oxford.
 
-Content on this site is publicly available under the terms of the [MIT license](LICENSE).
+Content on this site is publicly available under the terms of the [MIT license](LICENSE.md).
 
 ## Contributors ##
 
