@@ -22,4 +22,4 @@ start.
 * [Getting a CONDA environment setup](CONDA.md)
 * [Getting R and RStudio](R.md)
 * [Getting a python environment setup](python.md)
-* [Getting a julia environment setup](python.md)
+* [Other languages](./Other_languages/README.md)

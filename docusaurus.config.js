@@ -88,11 +88,11 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
+            title: 'License',
             items: [
                 {
-                    label: 'Contributors',
-                    href: 'contributors'
+                    label: 'License',
+                    href: '/LICENSE'
                 }
             ],
           },
