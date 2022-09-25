@@ -15,7 +15,7 @@ possible to use directly in the command-line, or via a Jupyter notebook and so o
   This will guide you to install R - you want the 'base' version. (R can be installed in other ways
   too - e.g. it's also possible to have [conda](CONDA.md) install R if you prefer - but this way is easiest.)
 
-* `Rstudio` can be downloaded from [rstudio.com](https://www.rstudio.com). Find the [Rstudi product
+* `Rstudio` can be downloaded from [rstudio.com](https://www.rstudio.com). Find the [Rstudio product
   page](https://www.rstudio.com/products/rstudio/) and click 'Download Rstudio Desktop'.
 
 Install both these packages (default options) and then try running Rstudio. You should see a window

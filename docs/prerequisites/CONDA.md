@@ -91,8 +91,10 @@ conda makes this easy. You'll want a fairly recent version, so let's get version
 available from the [bioconda](https://bioconda.github.io) channel:
 
 ```
-$ mamba install -c conda-forge -c bioconda samtools>=1.15
+$ mamba install -c conda-forge -c bioconda 'samtools>=1.15'
 ```
+
+**Note.** This may not work if you are on an M1 Mac.  If so don't worry, we'll find a workaround later.
 
 If you look at the output you'll see that this is getting `htslib` and `samtools` from bioconda,
 but also `libdeflate` from `conda-forge`. Go ahead and install. Running samtools now gives you some
