@@ -1,3 +1,7 @@
+---
+sidebar_position: 8
+---
+
 [Up to table of contents](README.md)
 
 [Back to the previous page](Memory_issues_and_how_to_solve_them.md)

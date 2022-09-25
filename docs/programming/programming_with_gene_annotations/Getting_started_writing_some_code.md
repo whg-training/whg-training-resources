@@ -1,55 +1,55 @@
-[Up to table of contents](README.md)
+---
+sidebar_position: 3
+---
 
-[Back to the previous page](What_gene_annotation_data_looks_like.md)
+# Processing GFF files
 
-[Go to the next page](Converting_gff_to_sqlite.md)
+[Up to table of contents](README.md) / [Back to the previous page](What_gene_annotation_data_looks_like.md) / [Go to the next page](Converting_gff_to_sqlite.md)
 
-## Writing some code to process GFF files
+Your task, if you choose to accept it, is to write some code that processes a GFF file, makes sense of the
+data, and uses it to gather some interesting statistics. And then to apply it to analyse genes from multiple
+species. By doing this we can hopefully learn something about the genome biology of the world's organisms.
 
-Your task, if you choose to accept it, is to write some reuseable code that processes a GFF file,
-make sense of the data, and gathers some statistics. And then to apply it to analyse genes from
-multiple species, to hopefully learn something about the genome biology  of the world's organisms.
+The aim of this tutorial is that **you** to write the code that does this (although you can either do this on
+your own or working together in a group). There will be lots of support, and this tutorial will guide you
+through one way to do it. If you're doing this as part of a WHG course, we'll talk through the results and the
+code itself in the discussion sessions.
 
-We would like **you** to write the code that does this - you can either do this on your own or
-working together in a group if you prefer. There will be lots of support, and this tutorial will
-also guide you through one way to do it. We'll then talk about both the results and the code itself
-in the discussion session.
-
-We're not writing this code for it's own sake but to answer our questions like the ones in our introduction:
-
+:::tip
+Remember we're not writing this code for it's own sake but to answer our questions like the ones in our introduction:
 - How many genes are there?
 - How big are they?
 - How much of the genome is in genes?
 - How complex are genes - How many exons?  How many different transcripts?
 - How much of genes is actually protein-coding sequence - and how much is untranslated?
 - How much do these patterns differ across species?
+:::
 
-How to write this code?  Well there are a few ways:
+How to start writing this code?  Well there are a few ways:
 
 **Do it yourself.** It may well be that you already have a good idea how to go about this. If so,
 feel free to dive straight in. You're free to use any language or system you like for this -
 standard options might be [python](https://www.python.org) or [R](https://cran.r-project.org), but
 you could also use [julia](https://julialang.org), or even
-[C++](https://en.wikipedia.org/wiki/C%2B%2B) or another compiled language.
+[C++](https://en.wikipedia.org/wiki/C%2B%2B) or another compiled language.  Make sure you [have these installed first](/prerequisites/README.md).
 
-**Use a package.** I bet you can find an existing GFF3 parser for your chosen language, or perhaps
-a library that processes gene annotations at a higher level. Now, using that would to some extent
-defeat the purpose of the exercise, but on the other hand what we're really interested in is genes
-rather than the coding itself. So if that gets you to better answers quicker, go ahead!
+**Use a package.** If you search, you will be able to find packages for your favourite programming language
+that parse GFF3 for you - or perhaps a library that processes gene annotations at a higher level. Now, using
+that would to some extent defeat the purpose of the exercise of this tutorial (which is about coding), but on
+the other hand what we're really interested in is genes rather than the coding itself. So if you want to take
+that route and it gets you to better answers quicker, go ahead!
 
-**Write everything from scratch.** It's quite possible to do this task in (say) base python without
-using any existing libraries. In fact that might be a good way to it because it gives you lots of
-control over how it works, and (as we'll see later) you might need control over things like
-performance and memory usage.
+**Write everything from scratch.** It's also quite possible to do this task in (say) base python or R without
+using any existing libraries. In fact that can be a good way to it because it gives you lots of control over
+how it works, and (as we'll see later) you might need control over things like performance and memory usage.
 
-This tutorial will take a middle way. We will use python with the popular [pandas
-library](https://pandas.pydata.org) library to begin reading and manipulating the data. pandas
-is a natural fit here because the GFF3 data is basically tabular (many rows x 9 named columns,
-at least if we don't unpack the `attributes`) and so it ought to fit in a dataframe (which is what pandas
-provides). This works well but, as we'll see, it comes with some tradeoffs as well. 
+This tutorial will take a 'middle' way. We will use python but will use the popular [`pandas` dataframe
+library](https://pandas.pydata.org) library to begin reading and manipulating the data. `pandas` is a natural
+fit here because the GFF3 data is basically tabular in format (many rows x 9 named columns) and so it ought to
+fit well in a dataframe. Unpacking the `attributes` column is a bit tricky of course - this will take most of
+the work.
 
-In the course of the tutorial we'll develop a little python module to help us answer the above
-questions.
+In the course of the tutorial we'll develop a little python module to help us answer the questions.
 
 ## Diving straight in - parsing data
 
@@ -61,70 +61,85 @@ hierarchical data structure to capture this.
 
 That sounds complex, but we can break off a manageable first bit of the job by just focussing on
 getting the data in (c.f. "keep it simple"). So let's do the simplest thing possible and start by
-writing a function:
+writing a function to load the data.
 
 ```
 def parse_gff3_to_dataframe( data ):
     """Parse data in GFF3 format, and return a pandas dataframe"""
-    result = (do some work here)
+    result = (!! do some work here)
     # more code here to add to result
-    return (result )
+    return result
 ```
 
 **Note:** If you are not familiar with python syntax, now would be a good time to refresh via any
 of the available tutorials. The above code defines a function, and shows a documentation comment
 (the `"""..."""` bit) and also has code comments (starting with `#`).
 
-This function also illustrates a couple of things that might be helpful if you're not used to
-writing code. First, the name is very clear about what this function does (indeed it makes the
-documentation comment pretty useless at the moment). I spent quite a while deciding on that name!
-Second, even before we've written it, we can see the function is going to follow a very simple
-pattern: it creates a new thing (the result of the function, so it is called `result`) and returns
-it on the last line. All the function has to do is build `result` - simple!
+This code doesn't work yet (you have to write the missing bits) but it already illustrates a few things that
+might be helpful if you're not used to writing code. First, the name is pretty clear about what this function
+does (indeed it makes the documentation comment pretty useless at the moment). I spent quite a while deciding
+on that name! Second, even before we've written it, we can see the function is going to follow a very simple
+pattern: it creates a new thing (the result of the function, so it is called `result`) and returns it on the
+last line. All the function has to do is build `result` - simple!
 
-The other thing to see is that this function is already reasonably testable. Look, let's test it with some fake data:
+The other thing to see is that, even in this prototype state, this function is already reasonably testable.
+Look, let's test it with some fake data, like this for example:
 
     ##gff-version 3
     #description: test data
     chr1   me    gene    1    1000    .    +    .    ID=gene1;other_data=stuff
     chr1   me    exon    10    900    .    +    .    ID=gene1.1;Parent=gene1
 
-
-Here is a test:
-
+Let's encode that in python:
 ```
-import io, math
-
-# Note \t means a tab character, so this is the same data as above:
 test_data = """##gff-version 3
 #description: test data
 chr1\tme\tgene\t1\t1000\t.\t+\t.\tID=gene1;other_data=stuff
 chr1\tme\texon\t10\t900\t.\t+\t.\tID=gene1.1;Parent=gene1
 """
-
-# 1. run our function:
-# The io.StringIO() bit is just for testing and is explained below
-data = parse_gff3_to_dataframe( io.StringIO( test_data ))
-
-# 2. test it:
-assert data['seqid'][0] == 'chr1'
-assert data['strand'][0] == '+'
-assert data['attributes'][0] == 'ID=gene1;other_data=stuff'
-
-assert data['start'][1] == 10 # start and end are integers
-assert data['end'][0] == 1000
-
-assert math.isnan( data['score'][1] ) # "." indicates missing data in the GFF spec
-
-assert data['ID'][0] == 'gene1'
-assert data['ID'][1] == 'gene1.1'
-assert data['Parent'][1] == 'gene1'
-# etc.
 ```
 
-(**Note:** In an ideal world we could pass in the data directly. However it is a bit annoying to
-make our function work both with a file and a string. The `io.StringIO()` bit above just turns the
-input data into a file-like object - you can pretty much ignore it.)
+(Where '\t' is python-speak for 'a tab character').
+
+Here is a test:
+
+```
+
+def test_parse_gff3_to_dataframe( data ):
+	from io import StringIO
+	from math import isnan
+    
+	# 1. run our function:
+	data = parse_gff3_to_dataframe( StringIO( data ))
+    
+	# 2. test it:
+	assert data['seqid'][0] == 'chr1'
+	assert data['strand'][0] == '+'
+	assert data['attributes'][0] == 'ID=gene1;other_data=stuff'
+    
+	assert data['start'][1] == 10 # start and end are integers
+	assert data['end'][0] == 1000
+    
+	assert isnan( data['score'][1] ) # "." indicates missing data in the GFF spec
+    
+	assert data['ID'][0] == 'gene1'
+	assert data['ID'][1] == 'gene1.1'
+	assert data['Parent'][1] == 'gene1'
+	# etc.
+```
+
+(**Note:** The `StringIO` bit above is just there to handle the fact that we are passing in a string of data to our function. Normally we will pass in a file.  The `isnan()` function is there to test for not-a-number values.)
+
+If you run this right now, you'll get and error, something like:
+```
+>>> test_parse_gff3_to_dataframe( test_data )
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 6, in test_parse_gff3_to_dataframe
+NameError: name 'parse_gff3_to_dataframe' is not defined
+```
+
+The task is just to get this test to pass.
 
 This leads us to a:
 
@@ -132,8 +147,7 @@ This leads us to a:
 
 **Hints:** This challenge does have a few complexities to it.  Here are some points to think about that might be helpful:
 
-- pandas has a [`read_table` function](https://pandas.pydata.org/docs/reference/api/pandas.read_table.html) that is a
-  good way to get the data in.  It has many arguments that control how the data is parsed.
+- pandas has a [`read_table` function](https://pandas.pydata.org/docs/reference/api/pandas.read_table.html) that is a good way to get the data in.  It has many arguments that control how the data is parsed.
 
 - The data itself doesn't have column names in. But the test clearly requires them - you have to
   add them in somehow.
@@ -146,10 +160,9 @@ This leads us to a:
   types](https://m.ensembl.org/info/website/upload/gff3.html) like integers and floats - to pass
   the tests you also have to get the types right.
 
-- The last three rows of the test use the `ID` and `Parent` fields. If you [examine the
-  data](What_gene_annotation_data_looks_like.md) you'll see these aren't columns in GFF3, but
-  instead live inside the complicated `attributes` column. The test above is asking that you pull
-  these out into new columns.
+- The last three rows of the test use the `ID` and `Parent` fields. If you [examined the
+  data](What_gene_annotation_data_looks_like.md) you'll know these aren't seperate columns in GFF3, but instead
+  live inside the `attributes` column. So somehow you'll have to pull these out into new columns.
   
 **More hints:**
 

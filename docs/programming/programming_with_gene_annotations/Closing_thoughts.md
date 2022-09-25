@@ -1,7 +1,10 @@
+---
+sidebar_position: 15
+---
 
 [Go up to the table of contents](README.md)
 
-## Closing thoughts
+# Closing thoughts
 
 If you've made it through this tutorial - congratulations!  I hope it was useful to you.
 

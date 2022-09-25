@@ -1,3 +1,7 @@
+---
+sidebar_position: 6
+---
+
 # Gathering some first statistics
 
 [Up to table of contents](README.md)

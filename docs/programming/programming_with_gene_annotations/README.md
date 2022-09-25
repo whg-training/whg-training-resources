@@ -1,3 +1,11 @@
+# Programming with gene annotations
+
+Welcome! This tutorial has two aims. One one hand it is about programming, specifically the type of programming
+we often have to do in bioinformatics. This means - handling large bits of data, making sense of it, and computing some statistics.  On the other hand, this tutorial aims to make you familiar with common *gene annotation* files, what they contain and how to interpret them.
+
+To begin [go to the introduction](Introduction.md).  A table of contents
+
+
 ## Table of contents
 
 1. [Introduction](Introduction.md)

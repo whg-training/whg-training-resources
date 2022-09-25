@@ -1,3 +1,7 @@
+---
+sidebar_position: 9
+---
+
 [Up to table of contents](README.md)
 
 [Back to the previous page](Counting_genes_2.md)

@@ -1,3 +1,7 @@
+---
+sidebar_position: 4
+---
+
 [Up to table of contents](README.md)
 
 [Back to the previous page](Converting_gff_to_sqlite.md)
