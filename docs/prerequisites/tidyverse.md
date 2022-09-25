@@ -2,7 +2,7 @@
 sidebar_position: 3.5
 ---
 
-# Installing the R `tidyverse`
+# The R `tidyverse`
 
 Base `R` is ok but it can be a bit... clunky. For many of the tutorials we wil use a set of
 packages called ["tidyverse"](https://www.tidyverse.org) which make life smoother for your

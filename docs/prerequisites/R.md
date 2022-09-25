@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# Setting up R and RStudio
+# R and RStudio
 
 A great deal of data analysis work is done in [R](https://www.r-project.org) - you'll need this
 installed. The recommended way is to work with [RStudio](https://www.rstudio.com), but it's also

@@ -2,7 +2,7 @@
 sidebar_position: 4
 ---
 
-# Getting started with python
+# Python
 
 You shouldn't need to install python - both your base system, and your conda environment should have a version of python installed already.  Check by typing
 ```
