@@ -1,3 +1,7 @@
+---
+sidebar_position: 3.5
+---
+
 # Population genetics
 
 In this practical we will implement a simple Wright-Fisher population genetics model, and couple

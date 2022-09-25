@@ -1,3 +1,7 @@
+---
+sidebar_position: 4
+---
+
 # Genome-wide association analysis
 
 In this folder are:

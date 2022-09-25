@@ -1,3 +1,7 @@
+---
+sidebar_position: 1
+---
+
 # Overview of the tutorials
 
 This folder contains course materials (practicals, notes and datasets) that were developed for the taught statistics component of the

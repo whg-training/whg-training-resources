@@ -1,3 +1,7 @@
+---
+sidebar_position: 6
+---
+
 # Next-generation sequencing
 
 * Go to the [introduction to next-generation sequence (NGS) data analysis](Introduction to next-generation sequencing data analysis/README.md) tutorial.
