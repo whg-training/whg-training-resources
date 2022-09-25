@@ -73,7 +73,7 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'Overview',
+            docId: 'overview',
             position: 'left',
             label: 'Bioinformatics practicals',
           },
