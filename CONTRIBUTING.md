@@ -32,13 +32,11 @@ This launches a webserver serving the site in your terminal.  After a short paus
 
 ### Making edits
 
-All content is contained in markdown files in the `docs/` folder.  Weare keeping these in hierarchical folders.  Some notes thatwill help with this:
+All content is contained in markdown files in the `docs/` folder.  Weare keeping these in hierarchical folders.  Some notes that will help with this:
 
-* We're currently following a `Folder name have initial capital and space/` style of folder names.
-* use underscores but not spaces in the names of Markdown documents
-* docusaurus automatically builds a sidebar.  By default, the sidebar title is the first
-H1 header (i.e. a line like `# this is the header` at the top of the markdown document, and gets put at a default position in the sidebar.
-However, you can control this by putting a metadata section at the top of the document:
+* Folder and file names should be lower case and no spaces (use underscores instead).
+* Use a level 1 heading (a single `#`) at the top of each markdown doc to name it - this will be the name that appears in the sidebar.
+* The order of pages in the sidebar (and the title, if you want it different from the top-level heading) can be specified by putting this metadata at the top of the document:
 ```
 ---
 title: My new document
@@ -46,12 +44,10 @@ sidebar_position: 2
 ---
 ```
 
-at which point the title will appear as `My new document` in the sidebar, and it will appear 2nd in the sidebar.
-
 * Other pages on this site can be linked to via relative links, such as:
 
 ```
-See the [setup instructions](./Getting_setup.md).
+See the [setup instructions](./prerequisites/README.md).
 ```
 Docusaurus will automatically fix the links on the built page.  Links to external pages can be included in a similar way:
 
@@ -59,13 +55,14 @@ Docusaurus will automatically fix the links on the built page.  Links to externa
 See the [Wikipedia page DNA sequencing](https://en.wikipedia.org/wiki/DNA_sequencing).
 ```
 
-* Similarly, images or other files can be included in the same directory structure and linked to, e.g.:
+* Images or other files can be included in the same directory structure and linked to, e.g.:
 ```
 ![img](images/my_nice_illustration.png)
 ![file](resources/an_example_file.txt)
 ```
-Docusaurus will know what to do with these.  These files should be checked into the github repo like other files.
+Docusaurus should know what to do with these.  You can check these files into the github repo like other files.
 
-**Note.** Please do not include large files in this way - up to a maximum of a few tens of Kb is a good guide.  These files will take space in the github 
-repo which will not handle large files well.  For larger data, files should currently be stored externally (e.g. on personal web space) and linked to.
+**Note.** Please do not include large files in this way - up to a maximum of a few tens of Kb is a good guide.
+These files will take space in the github repo which will not handle large files well. For larger data, files
+should currently be stored externally (e.g. on personal web space) and linked to.
 
