@@ -104,7 +104,7 @@ grid()
 
 It should look something like this (I've done a bit of extra visual tweaking):
 
-![img](./images/NA12878_Illumina-NovaSeq6000_chr19:48145971-49255951.jf.histogram.jpg)
+![img](./images/NA12878_Illumina-NovaSeq6000_chr19_48145971-49255951.jf.histogram.jpg)
 
 ### Interpreting the histogram
 
