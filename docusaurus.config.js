@@ -41,7 +41,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/whg-gms/statistics-course',
+            'https://github.com/whg-training/whg-training-resources',
           remarkPlugins: [math],
           rehypePlugins: [katex],
         },
@@ -73,12 +73,12 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'Overview',
+            docId: 'overview',
             position: 'left',
             label: 'Bioinformatics practicals',
           },
           {
-            href: 'https://github.com/whg-gms/statistics-course',
+            href: 'https://github.com/whg-training/whg-training-resources',
             label: 'GitHub',
             position: 'right',
           },
@@ -88,11 +88,11 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
+            title: 'License',
             items: [
                 {
-                    label: 'Contributors',
-                    href: 'contributors'
+                    label: 'License',
+                    href: '/LICENSE'
                 }
             ],
           },
@@ -101,7 +101,7 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+	        href: 'https://github.com/whg-training/whg-training-resources',
               },
             ],
           },
