@@ -253,7 +253,7 @@ Object names are chosen by the programmer – informative names are helpful for 
 reasons. You can use capitalization, `_` or `.` to separate parts of an object name but they 
 cannot contain spaces, nor start with a number. To avoid confusion or potential issues, it is 
 also best not to give them the same name as an R function, which have their own defined 
-names. An object named **raw_data**, **raw.data**, **rawData** (or even **d.raw** for minimal 
+names. An object named `raw_data`, `raw.data`, `rawData` (or even `d.raw` for minimal 
 typing!) is fine, but trying to assign a value to a variable named `raw data` will give an error 
 because R cannot parse it correctly. 
 
@@ -734,7 +734,7 @@ when dealing with this data:
 
 ```{r}
 rownames(inf.data) <- paste("Patient", 1:60, sep="_")
-colnames(inf.data) <-  paste("Day", 1:40, sep="_")
+colnames(inf.data) <- paste("Day", 1:40, sep="_")
 ```
 
 This introduces the very useful and versatile function `paste`. Note that adding row and column 
@@ -780,10 +780,12 @@ class(test)
 This can cause errors if you were expecting `test` to still be a data frame in a later command.
 
 We added column names to our object earlier. Rows and columns can also be accessed by name (in 
-double-quotes):
+double-quotes) inside square brackets. `$` is a shorthand way of referring to a named column in R. 
+Both alternatives in the snippet below return the same vector.
 
 ```{r}
-inf.data["Patient_1", ]
+inf.data[, "Day_3"]
+inf.data$Day_3
 ```
 
 Suppose you want to determine the maximum inflammation for patient 5 across days three to seven. 
@@ -965,51 +967,17 @@ for(i in 1:ncol(data2)) {
 ```
 
 Here, we've used a `for` loop to iterate over each column in the object `data2`, and print to 
-screen the class of each column. The output tells us that columns 1:3 are treated as factors, 
-column 5 as numeric and the remaining columns as integer values. We haven't yet mentioned factors 
-and will only briefly discuss them here but they are very important for statistical analysis in R. 
-They are one-dimensional, like vectors, and are particularly useful for categorical data.
+screen the class of each column. The output tells us that columns 1:3 are treated as characters,
+and mostof the rest are treated as integers. Column 5 is 'numeric', the basic data type in R for
+non-integer numbers. R has a 
+number of different classes of data it can store and sometimes functions will behave differently 
+depending on what type of data they are given. 
 
-```{r}
-length(data2$Group)
-data2$Group
-```
-
-Each of the 100 entries in the Group column are printed to the screen, and at the end is the 
-additional information:
-
-*Levels: Control Treatment1 Treatment2*
-
-These are the unique set of entries in this column, known as the levels of the factor. You may have 
-come across factors before in the context of experimental design or ANOVA - in this case the 
-experiment might test the effect of 2 treatments (Treatment1 and Treatment2) on blood pressure, 
-perhaps to see if it reduces compared to a control group. Other information about the patients, 
-such as their age and gender may be useful to include in the analysis, especially if they are not 
-matched across the treatment groups. 
-
-R will treat any columns containing character strings (text) as a factor by default with `read.csv` 
-or `read.table`. We don't always want to do this though, and indeed it is usually preferable to 
-switch this behaviour off, and specifically convert data we do want to treat as factors later. This 
-is because factors store data differently and so can sometimes behave differently to vectors. For 
-example, here the first column of IDs would preferably be a character vector, as could Gender unless 
-we needed to include it as an additional explanatory factor in our analysis model. 
-
-The way to switch off this default behaviour is with the argument 'stringsAsFactors' – if you check 
-the help page for `read.csv` again, you'll see it listed among the arguments, and it is `TRUE` by 
-default (although it's not readily apparent that this is the case). 
-
-```{r}
-data2 <- read.csv("sample.csv", stringsAsFactors=FALSE)
-```
-
-Repeating our loop to check the class of each column, we now see that the first 3 columns are 
-character vectors rather than factors:
-
-```{r}
-for(i in 1:ncol(data2)) {
-    print(class(data2[, i]))
-}
-```
+Although columns 1 - 3 are currently characters, some functions in R that perform statistical 
+analysis prefer a data type called 'factors'. Factors are useful when you have category data, where 
+the character data can only come from a well defined set of possibilities. Factors can be useful
+when you want to make sure incorrect values don't creep in accidentally, because R will report an 
+error if factor data tries to be changed to value outside that set.
 
 We can specifically convert the Group column to a factor:
 
@@ -1017,6 +985,11 @@ We can specifically convert the Group column to a factor:
 data2$Group <- as.factor(data2$Group)
 class(data2$Group)
 ```
+
+The `as.factor` function returns a factor version of a vector. However, as this doesn't change the 
+original `data2` object by itself, we need to assign that vector of factors back to the column, 
+replacing what was there before. You can see how using the `$` syntax makes this line easier to 
+read. R has a number of different `as.` functions for converting to different data types.
 
 A very useful summary function is `table`:
 
@@ -1030,23 +1003,29 @@ we might have already spotted from viewing the object in RStudio.
 
 To fix this, we can make sure `F` and `M` are used throughout; this involves determining which rows 
 contain a lowercase `f` for example, and substituting with `F`. Similarly for the lowercase case 
-`m`:
+`m`. The following code does each a different way.
 
 ```{r}
 data2$Gender <- gsub("f", "F", data2$Gender)
-data2$Gender <- gsub("m", "M", data2$Gender)
+data2$Gender[data2$Gender=="m"] <- "M"
 
 ## checking we have modified the data as intended
 table(data2$Gender)
 ```
 
-This last section is just a brief foray into data handling and manipulation in R, which enables all 
-manner of formatting, editing, updating or data cleaning tasks to be performed. These are 
-frequently required before embarking on some analysis, and often take longer too! It is the topic 
-of the next course in the series, R: Data Handling – please sign up if interested.
+The `gsub` function replaces the first argument `"f"` with the second argument `"F"` in the third 
+argument `data2$Gender` wherever it appears, leaving the other entries unchanged. As before, we 
+need to assign this new vector back to the original object.
 
-Well, we have reached the end of today's course – we hope it was useful for you and good luck on 
-your R journey! Please see below for further reading and information.
+The second line shows one of R's particularly useful features. We're telling R to replace values in 
+`data2$Gender`, but only where those values equal `"m"`. Indices in R can be used when assigning 
+values to objects, not just when extracting them.
+
+This is one example of how there can be multiple ways of doing a particular task in R. When 
+deciding which method to use, in general, it is better to stick with the method you understand the
+best as that's the method where you are least likely to make a mistake. Some mistakes will cause R 
+to generate an error, but the more dangerous mistakes are ones that don't result in an error but 
+result in incorrect data.
 
 ## Putting it together
 
