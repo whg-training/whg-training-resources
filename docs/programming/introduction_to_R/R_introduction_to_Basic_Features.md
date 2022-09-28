@@ -16,6 +16,12 @@ RStudio. The course tutor will lead work through that content during the
 session, but you are encouraged to work at your own pace and read ahead
 if you feel comfortable doing so.
 
+The course is intended to start at the very beginning, for people with
+no previous programming experience, using R or otherwise. If you're
+finding it at too basic a level, feel free to skip ahead or use this
+time for something more useful to you! Some suggestions for more R
+material are at the end of this document.
+
 ## Installing R and RStudio
 
 R and RStudio are available for a variety of platforms, including
@@ -688,7 +694,7 @@ In this case, a data frame object has been created:
 We can check how each column of data has been treated by R, e.g. for the
 first column:
 
-    class(inf.data[,1])
+    class(inf.data[, 1])
 
 *In fact, as all the columns contain data of the same type, R could
 equally well store this data as* *a matrix object. A data frame has been
@@ -1089,7 +1095,7 @@ more reliable.
 # Getting help
 
 As you read the R help pages, you may not find them terribly helpful.
-The R help function is most useful for refreshing your memory about
+The R `help` function is most useful for refreshing your memory about
 specific functions you have used before. Unfortunately, it is not very
 useful for learning the language itself.
 
@@ -1098,12 +1104,7 @@ expert, to get help and advice from their peers. Searching for your R
 problem will often give results from one of these forums.
 
 One page 'quick reference' documents: - [R cheat
-sheet](http://www.well.ox.ac.uk/training/R_materials/r-cheat-sheet.pdf) -
-[R reference
-card](http://www.well.ox.ac.uk/training/R_materials/R_reference_card.pdf)
-
-Full R manual: - [R
-manual](http://www.well.ox.ac.uk/training/R_materials/R-introduction_manual.pdf)
+sheet](r-cheat-sheet.pdf) - [R reference card](R_reference_card.pdf)
 
 # Further resources and useful information
 
@@ -1144,7 +1145,7 @@ topics once you feel comfortable interacting with the R environment.
 
     random_letters <- c("r", "t", "d", "e", "e", "i", "a", "s", "n")
     length(random_letters)
-    # [1] 9 
+    # [1] 9
     random_letters[c(8, 7, 6, 3)]
     # [1] "s" "a" "i" "d"
     random_letters[c(1, 7, 6, 8, 4)]

@@ -373,6 +373,7 @@ pre code {
 </ul>
 <p>This course is hosted at <a href="https://www.well.ox.ac.uk/training/R%20Introduction%20to%20Basic%20Features">https://www.well.ox.ac.uk/training/R%20Introduction%20to%20Basic%20Features</a>.</p>
 <p>This course has workshop content intended to be worked through using RStudio. The course tutor will lead work through that content during the session, but you are encouraged to work at your own pace and read ahead if you feel comfortable doing so.</p>
+<p>The course is intended to start at the very beginning, for people with no previous programming experience, using R or otherwise. If you&#39;re finding it at too basic a level, feel free to skip ahead or use this time for something more useful to you! Some suggestions for more R material are at the end of this document.</p>
 <div id="installing-r-and-rstudio" class="section level2">
 <h2>Installing R and RStudio</h2>
 <p>R and RStudio are available for a variety of platforms, including Windows, macOS and Linux. R is open source software. R Studio is open source software, supplemented by non-free add-ons.</p>
@@ -651,7 +652,7 @@ download.file(&quot;https://www.well.ox.ac.uk/training/R_materials/sample.csv&qu
 <p>In this case, a data frame object has been created:</p>
 <pre class="r"><code>class(inf.data)</code></pre>
 <p>We can check how each column of data has been treated by R, e.g. for the first column:</p>
-<pre class="r"><code>class(inf.data[,1])</code></pre>
+<pre class="r"><code>class(inf.data[, 1])</code></pre>
 <p><em>In fact, as all the columns contain data of the same type, R could equally well store this data as</em> <em>a matrix object. A data frame has been created because the functions <code>read.csv</code> and <code>read.table</code></em> <em>are specifically designed to deal with mixed column classes and produce data frames by default.</em> <em>Another function <code>scan</code> can be used to read in matrices, especially large ones.</em></p>
 <p>It is worth noting that some functions operate on matrix objects, and so converting between classes is sometimes needed. R has some standard functions for converting from one class to another.</p>
 <pre class="r"><code>inf.data &lt;- as.matrix(inf.data)
@@ -820,10 +821,9 @@ table(data2$Gender)</code></pre>
 </div>
 <div id="getting-help" class="section level1">
 <h1>Getting help</h1>
-<p>As you read the R help pages, you may not find them terribly helpful. The R help function is most useful for refreshing your memory about specific functions you have used before. Unfortunately, it is not very useful for learning the language itself.</p>
+<p>As you read the R help pages, you may not find them terribly helpful. The R <code>help</code> function is most useful for refreshing your memory about specific functions you have used before. Unfortunately, it is not very useful for learning the language itself.</p>
 <p>There are several online forums used by R programmers, novice and expert, to get help and advice from their peers. Searching for your R problem will often give results from one of these forums.</p>
-<p>One page &#39;quick reference&#39; documents: - <a href="http://www.well.ox.ac.uk/training/R_materials/r-cheat-sheet.pdf">R cheat sheet</a> - <a href="http://www.well.ox.ac.uk/training/R_materials/R_reference_card.pdf">R reference card</a></p>
-<p>Full R manual: - <a href="http://www.well.ox.ac.uk/training/R_materials/R-introduction_manual.pdf">R manual</a></p>
+<p>One page &#39;quick reference&#39; documents: - <a href="r-cheat-sheet.pdf">R cheat sheet</a> - <a href="R_reference_card.pdf">R reference card</a></p>
 </div>
 <div id="further-resources-and-useful-information" class="section level1">
 <h1>Further resources and useful information</h1>
@@ -848,7 +848,7 @@ table(data2$Gender)</code></pre>
 <h1>Putting it together example solution</h1>
 <pre class="r"><code>random_letters &lt;- c(&quot;r&quot;, &quot;t&quot;, &quot;d&quot;, &quot;e&quot;, &quot;e&quot;, &quot;i&quot;, &quot;a&quot;, &quot;s&quot;, &quot;n&quot;)
 length(random_letters)
-# [1] 9 
+# [1] 9
 random_letters[c(8, 7, 6, 3)]
 # [1] &quot;s&quot; &quot;a&quot; &quot;i&quot; &quot;d&quot;
 random_letters[c(1, 7, 6, 8, 4)]

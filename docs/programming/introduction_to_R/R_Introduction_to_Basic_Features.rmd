@@ -1066,7 +1066,7 @@ Loading Bioconductor packages this way is typically a longer process but more re
 
 # Getting help
 
-As you read the R help pages, you may not find them terribly helpful. The R help function is most 
+As you read the R help pages, you may not find them terribly helpful. The R `help` function is most 
 useful for refreshing your memory about specific functions you have used before. Unfortunately, it 
 is not very useful for learning the language itself.
 
@@ -1074,11 +1074,8 @@ There are several online forums used by R programmers, novice and expert, to get
 from their peers. Searching for your R problem will often give results from one of these forums.
 
 One page 'quick reference' documents:
-- ![R cheat sheet](http://www.well.ox.ac.uk/training/R_materials/r-cheat-sheet.pdf)
-- ![R reference card](http://www.well.ox.ac.uk/training/R_materials/R_reference_card.pdf)
-
-Full R manual:
-- ![R manual](http://www.well.ox.ac.uk/training/R_materials/R-introduction_manual.pdf)
+- [R cheat sheet](r-cheat-sheet.pdf)
+- [R reference card](R_reference_card.pdf)
 
 # Further resources and useful information
 
