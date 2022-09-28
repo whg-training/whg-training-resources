@@ -14,6 +14,8 @@ urlcolor: blue
 knitr::opts_chunk$set(eval=FALSE)
 ```
 
+# R: Introduction to Basic Features
+
 Authors: Helen Lockstone, Matthieu Miossec, Ben Wright
 Bioinformatics Core
 
