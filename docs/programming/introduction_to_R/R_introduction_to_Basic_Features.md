@@ -1103,8 +1103,11 @@ There are several online forums used by R programmers, novice and
 expert, to get help and advice from their peers. Searching for your R
 problem will often give results from one of these forums.
 
-One page 'quick reference' documents: - [R cheat
-sheet](r-cheat-sheet.pdf) - [R reference card](R_reference_card.pdf)
+One page 'quick reference' documents:
+
+-   ![R cheat sheet](r-cheat-sheet.pdf)
+
+-   ![R reference card](R_reference_card.pdf)
 
 # Further resources and useful information
 
