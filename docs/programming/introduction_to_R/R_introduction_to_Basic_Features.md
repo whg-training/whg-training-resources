@@ -1107,8 +1107,8 @@ problem will often give results from one of these forums.
 
 One page 'quick reference' documents:
 
--   [R cheat sheet](r-cheat-sheet.pdf)
--   [R reference card](R_reference_card.pdf)
+-   [R cheat sheet](./r-cheat-sheet.pdf)
+-   [R reference card](./R_reference_card.pdf)
 
 # Further resources and useful information
 
