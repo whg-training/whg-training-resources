@@ -17,3 +17,25 @@ Installing julia is easy using conda:
 mamba install -c conda-forge julia
 ```
 
+Or by downloading directly from the [julia website](https://julialang.org). (**Note.** As before,
+on Windows you will likely want to install into your UNIX terminal instead - using conda is
+simplest for that.)
+
+Once installed you can start it by typing `julia`:
+
+```
+$ julia
+
+               _
+   _       _ _(_)_     |  Documentation: https://docs.julialang.org
+  (_)     | (_) (_)    |
+   _ _   _| |_  __ _   |  Type "?" for help, "]?" for Pkg help.
+  | | | | | | |/ _` |  |
+  | | |_| | | | (_| |  |  Version 1.7.2 (2022-02-06)
+ _/ |\__'_|_|_|\__'_|  |  Official https://julialang.org/ release
+|__/                   |
+
+julia> 
+````
+
+See the [Julia webpage](https://www.julialang.org) for more details.
