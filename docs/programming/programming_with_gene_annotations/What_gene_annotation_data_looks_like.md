@@ -104,24 +104,29 @@ $ cut -f3 gencode.v38.annotation.head.gff | grep -v '#' | sort -u
 $ cut -f3 PlasmoDB-54_Pfalciparum3D7.head.gff | grep -v '#' | sort -u
 ```
 
-(It would be much better to run this on the real files, not just the top 1000 lines I extracted above.  DO that by downloading the most up-to-date human annotation files now.  For humans this can be found [on the GENCODE page](https://www.gencodegenes.org/human/) - you want the 'Comprehensive gene annotation', for the reference chromosomes only, in `GFF3` format.  For malaria parasites, the annotations can be found [here](https://plasmodb.org/plasmo/app/downloads/Current_Release/Pfalciparum3D7/gff/data/).
+(It would of course be much better to run this on the real files, not just the top 1000 lines I
+extracted above. Do that by downloading the most up-to-date human annotation files now. For humans
+this can be found [on the GENCODE page](https://www.gencodegenes.org/human/) - you want the
+'Comprehensive gene annotation', for the reference chromosomes only, in `GFF3` format. For malaria
+parasites, the annotations can be found
+[here](https://plasmodb.org/plasmo/app/downloads/Current_Release/Pfalciparum3D7/gff/data/).
 
 **Question:** do the full files have any more types of record than these top-1000-lines files? What are they?
 
-IN any case What you'll see is that there are quite a few different record types! The file includes information
-on genes, transcripts, exons, coding sequence (CDS), untranslated regions (UTR), translation start and stop
-codons, and more. The *Plasmodium falciparum* file is similar but slightly different, with a wider range of
-types. (Also, the *Pf* file uses `type=mRNA` to denote gene transcripts, while GENCODE uses `type=transcript` -
-a difference we'll have to allow for in code.)
+What you'll see is that there are quite a few different record types! The file includes information
+on genes, transcripts, exons, coding sequence (CDS), untranslated regions (UTR), translation start
+and stop codons, and more. The *Plasmodium falciparum* file is similar but slightly different, with
+a wider range of types. (Also, the *Pf* file uses `type=mRNA` to denote gene transcripts, while
+GENCODE uses `type=transcript` - a difference we'll have to allow for in code.)
 
 If you want to see how this information shouldbe interpreted, try searching for a gene on
 [Ensembl](http://www.ensembl.org/index.html) or the [UCSC Genome Browser](https://genome.ucsc.edu). E.g. for the gene in the listing above it takes you to
 [this page on ENSG00000223972](http://www.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000223972;r=1:11869-14409). The above transcript, `ENST00000456328.2`, can be seen in the transcript table there. This already gives you a flavour of the complexity, because there are two transcripts on top of each other,
 with different lengths and different numbers of exons.
 
-**Question:** Do the same for a protein-coding gene. Does it look any different? Which website do you like
-better for looking at genes, Ensembl or the [UCSC browser](https://genome.ucsc.edu)? Spend some time exploring
-these sites.
+**Question:** The gene above is not protein-coding. Do the same search for a protein-coding gene.
+Does it look any different? Which website do you like better for looking at genes, Ensembl or the
+[UCSC browser](https://genome.ucsc.edu)? Spend some time exploring these sites.
 
 ## Getting into coding
 
