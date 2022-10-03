@@ -22,8 +22,8 @@ Bioinformatics Core
 - Put bash and R skills to use filtering variant data
 
 The intention is not to teach the specifics of every format and every tool, but to make you  
-familiar with the landscape of bioinfoamtics tools and data so if you need to solve a specific 
-problem in the course of research you have an idea of where to start.
+familiar with the landscape of bioinformatics tools and data so if you need to solve a specific 
+problem in the future you have an idea of where to start.
 
 ## Text formats
 
@@ -398,6 +398,8 @@ IGV is a useful tool for visualising data files. It can load a variety of format
 side-by-side, comparing samples or cross-referencing data and feature definitions.
 
 ### IGV screenshot
+
+![IGV screenshot](images/NGS_split.jpg)
 
 # Break
 
