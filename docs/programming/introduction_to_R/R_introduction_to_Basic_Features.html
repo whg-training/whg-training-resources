@@ -386,7 +386,7 @@ pre code {
 <li>R for Linux can probably be obtained through your usual package manager, or else <a href="https://cran.r-project.org/bin/linux/">here</a></li>
 <li><a href="https://www.rstudio.com/products/rstudio/download/#download">RStudio downloads</a></li>
 </ul>
-<p>These should already be installed and ready if this course is being taught in a computer lab in the Centre.</p>
+<p>These should already be installed and ready.</p>
 </div>
 <div id="r-what-is-it" class="section level2">
 <h2>R: what is it?</h2>
@@ -408,13 +408,13 @@ pre code {
 </ul>
 </div>
 </div>
-<div id="workshop" class="section level1">
-<h1>Workshop</h1>
+<div id="getting-started-with-r" class="section level1">
+<h1>Getting started with R</h1>
 <p>This workshop will introduce you to the R environment, with the aim of becoming familiar with how commands are written and structured and how to perform basic tasks associated with data analysis using R.</p>
 <p>You can download all the files needed from:</p>
 <p><a href="https://docusaurus%20doesn&#39;t%20seem%20to%20forward%20unprocessed%20files">???</a></p>
-<div id="getting-started-with-r" class="section level2">
-<h2>Getting started with R</h2>
+<div id="r-fundamentals" class="section level2">
+<h2>R fundamentals</h2>
 <p>R is, at its heart, a command line language like bash. Text commands are entered and text output is printed to the console. Similarly, you can write R scripts to be executed when you need them.</p>
 <p>However, unlike bash, R also keeps data in its own internal store rather than only keeping data in memory while the command is running. R can also open new windows to display plots it has created, or show help files.</p>
 <p>When you close R, it will ask you whether you want to save the workspace. If you say yes, then R creates a file called &#39;.Rdata&#39; (which is a hidden file on most operating systems by default). This file contains <em>all</em> of the data you had stored in your R session. This makes is easy to pick up where you left off, but be aware that this file can become very large if you load a lot of data into R.</p>
@@ -815,7 +815,7 @@ table(data2$Gender)</code></pre>
 </div>
 <div id="bioconductor" class="section level2">
 <h2>Bioconductor</h2>
-<p><a href="https://www.bioconductor.org/">Bioconductor</a> is a separate third-party repository of R code, specifically geared towards bioinformatics. Many of the packages in Bioconductor are also available via CRAN using the usual package installation method. However, Bioconductor has its own preferred installation mechanism which gets around some of R&#39;s more annoying limitations with version incompatibilities. In particular, the packages in Bioconductor are updated more swiftly following the release of a new version of R. To get started with Bioconductor, use the following command:</p>
+<p><a href="https://www.bioconductor.org/">Bioconductor</a> is a separate third-party repository of R code, specifically geared towards bioinformatics. Many of the packages in Bioconductor are also available via R&#39;s usual package installation method. However, Bioconductor has its own preferred installation mechanism which gets around some of R&#39;s more annoying limitations with version incompatibilities. In particular, the packages in Bioconductor are updated more swiftly following the release of a new version of R. To get started with Bioconductor, use the following command:</p>
 <pre class="r"><code>source(&quot;https://bioconductor.org/biocLite.R&quot;)</code></pre>
 <p>This loads and runs an R script hosted on the web that defines a new function. You then use this function in a similar way to how you would use the <code>install.packages</code> function:</p>
 <pre class="r"><code>biocLite(&quot;limma&quot;)</code></pre>
@@ -824,7 +824,7 @@ table(data2$Gender)</code></pre>
 </div>
 <div id="getting-help" class="section level1">
 <h1>Getting help</h1>
-<p>As you read the R help pages, you may not find them terribly helpful. The R <code>help</code> function is most useful for refreshing your memory about specific functions you have used before. Unfortunately, it is not very useful for learning the language itself.</p>
+<p>As you read the R help pages, you may not find them terribly helpful. The R <code>help</code> function is most useful for refreshing your memory about specific functions you have used before. Unfortunately, it is not very useful for learning the how to use the functions in the first place.</p>
 <p>There are several online forums used by R programmers, novice and expert, to get help and advice from their peers. Searching for your R problem will often give results from one of these forums.</p>
 <p>One page &#39;quick reference&#39; documents:</p>
 <ul>

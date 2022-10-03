@@ -38,8 +38,7 @@ source software, supplemented by non-free add-ons.
 -   [RStudio
     downloads](https://www.rstudio.com/products/rstudio/download/#download)
 
-These should already be installed and ready if this course is being
-taught in a computer lab in the Centre.
+These should already be installed and ready.
 
 ## R: what is it?
 
@@ -64,7 +63,7 @@ taught in a computer lab in the Centre.
     project](https://www.bioconductor.org/)
 -   Infamous for opaque error messages and help files
 
-# Workshop
+# Getting started with R
 
 This workshop will introduce you to the R environment, with the aim of
 becoming familiar with how commands are written and structured and how
@@ -74,7 +73,7 @@ You can download all the files needed from:
 
 [???](https://docusaurus%20doesn't%20seem%20to%20forward%20unprocessed%20files)
 
-## Getting started with R
+## R fundamentals
 
 R is, at its heart, a command line language like bash. Text commands are
 entered and text output is printed to the console. Similarly, you can
@@ -1075,13 +1074,13 @@ See if you can solve the following problem using R:
 
 [Bioconductor](https://www.bioconductor.org/) is a separate third-party
 repository of R code, specifically geared towards bioinformatics. Many
-of the packages in Bioconductor are also available via CRAN using the
-usual package installation method. However, Bioconductor has its own
-preferred installation mechanism which gets around some of R's more
-annoying limitations with version incompatibilities. In particular, the
-packages in Bioconductor are updated more swiftly following the release
-of a new version of R. To get started with Bioconductor, use the
-following command:
+of the packages in Bioconductor are also available via R's usual package
+installation method. However, Bioconductor has its own preferred
+installation mechanism which gets around some of R's more annoying
+limitations with version incompatibilities. In particular, the packages
+in Bioconductor are updated more swiftly following the release of a new
+version of R. To get started with Bioconductor, use the following
+command:
 
     source("https://bioconductor.org/biocLite.R")
 
@@ -1099,7 +1098,7 @@ more reliable.
 As you read the R help pages, you may not find them terribly helpful.
 The R `help` function is most useful for refreshing your memory about
 specific functions you have used before. Unfortunately, it is not very
-useful for learning the language itself.
+useful for learning the how to use the functions in the first place.
 
 There are several online forums used by R programmers, novice and
 expert, to get help and advice from their peers. Searching for your R
