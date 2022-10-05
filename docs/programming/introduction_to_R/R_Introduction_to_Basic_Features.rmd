@@ -26,7 +26,8 @@ Bioinformatics Core
 - To use R to run some typical tasks
 - To be aware of the vital importance of good programming habits
 
-This course is hosted at [https://www.well.ox.ac.uk/training/R%20Introduction%20to%20Basic%20Features](https://www.well.ox.ac.uk/training/R%20Introduction%20to%20Basic%20Features).
+This course is hosted at: 
+[https://whg-training.github.io/whg-training-resources/programming/introduction_to_R/R_Introduction_to_Basic_Features.html](https://whg-training.github.io/whg-training-resources/programming/introduction_to_R/R_Introduction_to_Basic_Features.html).
 
 This course has workshop content intended to be worked through using RStudio. 
 The course tutor will lead work through that content during the session, but you are encouraged to 
@@ -72,10 +73,6 @@ This workshop will introduce you to the R environment, with the aim of becoming 
 with how commands are written and structured and how to perform basic tasks associated 
 with data analysis using R. 
 
-You can download all the files needed from:
-
-[???](https://docusaurus doesn't seem to forward unprocessed files)
-
 ## R fundamentals
 
 R is, at its heart, a command line language like bash. Text commands are entered and text output
@@ -96,7 +93,13 @@ into R.
 RStudio is an integrated development environment (IDE) that wraps around R and makes a lot of 
 common tasks much more convenient. Launch RStudio to open a new R session.
 
-By default, RStudio displays 4 different panels.
+By default, RStudio displays 4 different panels. If there's only one panel on the left, then one 
+of them is currently hidden – you can make it visible by opening a new R script file from the 'File' 
+menu.
+
+### RStudio screenshot
+
+![images/RStudio_screenshot.png](images/RStudio_screenshot.png)
 
 ### Bottom left
 
@@ -355,8 +358,8 @@ function is given in the corresponding help page:
 help(seq)
 ```
  
-*`help` is, itself, a function that opens up the help file for a given names function.*
-*Note that the help file is opened in the lower right panel of RStudio.* 
+*`help` is, itself, a function that opens up the help file for a given names function.
+Note that the help file is opened in the lower right panel of RStudio.* 
 
 ## Vectors 
 
@@ -509,12 +512,11 @@ files for this workshop, select that directory. Otherwise, create a new director
 select that. You can change the working directory using the R function `setwd`, but it's more 
 convenient to use RStudio's interface.
  
-If you haven't already done so, you will also need to download two data files by entering the 
-following commands:
+You will also need to download two data files by entering the following commands:
 
 ```{r}
-download.file("https://www.well.ox.ac.uk/training/R_materials/inflammation_data.csv", "./inflammation_data.csv")
-download.file("https://www.well.ox.ac.uk/training/R_materials/sample.csv", "./sample.csv")
+download.file("https://www.well.ox.ac.uk/bioinformatics/training/computing_workshops_2021/R_workshop/inflammation_data.csv", "./inflammation_data.csv")
+download.file("https://www.well.ox.ac.uk/bioinformatics/training/computing_workshops_2021/R_workshop/sample.csv", "./sample.csv")
 ```
 
 ## Removing objects 
@@ -538,12 +540,12 @@ Earlier we introduced the R software environment, some key features of the R pro
 and how to start using it. We will now do some practical exercises working with example data to 
 perform typical tasks. First, some important acknowledgements:
 
-*The tutorial that follows is in part adapted from the [Software Carpentry Foundation](https://software-carpentry.org/lessons/)*
-*Programming with R, specifically the Analysing Patient Data*
-*[tutorial](http://swcarpentry.github.io/r-novice-inflammation/01-starting-with-data/index.html).*
-*The Software Carpentry material is available for re-use under a*
-*[Creative Commons License](https://creativecommons.org/licenses/by/4.0/) and I am grateful to the*
-*original authors.*
+*The tutorial that follows is in part adapted from the [Software Carpentry Foundation](https://software-carpentry.org/lessons/)
+Programming with R, specifically the Analysing Patient Data
+[tutorial](http://swcarpentry.github.io/r-novice-inflammation/01-starting-with-data/index.html).
+The Software Carpentry material is available for re-use under a
+[Creative Commons License](https://creativecommons.org/licenses/by/4.0/) and we are grateful to the
+original authors.*
 
 ## Setup
 
@@ -608,9 +610,9 @@ behaviour, rather than requiring two separate functions to exist for files with/
 inf.data <- read.csv("inflammation_data.csv", header=FALSE)
 ```
 
-*Note: if you see an error message similar to 'No such file or directory' when trying to read in a* 
-*file, it is likely that either (i) the file is not located in the current working directory, or*
-*(ii) there is one (or more) typos in the filename.*
+*Note: if you see an error message similar to 'No such file or directory' when trying to read in a 
+file, it is likely that either (i) the file is not located in the current working directory, or
+(ii) there is one (or more) typos in the filename.*
 
 It's useful to break this command down a little more.
 
@@ -619,8 +621,8 @@ We have given a name for a new object, `inf.data`, in which to store the content
 'inflammation' to 'inf' for our convenience. We are using the in-built R function `read.csv`, and 
 provide two arguments:
 
-* the name of the file to read in
-* `header=FALSE`, indicating to R that our file does not have a header row
+- the name of the file to read in
+- `header=FALSE`, indicating to R that our file does not have a header row
 
 There are many other arguments to the `read.csv` function to further refine its behaviour but these 
 are either optional or the default settings are fine for most situations. By running this command, 
@@ -648,10 +650,10 @@ test <- read.csv("inflammation_data.csv")
 Another object named `test` now appears. View the contents of that object and compare it to 
 `inf.data`.
 
-*This is a good example of how easily something unwanted can happen in R and the importance of*
-*checking your objects contain what you intend them to. Any mistakes can simply be corrected by*
-*re-running the command e.g. with the appropriate header argument, and overwriting any previous*
-*version of the object.*
+*This is a good example of how easily something unwanted can happen in R and the importance of
+checking your objects contain what you intend them to. Any mistakes can simply be corrected by
+re-running the command e.g. with the appropriate header argument, and overwriting any previous
+version of the object.*
 
 ## Two-dimensional data structures
 
@@ -662,10 +664,10 @@ while data frames can have columns of different data types. Given that experimen
 mixture of numeric values (e.g. measurements) and associated descriptive information, data frames 
 are a very commonly used data structure in R. 
 
-*NB while it is possible to create a matrix object with mixed data types, R will use its*
-*internal hierarchy of data types to choose one that is applicable to all of the data – often this*
-*means numerical columns get converted to character strings, and certain functions may not perform*
-*as expected if this is not noticed, or they may produce an error message.*
+*NB while it is possible to create a matrix object with mixed data types, R will use its
+internal hierarchy of data types to choose one that is applicable to all of the data – often this
+means numerical columns get converted to character strings, and certain functions may not perform
+as expected if this is not noticed, or they may produce an error message.*
 
 In this case, a data frame object has been created:
 
@@ -679,10 +681,10 @@ We can check how each column of data has been treated by R, e.g. for the first c
 class(inf.data[, 1])
 ```
 
-*In fact, as all the columns contain data of the same type, R could equally well store this data as*
-*a matrix object. A data frame has been created because the functions `read.csv` and `read.table`*
-*are specifically designed to deal with mixed column classes and produce data frames by default.*
-*Another function `scan` can be used to read in matrices, especially large ones.*
+*In fact, as all the columns contain data of the same type, R could equally well store this data as
+a matrix object. A data frame has been created because the functions `read.csv` and `read.table`
+are specifically designed to deal with mixed column classes and produce data frames by default.
+Another function `scan` can be used to read in matrices, especially large ones.*
 
 It is worth noting that some functions operate on matrix objects, and so converting between classes 
 is sometimes needed. R has some standard functions for converting from one class to another.
@@ -714,9 +716,9 @@ ncol(inf.data)
 This particular file suffers from the lack of any labels to annotate what data is recorded in the 
 rows and columns. The Software Carpentry tutorial provides the following information:
 
-*“We are studying inflammation in patients who have been given a new treatment for arthritis. Each*
-*row holds the observations for just one patient. Each column holds the inflammation measured in a*
-*day, so we have a set of values in successive days."*
+*“We are studying inflammation in patients who have been given a new treatment for arthritis. Each
+row holds the observations for just one patient. Each column holds the inflammation measured in a
+day, so we have a set of values in successive days."*
 
 Our object has 60 rows and 40 columns, so we infer from the information above that there are 60 
 patients, and 40 days. 
@@ -828,10 +830,10 @@ max(inf.patient1)
 
 Although this seems reasonable enough, there are several issues:
 
-* We've created an additional object to store data that is simply a duplicate of what is already 
+- We've created an additional object to store data that is simply a duplicate of what is already 
 contained in our original object
-* It doesn't scale well to do this for all 60 patients
-* The result is output to the console and therefore hard to do anything further with
+- It doesn't scale well to do this for all 60 patients
+- The result is output to the console and therefore hard to do anything further with
 
 If we did continue with this approach, there would be 60 new objects (all with very similar names), 
 a high probability of having made a typing mistake somewhere (perhaps overwriting one patient's 
@@ -852,9 +854,9 @@ These commands are the same as extracting the data for patient 1 as we did earli
 printing to the screen or storing in a new object, the command is used directly as an argument to 
 the function `max` by enclosing in the parentheses. 
 
-*Commands can be nested in this way to achieve multiple steps in a single line of code; too many*
-*commands in one line though can make it harder to work out what the code is doing, as well as*
-*increase the chance of the code not doing as intended – the location of brackets becomes vital.*
+*Commands can be nested in this way to achieve multiple steps in a single line of code; too many
+commands in one line though can make it harder to work out what the code is doing, as well as
+increase the chance of the code not doing as intended – the location of brackets becomes vital.*
 
 We'd really like a way to this for all 60 patients without duplicating the code 60 times. Loops are 
 one option (not discussed here) but the `apply` function is the most efficient approach:
@@ -875,19 +877,19 @@ avg_inf_day <- apply(inf.data, MARGIN=2, mean)
 Comparing these two commands will help understand the `apply` function, which is not intuitive but 
 highly efficient as we have seen.  The arguments to `apply` are:
 
-* The data object
-* `MARGIN`, indicating whether to apply over rows (1) or columns (2)
-* The name of the function to be applied (functions can sometimes be treated as objects when used as 
+- The data object
+- `MARGIN`, indicating whether to apply over rows (1) or columns (2)
+- The name of the function to be applied (functions can sometimes be treated as objects when used as 
 arguments for other functions)
 
 We wanted to find the maximum inflammation score for each patient, so we looked across the rows and 
 used the `max` function. To modify the command to find the average inflammation per day, we switched 
 the MARGIN argument to 2 for columns, and gave the final argument as `mean`. 
 
-*While the MARGIN argument is explicitly assigned above, R is equally happy to infer from the*
-*shortened command `apply(inf.data, 1, max)` that the 1 should be assigned to the second defined*
-*argument of `apply`. You can also write your own bespoke functions as required and use apply to*
-*run them over an object.*
+*While the MARGIN argument is explicitly assigned above, R is equally happy to infer from the
+shortened command `apply(inf.data, 1, max)` that the 1 should be assigned to the second defined
+argument of `apply`. You can also write your own bespoke functions as required and use apply to
+run them over an object.*
 
 We have also solved the final issue with our initial approach by storing the results in 
 suitably-named objects for further work. 
@@ -1076,15 +1078,10 @@ from their peers. Searching for your R problem will often give results from one 
 
 One page 'quick reference' documents:
 
-- [R cheat sheet](assets/r-cheat-sheet.pdf)
-- [R reference card](assets/R_reference_card.pdf)
+- [R cheat sheet](https://queex.github.io/whg-training-resources/assets/files/r-cheat-sheet-3a6c0a78b691dcc734f8d7d2d24cb3f2.pdf)
+- [R reference card](https://queex.github.io/whg-training-resources/assets/files/R_reference_card-eceb0c2da5bfbe6447466bf8bf06004b.pdf)
 
 # Further resources and useful information
-
-We have helped collate a comprehensive [set of R resources](https://help.it.ox.ac.uk/courses/R) 
-with IT Services (with particular thanks to Dave Baker for creating the website, and contributions 
-from Samantha Curle and Andre Python), which lists courses (online and workshops) as well as 
-recommended textbooks, websites etc. 
 
 The Software Carpentry Foundation website contains many tutorials for learning a variety of 
 programming languages, including R. There is also a series of domain-specific Data Carpentry 
