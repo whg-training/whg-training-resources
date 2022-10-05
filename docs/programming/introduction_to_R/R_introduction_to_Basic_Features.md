@@ -10,8 +10,8 @@ Core
 -   To use R to run some typical tasks
 -   To be aware of the vital importance of good programming habits
 
-This course is hosted at
-<https://www.well.ox.ac.uk/training/R%20Introduction%20to%20Basic%20Features>.
+This course is hosted at:
+<https://whg-training.github.io/whg-training-resources/programming/introduction_to_R/R_Introduction_to_Basic_Features.html>.
 
 This course has workshop content intended to be worked through using
 RStudio. The course tutor will lead work through that content during the
@@ -69,10 +69,6 @@ This workshop will introduce you to the R environment, with the aim of
 becoming familiar with how commands are written and structured and how
 to perform basic tasks associated with data analysis using R.
 
-You can download all the files needed from:
-
-[???](https://docusaurus%20doesn't%20seem%20to%20forward%20unprocessed%20files)
-
 ## R fundamentals
 
 R is, at its heart, a command line language like bash. Text commands are
@@ -97,7 +93,13 @@ RStudio is an integrated development environment (IDE) that wraps around
 R and makes a lot of common tasks much more convenient. Launch RStudio
 to open a new R session.
 
-By default, RStudio displays 4 different panels.
+By default, RStudio displays 4 different panels. If there's only one
+panel on the left, then one of them is currently hidden – you can make
+it visible by opening a new R script file from the 'File' menu.
+
+### RStudio screenshot
+
+![](images/RStudio_screenshot.png)
 
 ### Bottom left
 
@@ -360,7 +362,7 @@ in the corresponding help page:
     help(seq)
 
 *`help` is, itself, a function that opens up the help file for a given
-names function.* *Note that the help file is opened in the lower right
+names function. Note that the help file is opened in the lower right
 panel of RStudio.*
 
 ## Vectors
@@ -516,11 +518,11 @@ select that directory. Otherwise, create a new directory to work in and
 select that. You can change the working directory using the R function
 `setwd`, but it's more convenient to use RStudio's interface.
 
-If you haven't already done so, you will also need to download two data
-files by entering the following commands:
+You will also need to download two data files by entering the following
+commands:
 
-    download.file("https://www.well.ox.ac.uk/training/R_materials/inflammation_data.csv", "./inflammation_data.csv")
-    download.file("https://www.well.ox.ac.uk/training/R_materials/sample.csv", "./sample.csv")
+    download.file("https://www.well.ox.ac.uk/bioinformatics/training/computing_workshops_2021/R_workshop/inflammation_data.csv", "./inflammation_data.csv")
+    download.file("https://www.well.ox.ac.uk/bioinformatics/training/computing_workshops_2021/R_workshop/sample.csv", "./sample.csv")
 
 ## Removing objects
 
@@ -545,13 +547,12 @@ some practical exercises working with example data to perform typical
 tasks. First, some important acknowledgements:
 
 *The tutorial that follows is in part adapted from the [Software
-Carpentry Foundation](https://software-carpentry.org/lessons/)*
-*Programming with R, specifically the Analysing Patient Data*
-*[tutorial](http://swcarpentry.github.io/r-novice-inflammation/01-starting-with-data/index.html).*
-*The Software Carpentry material is available for re-use under a*
-*[Creative Commons
-License](https://creativecommons.org/licenses/by/4.0/) and I am grateful
-to the* *original authors.*
+Carpentry Foundation](https://software-carpentry.org/lessons/)
+Programming with R, specifically the Analysing Patient Data
+[tutorial](http://swcarpentry.github.io/r-novice-inflammation/01-starting-with-data/index.html).
+The Software Carpentry material is available for re-use under a
+[Creative Commons License](https://creativecommons.org/licenses/by/4.0/)
+and we are grateful to the original authors.*
 
 ## Setup
 
@@ -620,9 +621,9 @@ for files with/without header rows.
     inf.data <- read.csv("inflammation_data.csv", header=FALSE)
 
 *Note: if you see an error message similar to 'No such file or
-directory' when trying to read in a* *file, it is likely that either (i)
-the file is not located in the current working directory, or* *(ii)
-there is one (or more) typos in the filename.*
+directory' when trying to read in a file, it is likely that either (i)
+the file is not located in the current working directory, or (ii) there
+is one (or more) typos in the filename.*
 
 It's useful to break this command down a little more.
 
@@ -665,10 +666,10 @@ Another object named `test` now appears. View the contents of that
 object and compare it to `inf.data`.
 
 *This is a good example of how easily something unwanted can happen in R
-and the importance of* *checking your objects contain what you intend
-them to. Any mistakes can simply be corrected by* *re-running the
-command e.g. with the appropriate header argument, and overwriting any
-previous* *version of the object.*
+and the importance of checking your objects contain what you intend them
+to. Any mistakes can simply be corrected by re-running the command e.g.
+with the appropriate header argument, and overwriting any previous
+version of the object.*
 
 ## Two-dimensional data structures
 
@@ -682,10 +683,10 @@ measurements) and associated descriptive information, data frames are a
 very commonly used data structure in R.
 
 *NB while it is possible to create a matrix object with mixed data
-types, R will use its* *internal hierarchy of data types to choose one
-that is applicable to all of the data – often this* *means numerical
+types, R will use its internal hierarchy of data types to choose one
+that is applicable to all of the data – often this means numerical
 columns get converted to character strings, and certain functions may
-not perform* *as expected if this is not noticed, or they may produce an
+not perform as expected if this is not noticed, or they may produce an
 error message.*
 
 In this case, a data frame object has been created:
@@ -698,10 +699,10 @@ first column:
     class(inf.data[, 1])
 
 *In fact, as all the columns contain data of the same type, R could
-equally well store this data as* *a matrix object. A data frame has been
-created because the functions `read.csv` and `read.table`* *are
+equally well store this data as a matrix object. A data frame has been
+created because the functions `read.csv` and `read.table` are
 specifically designed to deal with mixed column classes and produce data
-frames by default.* *Another function `scan` can be used to read in
+frames by default. Another function `scan` can be used to read in
 matrices, especially large ones.*
 
 It is worth noting that some functions operate on matrix objects, and so
@@ -735,8 +736,8 @@ what data is recorded in the rows and columns. The Software Carpentry
 tutorial provides the following information:
 
 *“We are studying inflammation in patients who have been given a new
-treatment for arthritis. Each* *row holds the observations for just one
-patient. Each column holds the inflammation measured in a* *day, so we
+treatment for arthritis. Each row holds the observations for just one
+patient. Each column holds the inflammation measured in a day, so we
 have a set of values in successive days."*
 
 Our object has 60 rows and 40 columns, so we infer from the information
@@ -879,8 +880,8 @@ object, the command is used directly as an argument to the function
 `max` by enclosing in the parentheses.
 
 *Commands can be nested in this way to achieve multiple steps in a
-single line of code; too many* *commands in one line though can make it
-harder to work out what the code is doing, as well as* *increase the
+single line of code; too many commands in one line though can make it
+harder to work out what the code is doing, as well as increase the
 chance of the code not doing as intended – the location of brackets
 becomes vital.*
 
@@ -913,10 +914,10 @@ command to find the average inflammation per day, we switched the MARGIN
 argument to 2 for columns, and gave the final argument as `mean`.
 
 *While the MARGIN argument is explicitly assigned above, R is equally
-happy to infer from the* *shortened command `apply(inf.data, 1, max)`
-that the 1 should be assigned to the second defined* *argument of
-`apply`. You can also write your own bespoke functions as required and
-use apply to* *run them over an object.*
+happy to infer from the shortened command `apply(inf.data, 1, max)` that
+the 1 should be assigned to the second defined argument of `apply`. You
+can also write your own bespoke functions as required and use apply to
+run them over an object.*
 
 We have also solved the final issue with our initial approach by storing
 the results in suitably-named objects for further work.
@@ -1106,16 +1107,12 @@ problem will often give results from one of these forums.
 
 One page 'quick reference' documents:
 
--   [R cheat sheet](assets/r-cheat-sheet.pdf)
--   [R reference card](assets/R_reference_card.pdf)
+-   [R cheat
+    sheet](https://queex.github.io/whg-training-resources/assets/files/r-cheat-sheet-3a6c0a78b691dcc734f8d7d2d24cb3f2.pdf)
+-   [R reference
+    card](https://queex.github.io/whg-training-resources/assets/files/R_reference_card-eceb0c2da5bfbe6447466bf8bf06004b.pdf)
 
 # Further resources and useful information
-
-We have helped collate a comprehensive [set of R
-resources](https://help.it.ox.ac.uk/courses/R) with IT Services (with
-particular thanks to Dave Baker for creating the website, and
-contributions from Samantha Curle and Andre Python), which lists courses
-(online and workshops) as well as recommended textbooks, websites etc.
 
 The Software Carpentry Foundation website contains many tutorials for
 learning a variety of programming languages, including R. There is also
