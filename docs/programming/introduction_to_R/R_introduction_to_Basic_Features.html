@@ -431,7 +431,7 @@ pre code {
 <div id="bottom-left" class="section level3">
 <h3>Bottom left</h3>
 <p>The bottom left panel is R itself, in the tab &#39;Console&#39;. If you were running R without RStudio, this is exactly what you would see.</p>
-<p>The <code>&gt;</code> prompt is telling you that R is ready to receive new commands. You can type R code here and press return to have R run that code. R will print any output from that command and then show the <code>&gt;</code> prompt again to say it is ready for new input. Note that something may have happened &#39;behind the scenes&#39; - such creating or altering a data object. It is important to know what each command has done and it was as intended.</p>
+<p>The <code>&gt;</code> prompt is telling you that R is ready to receive new commands. You can type R code here and press return to have R run that code. R will print any output from that command and then show the <code>&gt;</code> prompt again to say it is ready for new input. Note that something may have happened &#39;behind the scenes&#39; – such creating or altering a data object. It is important to know what each command has done and it was as intended.</p>
 <p>Two useful things to know about this panel are that you can use the up and down arrows to scroll through previous commands – very useful to fix an error without retyping the entire line! – and you can use the tab key to auto-complete commands, variable names and file names.</p>
 <p>The other tabs you don&#39;t need to use now.</p>
 <p>Try typing a simple command into the R console (remember to press Return):</p>
@@ -598,8 +598,8 @@ library(ggplot2)</code></pre>
 <p>It is useful to set the working directory to the place where you have the files you want to work with. It means you have to do less typing to load the save files and you can keep the R version of the data alongside the original files.</p>
 <p>We need to set a working directory for the rest of the workshop. From RStudio&#39;s Session menu, select &#39;Set working directory&#39;, and then &#39;Choose directory...&#39;. If you&#39;ve already downloaded the files for this workshop, select that directory. Otherwise, create a new directory to work in and select that. You can change the working directory using the R function <code>setwd</code>, but it&#39;s more convenient to use RStudio&#39;s interface.</p>
 <p>You will also need to download two data files by entering the following commands:</p>
-<pre class="r"><code>download.file(&quot;https://www.well.ox.ac.uk/bioinformatics/training/computing_workshops_2021/R_workshop/inflammation_data.csv&quot;, &quot;./inflammation_data.csv&quot;)
-download.file(&quot;https://www.well.ox.ac.uk/bioinformatics/training/computing_workshops_2021/R_workshop/sample.csv&quot;, &quot;./sample.csv&quot;)</code></pre>
+<pre class="r"><code>download.file(&quot;https://queex.github.io/whg-training-resources/R-intro/inflammation_data.csv&quot;, &quot;./inflammation_data.csv&quot;)
+download.file(&quot;https://queex.github.io/whg-training-resources/R-intro/sample.csv&quot;, &quot;./sample.csv&quot;)</code></pre>
 </div>
 <div id="removing-objects" class="section level2">
 <h2>Removing objects</h2>
@@ -789,7 +789,7 @@ head(data2)</code></pre>
     print(class(data2[, i]))
 }</code></pre>
 <p>Here, we&#39;ve used a <code>for</code> loop to iterate over each column in the object <code>data2</code>, and print to screen the class of each column. The output tells us that columns 1:3 are treated as characters, and mostof the rest are treated as integers. Column 5 is &#39;numeric&#39;, the basic data type in R for non-integer numbers. R has a number of different classes of data it can store and sometimes functions will behave differently depending on what type of data they are given.</p>
-<p>Although columns 1 - 3 are currently characters, some functions in R that perform statistical analysis prefer a data type called &#39;factors&#39;. Factors are useful when you have category data, where the character data can only come from a well defined set of possibilities. Factors can be useful when you want to make sure incorrect values don&#39;t creep in accidentally, because R will report an error if factor data tries to be changed to value outside that set.</p>
+<p>Although columns 1 – 3 are currently characters, some functions in R that perform statistical analysis prefer a data type called &#39;factors&#39;. Factors are useful when you have category data, where the character data can only come from a well defined set of possibilities. Factors can be useful when you want to make sure incorrect values don&#39;t creep in accidentally, because R will report an error if factor data tries to be changed to value outside that set.</p>
 <p>We can specifically convert the Group column to a factor:</p>
 <pre class="r"><code>data2$Group &lt;- as.factor(data2$Group)
 class(data2$Group)</code></pre>
@@ -833,8 +833,8 @@ table(data2$Gender)</code></pre>
 <p>There are several online forums used by R programmers, novice and expert, to get help and advice from their peers. Searching for your R problem will often give results from one of these forums.</p>
 <p>One page &#39;quick reference&#39; documents:</p>
 <ul>
-<li><a href="https://queex.github.io/whg-training-resources/assets/files/r-cheat-sheet-3a6c0a78b691dcc734f8d7d2d24cb3f2.pdf">R cheat sheet</a></li>
-<li><a href="https://queex.github.io/whg-training-resources/assets/files/R_reference_card-eceb0c2da5bfbe6447466bf8bf06004b.pdf">R reference card</a></li>
+<li><a href="https://queex.github.io/whg-training-resources/R-intro/r-cheat-sheet.pdf">R cheat sheet</a></li>
+<li><a href="https://queex.github.io/whg-training-resources/R-intro/R_reference_card.pdf">R reference card</a></li>
 </ul>
 </div>
 <div id="further-resources-and-useful-information" class="section level1">

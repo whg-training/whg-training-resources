@@ -110,7 +110,7 @@ The `>` prompt is telling you that R is ready to receive new commands.
 You can type R code here and press return to have R run that code. R
 will print any output from that command and then show the `>` prompt
 again to say it is ready for new input. Note that something may have
-happened 'behind the scenes' - such creating or altering a data object.
+happened 'behind the scenes' – such creating or altering a data object.
 It is important to know what each command has done and it was as
 intended.
 
@@ -521,8 +521,8 @@ select that. You can change the working directory using the R function
 You will also need to download two data files by entering the following
 commands:
 
-    download.file("https://www.well.ox.ac.uk/bioinformatics/training/computing_workshops_2021/R_workshop/inflammation_data.csv", "./inflammation_data.csv")
-    download.file("https://www.well.ox.ac.uk/bioinformatics/training/computing_workshops_2021/R_workshop/sample.csv", "./sample.csv")
+    download.file("https://queex.github.io/whg-training-resources/R-intro/inflammation_data.csv", "./inflammation_data.csv")
+    download.file("https://queex.github.io/whg-training-resources/R-intro/sample.csv", "./sample.csv")
 
 ## Removing objects
 
@@ -1003,7 +1003,7 @@ non-integer numbers. R has a number of different classes of data it can
 store and sometimes functions will behave differently depending on what
 type of data they are given.
 
-Although columns 1 - 3 are currently characters, some functions in R
+Although columns 1 – 3 are currently characters, some functions in R
 that perform statistical analysis prefer a data type called 'factors'.
 Factors are useful when you have category data, where the character data
 can only come from a well defined set of possibilities. Factors can be
@@ -1108,9 +1108,9 @@ problem will often give results from one of these forums.
 One page 'quick reference' documents:
 
 -   [R cheat
-    sheet](https://queex.github.io/whg-training-resources/assets/files/r-cheat-sheet-3a6c0a78b691dcc734f8d7d2d24cb3f2.pdf)
+    sheet](https://queex.github.io/whg-training-resources/R-intro/r-cheat-sheet.pdf)
 -   [R reference
-    card](https://queex.github.io/whg-training-resources/assets/files/R_reference_card-eceb0c2da5bfbe6447466bf8bf06004b.pdf)
+    card](https://queex.github.io/whg-training-resources/R-intro/R_reference_card.pdf)
 
 # Further resources and useful information
 
