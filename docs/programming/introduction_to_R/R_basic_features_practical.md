@@ -1,3 +1,9 @@
+---
+sidebar_position: 2
+---
+
+# Using R to load and manipulate data
+
 Tutors: Helen Lockstone and Ben Wright Bioinformatics Core Wellcome
 Centre for Human Genetics University of Oxford
 

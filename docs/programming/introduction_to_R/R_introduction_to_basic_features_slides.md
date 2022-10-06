@@ -132,8 +132,7 @@ Authors: Helen Lockstone and Matthieu Miossec Bioinformatics Core
 
 ## Finally…
 
-Please let us know if you have any questions and good luck on your
-programming journey!
+If you are running this as part of a
+[Wellcome Centre for Human Genetics](https://www.well.ox.ac.uk) course, we'll be providing support - please ask questions.
 
-We are happy to help anytime:
-[bioinformatics@well.ox.ac.uk](mailto://bioinformatics@well.ox.ac.uk)
+Good luck on your programming journey!
