@@ -73,7 +73,10 @@ to perform basic tasks associated with data analysis using R.
 
 R is, at its heart, a command line language like bash. Text commands are
 entered and text output is printed to the console. Similarly, you can
-write R scripts to be executed when you need them.
+write R scripts to be executed when you need them. R supports stepping
+through the commands you have previously entered with the up and down
+arrow keys, and will attempt to complete function and file names whne
+you press the tab key, just like bash.
 
 However, unlike bash, R also keeps data in its own internal store rather
 than only keeping data in memory while the command is running. R can
@@ -149,16 +152,6 @@ Try this by typing this line into the editor:
 
 and clicking 'Run'.
 
-The editor also understands some other R-related files. This includes a
-'.rmd' file. Go to the file menu and select 'Open', then navigate to and
-select the file for this course: `R Introduction to Basic Features.rmd`.
-You'll see this entire document. The snippets of R code each have their
-own little run button (the green arrow on the right) that lets you run
-the entire section (called a 'chunk') with one click.
-
-Now you have this course open you can follow it from inside RStudio.
-Feel free to work through the material at your own pace.
-
 ### Top right
 
 The top right panel contains information about the current R session.
@@ -210,8 +203,27 @@ throughout to refer to any of R's data structures. These include
 vectors, factors, matrices, data frames and lists. Don't worry about the
 differences between those things for now.
 
-We will start by entering a few simple commands and discuss what is
-happening.
+# Following along
+
+The editor also understands some other R-related files. This includes a
+'.rmd' file, which is a special kind of R script where you can put
+pieces of R code in a text document.
+
+Type the following into the console (bottom left) in RStudio:
+
+    download.file("https://queex.github.io/whg-training-resources/R-intro/R_introduction_to_Basic_Features.rmd","./R_introduction_to_Basic_Fetures.rmd")
+
+Now go to the 'File' menu and select 'Open', then navigate to and select
+that file (it's likely to be in 'Downloads'). You'll see this entire
+document appear in the top left panel. The snippets of R code each have
+their own little run button (the green arrow on the right) that lets you
+run that section (called a 'chunk') with one click.
+
+Now you have this course open you can follow it from inside RStudio.
+Feel free to work through the material at your own pace. As well as
+example code snippets to run, there are questions to think about and try
+your own R code out on. You're not expected to answer these questions
+before moving on to the next section.
 
 ## R command syntax
 
@@ -235,6 +247,9 @@ its name:
     x
     ## [1] 1
 
+The `#` symbol is a comment. R will ignore everything after that symbol.
+It's being used here to show the expected output of the command.
+
 Note that the contents of an object will be overwritten – without any
 warning message – if later assigned a different value:
 
@@ -257,6 +272,8 @@ itself does not change):
     # x now contains the value 8
     x
     ## [1] 8
+
+> **Question** How would you get R to calculate 3x - 2?
 
 R is case sensitive so `x` and `X` are different:
 
@@ -292,6 +309,9 @@ If the output is long enough that it spans more than one line, this
 makes it easier to work out the index of entries on that line. Note that
 in R indices start at `1` (instead of `0` as in most other programming
 languages).
+
+> **Question** How might you create the vector 2, 4, 6, 8, 10 from the
+> object x?
 
 If we forget the closing bracket before pressing enter, then R can
 detect that the command is incomplete. It gives us a different prompt:
@@ -346,6 +366,10 @@ useful.
 You can look at all of these objects in the 'Environment' panel to see
 what you get when you use these commands.
 
+> **Question** How might you create a sequence of numbers from 100 to 1?
+> It can be done with the `seq` function and using `:` syntax; can you
+> find both ways?
+
 ## Using functions
 
 Functions are defined blocks of code that perform a particular task. R
@@ -396,6 +420,12 @@ by checking the `class` of the objects directly:
     class(y)
     ## [1] "character"
 
+R has as family of functions `as.integer`, `as.character`, and so on to
+convert from one class to another.
+
+> **Question** Can you think of value you can give an object so that
+> it's class is neither 'integer' nor 'character'?
+
 Now try running the following command:
 
     y <- c(a, b, c)
@@ -406,9 +436,9 @@ message?
 
 ## Accessing elements of a vector
 
-Square brackets are used to access specific elements or subsets of a
-vector, factor, matrix or data frame. Let's create a new vector as an
-example:
+Square brackets (`[` and `]`) are used to access specific elements or
+subsets of a vector, factor, matrix or data frame. Let's create a new
+vector as an example:
 
     x <- c(1:5, 10:14)
     ## now extract 3rd element
@@ -425,11 +455,17 @@ into a new vector, we use a vector *inside* the square brackets and R
 interprets that as an instruction to return a vector of those elements
 of `x`.
 
+> **Question** How would you return the elements of `x` in reverse
+> order? How would you extract the elements of `x` where the index is a
+> square number?
+
+> **Question** Can you predict what R will do in each of these cases:
+> `x[11]`, `x[-3]`?
+
 R will decide the most appropriate way to store the data it is provided
-with, and there are ways to convert between different object structures
-and classes if needed. To give more examples of how data is interpreted
-by R, run the following and note the results (feel free to discuss this
-with your neighbours).
+with, including when you mix different classes in a single vector. To
+give more examples of how data is interpreted by R, run the following
+and note the results.
 
     x2 <- c(1:5, 6.5)
     class(x2)
@@ -463,7 +499,7 @@ The `length` function is only applicable to vectors (or factors) and
 does not work on other data types such as matrices or data frames, which
 are 2-dimensional. Often, data is stored in a table format (e.g. in
 Excel), and commonly handled as a 'data frame' in R. We will introduce
-these ideas using practical exercises in the next section.
+these ideas in the next section.
 
 There are many thousands of additional functions available to R through
 something called 'packages'. Each package is a self-contained parcel of
@@ -471,9 +507,9 @@ functions created for a specific application. For example,
 'Bioconductor' is a repository of many packages related to handling data
 in bioinformatics. Because it would be confusing to always have all
 these functions available (and because some packages may end up using
-the same names) you need to specifically tell R to make a package
-available. This is done using the `install.packages` and `library`
-functions:
+the same function names) you need to specifically tell R to make a
+package available. This is done using the `install.packages` and
+`library` functions:
 
     ## Install the package for your R environment
     install.packages("ggplot2")
@@ -493,7 +529,10 @@ you only need to do once per computer (in theory, at least). You must
 `library` in each new R session before trying to use any functions from
 the package; as this is what tells R to look in that package for
 function names (again, to try and handle duplicate names in different
-packages gracefully).
+packages gracefully). If you save your R session and come back to it
+later, you will need to use `library` again to make those functions
+available – which packages you have used `library` on is not saved with
+the data.
 
 ## Working directory
 
@@ -513,10 +552,9 @@ the original files.
 
 We need to set a working directory for the rest of the workshop. From
 RStudio's Session menu, select 'Set working directory', and then 'Choose
-directory...'. If you've already downloaded the files for this workshop,
-select that directory. Otherwise, create a new directory to work in and
-select that. You can change the working directory using the R function
-`setwd`, but it's more convenient to use RStudio's interface.
+directory...'. Create a new directory to work in and select that. You
+can change the working directory using the R function `setwd`, but it's
+more convenient to use RStudio's interface.
 
 You will also need to download two data files by entering the following
 commands:
@@ -563,15 +601,18 @@ check the current working directory with the following command:
 
 The output (directory path) should match the location you are working in
 today, and this folder should also contain the files named
-`inflammation_data.csv` and `sample.csv`. If you see an error message at
-any point, first check the command matches that in the tutorial exactly
-and that you haven't accidentally missed an earlier command out. Pay
-particular attention to lower/upper case letters, underscores, dashes or
-dots in function or object names, and that brackets and quotes are
-correctly paired. If you can't spot the problem or have a question at
-any point, please don't hesitate to ask!
+`inflammation_data.csv` and `sample.csv`. If you get an error while
+typing the command into the terminal, first check the command matches
+that in the tutorial exactly and that you haven't accidentally missed an
+earlier command out. Pay particular attention to lower/upper case
+letters, underscores, dashes or dots in function or object names, and
+that brackets and quotes are correctly paired. If you see an error
+message when running chunks in the R markdown document, it is probably
+that you accidentally changed that code. Close the file without saving
+then reload it. If you can't spot the problem or have a question at any
+point, please don't hesitate to ask!
 
-## Helpful Tips
+## General Helpful Tips
 
 -   Enter your commands in the top-left panel of RStudio (a text editor)
     as this means they can be saved to keep a record of what you have
@@ -581,14 +622,16 @@ any point, please don't hesitate to ask!
     'R\_course\_code.R', saves it as an R script file. The `.R` suffix
     lets RStudio know that the file is meant to be an R script.
 -   Any scripts you make are separate files to the session data that is
-    saved when you close R.
+    saved when you close R, but RStudio will reload whateer files you
+    had open when you restart it.
 
 This is the usually the easiest way to work; if you need to close your
 session and return to it another time, it is easy to run the code again
-from start to finish. If it were appropriate, all of the code stored in
-a script can be executed in R from start to finish with the command:
+from start to finish. All of the code stored in a script can be executed
+in R from start to finish with the command:
 
     source("script_name.R")
+    ## This file doesn't exist so will cause an error
 
 You may recognise the function name `source` from the button in the
 editor panel that does the same thing.
@@ -630,8 +673,8 @@ It's useful to break this command down a little more.
 We have given a name for a new object, `inf.data`, in which to store the
 contents of the file 'inflammation\_data.csv'. Our object name is
 descriptive without being too long, shortening 'inflammation' to 'inf'
-for our convenience. We are using the in-built R function `read.csv`,
-and provide two arguments:
+for our convenience. We use the in-built R function `read.csv`, and
+provide two arguments:
 
 -   the name of the file to read in
 -   `header=FALSE`, indicating to R that our file does not have a header
@@ -647,7 +690,7 @@ Notice that, unlike the vectors we've created before, that it doesn't
 show all the data stored in the object. It is detailed as `60 obs.`
 (observations) `of 40 variables` and if you hover the mouse pointer over
 the name, `inf.data`, it indicates that the object is a `data.frame`,
-which is how R stores tabular data.
+which is how R stores tabular data by default.
 
 If you double-click on the object name or click on the spreadsheet icon
 to the righthand side, the contents of the object are loaded in the
@@ -706,8 +749,8 @@ frames by default. Another function `scan` can be used to read in
 matrices, especially large ones.*
 
 It is worth noting that some functions operate on matrix objects, and so
-converting between classes is sometimes needed. R has some standard
-functions for converting from one class to another.
+converting between classes is sometimes needed. 'matrix' is a class of
+data that R recognises, separate to 'integer' or 'numeric'.
 
     inf.data <- as.matrix(inf.data)
     class(inf.data)
@@ -762,7 +805,7 @@ rows, since we might expect inflammation to rise over time, and an
 individual recording 0 on every single day might be unlikely (though not
 impossible).
 
-It would be prudent to add some row and column names to reduce the
+It would be prudent to add our own row and column names to reduce the
 chance of making a mistake later when dealing with this data:
 
     rownames(inf.data) <- paste("Patient", 1:60, sep="_")
@@ -800,6 +843,9 @@ first 5 columns.
     ## Or blank space before the comma to select all rows for given column(s):
     inf.data[, 1:5] # all rows, columns 1 through 5
 
+> **Question** Can you infer what will happen with `inf.data[,]`? Can
+> you produce the matrix with the patients in reverse order?
+
 When you select a single column from a data frame, R will 'helpfully'
 turn it into a vector:
 
@@ -810,22 +856,22 @@ This can cause errors if you were expecting `test` to still be a data
 frame in a later command.
 
 We added column names to our object earlier. Rows and columns can also
-be accessed by name (in double-quotes) inside square brackets. `$` is a
-shorthand way of referring to a named column in R. Both alternatives in
-the snippet below return the same vector.
+be accessed by name (in double-quotes) inside square brackets. These
+methods work for any two-dimensional class of data in R, but data frames
+specifically have another: `$` is a shorthand way of referring to a
+named column. Both alternatives in the snippet below return the same
+vector.
 
     inf.data[, "Day_3"]
-    inf.data$Day_3
+    tmp <- as.data.frame(inf.data)
+    tmp$Day_3
 
-Suppose you want to determine the maximum inflammation for patient 5
-across days three to seven. To do this you would extract the relevant
-subset from the data frame and calculate the maximum value. Which of the
-following lines of R code gives the correct answer?
-
-1.  `max(inf.data[5, ])`
-2.  `max(inf.data[3:7, 5])`
-3.  `max(inf.data[5, 3:7])`
-4.  `max(inf.data[5, 3, 7])`
+> **Question** Suppose you want to determine the maximum inflammation
+> for patient 5 across days three to seven. To do this you would extract
+> the relevant subset from the data frame and calculate the maximum
+> value. Which of the following lines of R code gives the correct
+> answer? 1. `max(inf.data[5, ])` 2. `max(inf.data[3:7, 5])` 3.
+> `max(inf.data[5, 3:7])` 4. `max(inf.data[5, 3, 7])`
 
 ## Analysing data
 
@@ -890,7 +936,7 @@ the code 60 times. Loops are one option (not discussed here) but the
 `apply` function is the most efficient approach:
 
 `apply` allows us to repeat a function on all of the rows (`MARGIN = 1`)
-or columns (`MARGIN = 2`) of a data frame simultaneously:
+or all of the columns (`MARGIN = 2`) of a data frame simultaneously:
 
     max_inf_patient <- apply(inf.data, MARGIN=1, max)
 
@@ -900,8 +946,8 @@ single line of code:
     avg_inf_day <- apply(inf.data, MARGIN=2, mean)
 
 Comparing these two commands will help understand the `apply` function,
-which is not intuitive but highly efficient as we have seen. The
-arguments to `apply` are:
+which is not intuitive but highly efficient. The arguments to `apply`
+are:
 
 -   The data object
 -   `MARGIN`, indicating whether to apply over rows (1) or columns (2)
@@ -922,6 +968,10 @@ run them over an object.*
 We have also solved the final issue with our initial approach by storing
 the results in suitably-named objects for further work.
 
+> **Question** What functions other than `mean` and `max` can you use
+> with the `apply` function? Looking at the help files for the functions
+> might suggest some.
+
     length(max_inf_patient)
     head(max_inf_patient)
 
@@ -934,48 +984,7 @@ very useful information to make an initial inspection of your data.
 
     summary(inf.data[, 1:4]) # for each of the first 4 days
 
-## Plotting data
-
-Visualising data is a vital part of statistical analysis, and R's
-plotting capabilities are a key reason for its popularity. There is a
-related course R: Visualisation that you can take if interested to learn
-more. Here, we introduce ways to make a few simple plots. Let's take a
-look at the average inflammation over time. Recall that we already
-calculated these values above and saved them in an object named
-`avg_inf_day`. Plotting the values is done with the function `plot`:
-
-    plot(avg_inf_day)
-
-    ## Default labels and settings are used but we can refine our plot with some additional arguments:
-    plot(avg_inf_day, main="Inflammation Scores Over Time", xlab="Day", ylab="Average_inflammation_score") # adding title and axis labels
-    plot(avg_inf_day, main="Inflammation Scores Over Time", xlab="Day", ylab="Average_inflammation_score", pch=4, col="red") # changing the plotting symbols and colour
-
-    ## Similarly, we could plot the data per patient:
-    plot(max_inf_patient)
-
-    ## Here, we might decide to use a boxplot instead:
-    boxplot(max_inf_patient, main="Maximum Inflammation Scores", ylab="Max_inf_score")
-    legend("topright", legend="n=60 patients", cex=0.8) # adding a legend
-
-In RStudio, the 'Plots' panel in the bottom right contains a history of
-all the plots you've made in the current session. In vanilla R, a new
-plot will replace the existing one unless you create a new window for
-it.
-
-When we are happy with our plots, they can be saved to a file.
-
-    pdf("Inflammation_plots.pdf", onefile=T)
-    plot(avg_inf_day, main="Inflammation Scores Over Time", xlab="Day", ylab="Average_inflammation_score", pch=4, col="red")
-    boxplot(max_inf_patient, main="Maximum Inflammation Scores", ylab="Max_inf_score")
-    legend("topright", legend="n=60 patients", cex=0.8)
-    dev.off()
-
-This will be saved to the current working directory by default so if we
-check the folder, a new file named 'Inflammation\_plots.pdf' should have
-been created. The `onefile=T` argument instructs R to append additional
-plots to the same file and the `dev.off()` command at the end closes the
-file connection. You can also export plots directly to a pdf file from
-the RStudio 'Plot' panel.
+> **Question** What happens when you use `summary` with `apply`?
 
 ## Handling data with factors
 
@@ -997,11 +1006,9 @@ treated it (you can paste the following 4 lines as one block).
 
 Here, we've used a `for` loop to iterate over each column in the object
 `data2`, and print to screen the class of each column. The output tells
-us that columns 1:3 are treated as characters, and mostof the rest are
+us that columns 1:3 are treated as characters, and most of the rest are
 treated as integers. Column 5 is 'numeric', the basic data type in R for
-non-integer numbers. R has a number of different classes of data it can
-store and sometimes functions will behave differently depending on what
-type of data they are given.
+non-integer numbers.
 
 Although columns 1 – 3 are currently characters, some functions in R
 that perform statistical analysis prefer a data type called 'factors'.
@@ -1009,7 +1016,7 @@ Factors are useful when you have category data, where the character data
 can only come from a well defined set of possibilities. Factors can be
 useful when you want to make sure incorrect values don't creep in
 accidentally, because R will report an error if factor data tries to be
-changed to value outside that set.
+changed to an illegal value.
 
 We can specifically convert the Group column to a factor:
 
@@ -1019,9 +1026,12 @@ We can specifically convert the Group column to a factor:
 The `as.factor` function returns a factor version of a vector. However,
 as this doesn't change the original `data2` object by itself, we need to
 assign that vector of factors back to the column, replacing what was
-there before. You can see how using the `$` syntax makes this line
-easier to read. R has a number of different `as.` functions for
-converting to different data types.
+there before. Indices (and by extension, the `$` syntax) in R can be
+used when assigning values to objects, not just when extracting them.
+You can see how using the `$` syntax makes this line easier to read.
+
+> **Question** If you used square brackets instead of the `$` notation
+> for the above, how would you do it?
 
 A very useful summary function is `table`:
 
@@ -1029,7 +1039,7 @@ A very useful summary function is `table`:
     table(data2$Gender)
 
 This alerts us to the fact that data in the Gender column has not been
-entered consistently, which we might have already spotted from viewing
+entered consistently, which you might have already spotted from viewing
 the object in RStudio.
 
 To fix this, we can make sure `F` and `M` are used throughout; this
@@ -1050,8 +1060,7 @@ new vector back to the original object.
 
 The second line shows one of R's particularly useful features. We're
 telling R to replace values in `data2$Gender`, but only where those
-values equal `"m"`. Indices in R can be used when assigning values to
-objects, not just when extracting them.
+values equal `"m"`.
 
 This is one example of how there can be multiple ways of doing a
 particular task in R. When deciding which method to use, in general, it
@@ -1060,16 +1069,57 @@ method where you are least likely to make a mistake. Some mistakes will
 cause R to generate an error, but the more dangerous mistakes are ones
 that don't result in an error but result in incorrect data.
 
-## Putting it together
+> **Question** Look at the help file for the function `ifelse`. Can you
+> work out how you would to the above correction using that instead of
+> either of those methods?
 
-See if you can solve the following problem using R:
+## Plotting data
 
--   Create a new vector containing a set of any 9 letters, including at
-    least 3 vowels. Give your vector object a suitably descriptive name
--   Check the length of your vector equals 9
--   Now extract subsets of letters to create as many new short words as
-    you can
--   Hint: use the `c()` function and `:` operator within square brackets
+Visualising data is a vital part of statistical analysis, and R's
+plotting capabilities are a key reason for its popularity. Here, we
+introduce ways to make a few simple plots. Let's go back to our first
+table of data and take a look at the average inflammation over time.
+Recall that we already calculated these values above and saved them in
+an object named `avg_inf_day`. Plotting the values is done with the
+function `plot`:
+
+    plot(avg_inf_day)
+
+    ## Default labels and settings are used but we can refine our plot with some additional arguments:
+    plot(avg_inf_day, main="Inflammation Scores Over Time", xlab="Day", ylab="Average_inflammation_score") # adding title and axis labels
+    plot(avg_inf_day, main="Inflammation Scores Over Time", xlab="Day", ylab="Average_inflammation_score", pch=4, col="red") # changing the plotting symbols and colour
+
+    ## Similarly, we could plot the data per patient:
+    plot(max_inf_patient)
+
+    ## Here, we might decide to use a boxplot instead:
+    boxplot(max_inf_patient, main="Maximum Inflammation Scores", ylab="Max_inf_score")
+    legend("topright", legend="n=60 patients", cex=0.8) # adding a legend
+
+In RStudio, the 'Plots' panel in the bottom right contains a history of
+all the plots you've made using the console. If you run this code from
+the rmd file, then the plots will be displayed inside that file. In
+vanilla R, a new plot will replace the existing one unless you create a
+new window for it.
+
+When we are happy with our plots, they can be saved to a file.
+
+    pdf("Inflammation_plots.pdf", onefile=T)
+    plot(avg_inf_day, main="Inflammation Scores Over Time", xlab="Day", ylab="Average_inflammation_score", pch=4, col="red")
+    boxplot(max_inf_patient, main="Maximum Inflammation Scores", ylab="Max_inf_score")
+    legend("topright", legend="n=60 patients", cex=0.8)
+    dev.off()
+
+This will be saved to the current working directory by default so if we
+check the folder, a new file named 'Inflammation\_plots.pdf' should have
+been created. The `onefile=T` argument instructs R to append additional
+plots to the same file and the `dev.off()` command at the end closes the
+file connection. You can also export plots directly to a pdf file from
+the RStudio 'Plot' panel.
+
+> **Question** Create some other plots based on this data using the
+> examples as templates to work from, and save them as a new pdf file.
+> Can you find a way of saving individual plots as .png files?
 
 ## Bioconductor
 
@@ -1083,16 +1133,16 @@ in Bioconductor are updated more swiftly following the release of a new
 version of R. To get started with Bioconductor, use the following
 command:
 
-    source("https://bioconductor.org/biocLite.R")
+    install.packages("BiocManager")
 
-This loads and runs an R script hosted on the web that defines a new
-function. You then use this function in a similar way to how you would
-use the `install.packages` function:
+This installs the package used for managing Bioconductor tools. You can
+then install Bioconductor packages like this:
 
-    biocLite("limma")
+    BiocManager::install("limma")
 
 Loading Bioconductor packages this way is typically a longer process but
-more reliable.
+more reliable. (If the console asks you if you want to update existing
+packages, press 'n' and 'return'.)
 
 # Getting help
 
@@ -1140,20 +1190,6 @@ topics once you feel comfortable interacting with the R environment.
     practices](http://swcarpentry.github.io/r-novice-inflammation/06-best-practices-R/index.html)
 -   [R genomics](https://datacarpentry.org/R-genomics/)
 -   [Geospatial data](https://datacarpentry.org/r-intro-geospatial/)
-
-# Putting it together example solution
-
-    random_letters <- c("r", "t", "d", "e", "e", "i", "a", "s", "n")
-    length(random_letters)
-    # [1] 9
-    random_letters[c(8, 7, 6, 3)]
-    # [1] "s" "a" "i" "d"
-    random_letters[c(1, 7, 6, 8, 4)]
-    # [1] "r" "a" "i" "s" "e"
-    random_letters[c(8, 2, 4:5, 1)]
-    # [1] "s" "t" "e" "e" "r"
-    random_letters[c(2, 1, 4, 4)]
-    # [1] "t" "r" "e" "e"
 
 # Epilogue: good programming habits
 
