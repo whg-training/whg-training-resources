@@ -8,7 +8,9 @@ the format `ERR[xxxxxx]_[1|2].fastq.gz`.  And you will also have downloaded the 
 
 **Challenge.**  Write a snakemake pipeline that processes these reads.  Here are some points to consider.
 
-* Your pipeline should start with the set of fastq read files named by accessions as described in the [introduction](Introduction.md).  To keep things well-organised, it's a good idea to keep these in a subdirectory, so they will look something like this:
+* Your pipeline should start with the set of fastq read files named by accessions as described in
+  the [introduction](Introduction.md). To keep things well-organised, it's a good idea to keep
+  these in a subdirectory, so they will look something like this:
 
 ```
    data/reads/ERR377582_1.fastq.gz
@@ -25,7 +27,10 @@ the format `ERR[xxxxxx]_[1|2].fastq.gz`.  And you will also have downloaded the 
 
 * You will also need the reference sequence, placed in `data/reference/Pf3D7_v3.fa.gz`.
 
-* The pipelines will output a set of BAM files containing these reads aligned to the a reference sequence.  The reads should be coordinate sorted, duplicate read pairs should have been marked (or removed), and the reads should be indexed.  My advice is to put results in a seperate subdirectory, so they will look something like this:
+* The pipelines will output a set of BAM files containing these reads aligned to the a reference
+  sequence. The reads should be coordinate sorted, duplicate read pairs should have been marked (or
+  removed), and the reads should be indexed. My advice is to put results in a seperate
+  subdirectory, so they will look something like this:
 
 ```
     results/aligned/QG0033-C.bam
@@ -40,8 +45,8 @@ the format `ERR[xxxxxx]_[1|2].fastq.gz`.  And you will also have downloaded the 
     results/aligned/QG0088-C.bam.bai
 ```
 
-* The pipeline should also perform QC of the fastq files. We suggest using `fastqc` and `multiqc` for this.
-  So this will output some files that look like this:
+* The pipeline should also perform QC of the fastq files. We suggest using `fastqc` and `multiqc`
+  for this. So this will output some files that look like this:
 
 ```
     results/qc/QG0033-C.fastqc.html
@@ -53,7 +58,10 @@ the format `ERR[xxxxxx]_[1|2].fastq.gz`.  And you will also have downloaded the 
 ```
 You should of course look at the output to look for anything odd!
 
-* The pipeline will also output a [`bedgraph`](http://genome.ucsc.edu/goldenPath/help/bedgraph.html) file for each sample, reporting the coverage at each site in the genome.  (`bedtools genomecov -bg` is a good way to create this).  These will look like this:
+* The pipeline will also output a
+  [`bedgraph`](http://genome.ucsc.edu/goldenPath/help/bedgraph.html) file for each sample,
+  reporting the coverage at each site in the genome. (`bedtools genomecov -bg` is a good way to
+  create this). These will look like this:
 
 ```
     results/coverage/QG0033-C.coverage.bedgraph
@@ -63,7 +71,10 @@ You should of course look at the output to look for anything odd!
     results/coverage/QG0088-C.coverage.bedgraph
 ```
 
-* And, if you implement the whole pipeline, it will also output a variant calls file (for this tutorial we suggest using the [`octopus` variant caller](https://github.com/luntergroup/octopus) for this).  These will be an indexed bgzipped [vcf file](https://samtools.github.io/hts-specs/VCFv4.2.pdf), which should look like this:
+* And, if you implement the whole pipeline, it will also output a variant calls file (for this
+  tutorial we suggest using the [`octopus` variant caller](https://github.com/luntergroup/octopus)
+  for this). These will be an indexed bgzipped [vcf
+  file](https://samtools.github.io/hts-specs/VCFv4.2.pdf), which should look like this:
 
 ```
     results/variant_calls/variant_calls.vcf.gz
@@ -84,7 +95,9 @@ and look at the outputs at the wrap-up session later in the week.)
 Here is some guidance to help you write your pipeline.  Click the links to jump to the relevant section.
 
 * [Wait, what?  How should I start?](./#getting-started)
-* [How should I put sample information in?](./#how-should-i-put-sample-information-in)
+* [How should I run snakemake?](./#how-should-i-run-snakemake)
+* [How should I get sample information in?](./#how-should-i-get-sample-information-in)
+* [Give me a first rule hint?](#give-me-a-first-rule-hint)
 * [How should I organise my pipeline files?](#how-should-I-organise-my-pipeline-files)
 * [My snakefiles are getting too big!](#my-snakefiles-are-getting-too-big)
 * [Keeping a fast iteration time during development](#keeping-a-fast-iteration-time-during-development).
@@ -100,33 +113,27 @@ Here is some guidance to help you write your pipeline.  Click the links to jump 
 
 ### Getting started
 
-The best way is to create a new your hierarchy of files. I tend to use this one:
-
-- data goes in the `data` folder
-- snakefile and scripts go in a `pipelines` folder
-- results (produced by the snakefile) go in another folder, say `results` or `analysis`
-
-So your folder will look something like this:
+You should create: a folder called `data` with the data in, a folder called `results` to put
+results in, and a folder called `pipelines` to put snakemake pipelines in. So your folder will look
+something like this:
 
     this_folder/
       data/
-        reads/
-          ERR377582_1.fastq.gz
-          ERR377582_2.fastq.gz
-          ...
+        # reads and reference sequence here
       pipelines/
         # snakefiles go here
-      results/ # your snakefile will create the results folders.
-        qc/
-        aligned/
+      results/
+        # results files go here
         ...
   
-where `toplevel` is the name of the folder you want to work in.
+	
+Of course you should already have `data` and snakemake will create the `results` folder as you go.
+So to get started, all you have to do is write a snakefile in `pipelines/`.
 
 You will also need a **config file** as outlined [below](#how-should-i-put-sample-information-in) -
 it can go in `pipelines` or in the top-level folder, whichever you prefer.
 
-Now all you have to do is write your snakefile in `pipelines`.
+[Go back to the tips and tricks](#tips-and-tricks).
 
 ### How should I run snakemake?
 
@@ -311,6 +318,8 @@ rule copy_data_by_sample
 
 In my solutions I've used a slightly different approach where the fastq files themselves aren't
 copied/renamed, but the renaming gets done by the alignment step. This has the advantage that
+
+[Go back to the tips and tricks](#tips-and-tricks).
 
 ### My snakefiles are getting too big!
 
