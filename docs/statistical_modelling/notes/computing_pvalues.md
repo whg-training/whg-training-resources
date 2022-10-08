@@ -1,8 +1,10 @@
 # Asymptotics and  P-values
 
-Much of classical statistics relies on 'asymptotics', which means the statistical behaviour when
-data volumes get large. In this setting likelihood functions tend to become well-behaved. There are
-two closely related ways this plays out (at least for well-behaved likelihoods):
+Much of classical statistics relies on 'asymptotics', which means statistical behaviour when data
+volumes get large. In this setting likelihood functions tend to become very well-behaved - they
+become governed by Gaussian distributions.
+
+There are two closely related ways this plays out:
 
 - If β₀ is the 'true' value of the parameter β, then the maximum likelihood estimate β̂ becomes asymptotically normally distributed around β₀.
 - the likelihood function itself becomes approximately guassian (i.e. the log-liklihood becomes quadratic)
@@ -10,11 +12,17 @@ two closely related ways this plays out (at least for well-behaved likelihoods):
 What's more, the variance in each case asymptotically the same - it is approximately equal to $I =
 -H^{-1}$ where $H$ is the second derivative of the loglikelihood function.
 
+For this to hold, some conditions must of course be true. Two crucial ones are: that not just the
+data points but the 'amount of information' in the data $\rightarrow \infty$ (i.e. it's no use
+having a million measurements of the same thing). Also, for it to work the true parameter value
+must be in the interior of parameter space, the likelihood function has to be sufficiently smooth,
+and so on.
+
 For more on the asymptotics of the mle see [Efron & Hastie](https://web.stanford.edu/~hastie/CASI_files/PDF/casi.pdf) Chapter 4.
 
-## How this is used in practice.
+## Asymptotics in practice
 
-For example, consider this logistic regression fit done in `R`:
+Asymptotics are everywhere. For example, consider this logistic regression fit done in `R`:
 
 ```R
 X = # (some data)
@@ -36,8 +44,9 @@ print( summary(fit)$coeff )
 
 In this output:
 
-* The `Estimate` column gives the maximum likelihood estimate $\hat{\beta}$ (i.e. the mode of the
-  loglikelihood).
+* The `Estimate` column gives the maximum likelihood estimate $\hat{\beta}$ - that is, the value
+  maximising the likelihood function. (This also maximises the log-likelihood, of course, because
+  `log` is monotone increasing.)
 
 * The `Std. Error` is computed from the curvature of the log-likelihood function at the mode as
   follows: let $H$ be the 2nd derivative at the mode, and compute $I=-H^{-1}$. Then the standard
@@ -47,46 +56,63 @@ In this output:
   distribution centred at 0 with standard deviation equal to the given standard error. Then compute
   the mass under the two tails of this distribution.
 
-If you wanted to you could confirm this by 1. manually computing the 2nd derivative H (e.g. use the `logistic.regression.ddll()` function from the `solutions part 2.R` file) 2. inverting it with `solve(H)`. 3. take square roots of diagonal entries for standard errors.  4. use `
+
+You can confirm this P-value computation yourself by manually computing the P-value:
+
 ```R
-    pvalue = 2 * pnorm( abs( β̂ ), sd = se, lower.tail = F )
+coefficients = summary(fit)$coeff
+
+pvalue = 2 * pnorm(
+	-abs(coefficients['predictor', 'Estimate']),
+	mean = 0,
+	sd = coefficients['predictor', 'Std. Error']
+)
+print(pvalue)
 ```
-To compute the P-value.
 
-Note that even though we are talking about a distribution under the null model, computation of this
-'Wald test' p-value only involves computing the full model.
+An **odd thing** about this is that even though we are computing a P-value, which is all about the
+'null' model where $\beta \equiv 0$, to compute this p-value we have only fit the full model (where
+$\beta$ can be nonzero).
 
-## What does this mean?
+The Wald test is fairly ubiqitousin statistical genetics - for example it's what
+[plink](https://www.cog-genomics.org/plink/) computes when conducting association tests.
 
-The P-value is a statement of how unlikely an observed effect of the magnitude of β̂ would be, if
-the null model β = 0 were true. Of course, that model is never literally true, but in some
-situations it does make sense to think of effects that way.
+## The likelihood ratio test
 
-One such case might be Genome-wide association studies of some traits, in which most of the genome
-is not associated with the trait but a few genetic variants across the genome have substantial
-effects. (Severe malaria seems to be one example of a trait like this and there are arguments that
-this picture is pervasive.) However, what we'd really like to do, if we could, is to model the full
-spectrum of effect sizes.
+The Wald test is not the only way to compute a p-value. Another very useful form is the *likelihood
+ratio test*. This is obtained by comparing the maximum log-likelihood under the null model and
+under the full model via the formula:
 
-## Other ways to compute a p-value
+$$
+\text{lr ratio test statistic} = -2 \times \left( \text{ll}_{\text{null}} - \text{ll}_{\text{alternative}} \right)
+$$
 
-Another commonly reported P-value is the likelihood ratio test P-value, which is obtained by
-computing the log-likelihood under the null model and then again under the alternative model. The
-alternative always has larger log-likelihood, even if the null model is true. This is because
-sampling variation means that the best fit to the data won't be exactly at β₀. But, if the
-asymptotic approximation above holds, then the distribution of the likelihood ratio can be computed - it boils down to a ratio of Gaussian quantities which is Chi-squared distributed.  
+(It's a *likelihood ratio test* because if you take the exponential of the above expression you get
+something proportional to the ratio of likelihoods. 
 
-In R it could be computed like this:
+:::note
+
+The alternative model log-likelihood is always larger than under the null, of course, even if the
+null model is true. This is because sampling variation means that the best fit to the data won't be
+exactly at the true value $\beta_0$.
+
+:::
+
+If the asymptotic approximation above holds, then the likelihood ratio test statistic turns out to
+be Chi-squared distributed, thus again easy to compute. 
+
+In R, following the above example, we could computed it like this:
+
 ```R
-    null.fit = glm( outcome ~ covariate1 + covariate2, family="binomial", data =X )
+    null.fit = glm( outcome ~ covariate1 + covariate2, family="binomial", data = X )
     lr.statistic = -2 * ( logLik(fit) - logLik(null.fit))
     pchisq( lr.statistic, df = 1 )
 ```
-(Or you could use your `logistic.regression.ll()` function instead of `logLik()`.
 
-A simpler way is to use the `drop1` function:
+A quicker way is to use the `drop1` function:
 ```R
     drop1( fit, test = "LRT" )
 ```
 which will successively drop 1 variable out of the formulae and compute the LRT for it.
+
 
