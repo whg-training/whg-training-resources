@@ -1,5 +1,8 @@
-# Principal components analysis tutorial
+---
+sidebar_position: 1
+---
 
-In this practical you will compute and debug a set of principal components for use in the [GWAS analysis practical](../GWAS_analysis_practical).
+# Principal components analysis
 
-When you're ready, start the practical [here](Introduction.md).
+Welcome!  When you're ready to start, go to the [introduction](Introduction.md).
+

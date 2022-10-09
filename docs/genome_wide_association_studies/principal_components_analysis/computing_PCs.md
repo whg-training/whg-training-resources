@@ -1,15 +1,18 @@
-[Up to the table of contents](Introduction.md) - [Back to the relatedness pruning step](relatedness_pruning.md) - [Forward to the global analysis step](global_analysis.md).
+---
+sidebar_position: 5
+---
 
-### Computing principal components
+# Computing principal components
 
-If you've reached this page, you should now have downloaded the data, [computed an LD-pruned set of
-SNPs](ld_pruning.md), and also [computed a set of largely unrelated samples to work
-with](relatedness_pruning.md). Congratulations - you're now ready to compute principal components!
+[Up to the table of contents](Introduction.md) / [Back to the relatedness pruning step](relatedness_pruning.md) / [Forward to the global analysis step](global_analysis.md).
 
-Use plink to compute the PCs:
+If you've reached this page, you should now have downloaded the data,
+[computed an LD-pruned set of SNPs](ld_pruning.md), and also [computed a set of largely unrelated samples to work with](relatedness_pruning.md). Congratulations - you're now ready to compute principal components!
 
-```
-$ plink --vcf chr19-clean.vcf.gz --extract chr19-clean.prune.in --remove related_samples.txt --pca var-wts --out chr19-clean
+Let's go ahead and use plink to compute the PCs:
+
+```sh
+plink --vcf chr19-clean.vcf.gz --extract chr19-clean.prune.in --remove related_samples.txt --pca var-wts --out chr19-clean
 ```
 
 Leave this to run for a minute or so.
@@ -21,21 +24,20 @@ the files `chr19-clean.eigenvec` (which stores the actual PCs), `chr19-clean.eig
 stores the SNP weights or loadings, reflecting how much each SNP contributes to each PC), and
 `chr19-clean.eigenval` (which says how much of the overall genotypic variance each PC explains).
 
-#### An aside on the maths.
+## An aside on the maths.
 
 If you want to know more about what is being computed and how - see [this aside on the maths of principal components analysis](the_maths.md).
 
-And if all this isn't enough [try reading
-this seminal paper on sample genealogies and PCA](https://doi.org/10.1371/journal.pgen.1000686).
+And if all this isn't enough
+[try reading this seminal paper on sample genealogies and PCA](https://doi.org/10.1371/journal.pgen.1000686).
 
-
-### Plotting the principal components
+## Plotting the principal components
 
 Now let's load the PCs and plot them:
 
 In R/RStudio:
 
-```
+```R
 pcs = read.table( "chr19-clean.eigenvec", as.is = T )
 colnames(pcs)[1:7] = c( "group", "ID", "PC1","PC2","PC3","PC4","PC5" )
 View(pcs)
@@ -44,13 +46,15 @@ plot( pcs$PC1, pcs$PC2, pch = 19, xlab = "PC1", ylab = "PC2" )
 
 **Question**. What do you see?  Is there any obvious structure in the dataset?  
 
-**Note.** I used `pch = 19` above because that gives us solid dots instead of open circles.  See [here for a diagram of available shapes in R](https://r-graphics.org/recipe-scatter-shapes).
+:::tip Note
+I used `pch = 19` above because that gives us solid dots instead of open circles.  See [here for a diagram of available shapes in R](https://r-graphics.org/recipe-scatter-shapes).
+:::
 
 We might also want to plot more than just the top two PCs. Let's plot all pairs of the top 5 PCs:
 
 In R/RStudio:
 
-```
+```R
 pairs( pcs[, 3:7], pch = 19 )
 ```
 
@@ -60,7 +64,7 @@ Our dataset contains samples with different ethnicities that in our dataset are 
 first column of the file (plink calls this a 'family ID' but here we've used it to record sampled
 ethnicities). Make a list of them using `table()`:
 
-```
+```R
 table( pcs$group )
 ```
 
@@ -75,7 +79,7 @@ replot colouring points by their ethnicity. We'll do this in three steps:
 
 In R/RStudio:
 
-```
+```R
 # ensure group is not a factor!
 pcs$group = as.character( pcs$group )
 palette = c( CAN = "red2", FAN = "green2", JAN = "blue2", WAN = "yellow3" )
@@ -105,7 +109,7 @@ into R and plot loadings across the chromosome.
 
 In R/RStudio:
 
-```
+```R
 loadings = read.table("chr19-clean.eigenvec.var")
 colnames(loadings)[1:4] = c( "chromosome", "rsid", "alleleA", "alleleB" )
 View(loadings)
@@ -115,7 +119,7 @@ Columns 3-22 of this file represent the loadings on PCs 1-20, respectively.  Let
 
 In R/RStudio:
 
-```
+```R
 layout( matrix( 1:5, ncol = 1 ))
 par( mar = c( 1, 4, 1, 2 ))
 for( i in 1:5 ) {
@@ -135,8 +139,8 @@ for( i in 1:5 ) {
 
 **Question**. Go back and compute PCs without excluding related samples.  E.g. something like this, without the `--remove` option:
 
-```
-$ plink --vcf chr19-clean.vcf.gz --extract chr19-clean.prune.in --pca var-wts --out chr19-all_samples
+```sh
+plink --vcf chr19-clean.vcf.gz --extract chr19-clean.prune.in --pca var-wts --out chr19-all_samples
 ```
 
 Then re-load and plot both the PCs and loadings.  What drives the top PCs now?  What do the loadings look like?

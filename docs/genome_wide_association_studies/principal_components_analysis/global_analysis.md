@@ -1,6 +1,10 @@
-[Up to the table of contents](Introduction.md) - [Back to the PC computation step](computing_PCs.md)
+---
+sidebar_position: 7
+---
 
-### Plotting samples against a global dataset
+# Plotting samples against a global reference panel
+
+[Up to the table of contents](Introduction.md) / [Back to the PC computation step](computing_PCs.md)
 
 A common strategy for identifying samples with unusual ancestry is to plot samples against a global
 reference dataset, such as that produced by the 1000 Genomes project (1000G). A common way to do
@@ -11,7 +15,7 @@ a simpler approach and compute a PCA of all the data together.
 
 To do this, we've created a merged dataset `merged.with.1000G.vcf.gz` including our GWAS data with the African (AFR), European (EUR) and East Asian (EAS) samples from the 1000G reference panel.  To compute PCs, we use a similar command as before, changing the dataset and exclusions files:
 
-```
+```sh
 plink --vcf merged.with.1000G.vcf.gz --extract chr19-clean.prune.in --pca var-wts --out merged.with.1000G
 ```
 
@@ -21,7 +25,7 @@ Let's load the merged PCs and plot them with coloured ethnicities as before.  It
 
 In R/RStudio:
 
-```
+```R
 pcs = read.table( "merged.with.1000G.eigenvec" )
 colnames(pcs)[1:7] = c( "group", "ID", "PC1", "PC2", "PC3", "PC4", "PC5" )
 pcs$group = as.character( pcs$group ) # make sure to treat group as strings
@@ -54,10 +58,14 @@ legend(
 
 **Question**. Some of the 1000G samples labelled 'AFR' also cluster nearer to the Europeans than others.  Why is this?
 
-**Hint**: Population codes can be found in the file [`resources/1000GP_Phase3.sample`.  Look up the codes for a couple of samples, and look at the population definitions on the 1000 Genomes website at `http://www.1000genomes.org/category/frequently-asked-questions/population`.
+**Hint**: Population codes can be found in the file `resources/1000GP_Phase3.sample`.  Look up the codes for a couple of samples, and look at the population definitions on the [1000 Genomes website](http://www.1000genomes.org/category/frequently-asked-questions/population).
 
-#### Summary
+## Summary
 
-Congratulations!  You have completed a basic principal components analysis.  We will use these PCs later when we run the [genome-wide association study practical]("../GWAS_analysis_practical").
+Congratulations!  You have completed a basic principal components analysis.  
+
+These PCs are used elsewhere in the [genome-wide association study practical]("/genome_wide_association_studies/genome_wide_association_analysis").
+
+
 
 

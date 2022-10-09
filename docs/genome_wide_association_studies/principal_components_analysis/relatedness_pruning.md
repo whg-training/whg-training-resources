@@ -1,19 +1,23 @@
+---
+sidebar_position: 5
+---
+
+# Removing closely-related samples
+
 [Up to the table of contents](Introduction.md) - [Back to the page on LD pruning](ld_pruning.md) - [Forward to compute the PCs](computing_PCs.md)
 
-### IBD pruning of samples and identification of close relationships
-
-We want our top PCs to reflect the relatedness structure across the majority of samples in our
-GWAS dataset. Although all samples in our dataset are nominally unrelated, a few duplicated or
-related samples may have slipped in through the sampling process or through sample handling. As
-described in the lectures, this can seriously affect principal components. We'll therefore first
-identify and remove any close relationships before computing PCs.
+We want our top PCs to reflect the relatedness structure across the majority of samples in our GWAS dataset.
+Although all samples in our dataset are nominally unrelated, a few duplicated or related samples may have
+slipped in through the sampling process or through sample handling. As with correlated SNPs, this can seriously
+affect principal components. We'll therefore first identify and remove any close relationships before computing
+PCs.
 
 Let's use plink to compute the relatedness between samples. A simple way to do this would be to use
 the relatedness matrix that we will construct to compute PCA. However, here we'll use genome-wide
 estimates of identity by descent (IBD) instead. To do this we use the following command:
 
-```
-$ plink --vcf chr19-clean.vcf.gz --genome gz --out chr19-clean --extract chr19-clean.prune.in
+```sh
+plink --vcf chr19-clean.vcf.gz --genome gz --out chr19-clean --extract chr19-clean.prune.in
 ```
 
 Here, the `--genome` option tells plink to compute genome-wide IBD estimates (as this file is rather large, we ask plink to store it in a gzipped file).  We've used the `--extract` option to tell plink to only use the LD-pruned set of SNPs we computed above.  Further details of the options for computing relatedness and file formats are described [on the plink documentation page](https://www.cog-genomics.org/plink2/ibd).
@@ -23,7 +27,7 @@ and have a look at it.
 
 In R/RStudio:
 
-```
+```R
 ibd <- read.table("chr19-clean.genome.gz", hea=T, as.is=T)
 View(ibd)
 hist( ibd$PI_HAT, breaks = 100 )
@@ -31,7 +35,7 @@ hist( ibd$PI_HAT, breaks = 100 )
 
 You can also zoom in along the y-axis to see any close relationships:
 
-```
+```R
 hist( ibd$PI_HAT, breaks = 100, ylim = c(0,1000) )
 ```
 
@@ -56,7 +60,7 @@ file that we can tell plink about in later steps.
 
 In RStudio:
 
-```
+```R
 # put a line on our plot so we can see what we'll exclude
 abline( v = 0.2, col = 'red' )
 

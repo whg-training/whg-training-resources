@@ -1,10 +1,16 @@
-[Up to the table of contents](Introduction.md) - [Back to the previous page](overview.md) - plink --vcf chr19-clean.vcf.gz --maf 0.01 --indep-pairwise 50 5 0.2 --out chr19-clean [Forward to the next page](relatedness_pruning.md)
+---
+sidebar_position: 4
+---
 
-### LD pruning of SNPs
+# Removing highly-correlated SNPs
 
-As described in the population genetics lecture this morning, genetic drift and other processes
-lead to linkage disequilibrium (LD) between SNPs along a chromosome. To ensure the PCs we compute
-represent genome-wide structure (not local LD) we'll first carry out LD pruning of our SNP set.
+[Up to the table of contents](Introduction.md) / [Back to the previous page](overview.md) / [Forward to the next page](relatedness_pruning.md)
+
+
+If you followed the [population genetics tutorial](/population_genetics), you'll know that correlation between
+nearby SNPs arises naturally as a result of genetic drift (or selection). This can lead to patterns of local
+variation that dominate principal components. Because for our purposes we want to capture 'genome-wide' patterns
+of relationships, we will first get rid of any too-correlated groups of SNPs.
 
 LD pruning removes correlated pairs of SNPs so that the remaining SNPs are roughly independent. (It
 also helps to make subsequent computations quicker.) Run the following command to prune the dataset:
@@ -28,5 +34,6 @@ windows across the genome. You can read about the behaviour here:
 
 Type `ls` or use the file manager to view the directory.  The command above produced a number of files that all begin with the `chr19-clean` prefix.  For our purposes, the most important one is `chr19-clean.prune.in`, as this lists the SNPs that remain after pruning.  Feel free to look at all these files using less or a text editor.
 
-#### Relatedness pruning
+## Relatedness pruning
+
 When you're ready, [go to the next page to identify and remove close relationships](relatedness_pruning.md).

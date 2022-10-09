@@ -1,6 +1,10 @@
-[Up to the table of contents](Introduction.md) - [Back to the setup page](getting_setup.md) - [Forward to the page on LD pruning](ld_pruning.md)
+---
+sidebar_position: 3
+---
 
-### Overview of the practical
+# Overview of the practical
+
+[Up to the table of contents](Introduction.md) / [Back to the setup page](getting_setup.md) / [Forward to the page on LD pruning](ld_pruning.md)
 
 In this practical we will use `plink` to do several things to the data:
 
@@ -8,26 +12,7 @@ In this practical we will use `plink` to do several things to the data:
 * to compute principal components
 * and to compute the SNP weights or loadings that tell us how principal components are weighted across the genome.
 
-We'll also use `R` (we recommend [`RStudio`](https://www.rstudio.com)) to inspect and plot results.
-
-Open a terminal window and first make sure you are in the right directory:
-
-```
-cd /path/to/PCA_practical
-```
-
-**Note.** This should be the folder where [you downloaded the data](getting_setup.md).
-
-Also, in R / RStudio please set this directory as your current directory - either using the `setwd()` command like this:
-
-*In R/RStudio:*
-```
-> setwd( '/path/to/PCA_practical' )
-```
-
-or by using the menu option `Session`->`Set working directory`->`Choose Directory`) in RStudio.
-
-**Note.** The `>` indicates the `R` command prompt above - don't type that bit in!
+We'll also use R to inspect and plot results.
 
 ### A note on quality control
 
@@ -40,16 +25,12 @@ in the file `chr19-clean.vcf.gz`. You can look at the data in this file by typin
 less -S chr19-clean.vcf.gz
 ```
 
-**Note.** If you are using Mac OS X, you will need to use `zless` instead of `less` because the file is gzipped.
+:::tip Note
+If you are using Mac OS X, you will need to use `zless` instead of `less` because the file is gzipped.
+:::
 
-**Note.** Press `q` when you want to quit `less`.
 
-The data consists of genotype calls at different sites (rows) for different samples (columns).  Feel free to look at the data by scrolling around using the arrow keys. When you've finished, press the 'q' key to quit back to the terminal prompt.
-
-**Note.** This is a [Variant Call Format](https://samtools.github.io/hts-specs/VCFv4.2.pdf) file.
-If you followed our earlier [next-generation sequencing
-practical](../../../Next_Generation_Sequencing/practicals/ngs_processing_pipeline/) you will have
-created a VCF file of variant calls from some sequence reads.  The VCF file for this practical is much simpler, though, because we have only included genotype calls.
+This file is a [Variant Call Format](https://samtools.github.io/hts-specs/VCFv4.2.pdf) file.  It consists of some metadata, followed by genotype calls at different sites (rows) for different samples (columns).  Feel free to look at the data by scrolling around. When you've finished, press the 'q' key to quit back to the terminal prompt.
 
 ### Preparing data for PCA
 

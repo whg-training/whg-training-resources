@@ -1,10 +1,16 @@
-[Back to the table of contents](Introduction.md) - [Forward to the overview](overview.md)
+---
+sidebar_position: 2
+---
 
-### Getting set up
+# Getting set up
+
+[Back to the table of contents](./Introduction.md) - [Forward to the overview](./overview.md)
 
 To run this practical you need two things: the software and the data.
 
-#### Getting the software
+## Prerequisites
+
+### Getting the software
 
 We will be using the software `PLINK` written by Christopher Chang:
 [https://www.cog-genomics.org/](https://www.cog-genomics.org/)).  Before we start, please make sure you have downloaded this software and can run it in a terminal window on your system.  To check this, try running this in your terminal window:
@@ -27,7 +33,7 @@ You should see something like this:
 
     "plink --help | more" describes all functions (warning: long).
 
-#### Getting the data
+### Getting the data
 
 The data files for this practical can be found [in this folder](https://www.well.ox.ac.uk/~gav/projects/gms/statistics-course/Introduction_to_GWAS/practicals/PCA_practical/).  Please download these now.  For the first part of the practical we will use the `chr19-clean.vcf.gz` file, and later on we will use the other files as well.
 
@@ -39,6 +45,26 @@ For the practical we recommend making a new empty folder to put these in.  So wh
         resources/
             1000GP_Phase3.sample
 
+
+### Getting started
+
+Open a terminal window and first make sure you are in the right directory:
+
+```
+cd /path/to/PCA_practical
+```
+
+**Note.** This should be the folder where you downloaded the data.
+
+Also, in R / RStudio please set this directory as your current directory - either using the `setwd()` command like this:
+
+*In R/RStudio:*
+```
+setwd( '/path/to/PCA_practical' )
+```
+
+or by using the menu option `Session`->`Set working directory`->`Choose Directory`) in RStudio.
+
 ### Overview
 
-When you have the data, [go and read the practical overview](overview.md).
+When you have the data, [go and read the practical overview](./overview.md).
