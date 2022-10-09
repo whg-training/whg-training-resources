@@ -39,14 +39,16 @@ You can also zoom in along the y-axis to see any close relationships:
 hist( ibd$PI_HAT, breaks = 100, ylim = c(0,1000) )
 ```
 
+:::tip Questions
 **Question**. What is `PI_HAT`? Can you figure it out from [the documentation
 page](https://www.cog-genomics.org/plink2/ibd)?
 
 **Question**. Which samples have the closest relationship in the dataset?  What is the average relationship between samples in this dataset?
 
 **Question**. In the histogram, there's a tail or 'bump' of relationships up to about 0.2.  What could this represent?
+:::
 
-**Note.** The above is one way to compute relatedness estimates - many other methods are available.
+**Note.** The above is only one way to compute relatedness estimates - many other methods are available.
 For example, [KING](https://www.kingrelatedness.com) is a popular choice.  More computationally demanding methods also exist that can [identify actual segments inherited IBD](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7553009/).
 
 #### Picking samples to exclude

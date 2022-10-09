@@ -16,10 +16,8 @@ We will be using the software `PLINK` written by Christopher Chang:
 [https://www.cog-genomics.org/](https://www.cog-genomics.org/)).  Before we start, please make sure you have downloaded this software and can run it in a terminal window on your system.  To check this, try running this in your terminal window:
 
 ```
-$ plink
+plink
 ```
-
-**Note.** The `$` in the above command indicates the command prompt - don't type that in!
 
 You should see something like this:
 
@@ -45,25 +43,18 @@ For the practical we recommend making a new empty folder to put these in.  So wh
         resources/
             1000GP_Phase3.sample
 
-
-### Getting started
-
-Open a terminal window and first make sure you are in the right directory:
+Make sure you are working in the above folder - you will need both a terminal and an R session.  In the terminal:
 
 ```
 cd /path/to/PCA_practical
 ```
 
-**Note.** This should be the folder where you downloaded the data.
-
-Also, in R / RStudio please set this directory as your current directory - either using the `setwd()` command like this:
+In your R/RStudio session:
 
 *In R/RStudio:*
 ```
 setwd( '/path/to/PCA_practical' )
 ```
-
-or by using the menu option `Session`->`Set working directory`->`Choose Directory`) in RStudio.
 
 ### Overview
 
