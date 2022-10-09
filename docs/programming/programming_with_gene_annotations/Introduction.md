@@ -7,12 +7,12 @@ sidebar_position: 1
 [Up to table of contents](README.md) / [Go to next page](What_gene_annotation_data_looks_like.md).
 
 
-One of the most amazing scientific achievements in the last 100 years has been the mapping of genes - DNA
+One of the most outstanding scientific achievements in the last 100 years has been the mapping of genes - DNA
 sequences that encode proteins or other functional molecules - across many hundreds of species. For example, the
 [Ensembl ftp site](http://ftp.ensembl.org/pub/current_gff3/) holds gene annotation files for over 300 species, everything from
 [*Acanthochromis Polyacanthus*](https://en.wikipedia.org/wiki/Spiny_chromis) to [*Zosterops
 Lateralis*](https://en.wikipedia.org/wiki/Silvereye).  Other sites hold genes for other organisms such as the [*Plasmodium*
-parasites](https://plasmodb.org/plasmo/app/downloads/Current_Release/) that cause malaria.  And many more species are [on the way](https://www.darwintreeoflife.org).
+parasites](https://plasmodb.org/plasmo/app/downloads/Current_Release/) that cause malaria.  And many more species are [being mapped](https://www.darwintreeoflife.org).
 
 But what's actually in this data? For any given species lots of questions immediately spring to mind:
 

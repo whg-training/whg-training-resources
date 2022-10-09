@@ -2,16 +2,59 @@
 sidebar_position: 5
 ---
 
-[Up to table of contents](README.md)
+[Up to table of contents](README.md) / [Back to the previous page](making_a_module.md) / [Go to the next page](Counting_genes_1.md)
 
-[Back to the previous page](Getting_started_writing_some_code.md)
+# Writing a useful conversion program.
 
-[Go to the next page](Counting_genes_1.md)
+In the [first part of this tutorial](Getting_started_writing_some_code.md) you will have written a
+small python module to parse a GFF3 file and output a pandas dataframe. I'll assume your function
+is called `parse_gff3_to_dataframe()` and you call it something like:
 
-## Writing a useful conversion program.
+```
+import gff
+X = gff.parse_gff3_to_dataframe( <filename here> )`
+```
 
-In the [first part of this tutorial](Getting_started_writing_some_code.md) you will have written some code to parse a
-GFF3 file and output a pandas dataframe.  I'll assume your function is called `parse_gff3_to_dataframe()`.
+Now we want to get back to our aim of studying these gene annotations across.
+
+Now we want to use this function to load and analyse data from multiple species at once.
+
+To do this, you first need to get some data. If you haven't already, visit the links in the
+introduction.  For example I recommend
+
+- human and mouse annotations [from gencode](https://www.gencodegenes.org)
+- [malaria genome annotations from PlasmoDB](https://plasmodb.org/plasmo/app/downloads/Current_Release/)
+- other vertebrate genomes [from ensembl](http://ftp.ensembl.org/pub/current_gff3/) (see the [species list](https://www.ensembl.org/info/about/species.html).)
+- or you can find other assemblies from [ensemblgenomes.org](https://ensemblgenomes.org)
+
+One way to go about this is simple.  Just repeat the lines above for as many files as you have:
+```
+X = gff.parse_gff3_to_dataframe( "human.gff" )`
+Y = gff.parse_gff3_to_dataframe( "chimpanzee.gff" )`
+Z = gff.parse_gff3_to_dataframe( "malaria.gff" )`
+```
+
+(you should put in the actual filenames).  This works - but it has a problem.
+
+### Memory issues
+
+First off, like many files in bioinformatics these files are *pretty big*. This translates into
+using up a lot of memory.  For example, start a python interpreter and load the human annotations:
+```
+import gff
+X = gff.parse_gff3_to_dataframe( "gencode.v41.annotation.gff3.gz" )`
+```
+
+On my machine this is taking up about 2.5 gigabytes of memory.  And my laptop has only 16.
+If we load ten or a hundred species, we're going to run out pretty fast.
+
+### Code issues
+
+The memory issues could be dealt with by filtering the files after we load them.  
+
+
+
+
 
 Your function is already useful! To demonstrate this, let's convert the GFF file into a different format - a [sqlite
 database](https://www.sqlite.org) database. `sqlite` is a very useful file format that works like a full database, but

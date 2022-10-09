@@ -5,7 +5,7 @@
 
 How much do you like the code you wrote in `gff.py`?
 
-Personally, I don't like [my original version](solutions/part1/gff_first_version.py) very much! Shorn of comments it
+Personally, I don't like [my original version](solutions/part1/gff.py) very much! Shorn of comments it
 looks like this:
 
 ```

@@ -8,7 +8,7 @@ sidebar_position: 8
 
 [Go to the next page](Counting_genes_3.md)
 
-## Investigating protein-coding genes
+# Investigating protein-coding genes
 
 If you've followed so far you will have code `gff.py` that can parse a GFF file, and in the process
 will pull out certain fields from the `attributes` column. This includes the `ID` attribute, the
@@ -29,7 +29,7 @@ instead, if needed.)
 This sqlite file is now in a good shape to start really exploring genes.   First let's look at what `biotypes` there are.
 
 
-### What types of protein-coding gene are there?
+## What types of protein-coding gene are there?
 
 
 ```
@@ -112,7 +112,7 @@ data = pandas.read_sql( "SELECT * FROM gff_data WHERE type IN ( 'gene' )", db )
 data.groupby( [ 'analysis', 'biotype' ] ).size()
 ```
 
-### What do genes look like?
+## What do genes look like?
 
 **Challenge.** Pick a gene (say human ABO or FUT2) and investigate in detail using your file. (If you've followed so
 far this will be in the `Name` column.) How many transcripts does it have? (Hint: find records with `Parent` equal to
@@ -122,7 +122,7 @@ the `transcript_support_level` for transcripts, and what does that mean? Pick a 
 data compares to the representation on [Ensembl](http://www.ensembl.org/) or on
 the [UCSC genome browser](https://genome.ucsc.edu)?
 
-### What are all those species anyway?
+##  What are all those species anyway?
 
 If like me you're a bit unclear about what [all those
 species](http://ftp.ensembl.org/pub/current_gff3/) are, now might be a good time to go and look at
@@ -252,7 +252,7 @@ longer, but neither seems especially simple. However, the `count_exons_per_trans
 `summarise_transcripts_per_gene()` functions are pretty similar and so they are good candidates for a refactor - so I
 think this code can be improved...
 
-### A sqlite approach
+## A sqlite approach
 
 In the rest of this section I'll show how you could solve those problems in the sqlite database
 itself using data joins and group by operations.

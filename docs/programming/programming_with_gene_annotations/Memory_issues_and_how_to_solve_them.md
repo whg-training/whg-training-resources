@@ -8,7 +8,7 @@ sidebar_position: 7
 
 [Go to the next page](Counting_genes_2.md)
 
-## Memory issues - and how to solve them
+# Memory issues - and how to solve them
 
 So far in this tutorial we haven't thought much about memory (computer memory that is), or how best
 we should use it. We've used python and pandas to implement our code, because that was easy and

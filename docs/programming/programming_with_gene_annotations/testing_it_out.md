@@ -26,10 +26,9 @@ If the code is right, we should be able to recover all this data using our funct
 
 ```python
 from io import StringIO # see comment below
-from math import isnan
   
 # 1. run our function to parse the data:
-data = parse_gff3_to_dataframe( StringIO( data ))
+data = parse_gff3_to_dataframe( StringIO( test_data ))
   
 # 2. test it:
 # check some string fields:
@@ -47,7 +46,11 @@ assert data['start'][1] == 10
 assert data['end'][1] == 900
 
 # check that missing data is handled right
-assert isnan( data['score'][1] ) # "." indicates missing data in the GFF spec
+# "." indicates missing data in the GFF spec
+# but we should have translated that to `NaN`, which
+# is pandas' way of indicating missing data.
+from math import isnan
+assert isnan( data['score'][1] ) 
   
 # check that we extracted `ID` and `Parent` right.
 assert data['ID'][0] == 'gene1'
@@ -64,17 +67,11 @@ it would think it is a filename, and try to find the file.)
 
 :::
 
-:::tip note
-
-The python `assert` statement checks that the expression is true. If it is, it does nothing, while
-if it isn't an `AssertionError` is raised so the program fails. Most languages have a form of
-`assert` (e.g. in `R` it is called `stopifnot()`). `assert`s are an extremely useful way to check
-your code is doing what you think it is; my advice is to use them all over your code.
 
 :::
 
 If all the tests pass - congratulations! (If not try reading the
-[guide](Getting_started_writing_some_code.md#anatomy-of-getting-it-to-work). My solution is
-[here](solutions/part1/gff_first_version.py) if you want to peek.
+[guide to getting it to work](Getting_started_writing_some_code.md#anatomy-of-getting-it-to-work) again. My solution is
+[here](solutions/part1/gff.py) if you want to peek.
 
 

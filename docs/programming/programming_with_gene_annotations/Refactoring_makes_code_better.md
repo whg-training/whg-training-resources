@@ -10,7 +10,7 @@ sidebar_position: 4
 
 How much do you like the code you wrote in `gff.py`?
 
-Personally, I don't like [my original version](solutions/part1/gff_first_version.py) very much! Shorn of comments it
+Personally, I don't like [my original version](solutions/part1/gff.py) very much! Shorn of comments it
 looks like this:
 
 ```
@@ -51,7 +51,7 @@ That's more like it! This new version of the function is much shorter and simple
 sign is that (unlike the first version) it doesn't really need any comments because it's more or less obvious what it
 does just from the function names.
 
-Of course we have to write the `add_ID_and_Parent()` function, but [that's not hard](solutions/part1/gff.py). In the
+Of course we have to write the `add_ID_and_Parent()` function, but [that's not hard](solutions/part1/gff_refactored.py). In the
 process of writing this I realised that the [pandas `.insert()`
 method](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.insert.html) can be used to put the columns in at
 the start - so the last line of the original version (that reorders columns) isn't needed any more.

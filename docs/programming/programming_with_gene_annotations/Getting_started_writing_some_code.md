@@ -383,9 +383,16 @@ The other has to do with when the value is right at the end of the string.
 result = attributes[id_pos:semicolon_pos] 
 ```
 
-extracts a 'slice' of the attributes string between `id_pos` and `semicolon_pos`. But `id_pos` is
-not the right location here. And `semicolon_pos` isn't right either if there is no later semicolon
-to find. To correctly extract the value, it should be something more like
+extracts a 'slice' of the attributes string between `id_pos` and `semicolon_pos`. So for example if the string is
+
+    a=1;ID=gene1;b=3
+
+then (counting from index 0 at the left side of the string) `id_pos=4` and `semicolon_pos=12` and
+above extracts the string `ID=gene1`. That's not quite what we want - `id_pos` is not the right
+location here. **Also**, `semicolon_pos` won't be right either if there is no later semicolon to
+find (what would it be in that case?).
+
+To correctly extract just the value, the code should be something more like
 
 ```python
 result = attributes[start_of_value:semicolon_or_end] 
@@ -476,7 +483,7 @@ def extract_value_from_attributes( attributes, key ):
 ```python
 assert extract_value_from_attributes( "a=b;ID=test_value", "ID" ) == "test_value"
 assert extract_value_from_attributes( "a=b;ID=test_value", "Parent" ) == None
-assert extract_value_from_attributes( "ID=1;Parent=2" ) == "1"
+assert extract_value_from_attributes( "ID=1;Parent=2", "ID" ) == "1"
 assert extract_value_from_attributes( "ID=1;Parent=2", "Parent" ) == "2"
 assert extract_value_from_attributes(
   "ID=ENST00000456328.2;Parent=ENSG00000223972.5;gene_type=transcribed_unprocessed_pseudogene",
@@ -505,6 +512,6 @@ X["Parent"] = X["attributes"].apply( extract_Parent_from_attributes )
 
 To finish this off, update your `parse_gff3_to_dataframe()` to add lines like these that extract
 the `ID` and `Parent` columns to the result before returning it (my solution is
-[here](solutions/part1/gff_first_version.py) if you want to check it), and let's
+[here](solutions/part1/gff.py) if you want to check it), and let's
 [test it out](./testing_it_out.md).
 
