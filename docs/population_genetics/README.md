@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3.5
+sidebar_position: 6
 ---
 
 # Population genetics
