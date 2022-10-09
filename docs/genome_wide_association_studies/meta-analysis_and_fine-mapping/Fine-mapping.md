@@ -1,6 +1,10 @@
-[Up to the table of contents](README.md) - [Back to the meta-analysis section](Meta-analysis.md)
+---
+sidebar_position: 3
+---
 
-## Using `FINEMAP` to fine-map associations
+# Using `FINEMAP` to fine-map associations
+
+[Up to the table of contents](README.md) / [Back to the meta-analysis section](Meta-analysis.md)
 
 If you followed the [meta-analysis section](Meta-analysis.md) you should now have a dataframe with meta-analysis results.  It looks something like this:
 

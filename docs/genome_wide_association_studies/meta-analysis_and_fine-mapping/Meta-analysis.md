@@ -1,6 +1,10 @@
-[Up to the table of contents](README.md) - [Back to the Introduction](Introduction.md) - [Forward to the fine-mapping section](Fine-mapping.md)
+---
+sidebar_position: 2
+---
 
-## Meta-analysing two studies.
+# Meta-analysing two studies.
+
+[Up to the table of contents](README.md) / [Back to the Introduction](Introduction.md) / [Forward to the fine-mapping section](Fine-mapping.md)
 
 ### Conducting fixed-effect meta-analysis
 The simplest way to perform meta-analysis is as follows.  We assume:

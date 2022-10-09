@@ -1,6 +1,10 @@
-[Up to the table of contents](README.md) - [Forward to the meta-analysis section](Meta-analysis.md)
+---
+sidebar_position: 1
+---
 
-## Meta-analysis and fine-mapping practical
+[Up to the table of contents](README.md) / [Forward to the meta-analysis section](Meta-analysis.md)
+
+# Meta-analysis and fine-mapping practical
 
 So you've run your GWAS and you've found some signals.  Now what?
 
