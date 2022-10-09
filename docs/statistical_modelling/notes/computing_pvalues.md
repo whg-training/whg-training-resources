@@ -92,21 +92,22 @@ something proportional to the ratio of likelihoods.
 
 :::note
 
-The alternative model log-likelihood is always larger than under the null, of course, even if the
-null model is true. This is because sampling variation means that the best fit to the data won't be
-exactly at the true value $\beta_0$.
+The alternative model log-likelihood is always (at least) larger than under the null, even if the
+null model is true. This is because the model has an extra parameter. Except in degenerate
+situations it will be strictly larger because sampling variation will mean that the best fit to the
+data won't be exactly at the true value $\beta_0$.
 
 :::
 
 If the asymptotic approximation above holds, then the likelihood ratio test statistic turns out to
 be Chi-squared distributed, thus again easy to compute. 
 
-In R, following the above example, we could computed it like this:
+In R, following the above example, we could compute it like this:
 
 ```R
-    null.fit = glm( outcome ~ covariate1 + covariate2, family="binomial", data = X )
-    lr.statistic = -2 * ( logLik(fit) - logLik(null.fit))
-    pchisq( lr.statistic, df = 1 )
+null.fit = glm( outcome ~ covariate1 + covariate2, family="binomial", data = X )
+lr.statistic = -2 * ( logLik(fit) - logLik(null.fit))
+pchisq( lr.statistic, df = 1 )
 ```
 
 A quicker way is to use the `drop1` function:
