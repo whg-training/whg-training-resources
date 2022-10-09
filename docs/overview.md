@@ -12,10 +12,12 @@ Content on this site is publicly available under the terms of the [MIT license](
 
 |    Module                |                      Tutorial                          |
 | ------------------------ | ------------------------------------------------------ |
-| Getting started          | [Setting up your environment](prerequisites/README.md) |
-| Programming              | [Introduction to programming in R](programming/introduction_to_R/README.md) |
-| Programming              | [Investigating gene annotation files](programming/programming_with_gene_annotations/README.md) |
-
+| Getting started          | [Setting up your environment](/prerequisites/) |
+| Programming              | [Introduction to programming in R](/programming/introduction_to_R/) |
+| Programming              | [Programming with gene annotation files](/programming/programming_with_gene_annotations/) |
+| Data visualisation       | [Data visualisation with ggplot2](/data_visualisation/data_visualisation_with_ggplot2/) |
+| Data visualisation       | [Visualising RNA-seq data](/data_visualisation/visualisng_rna-seq_data/) |
+| Population genetics      | [Implementing a Wright-Fisher model](/population_genetics/README.md) |
 
 
 ## Contributors ##
