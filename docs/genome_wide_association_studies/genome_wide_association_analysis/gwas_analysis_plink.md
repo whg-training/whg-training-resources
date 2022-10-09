@@ -1,3 +1,7 @@
+---
+sidebar_position: 1
+---
+
 # GWAS analysis using plink
 
 Authors: Luke Jostins, Gavin Band
