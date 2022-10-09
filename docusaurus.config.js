@@ -75,7 +75,7 @@ const config = {
             type: 'doc',
             docId: 'overview',
             position: 'left',
-            label: 'Bioinformatics practicals',
+            label: 'Click here for the tutorials',
           },
           {
             href: 'https://github.com/whg-training/whg-training-resources',
