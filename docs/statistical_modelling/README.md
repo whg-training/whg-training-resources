@@ -1,5 +1,11 @@
+---
+sidebar_position: 5.5
+---
+
 # Statistical modelling
 
-This folder contains a range of practicals on statistical modelling.
+Welcome!  This folder contains tutorials on statistical modelling.
+Select from the list below:
 
-(TODO: complete this.)
+* A tutorial on [using hidden markov models to call copy number variants in the human genome](./Hidden_markov_models/README.md)
+
