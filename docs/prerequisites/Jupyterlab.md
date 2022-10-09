@@ -10,8 +10,10 @@ a server and a web app that talks to this server - so you work through your web 
 
 ### Installing JupyterLab
 
-To install it you need the **jupyterlab** package, and **jupyter kernels** for each language you want to use.
-For the purposes of this page I'm goinh to assume you have [activated a conda environment](CONDA.md), and we'll use conda (or rather `mamba`) to install the package.  Follow the tabs below to install what's needed:
+To install it you need the **jupyterlab** package, and **jupyter kernels** for each language you
+want to use. For the purposes of this page I'm going to assume you have
+[activated a conda environment](CONDA.md), and we'll use conda (or rather `mamba`) to install the package.
+Follow the tabs below to install what's needed:
 
 1. Install the `jupyterlab` package using conda:
 
@@ -69,6 +71,13 @@ jupyter lab
 This will start the JupyterLab server (which runs in your terminal) and after a few moments will launch a new browser window/tab to interact with it.  It will look something like this:
 
 ![img](images/JupyterLab.png)
+
+:::tip Note
+
+If it doesn't start a browser, do this manually by copying the URL shown in the `jupyter lab`
+output and opening it in your browser.
+
+:::
 
 Now you can start a new python, R, or julia 'notebook' session by clicking on the relevant icon.
 
