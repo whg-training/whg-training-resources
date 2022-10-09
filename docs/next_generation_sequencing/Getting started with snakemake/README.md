@@ -10,11 +10,9 @@ I'm assuming you have snakemake installed already.
 
 To run the pipeline, do this: first, use the -n option to see what will be run:
 
+```sh
+snakemake -s align1.snakefile -n
 ```
-\$ snakemake -s align1.snakefile -n
-```
-
-This 
 
 If you look in align1.snakefile, you will see there are two rules.  The first one ("all")
 is just a "here is what the main targets are" rule - it doesn't do anything but just tells
@@ -28,7 +26,7 @@ $ snakemake -s pipelines/alignment_test/align.snakefile --cores 1
 
 With any luck it will run and output two sam files in results/alignment_test/
 
-## Using a configuration file ##
+## Using a configuration file
 
 4. This pipeline is a bit too simple - what if we want to add samples?  Or align to a different
 reference?  Or something else?
@@ -45,8 +43,7 @@ This should output two new sam files in the results folder, now named for the sa
 the assembly that is used to align to.  You can easily add new samples or assemblies by
 editing the config file (or keep multiple config files for different parts of the analysis).
 
-## Running it on the cluster ##
-
+## Running it on the cluster
 5. The above commands were run on the head node but For real work you have to submit jobs to
 the cluster... this is a bit trickier.  You have to tell snakemake the qsub command line.
 So you do something like:
@@ -95,8 +92,7 @@ and come back to it the next day to see how it got on.
 Alternative: there's a very similar (probably better) thing called tmux - see https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/
 I haven't used tmux but it seems to have a coloured thing so must be better.
 
-## Other stuff ##
-
+## Other stuff
 A further thing you can do is set up snakemake to use conda.
 I'm not expert on this but David Flores is so you could ask him to help set it up.
 The advantage is a. no need to hardcode paths to executables b. make sure and get the right executable version
