@@ -1,20 +1,31 @@
-# Hidden Markov Model example warmup #
-Welcome to the warm-up for the Hidden Markov Models session this week.
+---
+sidebar_position: 1
+---
 
-Data for this practical can be found in the `glycophorin_binned_coverage.tsv.gz` file.
-And this practical produces plots - I've precomputed some of these and stored in the `images/` folder so you can see what they should look like.
+# Warmup: examining read coverage in a region #
 
-The practical studies a region of the human genome on chromosome 4 that is known to contain large *copy number variants*.
-These are genetic variants that occur (often) due to mistakes in DNA replication.  They lead to deletions, duplications of large tracts of DNA.
-In general CNVs are extremely important determinants of human disease - the ones in this practical delete or duplicate whole genes!
-But they are often also hard to access because they lie in 'difficult' regions of the genome, where paralogy (caused by ancestral duplications of DNA) makes analysis difficult.
+Welcome! The practical studies a region of the human genome on chromosome 4 that is known to
+contain large *copy number variants*. These are genetic variants that occur due to mistakes in DNA
+replication and lead to deletions, duplications, or other rearrangements of large tracts of DNA. In
+general copy number variants (and other structural variants that don't change copy number, such as
+inversions) are thought to be extremely important determinants of human disease - the CNVs in
+this practical delete or duplicate whole genes, and some of them are 
+[associatied with malaria susceptibility](https://dx.doi.org/10.1126/science.aam6393).
 
-In this practical the plan is to try to genotype some CNVs in one such region - the region containing GYPA, which
-encodes one of the most abundant red cell surface proteins.  We got interested in this because these CNVs affect malaria susceptibility - the practical is based on data from this paper <https://dx.doi.org/10.1126/science.aam6393> where we investigated that.
+On the other hand CNVs and other structural variation are not that well studied, particularly when they
+occur in regions of genome duplication or paralogy.
 
-To do this we will look at *sequence coverage data* (i.e. how many reads aligned to each genomic location from
-short-read sequence data) and look for variation in coverage that might indicate loss or gain of DNA copies.
-To make this simple, we have grouped the genome into consecutve 1600bp bins and we work with *mean coverage in each bin*.
+In this practical the plan is to try to genotype CNVs in one such region - the region containing
+[*GYPA*](https://en.wikipedia.org/wiki/Glycophorin_A). *GYPA* encodes Glycophorin A, which is one
+of the most abundant red cell surface proteins. Malaria parasites are known to interact with
+Glycophorin A during invasion, and we got interested in this because it turns out that these CNVs
+can provide protection against malaria. The practical is based on data from this paper
+<https://dx.doi.org/10.1126/science.aam6393> where we investigated that protection.
+
+To call CNVs we will look at *sequence coverage data* (i.e. how many reads aligned to each genomic
+location from short-read sequence data) and look for variation in coverage that might indicate loss
+or gain of DNA copies. To make this simple, we have grouped the genome into consecutve 1600bp bins
+and we work with *mean coverage in each bin*.
 
 ## First look at the data
 
