@@ -41,7 +41,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/whg-training/whg-training-resources',
+            'https://github.com/whg-training/whg-training-resources/edit/main',
           remarkPlugins: [math],
           rehypePlugins: [katex],
         },
