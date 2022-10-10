@@ -58,12 +58,26 @@ library(hexbin)
 
 ## Loading data
 
-We will now load the GTEx gene expression table, as well as a table containing annotations for each of the genes measured in the study. These files are in tab-separated value (TSV) format, which means they are composed of columns, separated by tabular spaces. You can read this type of file into R by using the read.table() function, as specified below:
+We will now load the GTEx gene expression table, as well as a table containing annotations for each of the genes measured in the study.  The data can be found in [this folder](https://www.well.ox.ac.uk/~gav/projects/whg-training-resources/data/data_visualisation/visualising_rna-seq_data/) - download both files now.
 
+:::tip Note
+We recommend working in a new folder for this - for example by running this in your terminal:
+```
+mkdir rna-seq_practical
+cd rna-seq_practical
+curl -O https://www.well.ox.ac.uk/~gav/projects/whg-training-resources/data/data_visualisation/visualising_rna-seq_data/GTEx-v8-RNAseq_mean-TPM_QCed.tsv
+curl -O https://www.well.ox.ac.uk/~gav/projects/whg-training-resources/data/data_visualisation/visualising_rna-seq_data/GTEx_gene-annotations.tsv
+```
+This might take a minute or so to download.
+
+Now make sure your R session is working in the same directory using `setwd()` or the `Session -> Set Working Directory` menu option in RStudio.
+:::
+
+The data files are in tab-separated value (TSV) format, which means they are composed of columns, separated by tabular spaces. You can read this type of file into R by using the read.table() function, as specified below:
 
 ```r
-gtex <- read.table("../Data/GTEx-v8-RNAseq_mean-TPM_QCed.tsv", sep = "\t", header=T, row.names=1)
-gene_annotations <- read.table("../Data/GTEx_gene-annotations.tsv", sep = "\t", header=T, row.names=1)
+gtex <- read.table( "GTEx-v8-RNAseq_mean-TPM_QCed.tsv", sep = "\t", header=T, row.names=1 )
+gene_annotations <- read.table( "GTEx_gene-annotations.tsv", sep = "\t", header=T, row.names=1 )
 ```
 
 Let's now have a closer look at this expression table by previewing the first 10 rows and columns. Note how each row corresponds to a gene and each column corresponds to a tissue. Entries in the table contain the expression levels of each gene in each tissue in TPM units.
