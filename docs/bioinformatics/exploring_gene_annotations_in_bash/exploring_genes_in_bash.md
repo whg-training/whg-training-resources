@@ -182,11 +182,20 @@ these attributes make the records in the file into a tree.  So conceptually the 
                /    \      
      transcript1   transcript2  ...
 
-i.e. each transcript has a parent gene - which means that it represents an observed or predicted mRNA transcript of that
-gene.
+i.e. each transcript has a parent gene - which means that it represents an observed or predicted RNA transcript of that
+gene.  Transcripts themselves have exons - the parts of the transcript that actually make it to mature messenger RNA - so actually it is more like this:
+
+                 gene
+                /    \      
+      transcript1   transcript2  ...
+       /      |      |       \
+    exon1  exon2    exon1    exon2
 
 :::tip Question
-What do exons have as parents?  transcripts or genes?
+
+There are also *coding sequence* records (`type=CDS`). Can you tell what these have as parents - exons,
+transcripts or genes?
+
 :::
 
 ### Counting genes
