@@ -112,12 +112,105 @@ In principle this is easy but in practice requires some care if we want to keep 
 inadvertantly copy or otherwise make new versions of the `attributes` column, at which point the memory usage would effectively
 double.
 
-To deal with this I have written a third refactoring that:
+To deal with this I have written a third refactoring
+[gff_refactored3.py](https://github.com/whg-training/whg-training-resources/blob/main/docs/programming/a_python_module_for_gff/solutions/)
+that:
 
-* has a new function `remove_value_from_attributes()` - very similar to
-`extract_value_from_attributes()` - that removes the attribute from the string. 
+* has a new function `remove_value_from_attributes()` that removes the attribute from the string. Look at this if you want to -
+  it is very similar to `extract_value_from_attributes()`.  It tests like this:
+
+```
+assert gff.remove_value_from_attributes( "a=b;ID=test_value", "ID" ) == "a=b"
+assert gff.remove_value_from_attributes( "a=b;ID=test_value", "a" ) == "ID=test_value"
+```
 
 * and a new function `remove_attributes()` that calls it to remove the attributes.
+
+Have a look at `remove_attributes()` now.  The simplest version I could write was:
+
+```
+def remove_attributes( data, attributes_to_remove ):
+    for name in attributes_to_remove:
+        data.attributes = data.attributes.apply(
+            lambda attributes:remove_value_from_attributes( attributes, name )
+        )
+```
+
+Unfortunately that version has a subtle problem.  Can you spot it?
+
+The problem is that the `data.attributes = ...` line creates a new copy of the attributes column, then assigns it to the data
+frame.  If you watch `top` you'll see that instead of reducing the memory usage we have doubled it!
+
+:::tip Note
+
+More accurately - the memory usage now peaks at around 4Gb (on my machine). Then it returns to a more normal ~2.5Gb level after
+the function finished.
+
+:::
+
+### A common pattern: chunking
+
+To fix this I have instead used a common and useful pattern to do this update: process the data in chunks.
+The function looks like this:
+```
+def remove_attributes( data, attributes_to_remove ):
+    for i in range(0,data.shape[0], 10000):
+        chunk_start = i
+        chunk_end = min( data.shape[0], i+10000 )
+        for name in attributes_to_remove:
+            data.attributes[chunk_start:chunk_end] = (
+                data.attributes[chunk_start:chunk_end]
+                .apply(
+                    lambda attributes: remove_value_from_attributes( attributes, name )
+                )
+            )
+
+```
+
+It does the same thing as before, but does it in chunks of length 10,000 rows at a time. Thus, it is still making copies but only
+of smaller portions of the data.
+
+### Did it work?
+
+If you use this new version of the code, you'll find it did work - but only a bit. Peak memory usage on my machine is now around
+2.2Gb.  
+
+:::tip Note
+
+What else could we try to reduce memory usage?
+
+:::
+
+## Enough already! Let's just get the data we want
+
+Probably the best way to solve this is to *just get the data we want*. On [the next page](./converting_gff_to_sqlite.md) we will
+implement a command-line program that converts the `gff` file into an on-disk database. At that point, the database can be
+queried just for records of interest, so we can skip this high-memory problem in most downstream work. [Go and try that
+now](./converting_gff_to_sqlite.md).
+
+
+
+
+
+
+
+    # This is supposed to improve memory-efficiency by removing extracted
+    # attributes from the `attributes` column.
+    # Because of this we really don't want to copy the whole attributes column again.
+    # On the other hand looping over every element is slow.
+    # Instead we work in chunks of length 10,000 so that only
+    # 10,000 rows are copied at once.
+    for i in range(0,data.shape[0], 10000):
+        chunk_start = i
+        chunk_end = min( data.shape[0], i+10000 )
+        for name in attributes_to_remove:
+            data.attributes[chunk_start:chunk_end] = (
+                data.attributes[chunk_start:chunk_end]
+                .apply(
+                    lambda attributes: remove_value_from_attributes( attributes, name )
+                )
+            )
+```
 
 The simplest approach in `remove_attributes()` was just to use the `apply()` function to apply
 `remove_value_from_attributes()` for each attribute (simliar to the `extract_value_from_attributes()` function.)

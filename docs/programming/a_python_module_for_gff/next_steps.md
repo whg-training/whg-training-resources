@@ -2,6 +2,6 @@
 sidebar_position: 10
 ---
 
-# Examples and next steps
+# Next steps
 
-This page collects some examples of analyses
+Now use your new code to explore the gene annotation files linked to in [the introduction](./Introduction.md).  Good luck!
