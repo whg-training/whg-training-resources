@@ -43,7 +43,7 @@ def parse_arguments():
 
 def process( args ):
     print( "++ Loading genes data from %s...\n" % args.input )
-    data = gff_lowmem.parse_gff3_to_dataframe( open( args.input ))
+    data = gff.parse_gff3_to_dataframe( args.input )
     print( "++ ok, %d records loaded, they look like:\n" % data.shape[0] )
     print( data )
 
