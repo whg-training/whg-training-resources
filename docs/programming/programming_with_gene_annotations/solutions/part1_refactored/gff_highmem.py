@@ -44,45 +44,31 @@ def extract_attributes_as_columns( data, attributes_to_extract ):
 	for attribute_name in attributes_to_extract:
 		# Put a placeholder column in
 		data.insert( column_index, attribute_name, None )
-		extract_attribute_as_column( data, column_index, attribute_name )
+		extract_attribute_as_column( data, attribute_name )
 		column_index += 1
 
-def extract_attribute_as_column( data, column_index, attribute_name ):
+def extract_attribute_as_column( data, attribute_name ):
 	# A regular expression that matches everything *before* and *after* the
 	# attribute of interest, and the attribute itself.
 	regexp = re.compile( '(.*)%s=([^;]+)(.*)' % attribute_name )
-	for chunk_start in range( 0, data.shape[0], 10000 ):
-		chunk_end = min( chunk_start + 10000, data.shape[0] )
-		# Warning: it's easy to get pandas to write to a copy (rather than a 'view')
-		# of the data.  If this happens, the code looks right but the real dataframe
-		# is never updated.  To this end this code is quite careful about how it
-		# refers to  the chunks of data.
-		# See https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-		chunk = data.loc[ chunk_start:chunk_end, 'attributes']
-		matched_parts = chunk.str.extract( regexp )
-		# matched_parts has three columns: the bit before, the value itself, and the
-		# bit after. First let's set the attribute column itself.
-		# Note: I had to use a list() here to avoid an erroneous pandas
-		# 'FutureWarning'. Also it's important to use .loc[rows, columns] here
-		# rather to make sure we set a view, not a copy of the data.
-		data.loc[chunk_start:chunk_end,attribute_name] = list( matched_parts[1] )
-		# Now let's reconstruct the remainder by pasting together the parts
-		joined = matched_parts[0] + matched_parts[2]
-		# If the attribute didn't match, both parts will be NA.
-		# To deal with this we skip these rows
-		unmatched_rows = ( matched_parts.isnull().all( axis = 1 ))
-		joined.loc[unmatched_rows] = chunk.loc[unmatched_rows]
-		# ...and put back in the result, fixing the semicolons:
-		# Note: for unknown reasons, data.attributes.loc works best here
-		# to avoid warnings.
-		data.attributes.loc[ chunk_start:chunk_end ] = joined.apply( fix_semicolons )
+	matched_parts = data.attributes.str.extract( regexp )
+	# matched_parts has three columns: the bit before, the value itself, and the bit after.
+	# First let's set the attribute column itself:
+	data[ attribute_name ] = matched_parts[1]
+	# Now let's reconstruct the remainder by pasting together the parts
+	joined = matched_parts[0] + matched_parts[2]
+	# If the attribute didn't match, both parts will be NA.
+	# To deal with this we skip these rows
+	matched_rows = ( matched_parts.notnull().any( axis = 1 ))
+	# ...and put back in the result, fixing the semicolons
+	data.attributes[ matched_rows ] = joined.loc[matched_rows].apply( fix_semicolons )
 
 def fix_semicolons( a ):	   # A helper function
 	if len(a) == 0:
 		return a
 	if a[0] == ';':
 		a = a[1:]
-	if a[-1] == ';':		   # -1 means last character in the string
+	if a[-1] == ';':		   # last character in the string
 		a = a[0:-1]
 	a = a.replace( ';;', ';' )
 	return a
