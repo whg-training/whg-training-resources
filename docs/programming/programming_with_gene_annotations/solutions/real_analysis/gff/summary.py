@@ -4,7 +4,6 @@ def summarise_transcripts_and_exons_per_gene( genes, transcripts, exons ):
     transcript_summary = summarise_transcripts( transcripts, exons )
     return summarise_transcripts_per_gene( genes, transcript_summary )
 
-
 def summarise_transcripts( transcripts, exons ):
     """Given data frames of transcripts and exons, return a dataframe with one row per transcripts
     and ID, Parent, and number_of_exons columns."""
