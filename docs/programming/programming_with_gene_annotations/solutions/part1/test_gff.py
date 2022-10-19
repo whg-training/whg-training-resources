@@ -12,8 +12,7 @@ class TestGff(unittest.TestCase):
 	
     # The main test from the introduction
 	def test_parse_gff3_to_dataframe( self ): 
-		from io import StringIO
-		data = gff.parse_gff3_to_dataframe( StringIO( self.test_data ))
+		data = gff.parse_gff3_to_dataframe( io.StringIO( self.test_data ))
 		assert data['seqid'][0] == 'chr1'
 		assert data['strand'][0] == '+'
 		assert data['attributes'][0] == 'ID=gene1;other_data=stuff'
