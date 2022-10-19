@@ -14,7 +14,7 @@ def parse_arguments():
         The result, including a table of genes, will be stored in a sqlite file for downstream analysis."""
     )
     parser.add_argument(
-        '--analysis',
+        '--analysis_name',
         help ='A name to give this analysis, e.g. species name',
         required = True
     )
@@ -43,7 +43,7 @@ def parse_arguments():
 
 def process( args ):
     print( "++ Loading gene annotation data from %s...\n" % args.input )
-    data = gff.analysis.UnpackedGFF.from_gff3( args.input, args.analysis )
+    data = gff.analysis.UnpackedGFF.from_gff3( args.input, args.analysis_name )
     print( data.summary() )
 
     print( "++ Writing records to %s..." % args.output )
