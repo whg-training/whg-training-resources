@@ -6,7 +6,7 @@ Use it like this:
     python gff_to_sqlite.py --input <path to gff file> --output <path to output file> --analysis <name>
 
 """
-import argparse, gff, sqlite3
+import argparse, gff, sqlite3, gzip
 
 def parse_arguments():
     parser = argparse.ArgumentParser(
@@ -44,12 +44,12 @@ def parse_arguments():
 
 def process( args ):
     print( "++ Loading genes data from %s...\n" % args.input )
-    data = gff.parse_gff3_to_dataframe( open( args.input ), args.attribute_columns )
+    data = gff.parse_gff3_to_dataframe( args.input, args.attribute_columns )
     print( "++ ok, %d records loaded, they look like:\n" % data.shape[0] )
     print( data )
 
     print( "++ Loading sequence lengths from %s...\n" % args.input )
-    sequences = gff.parse_sequences_from_gff_metadata( open( args.input ))
+    sequences = gff.parse_sequences_from_gff_metadata( gzip.open( args.input, "rt" ) if args.input.endswith( ".gz" ) else open( args.input ))
     print( "++ ok, %d records loaded, they look like:\n" % sequences.shape[0] )
     print( sequences )
 
