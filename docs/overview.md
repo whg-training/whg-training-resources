@@ -13,6 +13,7 @@ Content on this site is publicly available under the terms of the [MIT license](
 |    Module                |                      Tutorial                          |
 | ------------------------ | ------------------------------------------------------ |
 | Getting started          | [Setting up your environment](/prerequisites/) |
+| Bioinformatics           | [Exploring human genes on the command-line](/bioinformatics/exploring_gene_annotations_in_bash/) |
 | Programming              | [Introduction to programming in R](/programming/introduction_to_R/) |
 | Programming              | [Programming with gene annotation files](/programming/programming_with_gene_annotations/) |
 | Data visualisation       | [Data visualisation with ggplot2](/data_visualisation/data_visualisation_with_ggplot2/) |
