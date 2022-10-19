@@ -290,9 +290,9 @@ That’s a lot but we are big animals!
 
 Let's switch track and try to dig out info about a specific gene - [*FUT2*](https://en.wikipedia.org/wiki/FUT2).
 That's an interesting gene because it encodes a fucosyltransferase is involved the synthesis pathway for
-'soluble' A and B antigens - that is free A and B antigens found in blood plasma. Mutations in FUT2 affect
-whether these antigens are secreted. Because norovirus binds to these antigens, these mutations can confer
-protection against norovirus.
+'soluble' A and B antigens - that is A and B antigens found in blood plasma and other fluids. Mutations in FUT2
+affect whether these antigens are secreted. Because norovirus binds to these antigens, these mutations can
+confer protection against norovirus.
 
 A simple way to look this up is to just to grep (i.e. conduct a text search) for `FUT2`:
 ```sh
@@ -415,9 +415,9 @@ You can click on them for more information.  Can you find a SNP that encodes a c
 ## Challenge questions
 
 The SNP [rs601338](https://www.ncbi.nlm.nih.gov/snp/rs601338) controls ’secretor status’ (i.e. whether A/B
-antigens are secreted into the plasma) Individuals with GG or GA genotypes at this SNP are secretors, and
+antigens are secreted into bodily fluids) Individuals with GG or GA genotypes at this SNP are secretors, and
 individuals with homozygous AA genotypes are non-secretors - as described in [this paper based on the ALSPAC
-cohort](c.f. 10.12688/wellcomeopenres.14636.2).
+cohort](10.12688/wellcomeopenres.14636.2).
 
 :::tip Can you solve?
 
