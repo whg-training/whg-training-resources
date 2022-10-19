@@ -92,7 +92,7 @@ Of course if we really want to save space, we would avoid storing all that data 
 exons etc. at all. Why don't we run our analysis on the gene data as we load it, and then only
 store the gene-leve summaries we have computed?
 
-You can see [my quick attempt at that here](solutions/scaling_up/summarise_gff3.py). If you run it,
+You can see [my quick attempt at that here](solutions/real_analysis/summarise_gff3.py). If you run it,
 instead of the original `gff_data`, you get:
 
 * a `genes` table which just lists the gene records, but with the number of transcripts and mean number of

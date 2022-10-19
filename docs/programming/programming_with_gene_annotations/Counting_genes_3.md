@@ -11,15 +11,16 @@ Or download as: [sql solution](solutions/part3/solutions.sql) and [python soluti
 
 :::tip Note
 
-To count exons per gene, I have used the rather form: the average across transcripts for each gene. This isn't very sensible
-really as there may be some very short (or very long) transcripts listed for a gene that will skew results. Ideally we should
-take a 'canonical' transcript.
+To count exons per gene, I have used a not-very-good approach: taking the average across transcripts for each gene. This isn't
+very sensible as there are often one or a few 'major' transcripts, but also sometimes some very short (or very long) transcripts
+listed for a gene that will skew results. Ideally we should take a 'canonical' transcript.
 
-I haven't done that but you could: Ensembl have files containing a set of representative transcripts for each species [in this
-folder](https://ftp.ensembl.org/pub/current_tsv/). The background is [described here](https://www.ensembl.org/info/genome/genebuild/canonical.html).
+How to do that? Well, Ensembl have files containing a set of representative transcripts for each species [in this
+folder](https://ftp.ensembl.org/pub/current_tsv/).
+You can also read [more details on what thse contain](https://www.ensembl.org/info/genome/genebuild/canonical.html).
 
-A very sensible thing to do would be to incorporate these files into your analysis (for example by having your `gff_to_sqlite.py`
-program load them as well) - then focus on these canonical transcripts.
+An **extra challenge** is therefore to incorporate these 'canonical transcripts' into your program - then you can focus on these
+transcripts in your analysis.
 
 :::
 
@@ -78,8 +79,7 @@ interesting to visualise some of these statistics, for example
 and so on. The sky is the limit in terms of what you could investigate here - every gene has its own story. We'll talk
 through your findings in the discussion session.
 
-**Note.** Plotting is one thing you can't do in SQL - load the data into python or R for this. For reference, you can load
-data into R using this type of code:
+**Note.** Plotting is one thing you can't do in SQL of course - load the data into python or R for this.
 
 ```
 library( RSQLite )
