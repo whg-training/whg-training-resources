@@ -20,9 +20,15 @@ def parse_gff3_to_dataframe( file ):
         names = [ 'seqid', 'source', 'type', 'start', 'end', 'score', 'strand', 'phase', 'attributes' ],
         na_values = ".",
         dtype = {
-            'seqid': str,  'source': str, 'type': str,
-            'start': int,  'end': int,  'score': float,
-            'strand': str, 'phase': str,  'attributes': str
+            'seqid': 'string',
+            'source': 'string',
+            'type': 'string',
+            'start': 'Int64',
+            'end': 'Int64',
+            'score': 'float',
+            'strand': 'string',
+            'phase': 'string',
+            'attributes': 'string'
         }
     )
     

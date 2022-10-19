@@ -46,13 +46,13 @@ There are lots of ways to define 'good code' and lots of ways to write it. Here 
 things we could aim for:
 
 1. the code ought to work
-2. it ought to not take too long to do it
+2. it ought to not take too long to do it, or use too much memory
 3. it ought to be obvious what the code does
 
-The third point is really the most important one here. This is because, if you can figure out what
-the code does, then you're in a good position to fix any problems with it, making it work better
-and faster and so on. But if you can't figure it out, you'll end up throwing it away and starting
-again.  So that's what we'll focus on.
+The third point is really the most important one here and is the one we'll focus on first. This is because, if
+you can figure out what the code does, then you're in a good position to fix any problems with it, making it
+work better and faster and so on. But if you can't figure it out, you'll end up throwing it away and starting
+again. So that's what we'll focus on.
 
 ## What gene annotation data look like
 

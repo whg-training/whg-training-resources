@@ -2,13 +2,9 @@
 sidebar_position: 8
 ---
 
+# Counting genes II: types of protein-coding genes
+
 [Up to table of contents](README.md)
-
-[Back to the previous page](Memory_issues_and_how_to_solve_them.md)
-
-[Go to the next page](Counting_genes_3.md)
-
-# Investigating protein-coding genes
 
 If you've followed so far you will have code `gff.py` that can parse a GFF file, and in the process
 will pull out certain fields from the `attributes` column. This includes the `ID` attribute, the
@@ -23,11 +19,12 @@ database. I'm going to assume you followed the suggestion to add a column that d
 different species - in my code this is called `analysis` and I'll use that below.
 
 (For reference my version of the code is at
-[solutions/part2/gff_to_sqlite.py](solutions/part2/gff_to_sqlite.py) - feel free to run that
+[solutions/part2/gff_to_sqlite.py](solutions/part2/gff_to_sqlite.py)
+and
+[solutions/part2/gff.py](solutions/part2/gff.py) - feel free to run that
 instead, if needed.)
 
-This sqlite file is now in a good shape to start really exploring genes.   First let's look at what `biotypes` there are.
-
+This sqlite file is now in a good shape to start really exploring genes. First let's look at what `biotypes` there are.
 
 ## What types of protein-coding gene are there?
 
@@ -136,9 +133,13 @@ collectively known as 'house mice'.
 
 Let's count how many transcripts each gene has, and how many exons.
 
-**Challenge.** Write python code that reads in the appropriate data from `gff_data` table, and for
+:::tip Challenge
+
+Write python code that reads in the appropriate data from `gff_data` table, and for
 each gene counts i. the number of transcripts and ii. the average number of exons (averaged over
 the transcripts for that gene).
+
+:::
 
 **Hints.**
 
@@ -193,7 +194,7 @@ gene_summary = {
 
 You would then iterate through the second object to compute the summaries.
 
-- A second way to implement this is to use 'data joins' and 'group by' operations. In pandas the
+- A slicker way to implement this is to use 'data joins' and 'group by' operations. In pandas the
   functions to use are the [`merge()
   function`](https://pandas.pydata.org/docs/user_guide/merging.html)) and the
   [`groupby()`](https://pandas.pydata.org/docs/user_guide/groupby.html) function. A simple version
@@ -244,8 +245,9 @@ More seriously, the above code has a possible bug. (You did test it, right?) Spe
 the answer wrong if a transcript has no exons. How did I discover this? [By writing a
 test](solutions/part2/test_gff.py).  So that needs to be fixed too.  Good luck! 
 
-**Note.** My version of the code can be found in the [`solutions/part2/gff.py`](solutions/part2/gff.py) file. There is
-both a pandas version (`summarise_genes()`) and a python datastructure version (`summarise_genes_python_version()`).
+**Note.** My version of the code can be found in
+[this folder](https://github.com/whg-training/whg-training-resources/blob/main/docs/programming/programming_with_gene_annotations/solutions/part2) in the `gene_summary.py` file (or [download directly](solutions/part2/gene_summary.py])
+The file implements both a pandas version (`summarise_genes()`) and a python datastructure version (`summarise_genes_python_version()`).
 
 **Note.** which of these approaches do you find easier to understand? The python version of my code is definitely
 longer, but neither seems especially simple. However, the `count_exons_per_transcript()` and
@@ -255,7 +257,7 @@ think this code can be improved...
 ## A sqlite approach
 
 In the rest of this section I'll show how you could solve those problems in the sqlite database
-itself using data joins and group by operations.
+itself - again using data joins and group by operations.
 
 First, it's convenient to make some views of the data that just reflect the genes, transcripts and
 exons:
@@ -340,6 +342,7 @@ FROM genes
 LEFT JOIN transcript_summary T ON T.Parent == genes.ID
 GROUP BY genes.ID;
 ```
+
 On my system, with the data above this brings query time down to a few seconds.
 
 **Note.** The `CAST( .. AS FLOAT )` syntax is needed above to make sure sqlite uses floating-point arithmetic for the division.

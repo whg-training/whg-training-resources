@@ -2,13 +2,9 @@
 sidebar_position: 10
 ---
 
+# How much of the genome is in genes?
+
 [Up to table of contents](README.md)
-
-[Back to the previous page](Getting_sequence_lengths.md)
-
-[Go to the next page](Where_next.md)
-
-## How much of the genome is in genes?
 
 To figure out how much of the genome is covered by genes, or by exons, we face a problem.
 In principle we could just add together the gene lengths.
@@ -26,7 +22,7 @@ sequence_lengths = pandas.read_sql( "SELECT analysis, SUM(end-start) AS sequence
 
 So this would say for example that about 44% of the human genome is covered by genes.
 
-### Union of regions
+## Union of regions
 
 Unfortunately this isn't so simple - because many genes overlap each other. This happens either
 because there genuinely are different genes encoded by the same bit of DNA, or because of
@@ -63,20 +59,18 @@ class TestRanges(unittest.TestCase):
         self.assertEqual( len( result ), 2 )
         self.assertEqual( result[0] = [ 1, 15 ] )
         self.assertEqual( result[1] = [ 19, 15 ] )
-
 ```
 
 **Hints.** 
 
-* First [sort the list of regions by the start
-  point](https://docs.python.org/3/howto/sorting.html). (But be aware that python functions can
-  mutate their arguments). You may want to use the `sorted()` function rather than sorting
+* First [sort the list of regions by the start point](https://docs.python.org/3/howto/sorting.html).
+(But be aware that python functions can mutate their arguments). You may want to use the `sorted()` function rather than sorting
   in-place.
   
 * Now traverse the list of regions, keeping track of the current interval and extending it if
   necessary when you encounter overlapping input regions.
 
-**Important note.** The coordinates in the GTF file are defined to [follow the 1-based
+**Important note.** The coordinates in the GFF file are defined to [follow the 1-based
 convention](http://www.ensembl.org/info/website/upload/gff.html). This means that the genome
 coordinates start at 1, and also that regions are defined to be closed - i.e. they contain both
 their endpoints. A region like [1,10] therefore contains 10 base positions.
@@ -85,12 +79,12 @@ their endpoints. A region like [1,10] therefore contains 10 base positions.
 used instead (in which the region [1,10) would contain only 9 positions, and would miss the 1st
 genome location at zero). This is true for [the database that underlies the [UCSC Genome
 Browser](https://genome-blog.soe.ucsc.edu/blog/the-ucsc-genome-browser-coordinate-counting-systems/)
- for example (although not the browser itself, which converts coordinates to 1-based), and is
+ for example (but not the browser itself, which converts coordinates to 1-based), and is
 common in programming generally.)
 
 My solution is [here](solutions/part3/gff/regions.py).
 
-### So how much of the genome is in genes?
+## So how much of the genome is in genes?
 
 We're ready to answer this! Let's use the above to write function that counts the bases covered in each genome:
 

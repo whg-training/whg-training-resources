@@ -2,47 +2,60 @@
 sidebar_position: 9
 ---
 
-[Up to table of contents](README.md)
-
-[Back to the previous page](Counting_genes_2.md)
-
-[On to the next page](Getting_sequence_lengths.md)
-
-Let's use our data to answer some questions on the extremes of the distribution of genes.
-
-## Extremely big, small and complex genes
+# Extremely big, small and complex genes
 
 What is the largest gene, the gene with the most exons, or the gene with the most transcripts in each species?
 
-You can work this out, but here are my solutions for reference:
-[sql solution](solutions/part3/solutions.sql)
-[python solution](solutions/part3/solutions.py)
+You can work this out, but my solutions are in [this folder](https://github.com/whg-training/whg-training-resources/blob/main/docs/programming/programming_with_gene_annotations/solutions/part3) for reference:
+Or download as: [sql solution](solutions/part3/solutions.sql) and [python solution](solutions/part3/solutions.py).
+
+:::tip Note
+
+To count exons per gene, I have used the rather form: the average across transcripts for each gene. This isn't very sensible
+really as there may be some very short (or very long) transcripts listed for a gene that will skew results. Ideally we should
+take a 'canonical' transcript.
+
+I haven't done that but you could: Ensembl have files containing a set of representative transcripts for each species [in this
+folder](https://ftp.ensembl.org/pub/current_tsv/). The background is [described here](https://www.ensembl.org/info/genome/genebuild/canonical.html).
+
+A very sensible thing to do would be to incorporate these files into your analysis (for example by having your `gff_to_sqlite.py`
+program load them as well) - then focus on these canonical transcripts.
+
+:::
 
 Here are some things I noticed:
 
 * In all the data I looked at, there's only one gene with > 100 transcripts. It is the human gene [*MAPK10*, "Mitogen-activated
   protein kinase 10"](https://www.uniprot.org/uniprot/P53779) and it has 151 transcripts! It has so many that it takes a while to load in
   [Ensembl](http://www.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000109339;r=4:85990007-86594625) and the
-  [UCSC Genome browser](https://genome-euro.ucsc.edu/cgi-bin/hgTracks?db=hg38&lastVirtModeType=default&lastVirtModeExtraState=&virtModeType=default&virtMode=0&nonVirtPosition=&position=chr4%3A86016491%2D86594110&hgsid=275896231_HieWdPQTMOsgYQUFAnwTALgAECs0). If you explore these genome browsers you will find a wealth of
-  information on this gene including its expression patterns and function. Is there much published literature about it?
+  [UCSC Genome browser](https://genome-euro.ucsc.edu/cgi-bin/hgTracks?db=hg38&lastVirtModeType=default&lastVirtModeExtraState=&virtModeType=default&virtMode=0&nonVirtPosition=&position=chr4%3A86016491%2D86594110&hgsid=275896231_HieWdPQTMOsgYQUFAnwTALgAECs0).
+  If you explore these genome browsers you will find a wealth of information on this gene including its expression patterns and function. Is there much published literature about it?
   What does it look like in other species?
 
-* Quite a few genes have lots of exons, but one that really stands out is [*Titin*](https://en.wikipedia.org/wiki/Titin). It has a slightly incredible 184 exons in Chimpanzees (*Pan troglodytes*) and ~113 in humans. Another is [*Nebulin*](https://en.wikipedia.org/wiki/Nebulin). These genes seem
-  especially huge in Chimpanzees. Are they big in all species? In all great apes? Is there literature that might
-  explain the results for these genes, or other genes with lots of exons?
+* Quite a few genes have lots of exons, but one that really stands out is [*Titin*](https://en.wikipedia.org/wiki/Titin).
+It has a slightly incredible 184 exons in Chimpanzees (*Pan troglodytes*) and ~113 in humans.
+Another is [*Nebulin*](https://en.wikipedia.org/wiki/Nebulin).
+These genes seem especially huge in Chimpanzees. Are they big in all species? In all great apes?
+Is there literature that might explain the results for these genes, or other genes with lots of exons?
   
 * The genes with lots of exons aren't the largest though (by length). In humans and chimpanzees, that accolade goes
-  to [`RBFOX1`](http://www.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000078328;r=16:5239802-7713340) with a whopping length of around 2 and a half megabases, or 0.08% of the genome. What does this look
+  to [`RBFOX1`](http://www.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000078328;r=16:5239802-7713340)
+  with a whopping length of around 2 and a half megabases, or 0.08% of the genome. What does this look
   like across species? Where is it expressed? (Interestingly, this gene has been previously associated [with aggressive
   behaviour](https://www.nature.com/articles/s41380-018-0068-7)).
 
-* There are also some pretty tiny genes around. In humans the smallest is
+* There are also some pretty tiny genes around. In humans the smallest seems to be
   [*ENSG00000288608*](http://www.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000288608;r=7:151061928-151061978;t=ENST00000674552),
   which is only 50 base pairs long. (However, it seems to be contained in an exon of the much
-  longer [*SLC4A2* Anion exhange protein
-  2](https://genome-euro.ucsc.edu/cgi-bin/hgTracks?db=hg38&lastVirtModeType=default&lastVirtModeExtraState=&virtModeType
-  =default&virtMode=0&nonVirtPosition=&position=chr7%3A151061877%2D151062029&hgsid=275886241_mxgWOGDr4elcf2SdW0zGz6ukwVJ
-  W).  I'm not sure what this means...)
+  longer [*SLC4A2* Anion exhange protein 2](https://genome-euro.ucsc.edu/cgi-bin/hgTracks?db=hg38&lastVirtModeType=default&lastVirtModeExtraState=&virtModeType=default&virtMode=0&nonVirtPosition=&position=chr7%3A151061877%2D151062029&hgsid=275886241_mxgWOGDr4elcf2SdW0zGz6ukwVJW).
+  I'm not quite sure what this means...)
+
+:::tip Challenge
+
+What we might really want to know is: the length of the encoded protein.  Can you find the genes with the longest exon sequence or the longest 
+protein-coding sequence?  (This will involve adding up the lengths of exons or CDS records in each transcript.)
+
+:::
 
 What other extreme genes are there?
 

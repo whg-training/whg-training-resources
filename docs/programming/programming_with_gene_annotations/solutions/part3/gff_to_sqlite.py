@@ -15,7 +15,7 @@ def parse_arguments():
         The resulting table will be indexed by the ID field for easy lookup."""
     )
     parser.add_argument(
-        '--analysis',
+        '--analysis_name',
         help ='A name to give this analysis, e.g. species name',
         required = True
     )
@@ -30,6 +30,12 @@ def parse_arguments():
         required = True
     )
     parser.add_argument(
+        '--attribute_columns',
+        default = [ 'ID', 'Parent', 'biotype', 'Name' ],
+        nargs = '+',
+        help = 'The names of attributes to extract as seperate columns'
+    )
+    parser.add_argument(
         '--overwrite',
         action = "store_true",
         help ='If specified, overwrite the table with this data.  Otherwise data will be appended.'
@@ -38,7 +44,7 @@ def parse_arguments():
 
 def process( args ):
     print( "++ Loading genes data from %s...\n" % args.input )
-    data = gff.parse_gff3_to_dataframe( open( args.input ))
+    data = gff.parse_gff3_to_dataframe( open( args.input ), args.attribute_columns )
     print( "++ ok, %d records loaded, they look like:\n" % data.shape[0] )
     print( data )
 
@@ -51,9 +57,9 @@ def process( args ):
     db = sqlite3.connect( args.output )
 
     # In this version I have hard-coded `gff_data` and `sequences` table names.
-    data.insert( 0, 'analysis', args.analysis )
+    data.insert( 0, 'analysis', args.analysis_name )
     data.to_sql( 'gff_data', db, index = False, if_exists = 'replace' if args.overwrite else 'append' )
-    sequences.insert( 0, 'analysis', args.analysis )
+    sequences.insert( 0, 'analysis', args.analysis_name )
     sequences.to_sql( "sequences", db, index = False, if_exists = 'replace' if args.overwrite else 'append' )
 
     print( "++ Success.\n" )

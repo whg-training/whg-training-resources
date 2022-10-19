@@ -2,13 +2,9 @@
 sidebar_position: 10
 ---
 
+# Getting sequence lengths
+
 [Up to table of contents](README.md)
-
-[Back to the previous page](Counting_genes_3.md)
-
-[Go to the next page](How_much_of_the_genome_is_in_genes.md)
-
-## Getting sequence lengths
 
 To answer questions like 'how much of the genome is in genes' we need to know what the length of each genome is.
 Happily, if you look at the [GFF files on Ensembl](http://ftp.ensembl.org/pub/current_gff3/) the sequences from the
@@ -34,15 +30,17 @@ treated for analysis purposes as being on the X chromosome).
 
 If you feel like it, please try the following:
 
-**Challenge:** write a function `parse_sequences_from_gff_metadata()` that
+:::tip Challenge
+Write a function `parse_sequences_from_gff_metadata()` that
 
 - takes the gff filename as argument
 - return a pandas dataframe with the above information.  It should have three columns, the `sequence`, the `start`, and the `end`.
 
 Use this function in `gff_to_sqlite.py` so that it records sequence lengths into the output
 database as well.
+:::
 
-Here's a test case:
+Here's a test case for your new function:
 
 ```
 import unittest
@@ -67,7 +65,7 @@ class TestGff(unittest.TestCase):
 ```
 
 If you want some hints or just don't fancy writing this piece of sequence parsing code - feel free
-to look at [my version is here](solutions/part3/gff.py). And I added it to
-[`gff_to_sqlite.py`](solutions/part3/gff_to_sqlite.py).
+to look at [my solution](https://github.com/whg-training/whg-training-resources/blob/main/docs/programming/programming_with_gene_annotations/solutions/part3/gff/sequences.py)
+(or use a [direct link](solutions/part3/gff/sequences.py)).
 
 We are now ready to [figure out how much of the genome is in genes](How_much_of_the_genome_is_in_genes.md).

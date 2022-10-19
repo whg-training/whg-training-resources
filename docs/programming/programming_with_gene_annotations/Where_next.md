@@ -1,10 +1,10 @@
+---
+sidebar_position: 14
+---
+
+# What next?
+
 [Up to table of contents](README.md)
-
-[Back to the previous page](How_much_of_the_genome_is_in_genes.md)
-
-[Go the next page](Scaling_up.md)
-
-## Where next?
 
 From this point there are lots of things you could investigate.  For example:
 
@@ -30,10 +30,10 @@ on) but [here's a quick demonstration of how you could make a quick plot using R
 
 Another thing you could focus on, if you felt like it, is improving the code - for example making
 it faster, slicker, better tested, or to do more comprehensive analysis. Or if you want a
-programming challenge, try writing it in R instead (I'd advise using the [tidyverse
-packages](https://www.tidyverse.org).
+programming challenge, try writing it in R instead (if so I'd advise using the [tidyverse
+packages](https://www.tidyverse.org)).
 
-If you are on the GMS programme - we\ll ask you to pursue one or more of these ideas (or related
-ideas of your own) and tell us about them in the presentation session.
+If you are on a training programme at the [Wellcome Centre for human Genetics](https://www.well.ox.ac.uk) - we'll ask you to pursue one or
+more of these ideas (or related ideas of your own) and tell us about them in the presentation session.
 
 

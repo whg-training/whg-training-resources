@@ -1,56 +1,78 @@
 # gff.py
 # This file implements the function parse_gff3_to_dataframe()
 # and a number of helper functions.
-import pandas
- 
-def gff3_to_dataframe( file ):
-    """Read GFF3-formatted data in the specified file (or file-like object)
-    Return a pandas dataframe with ID, Parent, seqid, source, type, start, end, score, strand, phase, and attributes columns.
-    The ID and Parent are extracted from the attributes columns, and the dataframe is indexed by ID"""
-    result = _read_gff3_using_pandas( file )
-    _extract_attributes_to_columns( result, ['ID', 'Parent', 'Name', 'biotype'] )
-    return result
+import pandas, re
+
+def parse_gff3_to_dataframe(
+	file,
+	attributes_to_extract = [ 'ID', 'Parent', 'Name' ]
+):
+	"""Read GFF3-formatted data in the specified file (or file-like object)
+	Return a pandas dataframe with seqid, source, type, start, end, score, strand, phase, and attributes columns.
+	Additinally, the listed attributes are removed from the attributes column and placed in seperate
+	columns at the start of the result dataframe."""
+	result = _read_gff3_using_pandas( file )
+	_extract_attributes_to_columns( result, attributes_to_extract )
+	return result
 
 # functions starting with underscores are private to the file
 def _read_gff3_using_pandas( file ):
-    """Helper function to read the given GFF3 file into a dataframe, without any postprocessing."""
-    import pandas
-    result = pandas.read_table(
-        file,
-        comment = '#',
-        names = [ 'seqid', 'source', 'type', 'start', 'end', 'score', 'strand', 'phase', 'attributes' ],
-        na_values = ".",
-        dtype = {
-            'seqid': str,
-            'source': str,
-            'type': str,
-            'start': int,
-            'end': int,
-            'score': float,
-            'strand': str,
-            'phase': str,
-            'attributes': str
-        }
-    )
-    return result
+	"""Helper function to read the given GFF3 file into a dataframe, without any postprocessing."""
+	import pandas
+	result = pandas.read_table(
+		file,
+		comment = '#',
+		names = [ 'seqid', 'source', 'type', 'start', 'end', 'score', 'strand', 'phase', 'attributes' ],
+		na_values = ".",
+		dtype = {
+			'seqid': "string",
+			'source': "string",
+			'type': "string",
+			'start': "Int32",
+			'end': "Int32",
+			'score': "float",
+			'strand': "string",
+			'phase': "string",
+			'attributes': "string"
+		}
+	)
+	return result
 
 def _extract_attributes_to_columns( data, attributes_to_extract = [ 'ID', 'Parent' ] ):
-    # The original function called parse_attributes twice - and was slow.
-    # The second version called it once to unpack them all, but used masses of memory.
-    # This third version uses regular expression to parse the attributes, get the value
-    # and remove the extracted ones from the string directly - without duplicating the memory.
-    import re
-    def getAttribute( entry, regexp ):
-        m = re.search( regexp, entry )
-        return None if m is None else m.group(1)
-    def removeAttribute( entry, regexp ):
-        return re.sub( regexp, "", entry )
+	column_index = 0
+	for attribute_name in attributes_to_extract:
+		_extract_attribute_to_columns( data, column_index, attribute_name )
+		column_index += 1
 
-    for i in range( 0, len(attributes_to_extract)):
-        attribute = attributes_to_extract[i]
-        regexp = re.compile( "%s=([^;]+);?" % attribute )
-        data.insert( i, attribute, data['attributes'].apply( lambda entry: getAttribute( entry, regexp ) ))
-        # Delete the field from the current attributes
-        # (I could not get .transform() work here for some reason)
-        data['attributes'] = data['attributes'].apply( lambda entry: removeAttribute( entry, regexp ))
+def _extract_attribute_to_columns( data, column_index, attribute_name ):
+	def remove_attribute( entry, regexp ): # a local helper function
+		# substitute the matching part with an empty string...
+		result = re.sub( regexp, "", entry )
+		# ...and deal with semicolons
+		if len(result) == 0:
+			return result ;
+		if result[0] == ';':
+			result = result[1:]
+		if result[-1] == ';':
+			result = result[0:-1]
+		return result.replace( ';;', ';' )
 
+	regexp = re.compile( "%s=([^;]+)" % attribute_name )
+	data.insert(
+		column_index,
+		attribute_name,
+		data.attributes.str.extract( regexp )
+	)
+
+	# Now delete the field from the current attributes
+	# To avoid using up lots of memory we process the column in chunks of length 100,000 rows
+	for chunk_start in range( 0, data.shape[0], 100000 ):
+		chunk_end = min( chunk_start + 100000, data.shape[0] )
+		data.attributes.loc[chunk_start:chunk_end] = (
+			data
+			.attributes
+			.loc[chunk_start:chunk_end]
+			.apply(
+				lambda entry: remove_attribute( entry, regexp )
+			)
+		)

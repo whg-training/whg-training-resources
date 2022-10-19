@@ -13,12 +13,11 @@ Your task, if you choose to accept it, is to write some code that processes a GF
 data, and uses it to gather some interesting statistics. And then to apply it to analyse genes from multiple
 species. By doing this we can hopefully learn something about the genome biology of the world's organisms.
 
-The aim of this tutorial is that **you** to write the code that does this (although you can either do this on
-your own or working together in a group). There will be lots of support, and this tutorial will guide you
-through one way to do it. If you're doing this as part of a WHG course, we'll talk through the results and the
-code itself in the discussion sessions.
+The aim of this tutorial is that **you** to write the code that does this (either on your own or working in a
+group if you prefer). The tutorial will guide you through one way to do it, and if you run this as part of a
+[WHG](www.well.ox.ac.uk) course, there will be lots of support.
 
-:::tip
+:::tip Note
 Remember we're not writing this code for it's own sake but to answer our questions like the ones in our introduction:
 - How many genes are there?
 - How big are they?
@@ -30,27 +29,25 @@ Remember we're not writing this code for it's own sake but to answer our questio
 
 How to start writing this code?  Well there are a few ways:
 
-**Do it yourself.** It may well be that you already have a good idea how to go about this. If so,
-feel free to dive straight in. You're free to use any language or system you like for this -
-standard options might be [python](https://www.python.org) or [R](https://cran.r-project.org), but
-you could also use [julia](https://julialang.org), or even
-[C++](https://en.wikipedia.org/wiki/C%2B%2B) or another compiled language.  Make sure you [have these installed first](/prerequisites/README.md).
+**Do it yourself.** It may well be that you already have a good idea how to go about this. If so, feel free to
+dive straight in. You're free to use any language or system you like for this - standard options might be
+[python](https://www.python.org) or [R](https://cran.r-project.org), but you could also use
+[julia](https://julialang.org), or even [C++](https://en.wikipedia.org/wiki/C%2B%2B) or another compiled
+language. Make sure you [have these installed first](/prerequisites/README.md).
 
-**Use a package.** If you search, you will be able to find packages for your favourite programming language
-that parse GFF3 for you - or perhaps a library that processes gene annotations at a higher level. Now, using
-that would to some extent defeat the purpose of the exercise of this tutorial (which is about coding), but on
-the other hand what we're really interested in is genes rather than the coding itself. So if you want to take
-that route and it gets you to better answers quicker, go ahead!
+**Use a package.** If you search, you will be able to find packages for your favourite programming language that
+parse GFF3 for you - or perhaps a library that processes gene annotations at a higher level. Now, using that
+would to some extent defeat the purpose of the exercise of this tutorial (which is about coding), but on the
+other hand what we're really interested in is genes rather than the coding itself. So if you want to take that
+route and it gets you to better answers quicker, go ahead!
 
 **Write everything from scratch.** It's also quite possible to do this task in (say) base python or R without
-using any existing libraries. In fact that can be a good way to it because it gives you lots of control over
-how it works, and (as we'll see later) you might need control over things like performance and memory usage.
+using any existing libraries.
 
 This tutorial will take a 'middle' way. We will use python but will use the popular [`pandas` dataframe
 library](https://pandas.pydata.org) library to begin reading and manipulating the data. `pandas` is a natural
-fit here because the GFF3 data is basically tabular in format (many rows x 9 named columns) and so it ought to
-fit well in a dataframe. Unpacking the `attributes` column is a bit tricky of course - this will take most of
-the work.
+fit here because the GFF3 data is in tabulate format (it's many rows x nine named columns) and so it ought to
+fit well in a dataframe.
 
 In the course of the tutorial we'll develop a little python module to help us answer the questions.
 
@@ -75,7 +72,7 @@ def parse_gff3_to_dataframe( file ):
 
 and can be run like this:
 ```python
-file = open( "gencode.v38.annotation.head.gff" )
+file = open( "gencode.v41.annotation.head.gff" )
 X = parse_gff3_to_dataframe( file )
 ```
 
@@ -86,44 +83,92 @@ Simple! If only we knew what bit of code to write in the function there.
 
 **Challenge.** Can you write `parse_gff3_to_dataframe()`?
 
-**Notes**. To make it really good it should deal with column names, handle missing data values, and
-get the data types of columns right. And, because we want to capture the relational structure, it
-should extract out the `ID` and `Parent` attributes as new columns (this is the hardest part). When
-it's 100% correct it will [pass the test on the next page](testing_it_out.md). Good luck!
+To make your function really good it should: **deal with column names**, **handle missing data values**, and
+**get the data types of columns right**. And, because we want to capture the relational structure, let's also
+make it extract out the `ID` and `Parent` attributes as new columns. Good luck!
 
-If you don't know where to start - don't worry, we will walk through a process of writing this
-below.
+If you don't know where to start - don't worry, we will walk through a process of writing this below.
 
-:::tip An aside on functions
+## Test-driven development
 
-You might be thinking "why bother putting this in a function? It already works." 
-
-There are two key advantages to putting it in a function like this. The first is that it **makes it
-obvious what it does**. Imagine the scenario: you've run some analyses on several `.gff` files,
-you've written and submitted a paper. Six months later the reviews come back raising an issue and
-you suddenly need to revisit one of your analyses. If your code says:
+Funnily enough our function above already has a useful property, even though we haven't yet written it: it is *already testable*.  To see this let's first generate some test data:
 
 ```python
-human_genes = parse_gff3_to_dataframe( "gencode.v38.annotation.gff" )
-pf_genes = parse_gff3_to_dataframe( "PlasmoDB-54_Pfalciparum3D7.gff" )
-...
+test_data = """##gff-version 3
+#description: test data
+chr1\tme\tgene\t1\t1000\t.\t+\t.\tID=gene1;other_data=stuff
+chr1\tme\texon\t10\t900\t.\t+\t.\tID=gene1.1;Parent=gene1
+"""
 ```
 
-and so on then you have helped yourself enormously, because it's obvious what these lines do.
+And then write a test:
 
-The second advantage is that **it makes it easy to test**. By testing it, you know the function
-works, and when you get back to your analysis you won't waste time trying to figure this out.
-Ultimately these are about being efficient - trying to write your code in a way that doesn't waste
-your time later.  We'll see how to [test your code](testing_it_out.md) on the next page.
+```python
+def test_parse_gff3_to_dataframe( data ):
+	from io import StringIO # see comment below
+  	
+	# 1. run our function to parse the data:
+	data = parse_gff3_to_dataframe( StringIO( data ))
+	
+	# 2. test it:
+	# check some string fields:
+	assert data['seqid'][0] == 'chr1'
+	assert data['strand'][0] == '+'
+	assert data['attributes'][0] == 'ID=gene1;other_data=stuff'
+	assert data['seqid'][1] == 'chr1'
+	assert data['strand'][1] == '+'
+	assert data['attributes'][1] == 'ID=gene1.1;Parent=gene1'
+  	
+	# check that start and end are integers
+	assert data['start'][0] == 1 # start and end are integers, not strings
+	assert data['end'][0] == 1000
+	assert data['start'][1] == 10
+	assert data['end'][1] == 900
+	
+	# check that missing data is handled right
+	# "." indicates missing data in the GFF spec
+	# but we should have translated that to `NaN`, which
+	# is pandas' way of indicating missing data.
+	from math import isnan
+	assert isnan( data['score'][1] ) 
+	
+	# check that we extracted `ID` and `Parent` right.
+	assert data['ID'][0] == 'gene1'
+	assert data['ID'][1] == 'gene1.1'
+	assert data['Parent'][1] == 'gene1'
+	# etc.
 
+test_parse_gff3_to_dataframe( test_data )
+```
+
+This prints something like:
+
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+      File "<stdin>", line 5, in test_parse_gff3_to_dataframe
+    NameError: name 'parse_gff3_to_dataframe' is not defined
+
+Of course it's not defined, we haven't written it yet!
+
+But we now have a concrete target to shoot for: when our code passes the test it will be doing the right thing.
+
+:::tip Note
+Hardly anyone ever actually writes code this way (writing the test first) but they really should, because
+
+1. it makes you figure out how your code will be used beforehand
+2. it makes you make testable code - which means typically means pieces that are small and easy to use
+3. when you've written the code - hey presto, you've also written the tests (no extra work).
+
+For these reasons I thought we'd get the test in up-front here.
 :::
+
+When your function passes the test, you're done! Go ahead and [turn it into a module](making_a_module.md).
 
 ## Anatomy of getting it to work
 
-To figure out what to write it's useful to try a few things. Start an interactive python session
-now - a [jupyter notebook](/prerequisites/Jupyterlab.md) or [ipython](/prerequisites/python.md)
-would be good options. Also make sure you have
-[installed the pandas library](/prerequisites/pandas.md) because that's what we'll use.
+To figure out what to write it's useful to try a few things. Start an interactive python session now - a
+[jupyter notebook](/prerequisites/Jupyterlab.md) or [ipython](/prerequisites/python.md) would be good options.
+Also make sure you have [installed the pandas library](/prerequisites/pandas.md) because that's what we'll use.
 
 ### A first go
 
@@ -133,9 +178,9 @@ reading tabular data:
 
 ```python
 import pandas
-filename = "gencode.v38.annotation.head.gff"
+filename = "gencode.v41.annotation.head.gff"
 X = pandas.read_table(
-  "gencode.v38.annotation.head.gff"
+  "gencode.v41.annotation.head.gff"
 )
 ```
 
@@ -163,7 +208,7 @@ you may spot this argument - called `comment`:
 
 ```python
 X = pandas.read_table(
-  "gencode.v38.annotation.head.gff",
+  "gencode.v41.annotation.head.gff",
   comment = '#'
 )
 ```
@@ -180,7 +225,7 @@ names? Well, the ones from [the GFF spec](https://m.ensembl.org/info/website/upl
 
 ```python
 X = pandas.read_table(
-  "gencode.v38.annotation.head.gff",
+  "gencode.v41.annotation.head.gff",
   comment = '#',
   names = [ 'seqid', 'source', 'type', 'start', 'end', 'score', 'strand', 'phase', 'attributes' ]
 )
@@ -203,7 +248,7 @@ this is easy as well - we need the `na_values` argument:
 
 ```python
 X = pandas.read_table(
-  "gencode.v38.annotation.head.gff",
+  "gencode.v41.annotation.head.gff",
   comment = '#',
   names = [ 'seqid', 'source', 'type', 'start', 'end', 'score', 'strand', 'phase', 'attributes' ],
   na_values = '.'
@@ -249,269 +294,174 @@ specify them instead using the `dtype` argument:
 
 ```python
 X = pandas.read_table(
-  "gencode.v38.annotation.head.gff",
-  comment = '#',
-  names = [ 'seqid', 'source', 'type', 'start', 'end', 'score', 'strand', 'phase', 'attributes' ],
-  na_values = '.',
-  dtype = {
-      'seqid': str,
-      'source': str,
-      'type': str,
-      'start': int,
-      'end': int,
-      'score': float,
-      'strand': str,
-      'phase': str,
-      'attributes': str
-  }
+    "gencode.v41.annotation.head.gff",
+    comment = '#',
+    names = [ 'seqid', 'source', 'type', 'start', 'end', 'score', 'strand', 'phase', 'attributes' ],
+    na_values = '.',
+    dtype = {
+        'seqid': 'string',
+        'source': 'string',
+        'type': 'string',
+        'start': 'Int64',
+        'end': 'Int64',
+        'score': 'float',
+        'strand': 'string',
+        'phase': 'string',
+        'attributes': 'string'
+    }
 )
 ```
+
+### Extracting attributes
+
+It turns out pandas makes this easy too - it has a specific function for this
+type of thing: [`.str.extract()`](https://pandas.pydata.org/docs/reference/api/pandas.Series.str.extract.html). 
+
+It works like this: we define a [regular expression](https://en.wikipedia.org/wiki/Regular_expression) that
+captures the bit of the attributes we want to extract.  Then we pass that to the `.str.extract()` function.
+
+For example, to capture a field of the form `ID=something;`, we could use the basic regular expression:
+
+```
+ID=([^;]+)
+```
+
+
+:::tip Note
+
+If you haven't used regular expressions before this might look pretty opaque. It gives a specification for how
+to parse some text in a particular way, and is understood as follows:
+
+* The 'ID=' part looks for the exact string "ID=";
+* The '[^;]+' part looks for a sequence of one or more characters (`+`) that are not semicolons (`[^;]`).
+* The parentheses `(` and `)` tell the regexp to *capture* (i.e. remember) whatever matched.
+
+So put together this says "find something of the form `ID=value`, up to but not including any semicolon, and
+remember the value."
+
+:::
+
+Let's test this out by making some dummy data with the `ID` in different places in the string:
+```
+test_attributes = pandas.Series( [
+    "a=b;ID=gene_1",
+    "ID=gene_2;a=b",
+    "ID=gene_3",
+    "a=b"
+] )
+````
+
+Let's try to extract the `ID` from that test data:
+
+```
+test_attributes.str.extract( 'ID=([^;]+)' )
+```
+
+This will print something like:
+
+            0
+    0  gene_1
+    1  gene_2
+    2  gene_3
+    3     NaN
+    
+
+This looks good - for example it's correctly realised there's no ID in the last row.
+
+Getting our `ID` field out of the attributes is therefore as easy as writing
+
+```
+X['ID'] = X.attributes.str.extract( 'ID=([^;]+)' )
+```
+
+and similarly for the `Parent` attribute.
+
+:::tip Note
+
+Thanks to Jonathan Chan for pointing out this neat way to extract attributes.
+
+:::
+
+
 ### Testing it out
 
 Now things are looking pretty good - right?  Let's put it in our function:
 ```python
 def parse_gff3_to_dataframe( file ):
-  result = pandas.read_table(
-    file,
-    comment = '#',
-    names = [ 'seqid', 'source', 'type', 'start', 'end', 'score', 'strand', 'phase', 'attributes' ],
-    na_values = '.',
-    dtype = {
-      'seqid': str,
-      'source': str,
-      'type': str,
-      'start': int,
-      'end': int,
-      'score': float,
-      'strand': str,
-      'phase': str,
-      'attributes': str
-    }
-  )
-  return result
+    result = pandas.read_table(
+        file,
+        comment = '#',
+        names = [ 'seqid', 'source', 'type', 'start', 'end', 'score', 'strand', 'phase', 'attributes' ],
+        na_values = '.',
+        dtype = {
+            'seqid': str,
+            'source': str,
+            'type': str,
+            'start': int,
+            'end': int,
+            'score': float,
+            'strand': str,
+            'phase': str,
+            'attributes': str
+        }
+    )
+    X['ID'] = result.attributes.str.extract( 'ID=([^;]+)' )
+    X['Parent'] = result.attributes.str.extract( 'Parent=([^;]+)' )
+    # reorder to put ID and Parent at the front
+    result = result[ [ 'ID', 'Parent', 'seqid', 'source', 'type', 'start', 'end', 'score', 'strand', 'phase', 'attributes' ]]
+    return result
 ```
 
-So now we can load whatever we want:
-```python
-X = parse_gff3_to_dataframe( "gencode.v38.annotation.head.gff" )
-```
-
-### Exploring the data
-
-Now is a good time to load one of the full annotation files (e.g. the [gencode human gene
-annotations](https://www.gencodegenes.org/human/) and explore it. For example, the pandas
-[`query()` method](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.query.html) is one
-handy way to do this:
-
-```python
-X.query('seqid=="chrX"') # find X chromosome genes
-X.query('type=="exon" & strand == "+"') # find exons expressed on the forward strand
-```
-
-Another useful function is `value_counts()` which tells you how many of each value are in a give column:
+...and test it out:
 
 ```
-X["seqid"].value_counts() # how many records on each chromosome?
+test_parse_gff3_to_dataframe( test_data )
 ```
 
-**Challenge.** Find all gene records (`type=gene`) that are at least 1Mb in length according to the
-start and end coordinates.  How many of these 'big' genes are there on each chromosome?
+Does it work?  **Congratulations!**
 
-## Extracting attributes
+:::tip Note
 
-We're not quite done. `parse_gff3_to_dataframe()` gives us a good representation of input data. But
-like many bioinformatics formats, the
-[gff format is a bit weird](https://m.ensembl.org/info/website/upload/gff3.html).
-It has important information hidden in the `attributes` column - I don't know why it's like this, but it is.
+If it still doesn't work - you have a bug. To fix it, **first** check you have the indentation correct. Python
+expects everything to be indented the same - either tab characters, which I have used above, or spaces. If you
+have a mix that will very likely confuse it.
 
-In particular to make sense of the file we will need to extract the `ID` and `Parent` fields. These
-are important because they tell us how to link different records together (such as exons
-to transcripts and transcripts to genes.)
+**Second**, look carefully at the error message. Often the last part is the most important bit and points
+straight at the line of your code that caused the error, but sometimes you have to scroll up a few lines to find
+the bit that's referring to your code.
 
-How to extract these? Well, if you [looked at the data](What_gene_annotation_data_looks_like.md)
-you'll know that the attributes values are semicolon-separated sets of `key=value` pairs, for example:
+For example - a moment ago I had this error:
 
-    ID=ENST00000456328.2;Parent=ENSG00000223972.5;gene_id=ENSG00000223972.5;transcript_id=ENST00000456328.2;gene_type=transcribed_unprocessed_pseudogene;gene_name=DDX11L1;transcript_type=processed_transcript;transcript_name=DDX11L1-202;level=2;transcript_support_level=1;hgnc_id=HGNC:37102;tag=basic;havana_gene=OTTHUMG00000000961.2;havana_transcript=OTTHUMT00000362751.1
+    File ~/Projects/Software/3rd_party/miniconda3/lib/python3.9/site-packages/pandas/core/indexes/base.py:6171, in Index._raise_if_missing(self, key, indexer, axis_name)
+       6168     raise KeyError(f"None of [{key}] are in the [{axis_name}]")
+       6170 not_found = list(ensure_index(key)[missing_mask.nonzero()[0]].unique())
+    -> 6171 raise KeyError(f"{not_found} not in index")
 
-Let's write a function that just returns a given value from this string - we can then apply it to
-the whole column of attribute values. There are a couple of ways to do this; the simplest is to use
-python's rich set of
-[string manipulation tools](https://docs.python.org/3/library/stdtypes.html#string-methods).
+    KeyError: "['ID', 'Parent'] not in index"  
 
-### Extracting the ID
+The error is that python can't find the `ID` and `Parent` columns in the "index" (which is pandas' way of
+calling the column names). The error is weird though because that is in python code (on line 6171 of `base.py`,
+it says). There's no way base python is causing this error! However, scrolling up a bit I see this:
 
-For example we could try to extract the ID this by searching for 'ID=' in the string and pulling out
-the value. This can be done using the `find()` string method which here will return the position in
-the string where 'ID=' was found (or -1 if it wasn't found).  Something like this:
+    Cell In [33], line 22, in parse_gff3_to_dataframe(file)
+         20 X['Parent'] = X.attributes.str.extract( 'Parent=([^;]+)' )
+         21 # reorder to put ID and Parent at the front
+    ---> 22 result = result[ [ 'ID', 'Parent', 'seqid', 'source', 'type', 'start', 'end', 'score', 'strand', 'phase', 'attributes' ]]
+         23 return result
 
-```python
-def extract_ID_from_attributes( attributes ):
-  result = None
-  id_pos = attributes.find( 'ID=' )                    # find the 'ID=' bit
-  if id_pos == -1:
-    pass                                               # no ID attribute; do nothing
-  else:
-    semicolon_pos = attributes.find( ';', id_pos )     # find the next semicolon (or -1 if none)
-    result = attributes[id_pos:semicolon_pos]          # extract the value
-  return result
-```
+so it is failing in my code when it tries to reorder columns.
 
-Let's test it:
+Staring hard at this code I see the problem, which is actually just before this on lines 19 and 20: I forgot to
+change the code to use `result` instead of `X`. Thus `result` never gets an `ID` or `Parent` column, so the
+re-ordering fails.
 
-```python
-extract_ID_from_attributes( "a=b;ID=test_value" )
-extract_ID_from_attributes( "ID=1;Parent=2" )
-```
-
-You should get back "test_value" and "1" of course.
-
-:::tip Challenge
-`extract_ID_from_attributes()` has some bugs.  What are they?  **Can you fix them?**
-
-<Tabs>
-<TabItem value="hints" label="Hints" default>
-
-**Hint.** There are two bugs.  One has to do with not locating the start of the value in the attributes properly.
-The other has to do with when the value is right at the end of the string.
-</TabItem>
-
-<TabItem value="more hints" label="More Hints">
-
-**More detailed hint.** This code:
-
-```python
-result = attributes[id_pos:semicolon_pos] 
-```
-
-extracts a 'slice' of the attributes string between `id_pos` and `semicolon_pos`. So for example if the string is
-
-    a=1;ID=gene1;b=3
-
-then (counting from index 0 at the left side of the string) `id_pos=4` and `semicolon_pos=12` and
-above extracts the string `ID=gene1`. That's not quite what we want - `id_pos` is not the right
-location here. **Also**, `semicolon_pos` won't be right either if there is no later semicolon to
-find (what would it be in that case?).
-
-To correctly extract just the value, the code should be something more like
-
-```python
-result = attributes[start_of_value:semicolon_or_end] 
-```
-
-where `start_of_value` is the position of the start of the value in the string, and
-`semicolon_or_end` is the position of the next semicolon **or** the end of the attributes string,
-if there wasn't another semicolon.
-</TabItem>
-
-<TabItem value="solution" label="Solution">
-Here's a full solution:
-
-```python
-def extract_ID_from_attributes( attributes ):
-  result = None
-  id_pos = attributes.find( 'ID=' )                            # find the 'ID=' bit
-  if id_pos == -1:
-    pass                                                       # no ID attribute; do nothing
-  else:
-    start_of_value = id_pos+3                                  # find the start of the value
-    semicolon_pos = attributes.find( ';', start_of_value )     # find the next semicolon (or -1 if none)
-    if semicolon_pos == -1:
-      semicolon_or_end = len(attributes)                       # no semicolon so point at end
-    else:
-      semicolon_or_end = semicolon_pos
-    result = attributes[start_of_value:semicolon_or_end]       # extract the value
-  return result
-```
-Phew!  It's not exactly *simple*, but at least all that complexity is wrapped up into a
-function so it won't affect the rest of the code.
-</TabItem>
-</Tabs>
 :::
 
+My solution is
+[here](https://github.com/whg-training/whg-training-resources/blob/main/docs/programming/programming_with_gene_annotations/solutions/part1/gff.py)
+(or [download directly](solutions/part1/gff.py)) if you want to take a look.
 
-### Testing the code
+## Next steps
 
-We can get python to test it using the `assert` statement, like this:
-
-```
-assert extract_ID_from_attributes( "a=b;ID=test_value" ) == "test_value"
-assert extract_ID_from_attributes( "ID=1;Parent=2" ) == "1"
-```
-
-and so on.  If the function gets the answer wrong an `AssertionError` will be raised.
-
-Feel free to add more tests - does the code work now?
-
-### Applying the extraction function
-
-Applying our function to the dataframe is easy - use the pandas `apply()` function:
-
-```python
-X["attributes"].apply( extract_ID_from_attributes )
-```
-
-And adding it to the dataframe is easy too:
-```python
-X = parse_gff3_to_dataframe( 'gencode.v38.annotation.head.gff' )
-X['ID'] = X["attributes"].apply( extract_ID_from_attributes )
-```
-
-### Extracting the Parent as well
-
-Now we need to do the same thing for the `Parent` attribute. It's tempting to write the same
-function again but... hey that's a waste of effort. Instead let's generalise our function to
-extract any value from the attributes:
-```python
-def extract_value_from_attributes( attributes, key ):
-  result = None
-  key_pos = attributes.find( key + '=' )                       # find the '[key]=' bit
-  if key_pos == -1:
-    pass                                                       # no attribute for this key; do nothing
-  else:
-    start_of_value = key_pos+len(key)+1                        # find the start of the value
-    semicolon_pos = attributes.find( ';', start_of_value )     # find the next semicolon (or -1 if none)
-    if semicolon_pos == -1:
-      semicolon_or_end = len(attributes)
-    else:
-      semicolon_or_end = semicolon_pos
-    result = attributes[start_of_value:semicolon_or_end]       # extract the value
-  return result
-```
-
-
-...and check it works:
-```python
-assert extract_value_from_attributes( "a=b;ID=test_value", "ID" ) == "test_value"
-assert extract_value_from_attributes( "a=b;ID=test_value", "Parent" ) == None
-assert extract_value_from_attributes( "ID=1;Parent=2", "ID" ) == "1"
-assert extract_value_from_attributes( "ID=1;Parent=2", "Parent" ) == "2"
-assert extract_value_from_attributes(
-  "ID=ENST00000456328.2;Parent=ENSG00000223972.5;gene_type=transcribed_unprocessed_pseudogene",
-  "ID"
-) == "ENST00000456328.2"
-assert extract_value_from_attributes(
-  "ID=ENST00000456328.2;Parent=ENSG00000223972.5;gene_type=transcribed_unprocessed_pseudogene",
-  "gene_type"
-) == "transcribed_unprocessed_pseudogene"
-```
-
-Now we can easily extract the columns ones we want:
-
-```python
-def extract_ID_from_attributes( attributes ):
-  return extract_value_from_attributes( attributes, 'ID' )
-
-def extract_Parent_from_attributes( attributes ):
-  return extract_value_from_attributes( attributes, 'Parent' )
-  
-X["ID"] = X["attributes"].apply( extract_ID_from_attributes )
-X["Parent"] = X["attributes"].apply( extract_Parent_from_attributes )
-```
-
-### Wrapping it all up
-
-To finish this off, update your `parse_gff3_to_dataframe()` to add lines like these that extract
-the `ID` and `Parent` columns to the result before returning it (my solution is
-[here](solutions/part1/gff.py) if you want to check it), and let's
-[test it out](./testing_it_out.md).
+Once you've got your code working - go ahead and [turn it into a module](making_a_module.md).
 

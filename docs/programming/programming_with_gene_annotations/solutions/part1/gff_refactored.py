@@ -11,7 +11,7 @@ def parse_gff3_to_dataframe( file):
 	Additinally, the listed attributes are removed from the attributes column and placed in seperate
 	columns at the start of the result dataframe."""
 	result = read_gff3_using_pandas( file )
-	extract_ID_and_Parent_as_columns( result )
+	extract_ID_and_Parent( result )
 	return result
 
 def read_gff3_using_pandas( file ):
@@ -36,6 +36,6 @@ def read_gff3_using_pandas( file ):
 	)
 	return result
 
-def extract_attributes_as_columns( data, attributes_to_extract ):
-	data.insert( 0, 'ID', data.attributes.str.extract( 'ID=[^;]+' ))
-	data.insert( 1, 'Parent', data.attributes.str.extract( 'Parent=[^;]+' ))
+def extract_ID_and_Parent( data ):
+	data.insert( 0, 'ID', data.attributes.str.extract( 'ID=([^;]+)' ))
+	data.insert( 1, 'Parent', data.attributes.str.extract( 'Parent=([^;]+)' ))

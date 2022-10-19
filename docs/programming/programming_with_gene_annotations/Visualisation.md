@@ -1,14 +1,10 @@
 ---
-sidebar_position: 13
+sidebar_position: 16
 ---
 
+# Appendix: visualisation
+
 [Up to table of contents](README.md)
-
-[Back to the previous page](Scaling_up.md)
-
-[Go to the next page](Closing_thoughts.md)
-
-## A note on visualisation
 
 It would be very nice to plot some of the values we've computed! For example - gene length versus
 number of exons, or gene length versus number of transcripts, or genome size versus number of

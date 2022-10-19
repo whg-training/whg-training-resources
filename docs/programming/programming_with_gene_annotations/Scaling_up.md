@@ -2,31 +2,26 @@
 sidebar_position: 12
 ---
 
+# Scaling up for a real analysis
+
 [Up to table of contents](README.md)
-
-[Back to the previous page](Where_next.md)
-
-[Go to the next page](Visualisation.md)
-
-## Scaling up
 
 So far we've written some code and (if you've done what I did) looked at data from a few species.
 This intriguing but it'd really be great to take a more systematic look across species.
 
-For example - maybe you'd like to run it for [all ~300 species with data on
-Ensembl](http://ftp.ensembl.org/pub/current_gff3/)?). 
+For example - maybe you'd like to run it for [all ~300 species with data on Ensembl](http://ftp.ensembl.org/pub/current_gff3/)?). 
+(To figure out how you might download this data - see [here](/bioinformatics/tips_and_tricks/recursive_ftp.md).)
 
 However if you were to do this right now, you would likely run into problems - not least because
-the output file will grow very large. 
+the output file will grow very large.
 
 **Challenge** Make your code ready to apply at scale - say, to hundreds of species.
 
-The key problem 
-
-
 ** An aside on python packaging. ** If all your code is currently in a single file (say `gff.py`),
 it will be getting quite large - and possibly unwieldy. If so, a good idea is to turn it into a
-python package. This is pretty easy as follows:
+python 'package'.  (A package is a glorified module which has been split across multiple files).
+
+This is pretty easy as follows:
 
 1. create a new directory `gff`
 
@@ -51,16 +46,23 @@ from .summary import *
 from .regions import *
 ```
 
-Congratulations! You have written a python package. 
+Congratulations! You have now written a python package. 
 
-If the above isn't clear, you can see my version of this
-[`solutions/part3/gff`][solutions/part3/gff/]. 
+If the above isn't clear, you can see my version of this in
+[this folder](https://github.com/whg-training/whg-training-resources/blob/main/docs/programming/programming_with_gene_annotations/solutions/part3/gff/).
 
-**Note.** With the `__init__.py` written as above, the package can still be used in the same way as
-before (i.e. by writing `import gff`). The key benefit of a package is that it lets you split code
+:::tip Note
+With the `__init__.py` written as above, the package can still be used in the same way as
+before (i.e. by writing `import gff`). So you should still be able to run your test;
+```
+python3 ./test_gff.py
+```
+
+The key benefit of a package is that it lets you split code
 up into smaller files, which I find makes it easier to edit and add to. It also provides you a
 place to put tests (add a `tests/` folder), and allows you more control over how the code is
 accessed (by altering `__init__.py`.)
+:::
 
 ### Reducing how much is stored
 
@@ -106,13 +108,26 @@ Importantly (unless you specify an option) the code does not store all the trans
 coding sequence records, and consequently the output file is much smaller. But it still allows us
 to explore interesting genes.
 
-**Note.** To make this easy to write I wrapped up much of our analysis code into a new [python
-class](https://docs.python.org/3/tutorial/classes.html) - which you can find here:
-[`solutions/scaling_up/gff/analysis.py`](solutions/scaling_up/gff/analysis.py). Encapsulating
-things into a class like this is useful, because we have several related data objects and the class
-keeps them all in one place, and makes sure they are used appropriately. However, this class is
-arguably not very well written and it fails on some of the [original criteria](Introduction.md) I
-suggested - not least that it would be hard to test. So really this class should be split up
-further.
+### A real example
+
+You can see the code I reached when using this to answer these questions
+[in this folder](https://github.com/whg-training/whg-training-resources/blob/main/docs/programming/programming_with_gene_annotations/solutions/real_analysis/).
+It has a few changes:
+
+* The module has been split into a package of files, as described above.
+* The program is called `summarise_genes.py` instead of `gff_to_sqlite.py`
+* The program avoids storing stuff that isn't needed (as also described above).
+
+To make it easier to write I wrapped up much of our analysis code into a new [python
+class](https://docs.python.org/3/tutorial/classes.html) called `UnpackedGFF`. It holds the genes, transcripts, exons, CDS, and
+sequences, and knows how to call the functions to summarise them.
+
+**Note.** Encapsulating things into this class was useful, because we have several related data objects and the class keeps them
+all in one place, and makes sure they are used appropriately. However, this class is arguably not very well written! It fails on
+some of the [original criteria](Introduction.md) and it would be very hard to test. So really this class should be improved.
+
+## What next?
+
+[What next indeed](./What_next.md)
 
 The next page has some [tips on visualisation](Visualisation.md).
