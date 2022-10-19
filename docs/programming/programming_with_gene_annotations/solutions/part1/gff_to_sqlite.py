@@ -14,7 +14,7 @@ def parse_arguments():
         The result will be a table with the GFF3 fields, and with ID and Parent fields in columns."""
     )
     parser.add_argument(
-        '--analysis',
+        '--analysis_name',
         help ='A name to give this analysis.  (I find this useful to avoid losing track of results).',
         required = True
     )
@@ -42,9 +42,12 @@ def parse_arguments():
 
 def process( args ):
     print( "++ Loading genes data from %s...\n" % args.input )
-    data = gff.parse_gff3_to_dataframe( open( args.input ))
+    data = gff.parse_gff3_to_dataframe( args.input )
     print( "++ ok, %d records loaded, they look like:\n" % data.shape[0] )
     print( data )
+
+    print( "++ Setting analysis name '%s'...\n", args.analysis_name )
+    data.insert( 0, 'analysis', args.analysis )
 
     print( "++ Writing records to %s:%s...\n" % ( args.output, args.table ))
     db = sqlite3.connect( args.output )
@@ -52,7 +55,6 @@ def process( args ):
     # Pandas has a handy to_sql method for this.
     # https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_sql.html
     # First we add the 'analysis' column 
-    data.insert( 0, 'analysis', args.analysis )
     data.to_sql( args.table, db, index = False, if_exists = 'replace' if args.overwrite else 'append' )
     #print( "++ Indexing ID field...\n" )
     # Indexing is a good idea.  But if we are doing multiple datasets

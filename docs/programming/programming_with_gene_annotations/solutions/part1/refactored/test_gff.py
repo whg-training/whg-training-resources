@@ -16,16 +16,16 @@ class TestGff(unittest.TestCase):
 		data = gff.parse_gff3_to_dataframe( StringIO( self.test_data ))
 		assert data['seqid'][0] == 'chr1'
 		assert data['strand'][0] == '+'
-		assert data['attributes'][0] == 'ID=gene1;other_data=stuff'
+		assert data['attributes'][0] == 'other_data=stuff'
 		assert data['seqid'][1] == 'chr1'
 		assert data['strand'][1] == '+'
-		assert data['attributes'][1] == 'ID=gene1.1;Parent=gene1'
+		assert data['attributes'][1] == ''
 		assert data['start'][0] == 1
 		assert data['end'][0] == 1000
 		assert data['start'][1] == 10
 		assert data['end'][1] == 900
 		from math import isnan
-		assert isnan( data['score'][1] )
+		assert isnan( data['score'][1] ) 
         # or written another way:
 		assert data['score'].isnull()[1]
 		assert data['ID'][0] == 'gene1'
