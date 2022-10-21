@@ -29,6 +29,8 @@ download the file `atp2b4_per_gene_data.tsv` and place it in your folder:
 curl -O https://github.com/whg-training/whg-training-resources/tree/main/docs/statistical_modelling/regression_modelling/data/atp2b4_per_gene_data.tsv
 ```
 
+(Or use the [direct link](./data/atp2b4_per_gene_data.tsv).)
+
 Start an R session and make sure you are working in this directory (e.g. using `setwd()` or `Session` -> `Set Working Directory`
 in RStudio).  Let's load the data now and take a look:
 
