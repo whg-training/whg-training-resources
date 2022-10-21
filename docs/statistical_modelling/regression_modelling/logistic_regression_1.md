@@ -140,7 +140,16 @@ Which country did `glm` pick as the baseline here?  Which countries have higher 
 If you want to control which country is the baseline, turn the column into a factor with the right ordering. For example let's
 order countries roughly west-to-east:
 ```
-data$country = factor( data$country, levels = c( "Gambia", "Ghana", "Cameroon", "Tanzania", "Kenya" ))
+data$country = factor(
+    data$country,
+    levels = c(
+        "Gambia",
+        "Ghana",
+        "Cameroon",
+        "Tanzania",
+        "Kenya"
+    )
+)
 ```
 Now re-run the regression - can you see the difference?
 :::
@@ -181,34 +190,50 @@ Can you 'destroy' the association by including covariates?
 ## Interpreting logistic regression parameters.
 
 The logistic regression model is similar to the linear regression model, but a bit more complex at first sight.
-It works like this: start with the *linear predictor*
+It works like this: start with same *linear predictor* as for linear regression:
 $$
 \mu + \beta \times \text{genotype} + \gamma \times country + ...
 $$
-This is exactly the same as for linear regression.
 
-However, instead of modelling the outcome directly as:
+...but now instead of modelling the outcome directly as:
 $$
 Y = \text{linear predictor} + \text{noise}
 $$
 
-...the linear predictor is now thought of as being on the **log-odds** (logarithm of the odds) scale.
+we model the outcome as having a probability that depends on this predictor.  The full function is:
+$$
+P(\text{case}) = \frac{e^(\text{linear predictor})}{1 + e^(\text{linear predictor})}
+$$
 
-To understand this statement you need to understand what the logarithm is, and what the odds is.
+Or alternatively:
+$$
+\text{log odds}(\text{case}) = \text{linear predictor}
+$$
 
-### Probabilities, odds and log-odds
+To understand this statement you need to understand what the log-odds is - read on to find out!
+
+### Probabilities
 
 Our regression will model the *probability that the sample is a case*. (The probability is a number from zero to one that
-expresses how confident we are (given the model) that the sample is a case. If $P(\text{case}|\text{model}) = 1$ or $0$ then we
-are completely certain the sample is a case or control, while if $P(\text[case}|\text{model}) =0.5$ then it is 50-50.
+expresses how confident we are (given the model) that the sample is a case. For example, if
+$$
+P(\text{case}|\text{model}) = 1or 1
+$$
+then we are completely certain the sample is a case or control, while if
+$$
+P(\text{case}|\text{model}) = 0.5
+$$
+then it is 50-50.
 
 :::warning Important!
 
 Like all probabilities, these probabilities are *conditional on a model* - in this case the logistic regression model. It **makes
-no sense** to say "the probability of being a case" without reference to a model. As the flame suggests, your logic will catch
-fire if you ignore this rule.
+no sense** to say "the probability of being a case" without reference to a model. Your logic will catch
+fire if you ignore this rule!
 
 :::
+
+### Odds
 
 The **odds** is just a rescaling of the probability - you can go back and forth between them like this:
 $$
@@ -249,6 +274,8 @@ You should see:
 * The odds (y axis) goes from 0 to infinity
 * Near zero, the two are roughly equal, but they diverge more as probabilities get higher.
 
+### Log-odds
+
 What about the log odds?  It's just the logarithm of the odds:
 ```
 logodds <- function(p) { log( p/(1-p)) }
@@ -285,22 +312,30 @@ print(
 
 The **logistic function** maps the whole real line onto $(0,1)$ in a non-linear fashion.  
 
-::tip Question
+Play around with these functions a bit to make sure you understand them. 
 
-Play around with these function a bit to make sure you understand them. What probabilities correspond to negative log-odds? Are
-your `logistic` and `logodds` functions really inverse to each other?
+:::tip Question
+
+Check your `logistic` and `logodds` functions really inverse to each other. What probabilities correspond to negative log-odds?
 
 :::
-
 
 ### The logistic regression model
 
 The logistic regression model can now be written:
 $$
-\text{log-odds}(\text{case}) = \mu + \beta \times \text{genotype} + \gamma \times country + ...
+\text{log-odds}(\text{case}) = \mu + \beta \times \text{genotype} + \gamma \times \text{country} + ...
 $$
 
-### Hey presto! Interpreting the parameters revisited
+### Interpreting the parameters revisited
+
+We can now interpret the parameters, namely:
+
+:::tip Interpretation
+
+The parameter estimate represents the **increase in log-odds associated with a unit increase in the predictor**.
+
+:::
 
 To really understand this, go back to the first fit (the one with no covariates):
 ```
@@ -332,7 +367,7 @@ Work this out for your table now:
 odds_ratio = (2690*2230) / (3122*2684)
 ```
 
-You should get a value like $0.725615$.
+You should get a value like $0.7158825$.
 
 Now for the magic trick:
 ```
@@ -341,17 +376,54 @@ exp( -0.3342393 )
 
     [1] 0.7158825
 
-Hey presto!
+Hey presto!  Exponentiating the fitted parameter gives us the same value.
 
-:::tip Note
+::tip Note
 
-The logistic regression parameter estimate is interpreted as the **logarithm of the odds ratio**. It represents the **increase in
-log-odds associated with a unit increase in the predictor**.
+You might be wondering how 'estiamting the logarithm of the odds ratio' and the 'increase in log-odds' are related. The answer is
+that `log()` transforms multiplication to addition - and division to subtraction. So the log of the odds ratio, is just the
+difference in log-odds - these two statements say the same thing.
 
 :::
 
+In this way logistic regression provides an extension of the basic estimate that you can make from a 2x2 table as above. However,
+logistic regression gives us lots of flexibility to include covariates that are much harder with the table.
 
+## O blood group
 
+It looks like O blood group is associated with a severe malaria outcome.  
 
+:::tip Question
 
+Which of these statements to you agree with:
 
+* O blood group is associated with lower chance of having severe malaria
+* O blood group is protective against severe malaria
+* We can't tell if O blood group is protective against severe malaria
+
+:::
+
+:::tip Question
+
+What do you make of the A/B blood group SNP?  Is it also associated?
+
+:::
+
+:::tip Challenge question
+
+To do a really solid analysis, we should *look at the estimates across countries*. Create a forest plot which should have:
+
+* one row per conutry
+* on each row, plot the regression estimate just from that country
+* Underneath each point plot the **95% confidence interval**.  
+
+(The 95% confidence interval is obtained by going out 1.96 times the standard error in each direction from the point estimate:
+
+$$
+
+\text{95% CI} = \hat{\beta} \pm 1.96 * \text{se}
+
+$$
+
+Are the estimates consistent across countries?
+:::
