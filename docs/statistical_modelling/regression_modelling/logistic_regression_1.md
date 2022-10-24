@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 import Tabs from '@theme/Tabs';
@@ -77,10 +77,10 @@ comparing this to a [table of the genetic code](https://en.wikipedia.org/wiki/Ge
 
 :::
 
-###  Running the regression
+## Running the regression
 
 A and B antigens are bound to the surface of red cells and tend to stick to things - it's plausible malaria parasites might
-exploit this. Let's use this data to test to see if O blood group is associated with malaria status.
+exploit this. Let's therefore use this data to test to see if O blood group is associated with malaria status.
 
 To get started let's create a new variable indicating 'O' blood group status:
 ```
@@ -182,162 +182,125 @@ fit4 = glm(
 summary(fit4)$coeff
 ```
 
+Can you 'destroy' the association by including covariates?
+
 :::tip Question
 
-Can you 'destroy' the association by including covariates?
+Which of these statements do you agree with:
+
+* O blood group is associated with lower chance of having severe malaria, relative to A/B blood group.
+* O blood group is associated with higher chance of having severe malaria, relative to A/B blood group.
+* O blood group is protective against severe malaria.
+* We can't tell if O blood group is protective or confers risk against severe malaria.
+
 :::
 
-## Interpreting logistic regression parameters.
+## Interpreting the parameters
+
+### The basic model
 
 The logistic regression model is similar to the linear regression model, but a bit more complex at first sight.
 It works like this: start with same *linear predictor* as for linear regression:
 $$
-\mu + \beta \times \text{genotype} + \gamma \times country + ...
+\mu + \beta \times \text{genotype} + \gamma \times \text{covariate} + ...
 $$
 
-...but now instead of modelling the outcome directly as:
+...but now instead of modelling the outcome directly as in linear regression...
 $$
 Y = \text{linear predictor} + \text{noise}
 $$
 
-we model the outcome as having a probability that depends on this predictor.  The full function is:
-$$
-P(\text{case}) = \frac{e^(\text{linear predictor})}{1 + e^(\text{linear predictor})}
-$$
+...we first transform the predictor through the *logistic function*.
 
-Or alternatively:
 $$
-\text{log odds}(\text{case}) = \text{linear predictor}
+\text{logistic}(x) = \frac{e^x}{1+e^x}
 $$
 
-To understand this statement you need to understand what the log-odds is - read on to find out!
+We then model the outcome by saying that the *probability that the outcome is a "CASE" is equal to the logistic function of the
+linear predictor:
 
-### Probabilities
-
-Our regression will model the *probability that the sample is a case*. (The probability is a number from zero to one that
-expresses how confident we are (given the model) that the sample is a case. For example, if
 $$
-P(\text{case}|\text{model}) = 1or 1
-$$
-then we are completely certain the sample is a case or control, while if
-$$
-P(\text{case}|\text{model}) = 0.5
-$$
-then it is 50-50.
-
-:::warning Important!
-
-Like all probabilities, these probabilities are *conditional on a model* - in this case the logistic regression model. It **makes
-no sense** to say "the probability of being a case" without reference to a model. Your logic will catch
-fire if you ignore this rule!
-
-:::
-
-### Odds
-
-The **odds** is just a rescaling of the probability - you can go back and forth between them like this:
-$$
-\text{odds}(X) = \frac{\text{probability}(X)}{1-\text{probability}(X)} \quad \text{and} \quad \text{probability}(X) = \frac{\text{odds}(X)}{1 + \text{odds}(X)}
+\text{probability}(Y=1) = \text{logistic}( \mu + \beta \times \text{genotype} + \gamma \times \text{covariate} + ... )
 $$
 
-::tip Note
-From now on I'll write $P(X)$ instead of $\text{prob}(X)$ for probabilities - but I'll keep using $\text{odds}$ for odds.
-:::
+...where I'm imagining $Y=1$ as indicating a case and $Y=0$ a control.
 
-:::tip Note
-As in the above warning - the probabilities and odds are *always* conditional on a model, even if (like above) I haven't written it in
-there... have I made that clear?
-:::
+In this way the model provides a probabalistic model suitable for a binary outcome variable, but still using the same underlying
+predictor on the linear scale.
 
-To get a sense of this let's plot the probability -> odds conversion now:
-```
-odds <- function(p) { p / (1-p) }
-x = seq( from = 0, to = 1, by = 0.001 )
-plot_data = tibble(
-    probability = x,
-    odds = odds(x)
-)
-p = (
-    ggplot( data = plot_data, aes( x = probability, y = odds) )
-    + geom_line()
-    + ylim( 0, 10 )
-)
-print(p)
-```
-[!img](images/odds.png)
+### The logistic and logit functions
 
-Play around with the axes a bit to explore different parts of this curve (try `+ ylim( 0, 1)` for example.)
-
-You should see:
-
-* The probability (x axis) goes from 0 to 1
-* The odds (y axis) goes from 0 to infinity
-* Near zero, the two are roughly equal, but they diverge more as probabilities get higher.
-
-### Log-odds
-
-What about the log odds?  It's just the logarithm of the odds:
-```
-logodds <- function(p) { log( p/(1-p)) }
-```
-
-Plot the log-odds as well.  You should see something like:
-![img](images/logodds.png)
-
-This function (that we've called `logodds`) is normally called the [logit function](https://en.wikipedia.org/wiki/Logit). You
-should see that the log-odds is on a scale from minus to positive infinity, i.e. the whole real line.
-
-Finally - let's also plot the inverse of the logit function - that is, the function that takes us from log-odds space back to
-probability space.  It is called the [logistic function](https://en.wikipedia.org/wiki/Logistic_function) and looks like this:
+To get a better sense of how this works, plot the logistic function:
 
 ```
-logistic <- function(x) { exp(x) / (1 + exp(x)) }
-```
-
-Plot that function now:
-```
+logistic <- function(x) {
+    exp(x) / ( 1 + exp(x) )
+}
 x = seq( from= -6, to = 6, by = 0.01 )
 plot_data = tibble(
-    logodds = x,
-    probability = logistic(x)
+    x = x,
+    probabiy = logistic(x)
 )
 print(
-    ggplot( data = plot_data, aes( x = logodds, y = probability ))
+    ggplot( data = plot_data, aes( x = x, y = y ))
     + geom_line()
     + geom_vline( xintercept = 0, linetype = 2, col = 'red' )
 )
 ```
 ![img](images/logistic.png)
 
+The logistic function maps the real line (x axis, where the linear predictor lives) onto the unit interval $(0,1)$ (y axis). In
+principle $+\infty$ is mapped onto 1 and $-\infty$ to $0$. As in the above plot, we interpret this as mapping *log odds* space onto
+the space of probabilities. Why do we say "log odds" here? To see this, it's easiest to think about the inverse function to the
+logistic function.  This is the *logit function* and can be written:
+$$
+\text{logit}(p) = \log \left( \frac{p}{1-p} \right)
+$$
 
-The **logistic function** maps the whole real line onto $(0,1)$ in a non-linear fashion.  
+The logit function specifically computes the logarithm of the odds associated to a probability *p*.
 
-Play around with these functions a bit to make sure you understand them. 
+:::tip Challenge
 
-:::tip Question
+Plot $\text{logit}$ as well.  It should look something like this:
+![img](images/logodds.png)
 
-Check your `logistic` and `logodds` functions really inverse to each other. What probabilities correspond to negative log-odds?
+$\text{logit}()$ of course carries the unit inveral (x axis) back onto the real line (y axis).
 
 :::
 
-### The logistic regression model
+:::tip Maths challenge
 
-The logistic regression model can now be written:
-$$
-\text{log-odds}(\text{case}) = \mu + \beta \times \text{genotype} + \gamma \times \text{country} + ...
-$$
+Show that $\text{logit}()$ and $\text{logistic}()$ are really inverse to each other. (Plug the expression for one into the
+expressino for the other, and simplify.)
 
-### Interpreting the parameters revisited
+(If you don't feel confident doing this maths, satisfy yourself that they are inverse to each other by trying some values in R.)
 
-We can now interpret the parameters, namely:
+:::
+
+### Interpreting estimates on the log-odds scale
+
+If you follow this reasoning through, you'll see the following:
 
 :::tip Interpretation
 
-The parameter estimate represents the **increase in log-odds associated with a unit increase in the predictor**.
+1. The linear predictor for each sample should be interpreted as the modelled **log-odds that the sample is a disease case**.
+(Transforming that through the logistic function, we get instead the modelled probability the sample is a disease case.
+
+2. The parameters therefore represent the **difference in log-odds** associated with a unit increase in the predictor. 
 
 :::
 
-To really understand this, go back to the first fit (the one with no covariates):
+For example, in the above, $\beta$ indicates the difference in log-odds for individuals having O blood group, relative to those
+that don't.
+
+### Interpreting estimates on the odds scale
+
+In between the probability scale and the log-odds scale, there is one more useful scale on which to interpret this. If we
+exponentiate the log-odds, we are in the **odds scale**. Exponentiation transforms *sums* to *multiples* and *differences* to
+*ratios*. Consequently $e^\beta$ ought to be the ratio of odds - the **odds ratio** - associated with a unit increase in the
+genotype.
+
+To see this in practice, go back to the first fit (the one with no covariates).  It looked like this:
 ```
 summary(fit)$coeff
 ```
@@ -356,18 +319,19 @@ table( data$status, data$o_bld_group )
     CONTROL 2690 2684
     CASE    3122 2230
 
-Let's think of this matrix as $\left(\begin{matrix} a & b \\ c & d\end{matrix}\right)$. About the simplest way we could measure
-any difference in distribution is to take the ratio of the odds of being a case in each column:
+Let's think of this matrix as $\left(\begin{matrix} a & b \\ c & d\end{matrix}\right)$. One way to measure the difference in
+distribution of the two columns is to compute the odds in each column and take their ratio:
+
 $$
 \text{odds ratio} = \frac{a/c}{b/d} = \frac{ad}{bc}
 $$
 
-Work this out for your table now:
+If you work this out for the above table you get:
 ```
 odds_ratio = (2690*2230) / (3122*2684)
 ```
 
-You should get a value like $0.7158825$.
+which works out to $0.7158825$.
 
 Now for the magic trick:
 ```
@@ -376,54 +340,171 @@ exp( -0.3342393 )
 
     [1] 0.7158825
 
-Hey presto!  Exponentiating the fitted parameter gives us the same value.
+Hey presto!  Exponentiating the fitted parameter gives us the odds ratio, as expected.
 
-::tip Note
+:::tip Interpretation
 
-You might be wondering how 'estiamting the logarithm of the odds ratio' and the 'increase in log-odds' are related. The answer is
-that `log()` transforms multiplication to addition - and division to subtraction. So the log of the odds ratio, is just the
-difference in log-odds - these two statements say the same thing.
+Exponentiating the parameter estimates gives the **odds ratio associated with a unit increase in each predictor**.
 
 :::
 
-In this way logistic regression provides an extension of the basic estimate that you can make from a 2x2 table as above. However,
-logistic regression gives us lots of flexibility to include covariates that are much harder with the table.
+:::note Note
 
-## O blood group
+If you add covariates in there, you won't get exactly the same answer any more - your estimate is conditional on the other
+covariates.  However, it's still usefully interpretable as a log odds ratio in this way.
 
-It looks like O blood group is associated with a severe malaria outcome.  
+:::
+
+## A/B/O blood groups and malaria
+
+From these data it certainly looks like O blood group is associated with severe malaria outcomes. But what about A/B blood group?
+
+### Including the variants as seperate predictors
+
+What about the other SNP, rs8176746? This one encodes A/B blood type, with a 'T' allele encoding 'B' blood type and the 'G' allele
+(which the reference sequence carries) encoding 'A' blood type.
+
+To look at this, we could of course just put the A/B SNP in the model instead.  Let's encode as an additive model for simplicity:
+
+```
+data$rs8176746_dosage = NA
+data$rs8176746_dosage[ data$rs8176746 == 'G/G' ] = 0
+data$rs8176746_dosage[ data$rs8176746 == 'G/T' ] = 1
+data$rs8176746_dosage[ data$rs8176746 == 'T/T' ] = 2
+fit5 = glm(
+    status ~ rs8176746_dosage + country,
+    data = data,
+    family = "binomial"  # needed to specify logistic regression
+)
+summary(fit5)$coeff
+```
+
+                        Estimate Std. Error    z value     Pr(>|z|)
+    (Intercept)      -0.07304875 0.03118217 -2.3426452 1.914758e-02
+    rs8176746_dosage  0.17814569 0.03573289  4.9854826 6.180734e-07
+    (etc.)
+
+Hey - rs8176746 looks associated as well!  Is B blood type associated with higher risk?
+
+**However**, what happens if we put them both in at once?
+```
+fit5b = glm(
+    status ~ o_bld_group + rs8176746_dosage + country,
+    data = data,
+    family = "binomial"  # needed to specify logistic regression
+)
+summary(fit5b)$coeff
+```
+
+                        Estimate Std. Error    z value     Pr(>|z|)
+    (Intercept)       0.10396026 0.04122405  2.5218350 1.167444e-02
+    o_bld_group      -0.30265008 0.04505738 -6.7169930 1.855129e-11
+    rs8176746_dosage  0.04228134 0.04143095  1.0205255 3.074793e-01
+    (etc.)
+
+Oh. Now rs8176746 **doesn't** look associated.
+
+So what's going on?
+
+One way to think about this is to think of what the baseline level in the regression is - that's the level of predictors that only
+gives the baseline linear predictor:
+
+* For `fit5`, the baseline is everyone who has `rs8176746 == G/G`.
+* For `fit5b`, however, the baseline is everyone who has `rs8176746 == G/G` **and** has non-O blood type.
+
+Even though the two models look similar, they are measuring different things. In the first fit (`fit5`), the baseline group
+includes a bunch of people who have O blood type, but in the second fit it doesn't.
+
+### Encoding A/B/O directly
+
+A better way to solve this problem is to encode the biologically relevant variable directly. The biology works as follows: each
+individual has two chromosomes, and each carries the determinant of either the A or B antigen. Each chromosome might *also*
+carry a the loss-of-function 'O' deletion. Based on this we can call A/B/O blood type as follows:
+
+    combined genotype  blood group phenotype
+    -----------------  ---------------------
+        C/C  G/G               A
+        C/C  G/T               AB
+        C/C  T/T               B
+        -/C  G/G               A
+        -/C  G/T            B or A? (*)
+        -/C  T/T               B
+        -/-  G/G               O
+        -/-  G/T               O
+        -/-  T/T               O
+
+The cell marked (*) is the only difficult one here - both variants are heterozygous and we don't know from this data how they
+associated together on the chromosomes. However, here we are helped by the fact that O blood type mutation almost always occurs on
+the 'A' type background (i.e. chromosomes with 'G' allele at rs8176746). You can see this by tabling the two variants:
+
+```
+table( data$rs8176719, data$rs8176746 )
+```
+
+          G/G  G/T  T/T
+     -/- 4621  264    7
+     -/C 2331 2244   60
+     C/C  331  510  287
+
+With a few exceptions, all type O individuals have G/G genotype at rs8176746; the heterozygous -/C individuals are also consistent
+with most O type haplotypes carrying the 'G' allele. For the sake of this tutorial we will therefore assume that these doubly-heterozygous individuals have B blood type.
+Let's encode this now:
+
+```
+data$abo_type = factor( NA, levels = c( "A", "B", "AB", "O" ))
+data$abo_type[ data$rs8176719 == 'C/C' & data$rs8176746 == 'G/G' ] = 'A'
+data$abo_type[ data$rs8176719 == 'C/C' & data$rs8176746 == 'G/T' ] = 'AB'
+data$abo_type[ data$rs8176719 == 'C/C' & data$rs8176746 == 'T/T' ] = 'B'
+data$abo_type[ data$rs8176719 == '-/C' & data$rs8176746 == 'G/G' ] = 'A'
+data$abo_type[ data$rs8176719 == '-/C' & data$rs8176746 == 'G/T' ] = 'B'
+data$abo_type[ data$rs8176719 == '-/C' & data$rs8176746 == 'T/T' ] = 'B'
+data$abo_type[ data$rs8176719 == '-/-' ] = 'O'
+```
+
+...and fit it:
+
+```
+fit6 = glm(
+    status ~ abo_type + country,
+    data = data,
+    family = "binomial"  # needed to specify logistic regression
+)
+summary(fit6)$coeff
+```
+
+The baseline is now, of course, 'A' blood type individuals.
 
 :::tip Question
 
-Which of these statements to you agree with:
-
-* O blood group is associated with lower chance of having severe malaria
-* O blood group is protective against severe malaria
-* We can't tell if O blood group is protective against severe malaria
+Is there any evidence that B, or AB blood type is associated with a different risk of malaria, compared to A?
 
 :::
+
+## A challenge question
+
+If O blood group is really protective, we'd expect the effect to be reasonably consistent across different subsets of our data -
+say across countries.
 
 :::tip Question
 
-What do you make of the A/B blood group SNP?  Is it also associated?
+Examine this by creating a **forest plot**. It should have:
 
-:::
-
-:::tip Challenge question
-
-To do a really solid analysis, we should *look at the estimates across countries*. Create a forest plot which should have:
-
-* one row per conutry
+* one row per country
 * on each row, plot the regression estimate just from that country
-* Underneath each point plot the **95% confidence interval**.  
+* Behind each point plot the 95% confidence interval as a horizontal line segment.
 
-(The 95% confidence interval is obtained by going out 1.96 times the standard error in each direction from the point estimate:
+**Hint.** To do this you will need to re-run the regression restricting to the samples from each country - then find a way to
+extract those estimates and their standard errors into a data frame for plotting.
+
+Are the estimates across countries consistent?
+
+:::
+
+:::tip Note
+The 95% confidence interval is obtained by going out 1.96 times the standard error in each direction from the point
+estimate:
 
 $$
-
-\text{95% CI} = \hat{\beta} \pm 1.96 * \text{se}
-
+\text{95\% CI} = \hat{\beta} \pm 1.96 \times \text{se}
 $$
-
-Are the estimates consistent across countries?
 :::
