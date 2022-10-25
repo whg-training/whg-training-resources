@@ -53,7 +53,7 @@ def process( args ):
     print( data )
 
     print( "++ Setting analysis name '%s'...\n", args.analysis_name )
-    data.insert( 0, 'analysis', args.analysis )
+    data.insert( 0, 'analysis', args.analysis_name )
 
     print( "++ Writing records to %s:%s...\n" % ( args.output, args.table ))
     db = sqlite3.connect( args.output )
