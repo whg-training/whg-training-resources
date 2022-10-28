@@ -47,8 +47,6 @@ From [https://doi.org/10.1371/journal.pone.0178169](https://doi.org/10.1371/jour
 - [Manhattan Plot](https://www.sciencedirect.com/topics/biochemistry-genetics-and-molecular-biology/manhattan-plot)
 - [Circos Plot](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2752132/)
 
-### R Packages
-
 ## Set 2: Gene-centric Plots
 
 ### Example Plots
@@ -77,7 +75,6 @@ From [https://doi.org/10.1016/j.clim.2015.05.020](https://doi.org/10.1016/j.clim
 - [Heatmap](https://chartio.com/learn/charts/heatmap-complete-guide/)
 - [Volcano Plot](https://training.galaxyproject.org/training-material/topics/transcriptomics/tutorials/rna-seq-viz-with-volcanoplot/tutorial.html)
 
-### R Packages
 
 ## Set 3: Dimensional Reduction Plots
 
@@ -107,7 +104,6 @@ From [https://doi.org/10.1093/ecco-jcc/jjaa054](https://doi.org/10.1093/ecco-jcc
 - [tSNE Plot](https://distill.pub/2016/misread-tsne/)
 - [UMAP Plot](https://umap-learn.readthedocs.io/en/latest/plotting.html)
 
-### R Packages
 
 ## Set 4: Significance-centric Plots
 
@@ -136,5 +132,3 @@ From [https://doi.org/10.1093/ndt/gfaa142.P1611](https://doi.org/10.1093/ndt/gfa
 - [Venn Diagram](https://www.lucidchart.com/pages/tutorial/venn-diagram)
 - [UpSet Plot](https://upset.app/)
 - [Box & Whisker Plot](https://www.tableau.com/data-insights/reference-library/visual-analytics/charts/box-whisker)
-
-### R Packages
