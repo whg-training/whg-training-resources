@@ -55,7 +55,8 @@ Sashimi Plot
 
 Heatmap
 
-Volcano Plot
+![Volcano Plot](images/volcano_plot.png)
+From [https://doi.org/10.1016/j.clim.2015.05.020](https://doi.org/10.1016/j.clim.2015.05.020)
 
 ### Questions to Consider
 
@@ -105,7 +106,8 @@ UMAP Plot
 
 ### Example Plots
 
-Venn Diagram
+![Venn diagram](images_venn.png)
+From [https://doi.org/10.1016/j.clim.2015.05.020](https://doi.org/10.1016/j.clim.2015.05.020)
 
 UpSet Plot
 
