@@ -1,18 +1,18 @@
 # Getting started with genomic data
 
-Authors: Ben Wright, Wojciech Lason Bioinformatics Core
+Authors: Ben Wright, Wojciech Lason
 
 # Session aims
 
 -   Introduce common file formats and their uses
 -   Introduce command line tools to work with those files
--   Put bash and R skills to use filtering variant data
+-   Put bash and R skills to use on some of these files
 
 The intention is not to teach the specifics of every format and every
 tool, but to make you  
-familiar with the landscape of bioinfoamtics tools and data so if you
-need to solve a specific problem in the course of research you have an
-idea of where to start.
+familiar with the landscape of bioinformatics tools and data so if you
+need to solve a specific problem in the future you have an idea of where
+to start.
 
 ## Text formats
 
@@ -244,14 +244,14 @@ usually stored compressed (`.fastq.gz`).
 
 [SAM format definition](https://samtools.github.io/hts-specs/SAMv1.pdf)
 
--   Suffic: `.sam`
+-   Suffix: `.sam`
 -   Header: `@` lines contain extensive information about the data
     fields in the main file, the tools and files used to generate them
 -   Uses: input to variant callers, output from alignment tools,
     archival for sequencing projects where space is not an issue
 -   Acquired from: alignment tools
 
-This format contains all of the information in a FASTQ file, but also
+This format contains most of the information in a FASTQ file, but also
 contains information as to where in the genome the sequence fragments
 map to, how well they map there, and how they differ from the reference
 for that region.
@@ -420,6 +420,4 @@ comparing samples or cross-referencing data and feature definitions.
 
 ### IGV screenshot
 
-# Break
-
-# Practical
+![IGV screenshot](images/NGS_split.jpg)
