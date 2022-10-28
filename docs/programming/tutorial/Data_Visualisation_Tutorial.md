@@ -27,9 +27,11 @@ a way of showing what the theme is for each set.
 
 ### Example Plots
 
-Manhattan Plot
+![Manhattan Plot](images/manhattan.png)
+From [https://doi.org/10.1182/blood-2017-02-769869](https://doi.org/10.1182/blood-2017-02-769869)
 
-Circos Plot
+![Circos Plot](images/circos.png)
+From [https://doi.org/10.1371/journal.pone.0178169](https://doi.org/10.1371/journal.pone.0178169)
 
 ### Questions to Consider
 
@@ -51,7 +53,8 @@ Circos Plot
 
 ### Example Plots
 
-Sashimi Plot
+![Sashimi Plot](images/sashimi.png)
+From [https://doi.org/10.1128/mBio.02079-16](https://doi.org/10.1128/mBio.02079-16)
 
 Heatmap
 
@@ -79,11 +82,14 @@ From [https://doi.org/10.1016/j.clim.2015.05.020](https://doi.org/10.1016/j.clim
 
 ### Example Plots
 
-PCA Plot
+![PCA Plot](images/pca.png)
+From [https://doi.org/10.1093/ndt/gfaa142.P1611](https://doi.org/10.1093/ndt/gfaa142.P1611)
 
-tSNE Plot
+![tSNE Plot](images/tSNE.png)
+From [https://doi.org/10.1016/j.celrep.2020.108661](https://doi.org/10.1016/j.celrep.2020.108661)
 
-UMAP Plot
+![UMAP Plot](images/UMAP.png)
+From [https://doi.org/10.1093/ecco-jcc/jjaa054](https://doi.org/10.1093/ecco-jcc/jjaa054)
 
 ### Questions to Consider
 
@@ -109,9 +115,11 @@ UMAP Plot
 ![Venn diagram](images_venn.png)
 From [https://doi.org/10.1016/j.clim.2015.05.020](https://doi.org/10.1016/j.clim.2015.05.020)
 
-UpSet Plot
+![UpSet Plot](images/UpSet.png)
+From [https://doi.org/10.1093/cid/ciab006](https://doi.org/10.1093/cid/ciab006)
 
-Box & Whisker Plot
+![Box and Whisker plot](images/box_and_whisker.png)
+From [https://doi.org/10.1093/ndt/gfaa142.P1611](https://doi.org/10.1093/ndt/gfaa142.P1611)
 
 ### Questions to Consider
 
