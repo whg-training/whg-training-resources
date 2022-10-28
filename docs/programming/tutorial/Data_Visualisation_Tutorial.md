@@ -56,7 +56,8 @@ From [https://doi.org/10.1371/journal.pone.0178169](https://doi.org/10.1371/jour
 ![Sashimi Plot](images/sashimi.png)
 From [https://doi.org/10.1128/mBio.02079-16](https://doi.org/10.1128/mBio.02079-16)
 
-Heatmap
+![Heatmap](images/heatmap.png)
+From [https://doi.org/10.3389/fonc.2020.00307](https://doi.org/10.3389/fonc.2020.00307)
 
 ![Volcano Plot](images/volcano_plot.png)
 From [https://doi.org/10.1016/j.clim.2015.05.020](https://doi.org/10.1016/j.clim.2015.05.020)
