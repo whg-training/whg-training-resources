@@ -36,6 +36,21 @@ We will then ask: what proportion of simulations have an effect size at least as
 
 This simulation approach therefore provides a direct calculation of the P-value.
 
+Before we begin we are going to make things simpler for ourselves by regressing out the 'stage' variable. Let's do that now:
+```
+fit = lm( reads_per_base_per_million ~ stage, data = data ); summary(fit)$coeff
+data$adjusted_rpbpm = data$reads_per_base_per_million - predict(fit)
+```
+
+Let's check we still get similar answers for the dosage effect:
+```
+fit = lm( adjusted_rpbpm ~ dosage, data = data ); summary(fit)$coeff
+```
+
+               Estimate Std. Error   t value    Pr(>|t|)
+(Intercept) -0.05015735 0.01699483 -2.951330 0.007380132
+dosage       0.03167832 0.01009643  3.137576 0.004785080
+
 ### Simulating a data frame
 
 Let's first build our data frame with the stage variable in:

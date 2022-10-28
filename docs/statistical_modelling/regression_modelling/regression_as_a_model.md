@@ -131,8 +131,8 @@ the data relatively likely (likelihood > 0.1), with the likelihood tailing off a
 
 ## From the likelihood to parameter inference
 
-You may have noticed a major flaw in what is described above. The likelihood function models the probability of the data given the
-parameters, but what we really want to know is waht we should believe about the parameters. That is, we would really like:
+You may have noticed a flaw in what is described above. The likelihood function models the probability of the data given the
+parameters, but what we really want to know is *what are the parameter values*. That is, we would really like:
 
 $$
 P( \text{parameters}|\text{data}) \quad\text{instead of}\quad P(\text{data}|\text{parameters})
