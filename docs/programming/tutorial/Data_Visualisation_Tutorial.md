@@ -126,6 +126,6 @@ Box & Whisker Plot
 
 - [Venn Diagram](https://www.lucidchart.com/pages/tutorial/venn-diagram)
 - [UpSet Plot](https://upset.app/)
-- [Box & Whisker Plot]()
+- [Box & Whisker Plot](https://www.tableau.com/data-insights/reference-library/visual-analytics/charts/box-whisker)
 
 ### R Packages
