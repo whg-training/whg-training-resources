@@ -164,7 +164,10 @@ didn't treat them as data in the regression - we treated them as 'known beforeha
 variable given the genotypes.
 :::
 
-Let's write that model out in full now. To keep the notation simple we will use $E$ to mean 'the expression value' and $G$ to mean
+Let's write that model out in full now. (For a shorter version, see the [linear regression
+cheatsheet](./linear_regression_cheatsheet.md)).
+
+To keep the notation simple we will use $E$ to mean 'the expression value' and $G$ to mean
 'the genotype' for a given sample - if they take specific values we'll denote that by $E=e$ and $G=g$ and so on. With that notation
 here are four ways to write the same model:
 
