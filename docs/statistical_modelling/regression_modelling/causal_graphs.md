@@ -76,7 +76,7 @@ related to $A$ and/or $C$. Should we condition on $B$ or not?
 To make this concrete, let's consider a set up where
 
 * $A$, $B$, and $C$ are each gaussian variables with variance $1$.
-* all effects are linear and equal to $0.5$.
+* all causal effects are linear and equal to $0.5$.
 
 In other words = $A\rightarrow C$ means $C = 0.5 A + \epsilon$ - where $\epsilon$ is a gaussian variable with just the right
 variance to make $C$ have variance $1$.
@@ -94,8 +94,8 @@ doesn't matter?)
 
 **Second**, try downloading loading the matching dataset from [this
 folder](https://www.well.ox.ac.uk/~gav/projects/whg-training-resources/data/statistical_modelling/regression_modelling/data/causal/)
- and use `lm()` in R to check your answer is right. More precisely, what is the effect of including $B$ in as a covariate on a)
-the regression estimate $\hat{\beta}$ and b) the standard error of conditioning on $B$?
+ and use `lm()` in R to check your answer is right. More precisely, what is the impact of including $B$ in as a covariate on a) the
+regression estimate $\hat{\beta}$ and b) the standard error of conditioning on $B$?
 
 :::
 
@@ -169,8 +169,8 @@ $$
 In other words, the regression has made a perfectly sensible estimate - it just doesn't understand that it's the effect of $A$ on
 $C$ that we are interested in.
 
-One way to understand this is to say that some of the effect of $A$ is 'explained by' $B$ - and in this case the estimate for $B$
-is positive because $B$ also 'explains' some of the noise in $C$.
+One way to understand this is to say that some of the association with $A$ is 'explained by' $B$ - and in this case the estimate
+for $B$ is positive because $B$ also 'explains' some of the noise in $C$.
 
 **Note.** Diagram 2 is sort of similar in that $B$ is correlated to $A$. In this case, however, there's a different behaviour:
 ```
@@ -190,11 +190,11 @@ C = 0.5 * A + rnorm( 10000, sd = sqrt( 0.75 ))
     A           0.497305419 0.010094251 49.2662029 0.00000000
     B           0.018778370 0.010023912  1.8733575 0.06104819
     
-In this case including $B$ does not affect point the estimate of $A$ on $C$. One way to understand this is that $B$ has no other
-component of $C$ in it (other than $A$), so all of the effect of $B$ on $C$ is 'explained' by $A$. This leads to the coefficient
-of $B$ being close to zero. **However**, $B$ has had an effect on the precision of our estimate: the standard error for $\beta$
-has changed from 0.0087 to 0.010. This might not look very much but look at its effect on the z-score (i.e. how many standard
-errors away from zero the estimate is):
+In this case including $B$ does not alter the point the estimate of $A$ on $C$. One way to understand this is that $B$ has no other
+component of $C$ in it (other than $A$), so all of the association of $B$ with $C$ is 'explained' by $A$. This leads to the
+coefficient of $B$ being close to zero. **However**, including $B$ has imnpacted the precision of our estimate: the standard error
+for $\beta$ has changed from 0.0087 to 0.010. This might not look very much but look at its effect on the z-score (i.e. how many
+standard errors away from zero the estimate is):
 
     > 0.506865138/0.008710480
     [1] 58.19026
@@ -203,20 +203,20 @@ errors away from zero the estimate is):
 
 Including $B$ has made the estimate about less certain, by about 10 standard errors.
     
-In this example with 100,000 samples, both estimates are anyway very many standard errors away from zero, but clearly including
+In this example with 10,000 samples, both estimates are anyway very many standard errors away from zero, but clearly including
 $B$ is adding to the uncertainty of our estimate.
 
 :::tip Hint
 
 The effect sizes we are looking at here are very strong! (Each effect explains $\frac{1}{4}$ of the variance of the target
-variable). Try reducing the sample size to 100 to see an effect on the resulting P-value.
+variable). Try reducing the sample size to 100 to see how this affects the resulting P-value.
 
 :::
 
 ## Observational equivalence
 
-One of the important things to realise is that *more than one diagram can produce the same observable data*. This puts limits on
-the extent to which the data can help us distinguish scientific theories.
+One of the important things to realise is that *more than one causal model can produce the same observable data*. This puts limits
+on the extent to which the data can help us distinguish scientific theories.
 
 An example of this in the above are diagrams 6 and 7. We can check this by following through the definitions in each diagram to
 compute variable covariances:
