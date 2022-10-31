@@ -229,8 +229,28 @@ rule copy_data_by_sample
 ```
 :::
 
-In my solutions I've used a slightly different approach where the fastq files themselves aren't
-copied/renamed, but the renaming gets done by the alignment step. This has the advantage that
+In my solutions I've used a slightly different approach where the fastq files themselves aren't copied/renamed, but the renaming
+gets done by the alignment step. This has the advantage that we don't copy the data, but it's not as simple because all major
+'output' rules have to figure out how to rename the output file appropriately.
+
+:::tip Note
+
+Another way to avoid copying is to use symbolic links ("*symlinks*") instead. The `ln` command can be used to do this. For example:
+
+```
+ln -s file.txt link_name.txt
+```
+
+will create a symlink called `link_name.txt` that points to the original file.
+
+This is helpful because it avoids copying data, but it comes with a big caveat: having multiple names referencing the same file in
+the filesystem can quickly get very confusing. (For example, what happens if you delete the symlink above - does the file get
+deleted? What happens to the symlink if you delete the original file?)
+
+I typically don't use symlinks now except in rare cases where I name them `something.symlink` so it's completely obvious that they
+are symbolic links.
+:::
+
 
 [Go back to the tips and tricks](#tips-and-tricks).
 
