@@ -23,6 +23,7 @@ section.
 * [Tools that use temporary directories](#tools-that-use-temporary-directories)
 * [Tips on using `bwa mem`](#tips-on-using-bwa-mem).
 * [Tips on using `samtools`](#tips-on-using-samtools).
+* Or see a [complete solution](#solutions).
 
 ### Getting started
 
@@ -196,6 +197,11 @@ def find_sample_with_name( name ):
 
 	raise( "Uh-oh, no sample with name \"%s\" could be found." % name )
 ```
+
+:::tip Note
+This of course a terrible implementation, but it works for this example.
+If you loaded the sample sheet as a pandas dataframe, you could use pandas subsetting to find the sample instead.
+:::
 
 Now your input filenames can use a function:
 
@@ -410,19 +416,12 @@ Of course you have to be able to generate this for each sample. With the layout 
 wrote the following code (which I put, of course, in `pipelines/functions.snakemake`) to do it:
 
 ```
-def find_sample_with_ID( ID ):
-	samples = config['samples']
-	sample = [ sample for sample in samples if sample['ID'] == ID ]
-	if  len( sample ) != 1:
-		raise Exception( "Wrong number of samples found with ID '%s' (%d, expected 1)." % ( ID, len( sample )) )
-	return sample[0]
-
 def get_read_group_line( name ):
 	sample = find_sample_with_name( name )
 	return "@RG\\tID:{ID}\\tSM:{sample}\\tPL:ILLUMINA".format(
 		ID = sample['ID'],
 		sample = sample['name']
-	)
+    )
 ```
 
 The alignment step could then be updated to use this function:
@@ -557,6 +556,13 @@ Here are some tips on using `samtools`:
 * Some commands, like `samtools markdup`, take the output filename as a seperate argument.  But others, such as `samtools view` or `samtools sort`, want you to use the `-o` option to specify the output file (otherwise they output to standard output).
 
 * `multiqc` can read `samtools stats` output, useful for post-alignment QC.
+
+### Solutions
+
+My solution to this tutorial can be found
+[in this folder](https://github.com/whg-training/whg-training-resources/tree/main/docs/next_generation_sequencing/building_an_ngs_pipeline/solutions).
+
+(As mentioned above, I used a rename-files-at-the end strategy so this might look a bit different to yours.)
 
 ## Good luck!
 

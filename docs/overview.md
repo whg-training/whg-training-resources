@@ -10,16 +10,18 @@ Oxford.  The content is a mixture of training on bioinformatics, computational a
 
 Content on this site is publicly available under the terms of the [MIT license](LICENSE.md).
 
-|    Module                |                      Tutorial                          |
-| ------------------------ | ------------------------------------------------------ |
-| Getting started          | [Setting up your environment](/prerequisites/) |
-| Bioinformatics           | [Exploring human genes on the command-line](/bioinformatics/exploring_gene_annotations_in_bash/) |
-| Programming              | [Introduction to programming in R](/programming/introduction_to_R/) |
-| Programming              | [Programming with gene annotation files](/programming/programming_with_gene_annotations/) |
-| Data visualisation       | [Data visualisation with ggplot2](/data_visualisation/data_visualisation_with_ggplot2/) |
-| Data visualisation       | [Visualising RNA-seq data](/data_visualisation/visualisng_rna-seq_data/) |
-| Population genetics      | [Implementing a Wright-Fisher model](/population_genetics/README.md) |
-
+|    Module                  |                      Tutorial                          |
+| ------------------------   | ------------------------------------------------------ |
+| Getting started            | [Setting up your environment](/prerequisites/) |
+| Bioinformatics             | [Exploring human genes on the command-line](/bioinformatics/exploring_gene_annotations_in_bash/) |
+| Programming                | [Introduction to programming in R](/programming/introduction_to_R/) |
+| Programming                | [Programming with gene annotation files](/programming/programming_with_gene_annotations/) |
+| Next-generation sequencing | [Introduction to NGS data analysis](/next_generation_sequencing/introduction_to_next_generation_sequencing_data_analysis/) |
+| Next-generation sequencing | [Building an NGS processing pipeline](/next_generation_sequencing/building_an_ngs_pipeline/) |
+| Data visualisation         | [Data visualisation with ggplot2](/data_visualisation/data_visualisation_with_ggplot2/) |
+| Data visualisation         | [Visualising RNA-seq data](/data_visualisation/visualisng_rna-seq_data/) |
+| Statistical genomics       | [Statistical modelling I - regression](/statistical_modelling/regression_modelling/) |
+| Population genetics        | [Implementing a Wright-Fisher model](/population_genetics/README.md) |
 
 ## Contributors ##
 
