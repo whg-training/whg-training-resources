@@ -486,7 +486,9 @@ might take too long to run on your laptop. If so, here are some options for spee
 
 * If you have a multi-core CPU, you can use more threads (`--threads` argument).
 
-* Restrict to a set of regions.  You can add the `--regions` option to tell Octopus to only work on specified regions.  For this tutorial, please include these regions: `--regions Pf3D7_02_v3:616190-656190 Pf3D7_02_v3:779288-859288 Pf3D7_11_v3:1023035-1081305`.  (This brought the calling down to about half and hour when I tried it.)
+* Restrict to a set of regions. You can add the `--regions` option to tell Octopus to only work on specified regions. For this
+  tutorial, please include these regions: `--regions Pf3D7_02_v3:616190-656190 Pf3D7_02_v3:779288-859288
+  Pf3D7_11_v3:1023035-1081305`. (This brought the calling down to about half and hour when I tried it.)
 
 * You could also try the Octopus 'fast' or 'very fast' modes - though I haven't tried this.
 
@@ -494,7 +496,11 @@ See `octopus --help` for a full list of options.
 
 (In general this might be less of a problem for real work as you might run it a compute cluster.)
 
-Another option is to try a different variant caller - [`GATK HaplotypeCaller`](https://gatk.broadinstitute.org/hc/en-us), [`DeepVariant`](https://www.nature.com/articles/nbt.4235) or [`freebayes`](https://github.com/freebayes/freebayes) might be possibilities.  For a simple approach you could also use [`bcftools mpileup` and `bcftools call`](https://samtools.github.io/bcftools/bcftools.html) (this is likely to be substantially faster as it relies on the input alignments does not try to reconstruct local haplotypes near each variant.)
+Another option is to try a different variant caller - [`GATK HaplotypeCaller`](https://gatk.broadinstitute.org/hc/en-us),
+[`DeepVariant`](https://www.nature.com/articles/nbt.4235) or [`freebayes`](https://github.com/freebayes/freebayes) might be
+possibilities. For a simple approach you could also use [`bcftools mpileup` and `bcftools
+call`](https://samtools.github.io/bcftools/bcftools.html) (this is likely to be substantially faster as it relies on the input
+alignments does not try to reconstruct local haplotypes near each variant.). 
 
 [Go back to the tips and tricks](#Tips-and-tricks).
 
