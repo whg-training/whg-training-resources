@@ -1,0 +1,242 @@
+---
+title: "introduction to HMM"
+author: "Azim Ansari"
+date: "11/11/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Quick introduction to hidden Markov models (HMMs)
+
+
+## 1. Background
+
+Until now most data that we have considered have been IID (independent and identically distributed) so that the likelihood of multiple data points is simply the product of the likelihood for each data point. Also the order of data points does not matter. They all have the same likelihood.
+
+For instance in our de novo mutation, we assume that the data come from a Poisson distribution (see Intro to Bayesian Statistics section 2.2 and 2.3). So for a single data point $x_1 = 42$, the likelihood was:
+
+$$
+P(X_1 = 42) = \frac{e^{-\lambda} \lambda^42}{42!} 
+$$
+
+And for 10 data points the likelihood was:
+
+$$
+P(X_1 =42, ...,X_{10} = 55 | \lambda) = \prod_1^{10} \frac{e^{-\lambda} \lambda^{x_i}} {x_i!} = \frac{e^{-\lambda}\lambda^{42}}{42!} ...\frac{e^{-\lambda}\lambda^{55}}{55!}
+$$
+
+However there are many instances of data in biology that are not independent of each other. So the assumption of IID does not make sense. In these instances the order does matter and knowing the previous data point gives information about the next data point. For instance nucleotide sequences are not just a random collection of ATCG which can come in any order. It is the order that gives the sequence of ATCGs biological meaning.
+
+We can model these kind of dependecies using **Markov Chains**.
+
+## 2. Markov Chains
+
+A process is said to be Markovian if the next state is independent of all previous states, given the current state. A more mathematical statment:
+
+### 2.1 Markov chain definition
+
+A sequence of random variables X0, X1, X2,… taking values in the state space {1, 2,…, M} is called a Markov chain if for all n ≥ 0,
+
+$$
+P(X_{n+1} = j | X_n = i_n, ..., X_0 = i_0) = P(X_{n+1}=j|X_n = i_n)
+$$
+
+The quantitiy $P(X_{n+1}=j | X_n=i)$ is called the transition probability from state i to state j.
+
+The above condition is called the Markov property, and it says that given the entire past history $X_0, X_1, X_2,…, X_n$, only the most recent term, $X_n$, matters for predicting $X_n+1$. If we think of time n as the present, times before n as the past, and times after n as the future, the Markov property says that given the present, the past and future are conditionally independent. The Markov property greatly simplifies computations of conditional probability: instead of having to condition on the entire past, we only need to condition on the most recent value.
+
+To describe the dynamics of a Markov chain, we need to know the probabilities of moving from any state to any other state, that is, the probabilities $P(X_{n+1} = j|X_n = i)$ on the right-hand side of the Markov property. This information can be encoded in a matrix, called the transition matrix, whose (i, j) entry is the probability of going from state i to state j in one step of the chain.
+
+
+### 2.2 Transition matrix
+
+Let $X_0, X_1, X_2,…$ be a Markov chain with state space {1, 2,…, M}, and let $q_{ij} = P(X_{n+1} = j|X_n = i)$ be the transition probability from state i to state j. The M×M matrix $Q = (q_{ij})$ is called the transition matrix of the chain.
+
+Note that Q is a nonnegative matrix in which each row sums to 1. This is because, starting from any state i, the events “move to 1”, “move to 2”,…, “move to M” are disjoint, and their union has probability 1 because the chain has to go somewhere.
+
+### 2.3 Example Rainy-Sunny Markov chain
+
+An old saying is that if you have nothing else to base your forecast on, your best guess for the weather tomorrow is that it will be the same as today. Rather than random, independent realisations, weather patterns exhibit a great deal of inertia causing a good deal of dependency between consecutive time points (given they are not too far apart). We can model this with a Markov model.
+
+Suppose that on any given day, the weather can either be rainy or sunny. If today is rainy, then tomorrow will be rainy with probability 2/3 and sunny with probability 1/3. If today is sunny, then tomorrow will be rainy with probability 1/7 and sunny with probability 6/7. Letting $X_n$ be the weather on day n, $X_0, X_1, X_2,…$ is a Markov chain on the state space ${R, S}$, where R stands for rainy and S for sunny. We know that the Markov property is satisfied because, from the description of the process, only today's weather matters for predicting tomorrow's.
+The transition matrix of the chain is
+
+<img src="./hmm_figures/transition_matrix.png" title="transition matrix" alt="transition matrix" />
+
+The first row says that starting from state R, we transition back to state R with probability 1/3 and transition to state S with probability 2/3. The second row says that starting from state S, we have a 1/2 chance of moving to state R and a 1/2 chance of staying in state S.
+
+The transition probabilities of a Markov chain can also be represented with a diagram. Each state is represented by a circle, and the arrows indicate the possible one-step transitions; we can imagine a particle wandering around from state to state, randomly choosing which arrow to follow. Next to the arrows we write the corresponding transition probabilities.
+
+<img src="./hmm_figures/state_graph.png" title="Markov chain graph" alt="Markov chain graph" />
+
+
+Can you write a piece code in R that simulates from the rainy-sunny Markov chain?
+
+```{r}
+# define the transition probabilities
+Q = matrix(data = c(2/3,1/3,1/7,6/7),nrow = 2, ncol = 2, byrow = TRUE)
+rownames(Q) = c('R','S')
+colnames(Q) = c('R','S')
+
+# how long is the chain?
+N = 100
+
+# What is the start position of the chain:
+x_1 = 'R'
+
+# store the result of the simulation.
+
+m_chain = rep(NA,N)
+m_chain[1] = x_1
+# let's simulate
+for (i in 2:N){
+  # look at previous state and then randomly move or stay in the sample state with correct probability
+  m_chain[i] = sample(c('R','S'),size = 1,prob = Q[m_chain[i-1],])
+  
+}
+
+```
+
+If I give you a sequence of data points for the rainy-sunny example can you work out the transition probabilities? The maximum likelihood estimate would be to simply count the frequency of how often you go from one state to another.
+
+```{r}
+# let's calculate the maximum likelihood estimate for the transition probabilities for the above chain.
+
+R2R = sum(m_chain[1:(N-1)] == 'R' & m_chain[2:N] =='R') / sum(m_chain[1:(N-1)] == 'R')
+R2S = sum(m_chain[1:(N-1)] == 'R' & m_chain[2:N] =='S')/ sum(m_chain[1:(N-1)] == 'R')
+S2R = sum(m_chain[1:(N-1)] == 'S' & m_chain[2:N] =='R')/ sum(m_chain[1:(N-1)] == 'S')
+S2S = sum(m_chain[1:(N-1)] == 'S' & m_chain[2:N] =='S')/ sum(m_chain[1:(N-1)] == 'S')
+
+```
+
+The above estimates should be close enough. The longer the observed chain the better the estimates are going to be. You can also use Bayes rule to estimate the transition probabilities. How would you do that?
+
+## 3. Hidden Markov model
+
+Any meteorologist will tell you that the model in previous example for weather is too simple to accurately
+describe weather pattern formation, even if we ignore the limited number of weather patterns included in the model. The weather we observe is caused by underlying parameters, like atmospheric pressure, that we cannot directly observe. Atmospheric pressure again depends on the amount of air sitting above a specific place, and as it takes time to shift large volumes of air around, it is really more these underlying parameters that are governed by a Markovian process. So a slightly more realistic weather model would be the model shown in figure below where we switch between high and low pressure states which have different distributions over the observed weather pattern.
+
+<img src="./hmm_figures/sunny_rainy_hmm.png" title="HMM weather" alt="Hmm weather" />
+
+In this example, unless we have a barometer, we cannot observe the underlying state path of the underlying parameter. All we can observe are the weather patterns that could be emitted from either state. Hence, the state path is unobserved, or hidden, providing the first word of the term hidden Markov model (HMM) used for this type of model. One might think that the model in figure above is of little use in weather prediction, when we don’t know the state we are in – high pressure or low pressure – but only a sequence of observed weather patterns for the past few days. However, as we shall see later on, having observed the sequence R, S, R, R, S over the last five days would give us a probability of sunshine tomorrow of about 63%.
+
+In this example we have two states (H,L) and they follow a Markov chain. However we don't observe these states (they are hidden), instead we observe if a specific day is sunny or rainy (S,R). Both hidden states (H and L) can result in sunny or rainy days. These probabilities are called **emission** probabilities.
+
+$$
+\begin{aligned}
+P(S|H) &= \frac{9}{10} = e_{H,S} \\
+P(R|H) &= \frac{1}{10} = e_{H,R} \\
+P(S|L) &= \frac{3}{10} = e_{L,S} \\
+P(R|L) &= \frac{7}{10} = e_{L,R}
+\end{aligned}
+$$
+
+Can you use the model above to simulate a series of observations in R?
+
+```{r}
+
+# define the transition probabilities
+Q = matrix(data = c(9/10,1/10,1/5,4/5),nrow = 2, ncol = 2, byrow = TRUE)
+rownames(Q) = c('H','L')
+colnames(Q) = c('H','L')
+
+# define emission probabilities
+e = matrix(data = c(9/10,1/10,3/10,7/10),nrow = 2, ncol = 2, byrow = TRUE)
+rownames(e) = c('H','L')
+colnames(e) = c('S','R')
+
+
+# how long is the chain?
+N = 100
+
+# What is the start position of the chain:
+x_1 = 'L'
+
+# store the result of the simulation.
+
+m_chain = rep(NA,N)
+m_chain[1] = x_1
+
+m_observ = rep(NA,N);
+# let's simulate the observation for the first day also.
+m_observ[1] = sample(c('S','R'),size = 1,prob = e[m_chain[1],])
+
+# let's simulate
+for (i in 2:N){
+  m_chain[i] = sample(c('H','L'),size = 1,prob = Q[m_chain[i-1],])
+  m_observ[i] = sample(c('S','R'),size = 1,prob = e[m_chain[i],])
+  
+}
+
+# let's plot the hidden states.
+plot(ifelse(m_chain=='H',1,2),yaxt='n',ylab = 'pressure system',xlab = 'day')
+
+#plot the observed states
+points(ifelse(m_observ=='S',1.25,1.75),pch = 3)
+
+# label the y axis.
+axis(sid=2,at=c(1,1.25,1.75,2),labels = c('H','S','R','L'))
+
+```
+
+
+As you can see high pressure days usually result in sunny days while low pressure days usually result in rainy day.
+
+The best way to view an HMM is probably as a generative model: we start in the start state, continue choosing the next state according to the transition probability of the current state, emit a character which is observed. We continue this process until we enter the end state, at which point we stop and output the constructed sequence. Denote a realisation of this process a run. We can decompose a run into the state path followed, $Z = (z_1,z_2,...,z_T)$, and the sequence emitted, $X = x_1,x_2,...,x_T$.  probability of the run $P(r)$ can be written as:
+
+<img src="./hmm_figures/hmm_ex.png" title="HMM ex" alt="Hmm ex" />
+
+
+$$
+\begin{aligned}
+P(r) = P(Z,X |Q,e) &= P(z_1) p(x_1|z_1) \prod_2^T P(z_t|z_{t-1}) P(x_t|z_t) \\
+\end{aligned}
+$$
+
+### 3.1 most probable path
+
+If we have a set of observed data, transition probabilities and emission probabilities, what is the most probable sequence of hidden states that could have generated the observed data?
+
+We can use Viterbi algorithm to answer this question. It finds the sequence of hidden states that maximise the probability of the observed data given the transition probabilities and the emission probabilities.
+
+We could do this in a brute force way. But that would be impossible for most real problems.
+
+let's try brute force for a simple example. where we have observed R,S,S,R,R and the model detail are as in previous example.
+
+
+```{r}
+obs = c('R','S','S','R','R')
+# let's list all possible hidden state sequences. There are 2^5 possible sequences.
+
+all_seqs = expand.grid(c('H','L'),c('H','L'),c('H','L'),c('H','L'),c('H','L'))
+all_seqs$probs = rep(0,dim(all_seqs)[2])
+
+# let's assume that P(z_1=H) = p(z_1 =L) = 0.5
+
+for (j in 1:dim(all_seqs)[1]){
+  prob = 0.5 * e[all_seqs[j,][[1]],obs[1]]
+  for (i in 2:5){
+    prob = prob * Q[all_seqs[j,][[i-1]],all_seqs[j,][[i]]] * e[all_seqs[j,][[i]],obs[i]]
+    
+  }
+  all_seqs$probs[j] = prob
+}
+
+
+plot(all_seqs$probs)
+
+```
+
+Viterbi algorithm uses a recursion to solve this problem without using brute force.
+
+
+
+
+
+
+
+
