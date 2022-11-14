@@ -276,7 +276,7 @@ x
 ```
 
 > **Question**
-
+>
 > How would you get R to calculate 3x - 2?
 
 R is case sensitive so `x` and `X` are different:
