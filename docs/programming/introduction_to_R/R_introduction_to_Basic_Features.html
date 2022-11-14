@@ -251,6 +251,7 @@ if (window.hljs) {
 
 
 
+<style type="text/css">blockquote {padding: 10px 20px;margin: 0 0 20px;font-size: 14px;border-left: 5px solid #009400;background-color: #e6f6e6;}h5 {font-variant: small-caps;}</style>
 
 
 
@@ -381,7 +382,7 @@ pre code {
 <p>The course is intended to start at the very beginning, for people with no previous programming experience, using R or otherwise. If you&#39;re finding it at too basic a level, feel free to skip ahead or use this time for something more useful to you! Some suggestions for more R material are at the end of this document.</p>
 <div id="installing-r-and-rstudio" class="section level2">
 <h2>Installing R and RStudio</h2>
-<p>R and RStudio are available for a variety of platforms, including Windows, macOS and Linux. R is open source software. R Studio is open source software, supplemented by non-free add-ons.</p>
+<p>R and RStudio are available for a variety of platforms, including Windows, macOS and Linux. R is open source software. RStudio is open source software, supplemented by non-free add-ons.</p>
 <ul>
 <li><a href="https://cran.r-project.org/bin/windows/base/">R for Windows download</a></li>
 <li><a href="https://cran.r-project.org/bin/macosx/">R for macOS X</a></li>
@@ -504,9 +505,7 @@ x &lt;- x * 2
 x
 ## [1] 8</code></pre>
 <blockquote>
-<p><strong>Question</strong></p>
-</blockquote>
-<blockquote>
+<h5 id="question">Question</h5>
 <p>How would you get R to calculate 3x - 2?</p>
 </blockquote>
 <p>R is case sensitive so <code>x</code> and <code>X</code> are different:</p>
@@ -522,7 +521,8 @@ x
 ## [1] 1 2 3 4 5</code></pre>
 <p>The <code>[1]</code> part of the output is R&#39;s way of displaying vectors. The number in square brackets is the index of the first entry in the line. If the output is long enough that it spans more than one line, this makes it easier to work out the index of entries on that line. Note that in R indices start at <code>1</code> (instead of <code>0</code> as in most other programming languages).</p>
 <blockquote>
-<p><strong>Question</strong> How might you create the vector 2, 4, 6, 8, 10 from the object x?</p>
+<h5 id="question-1">Question</h5>
+<p>How might you create the vector 2, 4, 6, 8, 10 from the object x?</p>
 </blockquote>
 <p>If we forget the closing bracket before pressing enter, then R can detect that the command is incomplete. It gives us a different prompt: <code>+</code>. This indicates that R is waiting for you to complete the command.</p>
 <pre class="r"><code>x &lt;- c(1, 2, 3, 4, 5
@@ -547,7 +547,8 @@ x3 &lt;- c(1:5, 7, 9, 10:15)</code></pre>
 seq2 &lt;- seq(from=0, to=1, by=0.01)</code></pre>
 <p>You can look at all of these objects in the &#39;Environment&#39; panel to see what you get when you use these commands.</p>
 <blockquote>
-<p><strong>Question</strong> How might you create a sequence of numbers from 100 to 1? It can be done with the <code>seq</code> function and using <code>:</code> syntax; can you find both ways?</p>
+<h5 id="question-2">Question</h5>
+<p>How might you create a sequence of numbers from 100 to 1? It can be done with the <code>seq</code> function and using <code>:</code> syntax; can you find both ways?</p>
 </blockquote>
 </div>
 <div id="using-functions" class="section level2">
@@ -575,7 +576,8 @@ class(y)
 ## [1] &quot;character&quot;</code></pre>
 <p>R has as family of functions <code>as.integer</code>, <code>as.character</code>, and so on to convert from one class to another.</p>
 <blockquote>
-<p><strong>Question</strong> Can you think of value you can give an object so that it&#39;s class is neither &#39;integer&#39; nor &#39;character&#39;?</p>
+<h5 id="question-3">Question</h5>
+<p>Can you think of value you can give an object so that it&#39;s class is neither &#39;integer&#39; nor &#39;character&#39;?</p>
 </blockquote>
 <p>Now try running the following command:</p>
 <pre class="r"><code>y &lt;- c(a, b, c)
@@ -594,10 +596,12 @@ x[c(1, 3, 5, 7, 9)]
 x[3:6]</code></pre>
 <p>The second and third examples above show how R can be powerful by working with vectors. Instead of having to use square brackets to extract each element of the vector, and then using <code>c</code> to combine them into a new vector, we use a vector <em>inside</em> the square brackets and R interprets that as an instruction to return a vector of those elements of <code>x</code>.</p>
 <blockquote>
-<p><strong>Question</strong> How would you return the elements of <code>x</code> in reverse order? How would you extract the elements of <code>x</code> where the index is a square number?</p>
+<h5 id="question-4">Question</h5>
+<p>How would you return the elements of <code>x</code> in reverse order? How would you extract the elements of <code>x</code> where the index is a square number?</p>
 </blockquote>
 <blockquote>
-<p><strong>Question</strong> Can you predict what R will do in each of these cases: <code>x[11]</code>, <code>x[-3]</code>?</p>
+<h5 id="question-5">Question</h5>
+<p>Can you predict what R will do in each of these cases: <code>x[11]</code>, <code>x[-3]</code>?</p>
 </blockquote>
 <p>R will decide the most appropriate way to store the data it is provided with, including when you mix different classes in a single vector. To give more examples of how data is interpreted by R, run the following and note the results.</p>
 <pre class="r"><code>x2 &lt;- c(1:5, 6.5)
@@ -632,6 +636,7 @@ library(ggplot2)</code></pre>
 <p>You will also need to download two data files by entering the following commands:</p>
 <pre class="r"><code>download.file(&quot;https://whg-training.github.io/whg-training-resources/R-intro/inflammation_data.csv&quot;, &quot;./inflammation_data.csv&quot;)
 download.file(&quot;https://whg-training.github.io/whg-training-resources/R-intro/sample.csv&quot;, &quot;./sample.csv&quot;)</code></pre>
+<p>These will download files into your current working directory.</p>
 </div>
 <div id="removing-objects" class="section level2">
 <h2>Removing objects</h2>
@@ -651,7 +656,7 @@ download.file(&quot;https://whg-training.github.io/whg-training-resources/R-intr
 <h2>Setup</h2>
 <p>We set up our R session for this practical before the break. You can check the current working directory with the following command:</p>
 <pre class="r"><code>getwd()</code></pre>
-<p>The output (directory path) should match the location you are working in today, and this folder should also contain the files named <code>inflammation_data.csv</code> and <code>sample.csv</code>. If you get an error while typing the command into the terminal, first check the command matches that in the tutorial exactly and that you haven&#39;t accidentally missed an earlier command out. Pay particular attention to lower/upper case letters, underscores, dashes or dots in function or object names, and that brackets and quotes are correctly paired. If you see an error message when running chunks in the R markdown document, it is probably that you accidentally changed that code. Close the file without saving then reload it. If you can&#39;t spot the problem or have a question at any point, please don&#39;t hesitate to ask!</p>
+<p>The output (directory path) should match the location you are working in today, and this folder should also contain the files named <code>inflammation_data.csv</code> and <code>sample.csv</code>.</p>
 </div>
 <div id="general-helpful-tips" class="section level2">
 <h2>General Helpful Tips</h2>
@@ -671,7 +676,8 @@ download.file(&quot;https://whg-training.github.io/whg-training-resources/R-intr
 <pre class="r"><code>help(read.csv)</code></pre>
 <p>The help page shows us the arguments for this function and their default values where applicable. For example, we see <code>sep=&quot;,&quot;</code>, which means the fields in a row will be separated on commas, and <code>header=TRUE</code>, which means it is expecting the first row of the file to contain names for each column. The first file we will work with is the one named &#39;inflammation_data.csv&#39;. If we inspect this file in Excel or a text editor (by opening it directly from its location on your computer) we see there are no column names, just a large set of numerical values. Therefore, we need to explicitly include the header argument in our command, changing it to FALSE to over-ride the default behaviour of the function. This is an example of how arguments modify a function&#39;s precise behaviour, rather than requiring two separate functions to exist for files with/without header rows.</p>
 <pre class="r"><code>inf.data &lt;- read.csv(&quot;inflammation_data.csv&quot;, header=FALSE)</code></pre>
-<p><em>Note: if you see an error message similar to &#39;No such file or directory&#39; when trying to read in a file, it is likely that either (i) the file is not located in the current working directory, or (ii) there is one (or more) typos in the filename.</em></p>
+<p>If you get an error here, it might be because: - This command was mistyped - The earlier command to download the file was mistyped, resulting in a file with a different name or a missing file - Your current working directory is not the one where the file was saved</p>
+<p>You can use the file browser in RStudio to look for the file, and set your working directory to what it needs to be, or move or rename the files so the command works.</p>
 <p>It&#39;s useful to break this command down a little more.</p>
 <p>We have given a name for a new object, <code>inf.data</code>, in which to store the contents of the file &#39;inflammation_data.csv&#39;. Our object name is descriptive without being too long, shortening &#39;inflammation&#39; to &#39;inf&#39; for our convenience. We use the in-built R function <code>read.csv</code>, and provide two arguments:</p>
 <ul>
@@ -712,7 +718,8 @@ ncol(inf.data)</code></pre>
 <p>It would be prudent to add our own row and column names to reduce the chance of making a mistake later when dealing with this data:</p>
 <pre class="r"><code>rownames(inf.data) &lt;- paste(&quot;Patient&quot;, 1:60, sep=&quot;_&quot;)
 colnames(inf.data) &lt;- paste(&quot;Day&quot;, 1:40, sep=&quot;_&quot;)</code></pre>
-<p>This introduces the very useful and versatile function <code>paste</code>. Note that adding row and column names does not change the size of the data object, but we can see them displayed by reloading the object. The row and column names are not part of the data itself. They are similar to the alphabetical columns and numbered rows in an Excel spreadsheet.</p>
+<p>This introduces the very useful and versatile function <code>paste</code>. It creates new vectors of strings based on concatenating its arguments. In this case, it&#39;s concatenating the character object <code>&quot;Patient&quot;</code> and a vector of numbers. <code>paste</code>, and R in general, will try to &#39;recycle&#39; shorter vectors to match longer ones in this kind of situation. So the length 1 character vector <code>&quot;Patient&quot;</code> is turned into a length 60 vector where each element is the same word. The <code>sep</code> argument tells <code>paste</code> what character(s) to use when concatenating. By default it&#39;s a space but that can be awkward to work with later.</p>
+<p>Note that adding row and column names does not change the size of the data object. Names are meta data attached to the underlying object, not part of the object itself. We can see them when the object is displayed.</p>
 </div>
 <div id="accessing-data" class="section level2">
 <h2>Accessing data</h2>
@@ -731,18 +738,27 @@ inf.data[5, ] # All columns for row 5
 ## Or blank space before the comma to select all rows for given column(s):
 inf.data[, 1:5] # all rows, columns 1 through 5</code></pre>
 <blockquote>
-<p><strong>Question</strong> Can you infer what will happen with <code>inf.data[,]</code>? Can you produce the matrix with the patients in reverse order?</p>
+<h5 id="question-6">Question</h5>
+<p>Can you infer what will happen with <code>inf.data[,]</code>? Can you produce the matrix with the patients in reverse order?</p>
 </blockquote>
-<p>When you select a single column from a data frame, R will &#39;helpfully&#39; turn it into a vector:</p>
+<p>When you select a single column from a data frame or matrix, R will &#39;helpfully&#39; turn it into a vector:</p>
 <pre class="r"><code>test &lt;- inf.data[, 2] # Select the second column
 class(test)</code></pre>
-<p>This can cause errors if you were expecting <code>test</code> to still be a data frame in a later command.</p>
+<p>This can cause errors if you were expecting <code>test</code> to still be 2-dimensional in a later command.</p>
 <p>We added column names to our object earlier. Rows and columns can also be accessed by name (in double-quotes) inside square brackets. These methods work for any two-dimensional class of data in R, but data frames specifically have another: <code>$</code> is a shorthand way of referring to a named column. Both alternatives in the snippet below return the same vector.</p>
 <pre class="r"><code>inf.data[, &quot;Day_3&quot;]
 tmp &lt;- as.data.frame(inf.data)
 tmp$Day_3</code></pre>
+<p>Another wrinkle here is that the output of the two versions is slightly different. When you extract a column from a matrix, the resulting vector retains the names given to the rows. However, when you extract a column from a data frame, the resulting vector does not.</p>
 <blockquote>
-<p><strong>Question</strong> Suppose you want to determine the maximum inflammation for patient 5 across days three to seven. To do this you would extract the relevant subset from the data frame and calculate the maximum value. Which of the following lines of R code gives the correct answer? 1. <code>max(inf.data[5, ])</code> 2. <code>max(inf.data[3:7, 5])</code> 3. <code>max(inf.data[5, 3:7])</code> 4. <code>max(inf.data[5, 3, 7])</code></p>
+<h5 id="question-7">Question</h5>
+<p>Suppose you want to determine the maximum inflammation for patient 5 across days three to seven. To do this you would extract the relevant subset from the data frame and calculate the maximum value. Which of the following lines of R code gives the correct answer?</p>
+<ol style="list-style-type: decimal">
+<li><p><code>max(inf.data[5, ])</code></p></li>
+<li><p><code>max(inf.data[3:7, 5])</code></p></li>
+<li><p><code>max(inf.data[5, 3:7])</code></p></li>
+<li><p><code>max(inf.data[5, 3, 7])</code></p></li>
+</ol>
 </blockquote>
 </div>
 <div id="analysing-data" class="section level2">
@@ -810,7 +826,8 @@ head(data2)</code></pre>
 class(data2$Group)</code></pre>
 <p>The <code>as.factor</code> function returns a factor version of a vector. However, as this doesn&#39;t change the original <code>data2</code> object by itself, we need to assign that vector of factors back to the column, replacing what was there before. Indices (and by extension, the <code>$</code> syntax) in R can be used when assigning values to objects, not just when extracting them. You can see how using the <code>$</code> syntax makes this line easier to read.</p>
 <blockquote>
-<p><strong>Question</strong> If you used square brackets instead of the <code>$</code> notation for the above, how would you do it?</p>
+<h5 id="question-8">Question</h5>
+<p>If you used square brackets instead of the <code>$</code> notation for the above, how would you do it?</p>
 </blockquote>
 <p>A very useful summary function is <code>table</code>:</p>
 <pre class="r"><code>table(data2$Group)
@@ -826,7 +843,8 @@ table(data2$Gender)</code></pre>
 <p>The second line shows one of R&#39;s particularly useful features. We&#39;re telling R to replace values in <code>data2$Gender</code>, but only where those values equal <code>&quot;m&quot;</code>.</p>
 <p>This is one example of how there can be multiple ways of doing a particular task in R. When deciding which method to use, in general, it is better to stick with the method you understand the best as that&#39;s the method where you are least likely to make a mistake. Some mistakes will cause R to generate an error, but the more dangerous mistakes are ones that don&#39;t result in an error but result in incorrect data.</p>
 <blockquote>
-<p><strong>Question</strong> Look at the help file for the function <code>ifelse</code>. Can you work out how you would to the above correction using that instead of either of those methods?</p>
+<h5 id="question-9">Question</h5>
+<p>Look at the help file for the function <code>ifelse</code>. Can you work out how you would to the above correction using that instead of either of those methods?</p>
 </blockquote>
 </div>
 <div id="plotting-data" class="section level2">
@@ -844,16 +862,17 @@ plot(max_inf_patient)
 ## Here, we might decide to use a boxplot instead:
 boxplot(max_inf_patient, main=&quot;Maximum Inflammation Scores&quot;, ylab=&quot;Max_inf_score&quot;)
 legend(&quot;topright&quot;, legend=&quot;n=60 patients&quot;, cex=0.8) # adding a legend</code></pre>
-<p>In RStudio, the &#39;Plots&#39; panel in the bottom right contains a history of all the plots you&#39;ve made using the console. If you run this code from the rmd file, then the plots will be displayed inside that file. In vanilla R, a new plot will replace the existing one unless you create a new window for it.</p>
+<p>If you run this code in RStudio from the .rmd file, the plots will be displayed in amongst the text document. If you ran them in the console, then the most recent one will be visible in the &#39;Plots&#39; panel in the bottom right. It also contains a history of all the plots you&#39;ve made using the console that you can flick through using the arrow buttons. In vanilla R, a new plot will replace the existing one unless you create a new window for it.</p>
 <p>When we are happy with our plots, they can be saved to a file.</p>
 <pre class="r"><code>pdf(&quot;Inflammation_plots.pdf&quot;, onefile=T)
 plot(avg_inf_day, main=&quot;Inflammation Scores Over Time&quot;, xlab=&quot;Day&quot;, ylab=&quot;Average_inflammation_score&quot;, pch=4, col=&quot;red&quot;)
 boxplot(max_inf_patient, main=&quot;Maximum Inflammation Scores&quot;, ylab=&quot;Max_inf_score&quot;)
 legend(&quot;topright&quot;, legend=&quot;n=60 patients&quot;, cex=0.8)
 dev.off()</code></pre>
-<p>This will be saved to the current working directory by default so if we check the folder, a new file named &#39;Inflammation_plots.pdf&#39; should have been created. The <code>onefile=T</code> argument instructs R to append additional plots to the same file and the <code>dev.off()</code> command at the end closes the file connection. You can also export plots directly to a pdf file from the RStudio &#39;Plot&#39; panel.</p>
+<p>This will be saved to the current working directory by default so if we check the folder, a new file named &#39;Inflammation_plots.pdf&#39; should have been created. The <code>onefile=T</code> argument instructs R to append additional plots to the same file and the <code>dev.off</code> command at the end closes the file connection. Note that the file is not updated each time you run a new plot command; it&#39;s only when the file is closed with <code>dev.off</code> that anything is actually written to it. You can also export plots directly to a pdf file from the RStudio &#39;Plot&#39; panel.</p>
 <blockquote>
-<p><strong>Question</strong> Create some other plots based on this data using the examples as templates to work from, and save them as a new pdf file. Can you find a way of saving individual plots as .png files?</p>
+<h5 id="question-10">Question</h5>
+<p>Create some other plots based on this data using the examples as templates to work from, and save them as a new pdf file. Can you find a way of saving individual plots as .png files?</p>
 </blockquote>
 </div>
 <div id="bioconductor" class="section level2">

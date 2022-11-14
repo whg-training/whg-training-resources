@@ -30,7 +30,7 @@ material are at the end of this document.
 ## Installing R and RStudio
 
 R and RStudio are available for a variety of platforms, including
-Windows, macOS and Linux. R is open source software. R Studio is open
+Windows, macOS and Linux. R is open source software. RStudio is open
 source software, supplemented by non-free add-ons.
 
 -   [R for Windows
@@ -283,8 +283,8 @@ We can also perform operations directly on the object:
     x
     ## [1] 8
 
-> **Question**
-
+> ##### Question
+>
 > How would you get R to calculate 3x - 2?
 
 R is case sensitive so `x` and `X` are different:
@@ -322,8 +322,9 @@ makes it easier to work out the index of entries on that line. Note that
 in R indices start at `1` (instead of `0` as in most other programming
 languages).
 
-> **Question** How might you create the vector 2, 4, 6, 8, 10 from the
-> object x?
+> ##### Question
+>
+> How might you create the vector 2, 4, 6, 8, 10 from the object x?
 
 If we forget the closing bracket before pressing enter, then R can
 detect that the command is incomplete. It gives us a different prompt:
@@ -378,9 +379,11 @@ useful.
 You can look at all of these objects in the 'Environment' panel to see
 what you get when you use these commands.
 
-> **Question** How might you create a sequence of numbers from 100 to 1?
-> It can be done with the `seq` function and using `:` syntax; can you
-> find both ways?
+> ##### Question
+>
+> How might you create a sequence of numbers from 100 to 1? It can be
+> done with the `seq` function and using `:` syntax; can you find both
+> ways?
 
 ## Using functions
 
@@ -435,8 +438,10 @@ by checking the `class` of the objects directly:
 R has as family of functions `as.integer`, `as.character`, and so on to
 convert from one class to another.
 
-> **Question** Can you think of value you can give an object so that
-> it's class is neither 'integer' nor 'character'?
+> ##### Question
+>
+> Can you think of value you can give an object so that it's class is
+> neither 'integer' nor 'character'?
 
 Now try running the following command:
 
@@ -467,12 +472,15 @@ into a new vector, we use a vector *inside* the square brackets and R
 interprets that as an instruction to return a vector of those elements
 of `x`.
 
-> **Question** How would you return the elements of `x` in reverse
-> order? How would you extract the elements of `x` where the index is a
-> square number?
+> ##### Question
+>
+> How would you return the elements of `x` in reverse order? How would
+> you extract the elements of `x` where the index is a square number?
 
-> **Question** Can you predict what R will do in each of these cases:
-> `x[11]`, `x[-3]`?
+> ##### Question
+>
+> Can you predict what R will do in each of these cases: `x[11]`,
+> `x[-3]`?
 
 R will decide the most appropriate way to store the data it is provided
 with, including when you mix different classes in a single vector. To
@@ -574,6 +582,8 @@ commands:
     download.file("https://whg-training.github.io/whg-training-resources/R-intro/inflammation_data.csv", "./inflammation_data.csv")
     download.file("https://whg-training.github.io/whg-training-resources/R-intro/sample.csv", "./sample.csv")
 
+These will download files into your current working directory.
+
 ## Removing objects
 
 Sometimes you are testing things out and creating lots of objects –
@@ -613,16 +623,7 @@ check the current working directory with the following command:
 
 The output (directory path) should match the location you are working in
 today, and this folder should also contain the files named
-`inflammation_data.csv` and `sample.csv`. If you get an error while
-typing the command into the terminal, first check the command matches
-that in the tutorial exactly and that you haven't accidentally missed an
-earlier command out. Pay particular attention to lower/upper case
-letters, underscores, dashes or dots in function or object names, and
-that brackets and quotes are correctly paired. If you see an error
-message when running chunks in the R markdown document, it is probably
-that you accidentally changed that code. Close the file without saving
-then reload it. If you can't spot the problem or have a question at any
-point, please don't hesitate to ask!
+`inflammation_data.csv` and `sample.csv`.
 
 ## General Helpful Tips
 
@@ -675,10 +676,14 @@ for files with/without header rows.
 
     inf.data <- read.csv("inflammation_data.csv", header=FALSE)
 
-*Note: if you see an error message similar to 'No such file or
-directory' when trying to read in a file, it is likely that either (i)
-the file is not located in the current working directory, or (ii) there
-is one (or more) typos in the filename.*
+If you get an error here, it might be because: - This command was
+mistyped - The earlier command to download the file was mistyped,
+resulting in a file with a different name or a missing file - Your
+current working directory is not the one where the file was saved
+
+You can use the file browser in RStudio to look for the file, and set
+your working directory to what it needs to be, or move or rename the
+files so the command works.
 
 It's useful to break this command down a little more.
 
@@ -823,11 +828,19 @@ chance of making a mistake later when dealing with this data:
     rownames(inf.data) <- paste("Patient", 1:60, sep="_")
     colnames(inf.data) <- paste("Day", 1:40, sep="_")
 
-This introduces the very useful and versatile function `paste`. Note
-that adding row and column names does not change the size of the data
-object, but we can see them displayed by reloading the object. The row
-and column names are not part of the data itself. They are similar to
-the alphabetical columns and numbered rows in an Excel spreadsheet.
+This introduces the very useful and versatile function `paste`. It
+creates new vectors of strings based on concatenating its arguments. In
+this case, it's concatenating the character object `"Patient"` and a
+vector of numbers. `paste`, and R in general, will try to 'recycle'
+shorter vectors to match longer ones in this kind of situation. So the
+length 1 character vector `"Patient"` is turned into a length 60 vector
+where each element is the same word. The `sep` argument tells `paste`
+what character(s) to use when concatenating. By default it's a space but
+that can be awkward to work with later.
+
+Note that adding row and column names does not change the size of the
+data object. Names are meta data attached to the underlying object, not
+part of the object itself. We can see them when the object is displayed.
 
 ## Accessing data
 
@@ -855,17 +868,19 @@ first 5 columns.
     ## Or blank space before the comma to select all rows for given column(s):
     inf.data[, 1:5] # all rows, columns 1 through 5
 
-> **Question** Can you infer what will happen with `inf.data[,]`? Can
-> you produce the matrix with the patients in reverse order?
+> ##### Question
+>
+> Can you infer what will happen with `inf.data[,]`? Can you produce the
+> matrix with the patients in reverse order?
 
-When you select a single column from a data frame, R will 'helpfully'
-turn it into a vector:
+When you select a single column from a data frame or matrix, R will
+'helpfully' turn it into a vector:
 
     test <- inf.data[, 2] # Select the second column
     class(test)
 
-This can cause errors if you were expecting `test` to still be a data
-frame in a later command.
+This can cause errors if you were expecting `test` to still be
+2-dimensional in a later command.
 
 We added column names to our object earlier. Rows and columns can also
 be accessed by name (in double-quotes) inside square brackets. These
@@ -878,12 +893,25 @@ vector.
     tmp <- as.data.frame(inf.data)
     tmp$Day_3
 
-> **Question** Suppose you want to determine the maximum inflammation
-> for patient 5 across days three to seven. To do this you would extract
-> the relevant subset from the data frame and calculate the maximum
-> value. Which of the following lines of R code gives the correct
-> answer? 1. `max(inf.data[5, ])` 2. `max(inf.data[3:7, 5])` 3.
-> `max(inf.data[5, 3:7])` 4. `max(inf.data[5, 3, 7])`
+Another wrinkle here is that the output of the two versions is slightly
+different. When you extract a column from a matrix, the resulting vector
+retains the names given to the rows. However, when you extract a column
+from a data frame, the resulting vector does not.
+
+> ##### Question
+>
+> Suppose you want to determine the maximum inflammation for patient 5
+> across days three to seven. To do this you would extract the relevant
+> subset from the data frame and calculate the maximum value. Which of
+> the following lines of R code gives the correct answer?
+>
+> 1.  `max(inf.data[5, ])`
+>
+> 2.  `max(inf.data[3:7, 5])`
+>
+> 3.  `max(inf.data[5, 3:7])`
+>
+> 4.  `max(inf.data[5, 3, 7])`
 
 ## Analysing data
 
@@ -1042,8 +1070,10 @@ there before. Indices (and by extension, the `$` syntax) in R can be
 used when assigning values to objects, not just when extracting them.
 You can see how using the `$` syntax makes this line easier to read.
 
-> **Question** If you used square brackets instead of the `$` notation
-> for the above, how would you do it?
+> ##### Question
+>
+> If you used square brackets instead of the `$` notation for the above,
+> how would you do it?
 
 A very useful summary function is `table`:
 
@@ -1081,9 +1111,11 @@ method where you are least likely to make a mistake. Some mistakes will
 cause R to generate an error, but the more dangerous mistakes are ones
 that don't result in an error but result in incorrect data.
 
-> **Question** Look at the help file for the function `ifelse`. Can you
-> work out how you would to the above correction using that instead of
-> either of those methods?
+> ##### Question
+>
+> Look at the help file for the function `ifelse`. Can you work out how
+> you would to the above correction using that instead of either of
+> those methods?
 
 ## Plotting data
 
@@ -1108,9 +1140,11 @@ function `plot`:
     boxplot(max_inf_patient, main="Maximum Inflammation Scores", ylab="Max_inf_score")
     legend("topright", legend="n=60 patients", cex=0.8) # adding a legend
 
-In RStudio, the 'Plots' panel in the bottom right contains a history of
-all the plots you've made using the console. If you run this code from
-the rmd file, then the plots will be displayed inside that file. In
+If you run this code in RStudio from the .rmd file, the plots will be
+displayed in amongst the text document. If you ran them in the console,
+then the most recent one will be visible in the 'Plots' panel in the
+bottom right. It also contains a history of all the plots you've made
+using the console that you can flick through using the arrow buttons. In
 vanilla R, a new plot will replace the existing one unless you create a
 new window for it.
 
@@ -1125,13 +1159,17 @@ When we are happy with our plots, they can be saved to a file.
 This will be saved to the current working directory by default so if we
 check the folder, a new file named 'Inflammation\_plots.pdf' should have
 been created. The `onefile=T` argument instructs R to append additional
-plots to the same file and the `dev.off()` command at the end closes the
-file connection. You can also export plots directly to a pdf file from
-the RStudio 'Plot' panel.
+plots to the same file and the `dev.off` command at the end closes the
+file connection. Note that the file is not updated each time you run a
+new plot command; it's only when the file is closed with `dev.off` that
+anything is actually written to it. You can also export plots directly
+to a pdf file from the RStudio 'Plot' panel.
 
-> **Question** Create some other plots based on this data using the
-> examples as templates to work from, and save them as a new pdf file.
-> Can you find a way of saving individual plots as .png files?
+> ##### Question
+>
+> Create some other plots based on this data using the examples as
+> templates to work from, and save them as a new pdf file. Can you find
+> a way of saving individual plots as .png files?
 
 ## Bioconductor
 
