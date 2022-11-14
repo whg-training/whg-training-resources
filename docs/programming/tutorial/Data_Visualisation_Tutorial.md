@@ -1,3 +1,11 @@
+---
+title: "Data Visualisation Tutorial"
+output:
+   html_document:
+      md_extensions: -smart
+urlcolor: blue
+---
+
 # Data Visualisation Tutorial
 
 Authors: Ben Wright, Helen Lockstone
@@ -14,11 +22,20 @@ session, each group will give a short, informal presentation about their group o
 
 Please co-ordinate to make sure no two groups cover the same set of plots!
 
-In each section there are some example plots for that type, followed by some questions to consider 
-about them. Try to answer those questions based on inspection of the plot and your own knowledge
-first. The next section has a link to more information on each type of plot (some of these are not 
-specific to genomics), but please try to answer the questions before following the link for answers.
-The answers to these questions might be not be the same for every plots in a group!
+For each set of plots you'll find the following:
+
+- A plot of each type taken from the literature. These are presented as they were in the paper, 
+right down to the tiny size and/or blurry details. The figure captions have been trimmed off, to 
+make it a little more difficult, for some more than others.
+- A list of questions about those plots to think about. Try to answer them based on just the plots
+to begin with.
+- Links to explanations of those plots online. These should help give more context and help with
+questions you can't puzzle out. If you are still drawing a blank, you can find the plot in its
+original context by following the doi. But, again, see how much you can work out before looking at
+the paper.
+
+For Friday, plan to make a short presentation describing the plot types and the answers you've 
+arrived at for the questions. Try to include some other examples of those plots from the literature.
 
 Note that the names the sets have been given here aren't formal classifications of plot types, just 
 a way of showing what the theme is for each set.
@@ -27,11 +44,13 @@ a way of showing what the theme is for each set.
 
 ### Example Plots
 
-![Manhattan Plot](images/manhattan.png)
-From [https://doi.org/10.1182/blood-2017-02-769869](https://doi.org/10.1182/blood-2017-02-769869)
+<p>![**Manhattan Plot**](images/manhattan.png)
 
-![Circos Plot](images/circos.png)
-From [https://doi.org/10.1371/journal.pone.0178169](https://doi.org/10.1371/journal.pone.0178169)
+From [https://doi.org/10.1182/blood-2017-02-769869](https://doi.org/10.1182/blood-2017-02-769869)</p>
+
+<p>![**Circos Plot**](images/circos.png)
+
+From [https://doi.org/10.1371/journal.pone.0178169](https://doi.org/10.1371/journal.pone.0178169)</p>
 
 ### Questions to Consider
 
@@ -51,14 +70,17 @@ From [https://doi.org/10.1371/journal.pone.0178169](https://doi.org/10.1371/jour
 
 ### Example Plots
 
-![Sashimi Plot](images/sashimi.png)
-From [https://doi.org/10.1128/mBio.02079-16](https://doi.org/10.1128/mBio.02079-16)
+<p>![**Sashimi Plot**](images/sashimi.png)
 
-![Heatmap](images/heatmap.png)
-From [https://doi.org/10.3389/fonc.2020.00307](https://doi.org/10.3389/fonc.2020.00307)
+From [https://doi.org/10.1128/mBio.02079-16](https://doi.org/10.1128/mBio.02079-16)</p>
 
-![Volcano Plot](images/volcano_plot.png)
-From [https://doi.org/10.1016/j.clim.2015.05.020](https://doi.org/10.1016/j.clim.2015.05.020)
+<p>![**Heatmap**](images/heatmap.png)
+
+From [https://doi.org/10.3389/fonc.2020.00307](https://doi.org/10.3389/fonc.2020.00307)</p>
+
+<p>![**Volcano Plot**](images/volcano_plot.png)
+
+From [https://doi.org/10.1016/j.clim.2015.05.020](https://doi.org/10.1016/j.clim.2015.05.020)</p>
 
 ### Questions to Consider
 
@@ -80,14 +102,17 @@ From [https://doi.org/10.1016/j.clim.2015.05.020](https://doi.org/10.1016/j.clim
 
 ### Example Plots
 
-![PCA Plot](images/pca.png)
-From [https://doi.org/10.1093/ndt/gfaa142.P1611](https://doi.org/10.1093/ndt/gfaa142.P1611)
+<p>![**PCA Plot**](images/pca.png)
 
-![tSNE Plot](images/tSNE.png)
-From [https://doi.org/10.1016/j.celrep.2020.108661](https://doi.org/10.1016/j.celrep.2020.108661)
+From [https://doi.org/10.1093/ndt/gfaa142.P1611](https://doi.org/10.1093/ndt/gfaa142.P1611)</p>
 
-![UMAP Plot](images/UMAP.png)
-From [https://doi.org/10.1093/ecco-jcc/jjaa054](https://doi.org/10.1093/ecco-jcc/jjaa054)
+<p>![**tSNE Plot**](images/tSNE.png)
+
+From [https://doi.org/10.1016/j.celrep.2020.108661](https://doi.org/10.1016/j.celrep.2020.108661)</p>
+
+<p>![**UMAP Plot**](images/UMAP.png)
+
+From [https://doi.org/10.1093/ecco-jcc/jjaa054](https://doi.org/10.1093/ecco-jcc/jjaa054)</p>
 
 ### Questions to Consider
 
@@ -109,14 +134,17 @@ From [https://doi.org/10.1093/ecco-jcc/jjaa054](https://doi.org/10.1093/ecco-jcc
 
 ### Example Plots
 
-![Venn diagram](images_venn.png)
-From [https://doi.org/10.1016/j.clim.2015.05.020](https://doi.org/10.1016/j.clim.2015.05.020)
+<p>![**Venn diagram**](images/venn.png)
 
-![UpSet Plot](images/UpSet.png)
-From [https://doi.org/10.1093/cid/ciab006](https://doi.org/10.1093/cid/ciab006)
+From [https://doi.org/10.1016/j.clim.2015.05.020](https://doi.org/10.1016/j.clim.2015.05.020)</p>
 
-![Box and Whisker plot](images/box_and_whisker.png)
-From [https://doi.org/10.1093/ndt/gfaa142.P1611](https://doi.org/10.1093/ndt/gfaa142.P1611)
+<p>![**UpSet Plot**](images/UpSet.png)
+
+From [https://doi.org/10.1093/cid/ciab006](https://doi.org/10.1093/cid/ciab006)</p>
+
+<p>![**Box and Whisker plot**](images/box_and_whisker.png)
+
+From [https://doi.org/10.1093/ndt/gfaa142.P1611](https://doi.org/10.1093/ndt/gfaa142.P1611)</p>
 
 ### Questions to Consider
 

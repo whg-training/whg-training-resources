@@ -1,7 +1,10 @@
 # R: Introduction to Basic Features
 
-Authors: Helen Lockstone, Matthieu Miossec, Ben Wright Bioinformatics
-Core
+Authors: Helen Lockstone, Matthieu Miossec, Ben Wright
+
+Bioinformatics Core
+
+Estimated time: 3 hours
 
 # Workshop aims
 
@@ -75,7 +78,7 @@ R is, at its heart, a command line language like bash. Text commands are
 entered and text output is printed to the console. Similarly, you can
 write R scripts to be executed when you need them. R supports stepping
 through the commands you have previously entered with the up and down
-arrow keys, and will attempt to complete function and file names whne
+arrow keys, and will attempt to complete function and file names when
 you press the tab key, just like bash.
 
 However, unlike bash, R also keeps data in its own internal store rather
@@ -103,6 +106,9 @@ it visible by opening a new R script file from the 'File' menu.
 ### RStudio screenshot
 
 ![](images/RStudio_screenshot.png)
+
+If you see something notably different, there's a good chance you've
+launched bare-bones R rather than RStudio.
 
 ### Bottom left
 
@@ -165,7 +171,7 @@ tabs here you don't need to worry about.
 
 The bottom right panel is used to show a variety of things in a tabbed
 interface. 'Files' allows you to browse your computer's directories.
-'Plots' displays any plots you have made using R in the current seesion.
+'Plots' displays any plots you have made using R in the current session.
 'Help' is where R will display its help files.
 
 ## Working with the R console
@@ -177,9 +183,9 @@ human-readable.
 
 If a command is not valid in the way it is constructed (its syntax), R
 will print an error message to the screen. These can sometimes be hard
-to interpret but particularly common culprits are simple typing mistakes
-or quotes and brackets, whether they are in the wrong place, missing, or
-not in pairs (e.g. missing a closing bracket).
+to interpret but particularly common culprits are simple typing
+mistakes, or errors with quotes and brackets (in the wrong place,
+missing, or not in pairs).
 
 You can type the R commands directly, which is useful at first to get
 used to the syntax (structure) of commands. However, you can use
@@ -198,10 +204,10 @@ perform various operations on them. The terms object, variable and data
 structure can all refer generally to 'objects' created in R.
 
 Although variable is a widely used programming term and would be the
-preferred term in certain situations, we use 'object' as a general term
-throughout to refer to any of R's data structures. These include
-vectors, factors, matrices, data frames and lists. Don't worry about the
-differences between those things for now.
+preferred one in certain situations, we use 'object' throughout to refer
+to any of R's data structures. These include vectors, factors, matrices,
+data frames and lists. Don't worry about the differences between those
+things for now.
 
 # Following along
 
@@ -211,13 +217,18 @@ pieces of R code in a text document.
 
 Type the following into the console (bottom left) in RStudio:
 
-    download.file("https://queex.github.io/whg-training-resources/R-intro/R_introduction_to_Basic_Features.rmd","./R_introduction_to_Basic_Fetures.rmd")
+    download.file("https://whg-training.github.io/whg-training-resources/R-intro/R_introduction_to_Basic_Features.rmd","./R_introduction_to_Basic_Fetures.rmd")
 
 Now go to the 'File' menu and select 'Open', then navigate to and select
 that file (it's likely to be in 'Downloads'). You'll see this entire
 document appear in the top left panel. The snippets of R code each have
 their own little run button (the green arrow on the right) that lets you
 run that section (called a 'chunk') with one click.
+
+Surrounding a section of an .rmd file with triple backticks (\`\`\`{r})
+tells RStudio that this is a section of code. If you're copying or
+typing these examples into the R console you shouldn't include this
+decoration.
 
 Now you have this course open you can follow it from inside RStudio.
 Feel free to work through the material at your own pace. As well as
@@ -258,8 +269,7 @@ warning message – if later assigned a different value:
     x
     ## [1] 4
 
-We can also perform operations directly on the object (note the object
-itself does not change):
+We can also perform operations directly on the object:
 
     x * 2
     ## [1] 8
@@ -273,7 +283,9 @@ itself does not change):
     x
     ## [1] 8
 
-> **Question** How would you get R to calculate 3x - 2?
+> **Question**
+
+> How would you get R to calculate 3x - 2?
 
 R is case sensitive so `x` and `X` are different:
 
@@ -559,8 +571,8 @@ more convenient to use RStudio's interface.
 You will also need to download two data files by entering the following
 commands:
 
-    download.file("https://queex.github.io/whg-training-resources/R-intro/inflammation_data.csv", "./inflammation_data.csv")
-    download.file("https://queex.github.io/whg-training-resources/R-intro/sample.csv", "./sample.csv")
+    download.file("https://whg-training.github.io/whg-training-resources/R-intro/inflammation_data.csv", "./inflammation_data.csv")
+    download.file("https://whg-training.github.io/whg-training-resources/R-intro/sample.csv", "./sample.csv")
 
 ## Removing objects
 
@@ -1158,9 +1170,9 @@ problem will often give results from one of these forums.
 One page 'quick reference' documents:
 
 -   [R cheat
-    sheet](https://queex.github.io/whg-training-resources/R-intro/r-cheat-sheet.pdf)
+    sheet](https://whg-training.github.io/whg-training-resources/R-intro/r-cheat-sheet.pdf)
 -   [R reference
-    card](https://queex.github.io/whg-training-resources/R-intro/R_reference_card.pdf)
+    card](https://whg-training.github.io/whg-training-resources/R-intro/R_reference_card.pdf)
 
 # Further resources and useful information
 
