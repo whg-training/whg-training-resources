@@ -78,27 +78,32 @@ variance in the genotype data*.
 
 * and so on.
 
-
-
 :::tip Note
 
-There are two sources of LD that could turn up here. The first derives from genetic drift
-or directional selection, which (as we discussed this morning) causes LD between local SNPs on a
-chromosome. The second is LD deriving from population structure. This type of LD can occur between
-SNPs anywhere in the genome - for example, it would be seen between any SNPs that differ in
-frequency between sub-populations. Because we have ld-thinned our data, it is primarily this type
-of population structure-driven LD that will be picked up by our principal components analysis.
+There are actually two sources of LD that could turn up here. 
+
+The one we are usually interested in in PCA is linkage disequilibrium due to population structure - sometimes thought of as
+'admixture LD'. This is where variants (even those a long way away from each other in the genome) are correlated to each other
+because they are at higher frequencies in some individuals than others.
+
+The other source of LD (as discussed this morning) is the local patterns of LD that arise from genetic drift. In one sense
+these are both *sort of* the same thing - relatedness is the same as haplotype sharing which is what underlies correlations
+between variants. But the former clearly arises from demographic features of the populations, while the latter is just a
+feature of genetic drift even in homogenous populations. For PCA we typically look at sets of 'independent' SNPs (not too
+close together) to avoid capturing local LD effects - this is why we LD-thinned our data.
+
 :::
 
 
 ### Computing principal components in practice
 
-Typically $Z$ is huge, while $R$ is somewhat smaller. (Although this is less true for biobank-scale data, where special methods
-have to be used.). To compute the PCs it therefore makes sense to focus on $R$ first.  This is what tools like plink do.  They:
+Typically $Z$ is huge (it's $L\times L$), while $R$ is smaller at only $N \times N$. (Although this is less true for
+biobank-scale data, where special methods have to be used.). To compute the PCs it therefore makes sense to focus on $R$
+first. This is what tools like plink do. They:
 
 * First, compute the matrix $R$ by traversing the SNPs in the data.
 * Then form the eigendecomposition to compute the right eigenvectors.
-* Finally 
+* Finally, use the equation above to compute the loading vectors.
 
 So tools like `plink` compute *R*, use this to compute the principal
 components, and then compute loadings using a second pass through the data.
@@ -113,7 +118,8 @@ plot( PCs[,1], PCs[,2], xlab = "PC 1", ylab = "PC 2" )
 # etc.
 ```
 
-The `eigen()` step will take quite a while on any real dataset, but is generally manageable up to around a few thousand samples.
+The `eigen()` step will take quite a while on any real dataset, but is generally manageable up to around a few thousand
+samples.
 
 **Computing in big cohorts**. While the above works in many studies, very large cohorts such as the
 [UK Biobank[(https://www.nature.com/articles/s41586-018-0579-z) typically require other methods such as [flashPCA](https://github.com/gabraham/flashpca) that avoid computing either of the matrices directly.
