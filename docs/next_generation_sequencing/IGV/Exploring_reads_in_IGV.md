@@ -15,18 +15,34 @@ Next load one of your bam files. You will be prompted to download the appropriat
 
 (You are also welcome to load the other three.)
 
+:::tip Note
+
+My versions of the aligned files can be found [in this
+folder](https://www.well.ox.ac.uk/~gav/projects/whg-training-resources/data/next_generation_sequencing/building_an_ngs_pipeline/results/aligned).
+See the `full_depth` directory for full-depth BAM files, or `subsampled` for data that has been subsampled to lower-depth.
+
+:::
+
 If you followed the snakemake tutorial, you should also be able to load:
 
 * Your coverage (`.bedgraph`) files for the above samples (this isn't very important because IGV shows you coverage anyway.)
-* Your `variants.vcf.gz` file containing the variant calls from Octopus.  (If yours doesn't work, this may be due to an Octopus issue that has now been fixed.  I filtered out the problem variants in [my version](https://www.well.ox.ac.uk/~gav/projects/gms/statistics-course/Next_Generation_Sequencing/practicals/ngs_processing_pipeline/solutions/results/variants/) - feel free to download this one.)
+
+* Your `variants.vcf.gz` file containing the variant calls from Octopus. (If yours doesn't work, this may be due to an Octopus
+  issue that has now been fixed. I filtered out the problem variants in [my
+  version](https://www.well.ox.ac.uk/~gav/projects/whg-training-resources/data/next_generation_sequencing/building_an_ngs_pipeline/results/variants)
+  - feel free to download this one instead.)
 
 Load these in now.  Here are a few things to try:
 
 ## Looking at reads.
 
-To see reads you will need to zoom into a location on the genome.  For example, let's zoom into the gene that harbours the famous chloroquine resistance mutation, [Chloroquine resistance transporter (*CRT*)](https://plasmodb.org/plasmo/app/record/gene/PF3D7_0709000).  To search for it you will need its ID, which is `PF3D7_0709000`.  Voila!  Some reads.
+To see reads you will need to zoom into a location on the genome. For example, let's zoom into the gene that harbours the famous
+chloroquine resistance mutation, [Chloroquine resistance transporter
+(*CRT*)](https://plasmodb.org/plasmo/app/record/gene/PF3D7_0709000). To search for it you will need its ID, which is
+`PF3D7_0709000`. Voila! Some reads.
 
-IGV has lots of options that let you visualise reads in different ways.  Here are some things to try (most available by right-clicking on the reads panel).
+IGV has lots of options that let you visualise reads in different ways. Here are some things to try (most available by
+right-clicking on the reads panel).
 
 * These reads are from paired-end sequencing.  If you right-click and choose 'view as pairs', IGV will show you this structure.
 * Often there are too many reads to see.  Try using 'squished' mode to squish them up.
@@ -34,7 +50,8 @@ IGV has lots of options that let you visualise reads in different ways.  Here ar
 
 ## Looking at SNPs
 
-**Question.** The mutation that causes [chloroquine resistance](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2954758/) is `CRT K76>T`, at `Pf3D7_07_v3:403,625`.  (It actually involves a small haplotype including other nearby mutations).  
+**Question.** The mutation that causes [chloroquine resistance](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2954758/) is `CRT
+K76>T`, at `Pf3D7_07_v3:403,625`. (It actually involves a small haplotype including other nearby mutations).
 
 * Can you find these mutations?
 
