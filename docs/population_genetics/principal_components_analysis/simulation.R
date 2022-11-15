@@ -52,23 +52,31 @@ for( i in 1:N ) {
 
 # ------------------------------
 # note let's compute PCA
-X = genotypes
-for( i in 1:L ) {
-	X[i,] = (X[i,] - mean(X[i,])) / sd(X[i,] )
+
+
+compute.PCA <- function( genotypes, normalise.genotypes = TRUE ) {
+	X = genotypes
+	if( normalise.genotypes ) {
+		for( i in 1:L ) {
+			X[i,] = (X[i,] - mean(X[i,])) / sd(X[i,] )
+		}
+	} else {
+		for( i in 1:L ) {
+			X[i,] = (X[i,] - mean(X[i,]))
+		}
+	}
+
+	# compute relatedness matrix:
+	R = (1/L) * t(X) %*% X
+
+	# eigendecompse
+	E = eigen(R)
+	loadings = X %*% E$vectors
+	return(
+		list(
+			eigenvalues = E$values,
+			eigenvectors = E$vectors,
+			loadings = loadings
+		)
+	)
 }
-
-# compute relatedness matrix:
-R = (1/L) * t(X) %*% X
-
-# eigendecompse
-E = eigen(R)
-
-layout(
-	matrix( 1:2, nrow = 1 ),
-	widths = c( 1, 0.2 )
-)
-
-z = pheatmap(R)
-the_order = z$tree_row$order # reversed because of differences in image() and pheatmap().
-image( t(E$vectors[rev(the_order,1:3,drop=F]), y = 1:N, x = 1 )
-
