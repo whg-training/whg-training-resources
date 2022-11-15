@@ -34,7 +34,7 @@ You should see something like this:
 ### Getting the data
 
 The data files for this practical can be found in
-[this folder](https://www.well.ox.ac.uk/~gav/whg-training-resources/data/population_genetics/principal_components_analysis/).
+[this folder](https://www.well.ox.ac.uk/~gav/projects/whg-training-resources/data/population_genetics/principal_components_analysis/).
 
 Please download these now.  For the first part of the practical we will use the `chr19-clean.vcf.gz` file, and later on we will use the other files as well.
 
