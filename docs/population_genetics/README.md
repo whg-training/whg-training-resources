@@ -4,8 +4,7 @@ sidebar_position: 6
 
 # Population genetics
 
-In this practical we will implement a simple Wright-Fisher population genetics model, and couple
-it to a set of SNPs to see how they behaves. To get started, go
-[here](implementing_a_Wright-Fisher_model.md).
+In this folder are:
 
-**Contributors**: Gavin Band
+* A practical session on [implementing a Wright-Fisher model](./simulation/)
+* A practical session on [computing principal components in a GWAS study](./principal_components_analysis/)
