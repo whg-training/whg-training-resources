@@ -24,17 +24,29 @@ library(rethinking)
 
 ### 1.1 Conditional probability
 
-Whenever we observe new evidence (i.e., obtain data), we acquire information that may affect our uncertainties. A new observation that is consistent with an existing belief could make us more sure of that belief, while a surprising observation could throw that belief into question. Conditional probability is the concept that addresses this fundamental question: how should we update our beliefs in light of the evidence we observe?
+Whenever we observe new evidence (i.e., obtain data), we acquire information that may affect our uncertainties. A new
+observation that is consistent with an existing belief could make us more sure of that belief, while a surprising observation
+could throw that belief into question. Conditional probability is the concept that addresses this fundamental question: how
+should we update our beliefs in light of the evidence we observe?
 
-Conditional probability is essential for scientific, medical, and legal reasoning, since it shows how to incorporate evidence into our understanding of the world in a logical, coherent manner. In fact, a useful perspective is that all probabilities are conditional; whether or not it's written explicitly, there is always background knowledge (or assumptions) built into every probability.
+Conditional probability is essential for scientific, medical, and legal reasoning, since it shows how to incorporate evidence
+into our understanding of the world in a logical, coherent manner. In fact, a useful perspective is that all probabilities are
+conditional; whether or not it's written explicitly, there is always background knowledge (or assumptions) built into every
+probability.
 
-Suppose, for example, that one morning we are interested in the event R that it will rain that day. Let $P(R)$ be our assessment of the probability of rain before looking outside. If we then look outside and see ominous clouds in the sky, then presumably our probability of rain should increase; we denote this new probability by $P(R|C)$ (read as “probability of R given C”), where C is the event of there being ominous clouds. When we go from $P(R)$ to $P(R|C)$, we say that we are “conditioning on C”. As the day progresses, we may obtain more and more information about the weather conditions, and we can continually update our probabilities. If we observe that events B1,…, Bn occurred, then we write our new conditional probability of rain given this evidence as $P(R|B_1,…, B_n)$. If eventually we observe that it does start raining, our conditional probability becomes 1.
+Suppose, for example, that one morning we are interested in the event R that it will rain that day. Let $P(R)$ be our assessment
+of the probability of rain before looking outside. If we then look outside and see ominous clouds in the sky, then presumably
+our probability of rain should increase; we denote this new probability by $P(R|C)$ (read as “probability of R given C”), where
+C is the event of there being ominous clouds. When we go from $P(R)$ to $P(R|C)$, we say that we are “conditioning on C”. As the
+day progresses, we may obtain more and more information about the weather conditions, and we can continually update our
+probabilities. If we observe that events B1,…, Bn occurred, then we write our new conditional probability of rain given this
+evidence as $P(R|B_1,…, B_n)$. If eventually we observe that it does start raining, our conditional probability becomes 1.
 
 Furthermore, we will see that conditioning is a very powerful problem-solving strategy, often making it possible to solve a complicated problem by decomposing it into manageable pieces with case-by-case reasoning. Just as in computer science a common strategy is to break a large problem up into bite-size pieces (or even byte-size pieces), in probability a common strategy is to reduce a complicated probability problem to a bunch of simpler conditional probability problems.
 
 #### 1.1.1 Definition
 
-If A and B are events with $P(B)>0$, then the conditional probability of A given B, denoted by $P(A|B)$, is defined as  
+If A and B are events with $P(B)>0$, then the conditional probability of A given B, denoted by $P(A|B)$, is defined as
 
 $$
 P(A|B) = \frac{P(A,B)}{P(B)}
@@ -50,11 +62,18 @@ $$
 
 <img src="./figures/conditional_prob.png" title="conditional probability" alt="Conditional probability" />
 
-Consider a finite sample space, with the outcomes visualized as pebbles with total mass 1. Since A is an event, it is a set of pebbles, and likewise for B. Figure above (a) shows an example. Now suppose that we learn that B occurred. In panel (b), upon obtaining this information, we get rid of all the pebbles not in B because they are incompatible with the knowledge that B has occurred. Then $P(A \cap B)$ is the total mass of the pebbles remaining in A. Finally, in panel (c), we renormalize, that is, divide all the masses by a constant so that the new total mass of the remaining pebbles is 1. This is achieved by dividing by $P(B)$, the total mass of the pebbles in B. The updated mass of the outcomes corresponding to event A is the conditional probability $P(A|B) = \frac{P(A \cap B)}{P(B)}$.
+Consider a finite sample space, with the outcomes visualized as pebbles with total mass 1. Since A is an event, it is a set of
+pebbles, and likewise for B. Figure above (a) shows an example. Now suppose that we learn that B occurred. In panel (b), upon
+obtaining this information, we get rid of all the pebbles not in B because they are incompatible with the knowledge that B has
+occurred. Then $P(A \cap B)$ is the total mass of the pebbles remaining in A. Finally, in panel (c), we renormalize, that is,
+divide all the masses by a constant so that the new total mass of the remaining pebbles is 1. This is achieved by dividing by
+$P(B)$, the total mass of the pebbles in B. The updated mass of the outcomes corresponding to event A is the conditional
+probability $P(A|B) = \frac{P(A \cap B)}{P(B)}$.
 
 #### 1.1.3 Example: two cards
 
-A standard deck of cards is shuffled well. Two cards are drawn randomly, one at a time without replacement. Let $A$ be the event that the first card is a heart, and $B$ be the event that the second card is red. Find $P(A|B)$ and $P(B|A)$.
+A standard deck of cards is shuffled well. Two cards are drawn randomly, one at a time without replacement. Let $A$ be the event
+that the first card is a heart, and $B$ be the event that the second card is red. Find $P(A|B)$ and $P(B|A)$.
 
 Solution: 
 
