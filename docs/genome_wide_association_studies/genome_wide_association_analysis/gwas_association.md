@@ -32,7 +32,7 @@ P-value) on the y axis, against the position of the variant on the x axis:
 
 ```R
 # In R:
-library( ggplot2 )
+library( tidyverse )
 
 print(
     ggplot(
@@ -83,7 +83,7 @@ print(
     + xlab( "Position on chromosome 19")
     + ylim( c( 0, 80 ))
 )
-``
+```
 
 Aha! That looks... better?
 
@@ -134,8 +134,9 @@ print(
 The quantile-quantile plot is very useful in evaluating GWAS data for systematic bias. It compares the empirical distribution
 of values against the expected distribution if drawn from a uniform distribution.  
 
-The expected median p-value is 0.5. The diagonal line shows where the points should fall if the null hypothesis that there are
-no association signals were true at most SNPs.
+The **expected median p-value** (if there were no associations) is 0.5. If the median P-value is much below this, it indicates
+there are more small p-values than expected by chance. The diagonal line shows where the points should fall if the null
+hypothesis that there are no association signals were true at most SNPs.
 
 :::tip Question
 

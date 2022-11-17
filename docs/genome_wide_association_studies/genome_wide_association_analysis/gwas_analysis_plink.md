@@ -216,12 +216,11 @@ plot.betas <- function( betas, ses ) {
 	abline( v = 0 ) # draw a solid black line at 0
 	grid()
 }
-plot.betas( beta, se )
+
+plot.betas( X$BETA, X$SE )
 ```
 
 Congratulations! This is your first GWAS forest plot (albeit with only one row).
-
-(*Note*: Another way to get the confidence intervals is to addi the `--ci 0.95` option to the plink command line.)
 
 ## Renaming output files
 

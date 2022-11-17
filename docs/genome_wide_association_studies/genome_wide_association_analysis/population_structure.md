@@ -15,10 +15,20 @@ of the genotype on the disease might represent a true causal effect.
 We can use principal component analysis to measure the genetic structure within the dataset, and use these
 estimated components as covariates in the association analysis.
 
-The file `chr19-example.pca` contains the principal components for this dataset. If you haven't done so already (in an earlier
-practical), try plotting them now to see what this genome-wide genetic structure of the samples looks like:
+The file `chr19-example.pca` contains the principal components for this dataset. 
+
+:::tip Note
+
+If you completed the [principal components practical](/population_genetics/principal_components/), these are the same PCs you
+computed there.  If not don't worry as we have provided them.
+
+:::
+
+Let's try plotting the PCs now to see what this genome-wide genetic structure of the samples looks like:
 
 ```
+# in R
+library( tidyverse )
 pcs = read.table( "chr19-example.pca", header = TRUE )
 # The country identifier is stored in the FID column
 pcs$population = pcs$FID
@@ -29,7 +39,7 @@ print(
 )
 ```
 
-You should see there is a great deal of population structure! The different population groups definitely have different
+You should see there is a great deal of population structure - the different population groups definitely have different
 ancestral backgrounds.
 
 :::tip Note
@@ -53,7 +63,8 @@ We have now produced an analysis corrected for population structure. Congratulat
 
 :::tip Note
 
-The above is starting to look like a production-ready GWAS scan, so we have added a couple of useful options including:
+The above is starting to look like a production-ready GWAS scan, so we have added a couple of the useful options that we saw
+earlier including:
 
 * the `beta` option to `--logistic`, which tells plink to output an effet size estimate on the **log-odds** scale (instead of an odds ratio)
 
@@ -69,8 +80,7 @@ These options are particularly useful if you are using the output in a meta-anal
 Now use R to examine these results.
 
 **Note.** the output file “pccorrected-test.assoc.logistic” contains information for the SNPs and also all the principal
-components. To repeat the earlier analysis, make sure you extract just the SNP lines (those that have “ADD” in the TEST
-column):
+components. To repeat the earlier analysis, make sure you extract just the SNP lines (those that have “ADD” in the TEST column):
 
 ```R
 # In R:
@@ -80,14 +90,16 @@ data <- data[data$TEST == "ADD",]
 
 :::tip Challenge questions
 
-Repeat our earlier analysis for this hwas - create a manhattan plot, a q-q plot, and a summary of the most-associated variants
-- and answer the following:
+Repeat our earlier analysis for this gwas - create a manhattan plot, a q-q plot, and a summary of the most-associated variants -
+and answer the following:
 
-* Has stratifying by disease group corrected our inflation?  (Hint: re-make the QQ-plot.)
+* Has stratifying by disease group corrected our inflation? Why? (Hint: re-make the QQ-plot, and examine case frequencies in
+  each group).
 
 * Are there any disease associations in this dataset?  Where are they?  (Hint: re-make the manhattan plot.)
 
-* What do the QC statistics look like for any associated SNPs?  (For example, the frequency or missingness rates?)  Do these associations look plausible?
+* What do the SNP QC statistics look like for any associated SNPs? (For example, the frequency and missingness rates?) Do these
+  associations look plausible to you?
 
 * Can you find out anything about the function of these associated SNPs using online tools such as [UCSC Genome
   Browser](https://genome.ucsc.edu/cgi-bin/hgGateway). (Note that our data is using GRCh37/hg19 coordinates.). Could they be
@@ -99,6 +111,7 @@ Repeat our earlier analysis for this hwas - create a manhattan plot, a q-q plot,
 
 ## Job done?
 
-Not quite!  A complete analysis, will zoom in and create association 'hit' plots in each region.
+Not quite! A complete analysis, will zoom in and create association 'hit' or 'locus zoom' plots in each region. To finish the
+practical let's [create some hitplots](./hitplots.md).
 
 

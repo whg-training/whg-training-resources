@@ -18,10 +18,13 @@ Content on this site is publicly available under the terms of the [MIT license](
 | Programming                | [Programming with gene annotation files](/programming/programming_with_gene_annotations/) |
 | Next-generation sequencing | [Introduction to NGS data analysis](/next_generation_sequencing/introduction_to_next_generation_sequencing_data_analysis/) |
 | Next-generation sequencing | [Building an NGS processing pipeline](/next_generation_sequencing/building_an_ngs_pipeline/) |
+| Next-generation sequencing | [Visualising alignments](/next_generation_sequencing/IGV/) |
 | Data visualisation         | [Data visualisation with ggplot2](/data_visualisation/data_visualisation_with_ggplot2/) |
 | Data visualisation         | [Visualising RNA-seq data](/data_visualisation/visualisng_rna-seq_data/) |
 | Statistical genomics       | [Statistical modelling I - regression](/statistical_modelling/regression_modelling/) |
 | Population genetics        | [Implementing a Wright-Fisher model](/population_genetics/README.md) |
+| Population genetics        | [Principal components analysis](/principal_components/) |
+| GWAS                       | [Conducting a genome-wide association study](/genome_wide_association_studies/genome_wide_association_analysis) |
 
 ## Contributors ##
 
