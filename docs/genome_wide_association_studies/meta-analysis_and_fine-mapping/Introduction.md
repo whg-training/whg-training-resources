@@ -61,14 +61,14 @@ P-value using the effect size estimate as a test statistic.
 ```
 compute.bf <- function( beta, se, prior.variance ) {
   (
-    pnorm( beta, mean = 0, sd = sqrt( se^2 + 0.2 ) )
+    pnorm( beta, mean = 0, sd = sqrt( se^2 + prior.variance ) )
     /
     pnorm( beta, mean = 0, sd = se )
   )
 }
 
-study1$log10_BF = log10( compute.bf( study1$beta, study1$se ))
-study2$log10_BF = log10( compute.bf( study2$beta, study2$se ))
+study1$log10_BF = log10( compute.bf( study1$beta, study1$se , prior.variance=0.2))
+study2$log10_BF = log10( compute.bf( study2$beta, study2$se , prior.variance=0.2))
 ```
 
 **Question.** How much evidence is there in the two studies? Are any of the most-associated SNPs
