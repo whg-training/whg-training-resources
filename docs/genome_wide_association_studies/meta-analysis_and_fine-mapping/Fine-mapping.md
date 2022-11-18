@@ -37,12 +37,14 @@ Moreover it is possible that looking at the 'top' SNPs as above could be mislead
 (for example, if there were a SNP that is in strong LD with two causal SNPs, it might have an
 apparent strong effect.)
 
-In this part of the practical we will use the [`FINEMAP`](https:/www.finemap.me) tool to fit a model that allows for multiple possbile causal SNPs.
+In this part of the practical we will use the [`FINEMAP`](https:/www.finemap.me) tool to fit a model that allows for multiple
+possbile causal SNPs.
 
 
-### Preparing FINEMAP input files
+## Preparing FINEMAP input files
 
-To run finemap, we need to set up some input files in [the particular format that FINEMAP needs](https:/www.finemap.me).  `FINEMAP` takes:
+To run finemap, we need to set up some input files in [the particular format that FINEMAP needs](https:/www.finemap.me).
+`FINEMAP` takes:
 
 * A set of per-SNP summary statistics (betas and standard errors) from the study. To maximise
   power, we will use your meta-analysed results here.
@@ -53,7 +55,7 @@ To run finemap, we need to set up some input files in [the particular format tha
   1) and 7,500 (study 2), so the total sample size is 20,000.
 
 We have precomputed the LD values for you in the file [`study_LD.ld`](study_LD.ld). (It is a giant
-*730 &times; 730* matrix represented in a text file). But we need to make a file of meta-analysis
+$730 \times 730$ matrix represented in a text file). But we need to make a file of meta-analysis
 results.
 
 If you look at [the documentation](https:/www.finemap.me) you'll see that FINEMAP needs a
@@ -74,8 +76,14 @@ Now let's write a FINEMAP input file:
 
 **Still in your R / RStudio session**:
 ```
-finemap.data = meta_analysis[, c( "rsid", "chromosome", "position", "allele1", "allele2", "maf", "meta.beta", "meta.se" )]
+# format the data...
+finemap.data = meta_analysis[,
+    c( "rsid", "chromosome", "position", "allele1", "allele2",
+    "maf", "meta.beta", "meta.se" )
+]
 colnames( finemap.data )[7:8] = c( "beta", "se" )
+
+# ...and write it to a file
 write_delim( finemap.data, "combined_study.z", delim = " ")
 ```
 
@@ -87,12 +95,15 @@ z;ld;snp;config;cred;log;n_samples
 combined_study.z;study_LD.ld;finemap_meta.snp;finemap_meta.config;finemap_meta.cred;finemap_meta.log;20000
 ```
 
-**Note.** The format of the file is [described here](http://www.christianbenner.com/#input). What
-input files are we using? What output files have we specified? What's the number `20000`?
+:::tip Note
+
+The format of the file is [described here](http://www.christianbenner.com/#input). What input files are we using?
+What output files have we specified? What's the number `20000`?
+:::
 
 Now you are ready to run `FINEMAP`...
 
-### Running `FINEMAP``
+## Running `FINEMAP``
 
 I'm going to assume you have downloaded and been able to run `FINEMAP` as described in the
 [Introduction](Introduction.md). (If not please go and download it now.) Hopefully you know where
@@ -100,7 +111,7 @@ it is and can run it with a command of the following form. (**Note.** in this se
 to working on the command-line - these are not R commands!)  Try this:
 
 ```
-$ /path/to/finemap_v[version]/finemap_v[version]
+/path/to/finemap_v[version]/finemap_v[version]
 ```
 
 For example, on my older Mac OS system I had to use finemap v1.3, so running it looks like this:
@@ -131,21 +142,22 @@ cp /path/to/finemap_v[version]/finemap_v[version] ./finemap
 
 Running FINEMAP is hopefully now easy:
 ```
-$ ./finemap --sss --in-files finemap.master
+./finemap --sss --in-files finemap.master
 ``` 
 
 Be prepared for a bit of a wait as FINEMAP searches the space of possible causal configurations.
 
-**Note.** What *is* FINEMAP doing? Well, you can read the [FINEMAP
-paper](https://doi.org/10.1093/bioinformatics/btw018), but in short: finemap conducts a *shotgun
-stochastic search* around the space of possible causal configurations (groups of SNPs that might be
-causal). It starts off with all single-SNP models, then it randomly tries a bunch of ways of adding
-a second SNP to the first (picking the best model).  Then it keeps going randomly trying to add or
-remove SNPs so that it explores the space of configurations that have high probability.
+:::tip Note
+So what *is* FINEMAP doing? Well, you can read the [FINEMAP paper](https://doi.org/10.1093/bioinformatics/btw018), but in
+short: finemap conducts a *shotgun stochastic search* around the space of possible causal configurations (groups of SNPs that
+might be causal). It starts off with all single-SNP models, then it randomly tries a bunch of ways of adding a second SNP to
+the first (picking the best model). Then it keeps going randomly trying to add or remove SNPs so that it explores the space of
+configurations that have high probability.
 
 In general it would need the raw genotype data to do this. However, because it assumes an additive
 model (of genotypes on phenotype) it turns out that an approximation based on the SNP effects and
 ld is sufficient, which is how FINEMAP can run so fast.
+:::
 
 ### Interpreting FINEMAP output
 
@@ -162,7 +174,7 @@ Let's look at these files now.
 **Note.** If for whatever reason you couldn't get FINEMAP to run, you can use my output files which
 are in the [`solutions`](solutions/) folder.
 
-#### The FINEMAP log file.
+### The FINEMAP log file.
 
 Before you look at the output files, look at the results FINEMAP prints to stdout when you run it
 (and saves to the .log_sss file). Mine looks like this:
@@ -254,7 +266,7 @@ FINEMAP is certain that there are at least two causal variants (as the posterior
 being one variant is very small). And it quite strongly believes (92% posterior) that k = 2, i.e.
 that there are exactly two causal variants.
 
-#### The causal configurations output file
+### The causal configurations output file
 
 Let's look next at the `finemap_meta.config` file, which list gives the best 50,000 causal
 configurations that FINEMAP found in its stochastic search. Load this file into your R session now:
@@ -286,7 +298,7 @@ list.
 The configuration files can be a bit hard to interpret (and are mostly useful as input for
 downstream analyses), so we will move on to some slightly easier files to read.
 
-#### The SNP file
+### The SNP file
 
 FINEMAP also outputs the evidence for each individual SNP being causal (regardless of the
 configuration).  Let's see how many SNPs have an posterior greater than 10%:
@@ -302,7 +314,7 @@ other variants have posteriors between 19% and 40%, so are reasonable candidates
 bet the house on any one individually. Instead, if you were designing follow-up experiments based
 on this, you would need to consider these variants as a group.
 
-#### The credible sets file
+### The credible sets file
 
 To group variants, FINEMAP also provides credible sets for each of the two signals:
 
@@ -340,7 +352,7 @@ overall, cover most of the possible causal posterior space, you would pick the s
 the genetic and the functional information, which variant do you think is most likely to be cauasal
 in each group?
 
-### Plotting FINEMAP output.
+## Plotting FINEMAP output.
 
 In statistics we are never done until the ink is dry on our plot. Let's make a hitplot that (like
 our GWAS practical hitplot) shows the marginal evidence at each SNP, but colours the SNPs according
@@ -429,6 +441,7 @@ plot.finemap.output( snps, credible, xrange = c( 49190000, 49229999 ) )
 It should look something like this:
 
 ![img](./solutions/finemap_plot_zoom.png)
+
 ## Conclusion
 
 Congratulations!  You have fine-mapped your GWAS signal!

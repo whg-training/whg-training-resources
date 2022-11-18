@@ -38,14 +38,19 @@ $$
 \beta_{\text{meta}} = \frac{1}{\sqrt{w}} 
 $$
 
-**Note.** There are two good reasons to compute the estimate this way. Firstly, [normal times
-normal is
-normal](../../Statistical_modelling/notes/Normal%20times%20normal%20is%20normal.pdf) -
-and if you figure it out, you'll see the above calculation is the same as that lemma.
+:::tip Note
 
-Secondly, it makes sense: the meta-analysis estimate is a weighted average of the per-study
-estimates, and they are weighted by the variance: studies with lots of uncertainty (large variance)
-get weighted down while studies with little uncertainty (small variance) get higher weight.
+There are two good reasons to compute the estimate this way. Firstly, it makes sense: the meta-analysis estimate is a
+weighted average of the per-study estimates, and they are weighted by the variance. So studies with lots of uncertainty (large
+variance) get weighted down while studies with little uncertainty (small variance) get higher weight.
+
+The second reason is that, as it turns out, this meta-analysis estimate is precisely **what you would have computed** if you
+had estimated using all the data together** (at least approximately). The maths behind this is based on the remarkable fact
+that products of normal distributions are also normal distributions. If we approximate the likelihood function from each study
+by a normal - that is, by its estimate $\beta_i$ and standard deviation $\text{se}_i$ - then it turns out that this product is
+a new normal density, and it has exactly the meta-analysis estimates as mean and standard deviation.
+
+:::
 
 ### Running the meta-analsis
 
@@ -121,7 +126,8 @@ meta_analysis = map_dfr(
 )
 ```
 
-**Question.** What does the meta-analysis look like for the 'top' SNPs (e.g. those with the lowest
+:::tip Question
+What does the meta-analysis look like for the 'top' SNPs (e.g. those with the lowest
 P-values or highest Bayes factors) in study1 or 2? Is the evidence stronger or weaker across
 studies? Has the meta-analysis changed the SNP or SNPs with the strongest evidence? Why?
 
@@ -131,6 +137,7 @@ out the results for the ten SNPs with the lowest P-values in study 1, in order:
 ```
 meta_analysis[ order( meta_analysis$study1.P )[1:10], ]
 ```
+:::
 
 ### Making a forest plot
 
@@ -234,11 +241,24 @@ For example, we could now make a forest plot for the first SNP:
 ```
 
 ![img](./solutions/forest_plot_1st_SNP.png)
-**Question.** What does the forest plot look like for the 'top' SNPs, i.e. for those with the lowest P-values (or highest Bayes factors)?  Plot a few of them and look at them.  Make sure you understand how the data in the meta-analysis file corresponds to the data on the plot.
 
-**Note.** Forest plots are deceptively simple - they don't look like there's much going on, but whenever I try to draw one I find it takes quite a bit of code.  (Like the `draw.forest.plot()` function above, which already has ~40 lines of code).  This is typical of visualisation in general - the code always gets lengthy - and I think it is not really surprising.  It is because in a visualistion you are trying to convey a great deal of information clearly in a small space: this often takes great deal of careful tweaking to get right.  Don't skimp on this!
+:::tip Question
 
-**Challenge.** For a "working" plot, one thing it might be good to add to the plot would be more text listing the numerical values (i.e. the estimate and 95% confidence intervals)  E.g. this code:
+What does the forest plot look like for the 'top' SNPs, i.e. for those with the lowest P-values (or highest Bayes factors)?  Plot a few of them and look at them.  Make sure you understand how the data in the meta-analysis file corresponds to the data on the plot.
+
+:::
+
+
+**Note.** Forest plots are deceptively simple - they don't look like there's much going on, but whenever I try to draw one I
+find it takes quite a bit of code. (Like the `draw.forest.plot()` function above, which already has ~40 lines of code). This
+is typical of visualisation in general - the code always gets lengthy - and I think it is not really surprising. It is because
+in a visualistion you are trying to convey a great deal of information clearly in a small space: this often takes great deal
+of careful tweaking to get right. Don't skimp on this!
+
+:::tip Challenge
+
+ For a "working" plot, one thing it might be good to add to the plot would be more text listing the numerical
+values (i.e. the estimate and 95% confidence intervals) E.g. this code:
 
 ```
 labels = sprintf(
@@ -248,14 +268,24 @@ labels = sprintf(
   betas + 1.96 * ses
 )
 ```
-produces the right kind of text.  Then you can add it to the plot in the right place.
+produces the right kind of text.  Can you add this to the plot in the right place?
+
+:::
 
 ### Other meta-analysis models
 
-The above is a simple meta-analysis that assumes that the true effect is the same in both studies.
-However, as we saw in the lecture, more complex models are also possible, including a 'random' effects analysis (that assumes that true effects are normally distributed around some mean) and include a heterogeneity test.  Here is a way to do this
+The above is a simple meta-analysis that assumes that the true effect is the same in both studies. However, as we saw in the
+lecture, more complex models are also possible, including a 'random' effects analysis (that assumes that true effects are
+normally distributed around some mean) and include a heterogeneity test. Here is a way to do this.
 
-**Note.** You will need the `meta` library installed first - run `install.packages("meta")` or use the `Tools` -> `Install Packages` menu in Rstudio.
+First, you will need to install the `meta` library: run
+```
+install.packages("meta")
+```
+
+or use the `Tools` -> `Install Packages` menu in Rstudio.
+
+We can then run a random-effect meta-analysis like this:
 
 ```
 library(meta)
@@ -267,8 +297,15 @@ forest.meta(
 )
 ```
 
-**Question.** What does this look like for the most-associated SNPs?  Is there any evidence of differences in effect between studies?
+:::tip Question
+
+What does this look like for the most-associated SNPs? Is there any evidence of differences in effect between studies?
+
+:::
 
 ### Fine-mapping the association
 
-By now you should have a good sense of which SNPs have lots of evidence for association in the two studies - and maybe these are the 'causal' SNPs.  However, an obvious possibility (if the gene is relevant for the disease) is that there could be multiple causal SNPs.  In the [next section](Fine-mapping.md) we will see one way to try to discover how many causal SNPs there are - and what they are.
+By now you should have a good sense of which SNPs have lots of evidence for association in the two studies - and maybe these
+are the 'causal' SNPs. However, an obvious possibility (if the gene is relevant for the disease) is that there could be
+multiple causal SNPs. In the [next section](Fine-mapping.md) we will see one way to try to discover how many causal SNPs there
+are - and what they are.
