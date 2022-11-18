@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# Using `FINEMAP` to fine-map associations
+# Using FINEMAP to fine-map associations
 
 [Up to the table of contents](README.md) / [Back to the meta-analysis section](Meta-analysis.md)
 
@@ -103,7 +103,7 @@ What output files have we specified? What's the number `20000`?
 
 Now you are ready to run `FINEMAP`...
 
-## Running `FINEMAP``
+## Running FINEMAP
 
 I'm going to assume you have downloaded and been able to run `FINEMAP` as described in the
 [Introduction](Introduction.md). (If not please go and download it now.) Hopefully you know where
@@ -147,7 +147,6 @@ Running FINEMAP is hopefully now easy:
 
 Be prepared for a bit of a wait as FINEMAP searches the space of possible causal configurations.
 
-:::tip Note
 So what *is* FINEMAP doing? Well, you can read the [FINEMAP paper](https://doi.org/10.1093/bioinformatics/btw018), but in
 short: finemap conducts a *shotgun stochastic search* around the space of possible causal configurations (groups of SNPs that
 might be causal). It starts off with all single-SNP models, then it randomly tries a bunch of ways of adding a second SNP to
@@ -157,7 +156,6 @@ configurations that have high probability.
 In general it would need the raw genotype data to do this. However, because it assumes an additive
 model (of genotypes on phenotype) it turns out that an approximation based on the SNP effects and
 ld is sufficient, which is how FINEMAP can run so fast.
-:::
 
 ### Interpreting FINEMAP output
 
