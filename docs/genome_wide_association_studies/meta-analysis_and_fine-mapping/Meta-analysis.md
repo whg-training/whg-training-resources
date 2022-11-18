@@ -16,19 +16,27 @@ The full name of this is *inverse variance weighted fixed-effect meta-analysis*.
 
 Here's how it works: form a weighted average of the effect estimates, weighted by the inverse of the variances:
 
-$$ b = \sum_i \frac{\beta_i}{\text{se}_i^2} $$
+$$ 
+b = \sum_i \frac{\beta_i}{\text{se}_i^2} 
+$$
 
 Compute also the sum of weights:
 
-$$ w = \sum_i \frac{1}{\text{se}_i^2} $$
+$$ 
+w = \sum_i \frac{1}{\text{se}_i^2} 
+$$
 
 Then the *meta-analysis estimate* is
 
-$$ \beta_{\text{meta}} = b * w $$
+$$ 
+\beta_{\text{meta}} = b * w 
+$$
 
 and the *meta-analysis standard error* is
 
-$$ \beta_{\text{meta}} = \frac{1}{\sqrt{w}} $$
+$$ 
+\beta_{\text{meta}} = \frac{1}{\sqrt{w}} 
+$$
 
 **Note.** There are two good reasons to compute the estimate this way. Firstly, [normal times
 normal is
