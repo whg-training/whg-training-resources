@@ -1,6 +1,7 @@
 * Azim Ansari
 * Gavin Band
 * Stefania Benonisdottir
+* Eddie Cano-Gomez
 * Daniel Crouch
 * Teresa Ferreira
 * Jason Hendry
