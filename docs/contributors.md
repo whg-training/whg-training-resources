@@ -8,6 +8,7 @@
 * Valentina Iotchkova
 * Luke Jostins
 * Augustine Kong
+* Helen Lockstone
 * Gerton Lunter
 * Andre Python
 * Nilufer Rahmioglu
