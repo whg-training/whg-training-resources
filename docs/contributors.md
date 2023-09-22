@@ -1,12 +1,14 @@
 * Azim Ansari
 * Gavin Band
 * Stefania Benonisdottir
+* Eddie Cano-Gomez
 * Daniel Crouch
 * Teresa Ferreira
 * Jason Hendry
 * Valentina Iotchkova
 * Luke Jostins
 * Augustine Kong
+* Helen Lockstone
 * Gerton Lunter
 * Andre Python
 * Nilufer Rahmioglu

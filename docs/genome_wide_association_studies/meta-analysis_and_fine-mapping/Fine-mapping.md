@@ -142,7 +142,7 @@ cp /path/to/finemap_v[version]/finemap_v[version] ./finemap
 
 Running FINEMAP is hopefully now easy:
 ```
-./finemap --sss --in-files finemap.master
+./finemap --sss --in-files finemap.master --log
 ``` 
 
 Be prepared for a bit of a wait as FINEMAP searches the space of possible causal configurations.
@@ -270,7 +270,7 @@ Let's look next at the `finemap_meta.config` file, which list gives the best 50,
 configurations that FINEMAP found in its stochastic search. Load this file into your R session now:
 
 ```
-configurations = read_delim( "finemap_meta.config", delim = " " )
+configurations = read_delim( "finemap_meta.config", delim = " " , comment = "#')
 ```
 
 We will look at the ones that have at least a 10% posterior:
@@ -317,7 +317,7 @@ on this, you would need to consider these variants as a group.
 To group variants, FINEMAP also provides credible sets for each of the two signals:
 
 ```
-credible = read_delim( "finemap_meta.cred", delim = " " )
+credible = read_delim( "finemap_meta.cred2", delim = " " )
 print( credible, width = 100 )
 ```
 
@@ -325,7 +325,7 @@ Also make sure look at the column names:
 ```
 > 
 colnames( credible )
-[1] "index" "cred_set_19:49208368:C:T" "prob_set_19:49208368:C:T" "cred_set_19:49208380:T:C" "prob_set_19:49208380:T:C"
+[1] "index" "cred1" "prob1 "cred2" "prob2"
 ```
 
 **Note.** My version of the file has trailing spaces at the end of each line - so R warns about
@@ -368,8 +368,8 @@ Next let's define the colours for our credible sets:
 ```
 colours = c( "chocolate1", "deepskyblue4" )
 snps$colour <- "grey"
-snps$colour[ snps$rsid %in% credible[['cred_set_19:49208368:C:T' ]] ] <- colours[1]
-snps$colour[ snps$rsid %in% credible[['cred_set_19:49208380:T:C' ]] ] <- colours[2]
+snps$colour[ snps$rsid %in% credible[['cred1']] ] <- colours[1]
+snps$colour[ snps$rsid %in% credible[['cred2']] ] <- colours[2]
 ```
 
 Also let's load genes using the same data / code from the [GWAS
