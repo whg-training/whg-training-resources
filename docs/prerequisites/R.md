@@ -8,7 +8,7 @@ A great deal of data analysis work is done in [R](https://www.r-project.org) - y
 installed. The recommended way is to work with [RStudio](https://www.rstudio.com), but it's also
 possible to use directly in the command-line, or via a Jupyter notebook and so on.
 
-### Installing R directly
+## Installing R directly
 
 * R is downloaded from the 'Comprehensive R Archive Network'. First, pick [an appropriate
   mirror](https://cran.r-project.org/mirrors.html) and then click the appropriate download button.
@@ -22,7 +22,7 @@ Install both these packages (default options) and then try running Rstudio. You 
 with a few panes showing R's default startup text, a file browser and some information on your R
 environment (which means the variables you have in your session.)
 
-### Trying it out
+## Trying it out
 
 For example to test it, let's try a few things.  For example we could create a variable:
 
@@ -52,6 +52,12 @@ hist(data)
 
 Congratulations!  You now have R installed.  
 
-### Next steps
+## Getting help
+
+R has a built-in help system which you can access by typgin `?` followed by the symbol you're interested in.
+Or, you can type `??` followed by some text, which will do a more general search for the text in the help.
+For example, try `?sin` to see what the `sin` function does.
+
+## Next steps
 
 A good thing to do is to [install tidyverse](tidyverse.md).
