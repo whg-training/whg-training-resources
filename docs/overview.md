@@ -28,26 +28,5 @@ Content on this site is publicly available under the terms of the [MIT license](
 
 ## Contributors ##
 
-We are grateful to the following people who have contributed to the material on this site:
-
-* Azim Ansari
-* Gavin Band
-* Stefania Benonisdottir
-* Eddie Cano-Gomez
-* Daniel Crouch
-* Teresa Ferreira
-* Annie Forster
-* Jason Hendry
-* Valentina Iotchkova
-* Luke Jostins-Dean
-* Augustine Kong
-* Gerton Lunter
-* Matthieu Miossec
-* Andre Python
-* Nilufer Rahmioglu
-* Edward Sanders
-* Ron Schwessinger
-* Justin Whalley
-* Laura Wittemans
-* Samvida Venkatesh
-* Nicky Whiffin
+We are grateful to the people who have contributed to departmental training and the material on this site - please see
+the list of [recent contributors](recent_contributors.md).
