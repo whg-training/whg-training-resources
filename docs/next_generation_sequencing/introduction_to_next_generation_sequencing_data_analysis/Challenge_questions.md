@@ -18,12 +18,15 @@ In the folder `human/` you'll find some data from a human sample - NA12878:
 ls ~sequence_data_analysis/human/
 ```
 
+You should see two files called `NA12878_ERR3239334-Illumina_Novaseq_6000-chr19_subsampled-read1.fastq.gz`
+and `NA12878_ERR3239334-Illumina_Novaseq_6000-chr19_subsampled-read2.fastq.gz`.
+
 **Challenge.** QC and align this data using the methods described in the practical. Then look at the result 
 using `samtools tview`.
 
-**Note.** This data is subsampled to chromosome 19. It is a bit bigger than the malaria data; to
-speed this up you can probably get away with using up to 4 threads in the `bwa mem` step - but no
-more than 4 please!
+**Note.** This data is subsampled to chromosome 19. It is a about the same size as the malaria data. To speed things up you can
+probably get away with using more threads in the `bwa mem` step - but if you are running it on one of our JupyterHub instances,
+no more than 4 threads please!
 
 A good region to view is around the gene *FUT2*, which is at `chr19:48645971-48755951`.
 
