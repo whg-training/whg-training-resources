@@ -75,8 +75,9 @@ Feel free to scroll around a bit.  A few things to note:
 * The per-sample data itself starts way over in the 10th column. The values are **PHRED-scaled
   genotype likelihoods** for each possible genotype for the given alleles.
   
-**Note.** If there are $k$ alleles listed, then there are $k \choose 2$ possible genotypes (for a
-diploid human individual). This is why some rows have many more values than others - more alleles
+**Note.** If there are $k$ alleles listed, then there are $k \choose 2 + k$ possible genotypes (for a diploid human individual)
+- that is, $k$ possible homozygous genotypes, and $k \choose 2$ (read as "$k$ choose $2$", i.e. the number of ways of picking
+$2$ alleles from $k$) possible heterozygous genotypes. This is why some rows have many more values than others - more alleles
 were seen in the reads.
 
 **Note.** The PHRED-scaled likelihood (PL) for a particular genotype $g$ is computed as
