@@ -12,7 +12,7 @@ const config = {
   title: 'WHG training resources',
   tagline: 'Genomics, bioinformatics and statistics training resources',
   url: 'https://well.ox.ac.uk/',
-  baseUrl: '/bioinformatics/training/gms/whg-training-resources/',
+  baseUrl: '/whg-training-resources/',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
