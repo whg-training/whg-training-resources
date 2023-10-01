@@ -18,7 +18,7 @@ to implement it.
 As stated above there isnt really anything about *genetics* in the model. So to give ourselves some genetic data to work with,
 we'll also generate a set of haplotypes and have them evolve through the model.
 
-Let's get started.  
+Let's get started.
 
 ### Generating a starting set of haplotypes
 
