@@ -17,9 +17,12 @@ function HomepageHeader() {
           <Link
             className="button button--secondary button--lg"
             to="/Overview">
-            Go to the practicals
+            Go to the list of tutorials
           </Link>
         </div>
+        <p>
+        Or select from the topics below.
+        </p>
       </div>
     </header>
   );

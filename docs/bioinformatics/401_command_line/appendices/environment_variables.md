@@ -35,13 +35,19 @@ If you want to see what's in any of these variables, use `echo` to print them:
 % echo $HOME
 ```
 
-::tip Note
+:::tip Note
 
-The one place this doesn't work is inside single quotes (`''`).  Variables are **not** expanded in there.
-Try the following to see this in action:
+As with [globbing](./globbing.md#avoiding-globbing), the one place this doesn't work is inside single quotes (`''`).
+Variables are **not** expanded in there. Try the following to see this in action:
+
 ```
 % echo $USER
 % echo "$USER"
 % echo '$USER'
 ```
+
+This is a **useful feature** not a bug - for example if you really did want to print '\$USER' and not the value of the
+`$USER` environment variable.
+
+
 :::

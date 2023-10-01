@@ -2,7 +2,7 @@
 sidebar_position: 5
 ---
 
-# Where is a command?
+# Where are the commands?
 
 A 'command' is usually just a program on the filesystem somewhere.  A few commands, however are built-in to the command
 line.

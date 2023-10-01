@@ -9,8 +9,8 @@ const katex = require('rehype-katex');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'WHG training resources',
-  tagline: 'Genomics, bioinformatics and statistics training resources',
+  title: 'The WHG training resources',
+  tagline: 'Train in genomics, bioinformatics, statistics and data analysis',
   url: 'https://well.ox.ac.uk/',
   baseUrl: '/whg-training-resources/',
   onBrokenLinks: 'warn',
@@ -47,7 +47,10 @@ const config = {
         },
         blog: false,
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: [
+            require.resolve('./src/css/custom.css'),
+            require.resolve('./src/css/tables.css')
+          ],
         },
       }),
     ],
@@ -69,13 +72,14 @@ const config = {
         logo: {
           alt: 'My Site Logo',
           src: 'img/wchg.png',
+          srcDark: 'img/wchg-white.png'
         },
         items: [
           {
             type: 'doc',
             docId: 'overview',
             position: 'left',
-            label: 'Click here for the tutorials',
+            label: 'Tutorials home',
           },
           {
             href: 'https://github.com/whg-training/whg-training-resources',
