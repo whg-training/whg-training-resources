@@ -1,13 +1,8 @@
 ---
-sidebar_position: 2.5
+sidebar_position: 0
 ---
 
-# Bioinformatics
+# Bioinformatics tutorials
 
-Welcome! Click below to visit the tutorials:
-
-* Get started in BASH by [exploring human gene annotations](./exploring_gene_annotations_in_bash) using the
-  command-line.
-
-* Learn how to [recursively list the contents of an FTP site](./tips_and_tricks/recursive_ftp)
+Welcome! Click on the menu on the left to visit the tutorials.
 
