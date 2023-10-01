@@ -18,7 +18,7 @@ back here.
 
 #### A look at the data
 
-You should now have a folder called `sequence_data_analysis` filled with a number of data
+You should now have a folder called `sequence_data_analysis/` filled with a number of data
 files. Now would be a good point to explore what's in there.  The folder contains
 
 - sequence data reads from malaria parasites (under the `malaria/` folder). These reads are in

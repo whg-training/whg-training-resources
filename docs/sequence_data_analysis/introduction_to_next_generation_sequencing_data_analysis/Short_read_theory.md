@@ -179,4 +179,4 @@ few bases in the reads, as seen in this file.
 
 ### Next steps
 
-Now get back [back to the practical](Pipeline_outline.md#the-practical-in-a-nutshell), or see the [examples on the QC page](http://localhost:3000/~gav/projects/oxford-statgen-summer-school/next_generation_sequencing/basic_sequence_data_analysis/Quality_control/#a-survey-of-sequencing-performance).
+Now get back [back to the practical](Pipeline_outline.md#the-practical-in-a-nutshell), or see the [examples on the QC page](http://localhost:3000/~gav/projects/oxford-statgen-summer-school/sequence_data_analysis/basic_sequence_data_analysis/Quality_control/#a-survey-of-sequencing-performance).

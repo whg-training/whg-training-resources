@@ -1,8 +1,8 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 ---
 
-# Building an NGS data processing pipeline
+# A sequence data pipelining challenge!
 
 Welcome!  Go to the [introduction](./Introduction.md) to get started.
 
@@ -16,7 +16,7 @@ needed to process NGS data.
 
 For background on NGS data and how to process it, please see the
 [introduction to NGS
-tutorial](/next_generation_sequencing/introduction_to_next_generation_sequencing_data_analysis/).
+tutorial](/sequence_data_analysis/introduction_to_next_generation_sequencing_data_analysis/).
 
 :::
 

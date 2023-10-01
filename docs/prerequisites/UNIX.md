@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 1.8
 ---
 
 # Setting up a UNIX terminal

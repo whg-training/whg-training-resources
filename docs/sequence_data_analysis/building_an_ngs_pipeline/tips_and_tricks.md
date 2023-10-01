@@ -566,7 +566,7 @@ Here are some tips on using `samtools`:
 ### Solutions
 
 My solution to this tutorial can be found
-[in this folder](https://github.com/whg-training/whg-training-resources/tree/main/docs/next_generation_sequencing/building_an_ngs_pipeline/solutions).
+[in this folder](https://github.com/whg-training/whg-training-resources/tree/main/docs/sequence_data_analysis/building_an_ngs_pipeline/solutions).
 
 (As mentioned above, I used a rename-files-at-the end strategy so this might look a bit different to yours.)
 

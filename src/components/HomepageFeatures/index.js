@@ -48,7 +48,7 @@ const FeatureList = [
   {
     title: 'Statistics',
     url: 'statistical_modelling',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    Svg: require('@site/static/img/stats.svg').default,
     description: (
       <>
         Learn about probability, statistical modelling, and association.
@@ -70,6 +70,8 @@ const FeatureList = [
     title: 'Genome-wide association',
     url: 'genome_wide_association_studies',
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    //png: 'static/img/gwas.png',
+
     description: (
       <>
         Conduct and interpret a simulated GWAS study, and finemapping.
@@ -77,12 +79,12 @@ const FeatureList = [
     ),
   },
   {
-    title: 'Next-generation sequencing',
-    url: 'next_generation_sequencing',
+    title: 'Sequencing data analysis',
+    url: 'sequence_data_analysis',
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Learn about probability, statistical modelling, and association.
+        Learn how to interpret, align, and analyse genomic sequence data.
       </>
     ),
   },

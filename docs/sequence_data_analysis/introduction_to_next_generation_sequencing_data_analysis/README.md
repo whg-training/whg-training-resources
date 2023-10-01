@@ -1,8 +1,8 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
 
-# Introduction to next-generation sequencing
+# Analysing paired-end sequencing data
 
 In this tutorial we will demonstrate a basic pipeline for analysing paired-end short-read genomic
 sequencing data. We will start with raw data in a FASTQ file, inspect quality control metrics,

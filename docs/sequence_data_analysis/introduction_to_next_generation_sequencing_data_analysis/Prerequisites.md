@@ -61,24 +61,24 @@ them to print their version information.  You should see something like:
 
 ## Getting the data
 
-To get the data for this tutorial, download the tarball from [this folder](https://www.well.ox.ac.uk/~gav/projects/whg-training-resources/data/next_generation_sequencing/introduction_to_next_generation_sequencing_data_analysis/) - for example using curl:
+To get the data for this tutorial, download the tarball from [this folder](https://www.well.ox.ac.uk/~gav/projects/whg-training-resources/data/sequence_data_analysis/introduction_to_next_generation_sequencing_data_analysis/) - for example using curl:
 
 For example using `curl`:
 ```sh
-curl -O https://www.well.ox.ac.uk/~gav/projects/whg-training-resources/data/next_generation_sequencing/introduction_to_next_generation_sequencing_data_analysis/sequence_data_analysis.tgz
+curl -O https://www.well.ox.ac.uk/~gav/projects/whg-training-resources/data/sequence_data_analysis/introduction_to_next_generation_sequencing_data_analysis/sequence_data_analysis/.tgz
 ```
 
 This will take a minute or so to download.  Extract it :
 
 ```
-tar -xzf sequence_data_analysis.tgz
+tar -xzf sequence_data_analysis/.tgz
 ```
 
-You should now have a folder called `sequence_data_analysis`. For the tutorial, delete the tarball
+You should now have a folder called `sequence_data_analysis/`. For the tutorial, delete the tarball
 and then change into that directory:
 
 ```
-rm sequence_data_analysis.tgz
+rm sequence_data_analysis/.tgz
 cd sequence_data_analysis
 ```
 

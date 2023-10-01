@@ -52,9 +52,9 @@ cd ngs_tutorial
 ```
 
 To get the data, download the `ngs_pipeline_data.tgz` data tarball from
-[this link](https://www.well.ox.ac.uk/~gav/projects/whg-training-resources/data/next_generation_sequencing/building_an_ngs_pipeline/).  For example you can do this using curl:
+[this link](https://www.well.ox.ac.uk/~gav/projects/whg-training-resources/data/sequence_data_analysis/building_an_ngs_pipeline/).  For example you can do this using curl:
 ```
-curl -O https://www.well.ox.ac.uk/~gav/projects/whg-training-resources/data/next_generation_sequencing/building_an_ngs_pipeline/ngs_pipeline_data.tgz
+curl -O https://www.well.ox.ac.uk/~gav/projects/whg-training-resources/data/sequence_data_analysis/building_an_ngs_pipeline/ngs_pipeline_data.tgz
 ```
 
 This will take a minute or two to download. Once it has finished, extract the tarball into your `ngs_tutorial` directory:

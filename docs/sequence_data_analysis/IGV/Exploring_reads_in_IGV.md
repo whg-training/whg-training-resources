@@ -1,43 +1,16 @@
-# Exploring Reads in IGV
+---
+sidebar_position: 4
+---
 
-**Contributors:** Annie Forster, Gavin Band
+# Viewing reads
 
-## Getting started
+You should now have load some data into IGV (if not, go and [do that now](./README.md#loading-data).)
+You'll probably see something like this:
 
-In this tutorial you are going to be inspecting the alignments you have created in a program called Integrative Genomics Viewer (IGV). IGV is a very handy piece of software which allows you to visually inspect alignments across the genome. 
 
-First you will need to download IGV. You can find the software [here.](https://software.broadinstitute.org/software/igv/download)
 
-Next load one of your bam files. You will be prompted to download the appropriate reference; “Pfalciparum3D7” should already be available from the provided selection.  For this tutorial you should load (at least):
-
-* `QG0033-C.bam`
-* `QG0041-C.bam`
-
-(You are also welcome to load the other three.)
-
-:::tip Note
-
-My versions of the aligned files can be found [in this
-folder](https://www.well.ox.ac.uk/~gav/projects/whg-training-resources/data/next_generation_sequencing/building_an_ngs_pipeline/results/aligned).
-See the `full_depth` directory for full-depth BAM files, or `subsampled` for data that has been subsampled to lower-depth.
-
-:::
-
-If you followed the snakemake tutorial, you should also be able to load:
-
-* Your coverage (`.bedgraph`) files for the above samples (this isn't very important because IGV shows you coverage anyway.)
-
-* Your `variants.vcf.gz` file containing the variant calls from Octopus. (If yours doesn't work, this may be due to an Octopus
-  issue that has now been fixed. I filtered out the problem variants in [my
-  version](https://www.well.ox.ac.uk/~gav/projects/whg-training-resources/data/next_generation_sequencing/building_an_ngs_pipeline/results/variants)
-  - feel free to download this one instead.)
-
-Load these in now.  Here are a few things to try:
-
-## Looking at reads.
-
-To see reads you will need to zoom into a location on the genome. For example, let's zoom into the gene that harbours the famous
-chloroquine resistance mutation, [Chloroquine resistance transporter
+To see the reads you will need to zoom into a location on the genome. For example, let's zoom into the gene that
+harbours the famous chloroquine resistance mutation, [Chloroquine resistance transporter
 (*CRT*)](https://plasmodb.org/plasmo/app/record/gene/PF3D7_0709000). To search for it you will need its ID, which is
 `PF3D7_0709000`. Voila! Some reads.
 
