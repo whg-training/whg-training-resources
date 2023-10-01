@@ -1,11 +1,5 @@
 # gff.py
 # This file implements the function parse_gff3_to_dataframe()
-#
-# I've used a particular style here:
-# - names_are_written_using_underscores (as opposed to camelCaseWhichSomePeopleLike.)
-# - I've generally made functions create a `result` variable, and their job is to build & return it.
-# - I've also written it in the top-down style, in which the highest-level function goes first
-# followed by the immediate functions it uses etc.  This is a useful style to follow
 # 
 
 import pandas
