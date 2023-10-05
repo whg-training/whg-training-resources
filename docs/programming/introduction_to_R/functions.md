@@ -11,10 +11,10 @@ In fact we've seen a few already: we used the `seq()`, `sum()` and `plot()` func
 
 These illustrate the general form for using a function, which is:
 ```
-<function name>( function arguments go here )
+function_name_goes_here( function arguments go here )
 ```
 
-The function does some computation, based on the *arguments* in the brackets, and 'returns' its result.
+The function does some computation, based on its *arguments* in the brackets, and 'returns' its result.
 
 ## Examples
 
@@ -33,6 +33,16 @@ Or we could compute the sine of an angle:
 ```
 (The angle is expressed in radians, so `pi/2` means 45 degreees.)
 
+## Functions with more than one argument
+
+If the function takes two or more arguments, seperate them with commas:
+```
+> rep( 2, 5 )
+[1] 2 2 2 2 2
+```
+
+**Note.** The `rep()` function stands for 'repeat'.  It repeats its first argument as many times as its second argument.
+
 ### Many values make light work
 
 Functions, just like everything else, work on vectors.  For example let's generate a sine curve:
@@ -47,27 +57,32 @@ and plot it:
 > plot( x, y, type = 'l' )
 ```
 
-This illustrates another feature of functions: **named arguments**. In this case `plot()` has an argument named `type`
-which you can specify by giving its name.  Here, `type='l'` tells it to draw the result as a line.  What do you get if
-you don't include this function argument?
+## Named arguments
 
-:::tip Challenge
+These examples also illustrate another feature of functions: **named arguments**. In this case `plot()` has an argument
+named `type` which you can specify by giving its name.  Here, `type='l'` tells it to draw the result as a line.  
 
-In fact `plot()` actually has about a zillion arguments, but they all have names and most of them have **default values**,
-so you only have to specify the ones you want to change.  For example another argument is `xlab` which specifies the x axis label:
+:::tip Question
+What do you get if you don't include the `type='l'` argument?
+:::
+
+`plot()` actually has about a zillion arguments, but they all have names and most of them have **default values**, so
+you only have to specify the ones you want to change.  For example another argument is `xlab` which specifies the x axis
+label:
 ```
 > plot( x, y, type = 'l', xlab = "Angle in radians" )
 ```
 
-Your **challenge** is to give the plot a sensible y axis label (`ylab`).  And also get rid of the 'box' round the
-outside (by adding using `bty='n'`).
+:::tip Challenge
+
+Give the plot a sensible y axis label (`ylab`) as well.  And also get rid of the 'box' round the outside by setting the 'box type' to 'n' (`bty='n'`).
 
 :::
 
 ## Generating random numbers
 
-What other functions are there?  Loads!
-For example we could **generate some random numbers** between 0 and 1 using `runif()`:
+There are loads of other functions. For example we could **generate some random numbers** between 0 and 1 using
+`runif()`:
 ```
 > runif( n = 10 )
  [1] 0.7972164 0.6796878 0.3802085 0.8871665 0.0827587 0.6847181 0.5019356 0.5859209
@@ -81,7 +96,35 @@ A natural thing to do with random numbers is **histogram** them:
 > hist( x )
 ```
 
-Everything we're doing here is done by **calling built-in functions** to comute or plot some values.
+Or we could compute their *mean* or *average*:
+```
+> mean(x)
+```
+
+## Formatting strings
+
+A very useful function is `sprintf()` which can be used to format numbers into strings.
+For example to convert the number 5 to a string:
+```
+> sprintf( "%d" % 5 )
+```
+
+The first argument is the **format string**, which here uses '%d' to say 'format a decimal integer here'.  
+The other arguments are the values to be formatted.
+
+`sprintf()` is useful to do general formatting.  For example, to list some filenames:
+
+```
+> sprintf( "/path/to/images/image%d.jpg", 1:10 )
+```
+
+Or to print out some diagnostics:
+```
+> n = 10
+> k = 5
+> sprintf( "There are %d ways to choose %d objects from a set of %d.", choose(n,k), k, n )
+```
+
 
 ## Getting help
 
@@ -123,16 +166,19 @@ Make sure you understand how this works.
 
 ## Writing your own functions
 
-Built-in functions are great!  But what if you want your own?
+Everything we're doing here is done by **calling built-in functions** to compute or plot some values.  Built-in
+functions are great!  But what if you want your own?
 
-Well, this is easy too.  For example, let's write a function that repeats a string twenty times:
+Well, this is easy too.  For example, let's write a function that converts a string to lower case, and then repeats it
+twenty times:
+
 ```
 > repeat_it = function( a_string ) {
-	rep( a_string, 20 )
+	rep( tolower( a_string ), 20 )
 }
 ```
 
-Our function uses the `rep` built-in function (read its help!) to repeat the string.  Try it out:
+Our function uses the `tolower()` built-in function to convert the case, and the `rep()` built-in function (read its help!) to repeat the string.  Try it out:
 ```
 > repeat_it( "Repeat this!" )
 ```
@@ -141,7 +187,7 @@ Of course this function is silly - what if we want to repeat it 100 times instea
 `number_of_repeats` argument:
 ```
 > repeat_it = function( a_string, number_of_repeats = 20 ) {
-	rep( a_string, number_of_repeats )
+	rep( tolower( a_string ), number_of_repeats )
 }
 ```
 
