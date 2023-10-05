@@ -165,7 +165,7 @@ pick a threshold of $\alpha = 5\times 10^{-7}$ for following up on putative gene
 Here's how the calculation was presented. The authors supposed there might be, heuristically, around a million 'linkage
 disequilibrium blocks' in the human genome. (A linkage disequilibrium block is a region of the genome, perhaps bordered by
 recombination hotspots, over which common genetic variants have become correlated due to ancestral processes such as [genetic
-drift](../population_genetics/implementing_a_Wright-Fisher_model/)). And they supposed that, perhaps, 10 such regions in the
+drift](../population_genetics/popgen_simulation/)). And they supposed that, perhaps, 10 such regions in the
 genome might be genuinely associated with a given common disease - giving an approximate prior odds of
 
 $$
