@@ -33,12 +33,19 @@ R also has a concept of the *current* or *working directory*.  You can see what 
 If you start R from the command-line, the working directory will be the directory you started it
 from.  If you start it from the operating system, it's likely to be your home directory.
 
-You can also change working directory using `setwd()`:
+Just like in the command-line, you can create and move around directories - R this uses the `dir.create()` function.
+For example:
 ```
-> setwd( "/tmp" )
+> dir.create( "te_directory" )
+> setwd( "my_directory" )
 ```
 
+(You can try `getwd()` again to check you have really changed.)
+
 :::tip Note
-The working directory becomes important when you want to load or save data from files.
-The filenames are written relative to the current working directory.
+
+Just as with the command-line, it's important to know 'where' you are in the filesystem when you work with R.
+
+This can become particularly important when you want to work with files, since you'll either need to be in the same directory or specify the path to them - which depends on your current directory.
+
 :::
