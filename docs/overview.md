@@ -15,21 +15,22 @@ Content on this site is publicly available under the terms of the [MIT license](
 
 |    Module                      |                      Tutorial                          |
 | ------------------------------ | ------------------------------------------------------ |
-| **Getting started**            | [Setting up your environment](/prerequisites/) |
-| **Bioinformatics**             | [Getting started with BASH](/bioinformatics/command_line/) |
-|                                | [Exploring human genes on the command-line](/bioinformatics/exploring_gene_annotations_in_bash/) |
-|                                | [Command-line tips and tricks](/bioinformatics/tips_and_tricks/) |
-| **Programming**                | [Introduction to programming in R](/programming/introduction_to_R/) |
-|                                | [Programming with gene annotation files](/programming/programming_with_gene_annotations/) |
-| **Next-generation sequencing** | [Introduction to NGS data analysis](/next_generation_sequencing/introduction_to_next_generation_sequencing_data_analysis/) |
-|                                | [Building an NGS processing pipeline](/next_generation_sequencing/building_an_ngs_pipeline/) |
-|                                | [Visualising alignments](/next_generation_sequencing/IGV/) |
-| **Data visualisation**         | [Data visualisation with ggplot2](/data_visualisation/data_visualisation_with_ggplot2/) |
-|                                | [Visualising RNA-seq data](/data_visualisation/visualisng_rna-seq_data/) |
-| **Statistical genomics**       | [Statistical modelling I - regression](/statistical_modelling/regression_modelling/) |
-| **Population genetics**        | [Implementing a Wright-Fisher model](/population_genetics/README.md) |
-|                                | [Principal components analysis](/population_genetics/principal_components/) |
-| **GWAS**                       | [Conducting a genome-wide association study](/genome_wide_association_studies/genome_wide_association_analysis) |
+| [**Getting started**](/prerequisites)          	| [Setting up your environment](/prerequisites/) |
+| [**Bioinformatics**](/bioinformatics)          	| [Getting started with BASH](/bioinformatics/command_line/) |
+|                               				 	| [Exploring human genes on the command-line](/bioinformatics/exploring_gene_annotations_in_bash/) |
+|                                				 	| [Command-line tips and tricks](/bioinformatics/tips_and_tricks/) |
+| [**Programming**](/programming)                 	| [Introduction to programming in R](/programming/introduction_to_R/) |
+|                                					| [Programming with gene annotation files](/programming/programming_with_gene_annotations/) |
+| [**Dealing with sequencing data**](/next_generation_sequencing) | [Analysing Sanger sequence data](/sequence_data_analysis/sanger_sequence_data/) |
+|                                                   | [Analysing paired-end sequencing data](/sequence_data_analysis/introduction_to_next_generation_sequencing_data_analysis/) |
+|                                					| [A sequence data pipelining challenge](/sequence_data_analysis/building_an_ngs_pipeline/) |
+|                                					| [Visualising alignments](/sequence_data_analysis/IGV/) |
+| [**Data visualisation**](/data_visualisation)     | [Data visualisation with ggplot2](/data_visualisation/data_visualisation_with_ggplot2/) |
+|                                					| [Visualising RNA-seq data](/data_visualisation/visualisng_rna-seq_data/) |
+| [**Statistical genomics**](/statististical_modelling)       | [Statistical modelling I - regression](/statistical_modelling/regression_modelling/) |
+| [**Population genetics**](/population_genetics)   | [Implementing a Wright-Fisher model](/population_genetics/README.md) |
+|                                					| [Principal components analysis](/population_genetics/principal_components/) |
+| [**GWAS**](/genome_wide_association_studies)      | [Conducting a genome-wide association study](/genome_wide_association_studies/genome_wide_association_analysis) |
 
 </div>
 
