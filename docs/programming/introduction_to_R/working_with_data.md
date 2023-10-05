@@ -21,6 +21,9 @@ You ought to be able now to load the data directly into R using the `read_tsv()`
 > X = read_tsv( "<paste your link here inside the quotes>" )
 ```
 
+**Note.** depending on your setup, you may need to remove the trailing slash (`/`) from the end of the URL to make this
+work.
+
 This data comes from the [NCBI page on the GRCh38 human genome
 assembly](https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_000001405.26/).  
 

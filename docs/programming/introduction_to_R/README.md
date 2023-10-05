@@ -8,55 +8,45 @@ sidebar_position: 1
 
 This short course is designed to teach the basics of the **R programming language**.
 
-To use R, the very first thing you'll need to do (of course) is install R.  So let's do that now.
+To use R, the very first thing you'll need to do is get R running.  For this tutorial you can choose one of two options:
 
-## Installing R
+**Option 1**: You can run R using the [MSc JupyterHub site](https://mscjupyterhub.bmrc.ox.ac.uk).  To do this, log into the site,
+  start a new tab by pressing the `+` button, and then choose 'R' from the 'Notebook' section.  You should see something like this:
 
-There are actually two things to install.  First, you want a version of R itself, and second, you'll
-probably want to install *Rstudio Desktop*, which provides a nice way to use R.  Go and install
-these now as follows:
+![img](images/r_jupyterhub.png)
 
-* **R** can be downloaded from the 'Comprehensive R Archive Network'. First, pick [an appropriate
-  mirror](https://cran.r-project.org/mirrors.html) and then click the appropriate download button.
+You can type your commands into the box.
 
-* **Rstudio** can be downloaded from [rstudio.com](https://www.rstudio.com). Find the [Rstudio download
-  page](https://posit.co/download/rstudio-desktop/).  Go there and click 'Download Rstudio'.  (Don't get the server
-  version for now, which is different.)
+Or **Option 2**: you can download and install R and RStudio, and run it locally on your laptop.  To do this, visit the
+[Rstudio download page](https://posit.co/download/rstudio-desktop/) and then download 'R' and 'RStudio Desktop'.
 
-Go and install both these packages now (with default options) and then try R out by running Rstudio.
-You should see a window open with several panes, something like this:
-
-
+Once you have done this, install both packages and then start RStudio.  You should see something like this:
 ![img](images/rstudio.png)
+
+The R prompt is in the left hand pane - you can type your commands in there.
 
 :::tip Note
 
-Another way to run R, if you prefer, is directly from the command-line.  To do this, in a terminal,
-run the `R` command:
+There are a couple of differences between these two environments, which we list here for clarity:
 
-```
-% R
-```
+* In R/Rstudio you press `<enter>` to run a command, while in JupyterHub you press `<shift>-<enter>`.
 
-This is not as easy to use as Rstudio, but is quite useful, for example, if you have to  work a
-remote computer such as a compute cluster where there is no graphical interface.
+* the prompt looks different - in RStudio it looks like `>`, while in JupyterHub it looks like `[ ]:` followed by a box
+  in the page. In this tutorial we will write `>` to indicate the prompt.
+
+* Some of the output is formatted differently.  (For example you'll notice this when we talk [about vectors or
+  values](vectors.md).)
+
+* Plots (and R help pages) appear inline in JupyterHub, but in a seperate pane for RStudio.
+
+In this tutorial we will mostly write things the way R / RStudio show them, but as long as you're happy to allow for
+these differences, you can use the JupyterHub notebook.
 
 :::
 
-Whichever way you start R, you should end up seeing something like this:
+## Checking it works
 
-```
-
-R version 4.2.1 (2022-06-23) -- "Funny-Looking Kid"
-Copyright (C) 2022 The R Foundation for Statistical Computing
-Platform: aarch64-apple-darwin20 (64-bit)
-
-[...]
-
-Type 'q()' to quit R.
-
-> 
-```
+Whichever way you start R, you should now have an **R prompt**.
 
 To check your R is really working, let's try out a command.  For example we could print a message:
 ```
@@ -67,6 +57,8 @@ To check your R is really working, let's try out a command.  For example we coul
 
 The `>` is just there to indicate the prompt - don't type that!  Type the command and press `<enter>` to run it.
 
+Or if you are using JupyterHub, press `<shift>-<enter>` instead.
+
 :::
 
 You should see a result like:
@@ -76,17 +68,4 @@ You should see a result like:
 
 Congratulations, you've got R working!
 
-:::tip  An aside on JupyterLab
-
-Yet another way to use R is to install the [R kernel for
-JupyterLab](../../prerequisites/Jupyterlab.md#using-r-python-and-julia-with-jupyterlab). This provides a 'notebook' way
-   to use R, letting you interleave analyses with text and images to create analysis reports.
-
-This is a great way to work, but a bit different from plain R programming.  For this tutorial we'll assume you are using
-a plain R prompt as described above.
-
-:::
-
-
-Now you've got it working, you're ready to try out some [fundamentals](./fundamentals.md).
-
+You're now ready to try out some [fundamentals](./fundamentals.md).
