@@ -14,7 +14,7 @@ In this practical we will use `plink` to do several things to the data:
 
 We'll also use R to inspect and plot results.
 
-### A note on quality control
+## A note on quality control
 
 Before carrying out a genetic analysis like PCA, it's important to have a good-quality dataset, and
 this typically means carrying out careful quality control (QC) first. On this course we'll cover QC
@@ -32,11 +32,11 @@ If you are using Mac OS X, you will need to use `zless` instead of `less` becaus
 
 This file is a [Variant Call Format](https://samtools.github.io/hts-specs/VCFv4.2.pdf) file.  It consists of some metadata, followed by genotype calls at different sites (rows) for different samples (columns).  Feel free to look at the data by scrolling around. When you've finished, press the 'q' key to quit back to the terminal prompt.
 
-### Preparing data for PCA
+## Preparing data for PCA
 
 Before computing PCs we will need to do some pruning of the data.  We will:
 
-* remove SNPs that are in high LD (to avoid confounding the analysis by local LD patterns.)
-* remove samples that are too closely related (so that our PCs reflect the majority of our data.)
+* remove SNPs that are highly correlated to each other (i.e. 'in linkage disequilibrium' (LD)).  This is to avoid confounding the analysis by local LD patterns.
+* remove samples that are too closely related (so that our PCs.  This is so that our PCs reflect the majority of our data.
 
 When you're ready, [go here to start pruning](ld_pruning.md).

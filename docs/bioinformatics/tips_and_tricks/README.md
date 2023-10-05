@@ -2,10 +2,7 @@
 sidebar_position: 2
 ---
 
-# Quick tips and tricks
+# Tips and tricks
 
-Welcome! see the table below
+Welcome! see the menu options on the left for some bioinformatics tips and tricks.
 
-| Trick.                                                               |
-| -------------------------------------------------------------------- |
-| [Easily view the contents of an FTP site](./recursive_lftp.md) |

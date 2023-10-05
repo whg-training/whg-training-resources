@@ -4,13 +4,9 @@ sidebar_position: 2
 
 # Getting set up
 
-[Back to the table of contents](./Introduction.md) - [Forward to the overview](./overview.md)
-
 To run this practical you need two things: the software and the data.
 
-## Prerequisites
-
-### Getting the software
+## Getting the software
 
 We will be using the software `PLINK` written by Christopher Chang:
 [https://www.cog-genomics.org/](https://www.cog-genomics.org/)).  Before we start, please make sure you have downloaded this software and can run it in a terminal window on your system.  To check this, try running this in your terminal window:
@@ -31,7 +27,7 @@ You should see something like this:
 
     "plink --help | more" describes all functions (warning: long).
 
-### Getting the data
+## Getting the data
 
 The data files for this practical can be found in
 [this folder](https://www.well.ox.ac.uk/~gav/projects/whg-training-resources/data/population_genetics/principal_components_analysis/).
@@ -59,6 +55,6 @@ In your R/RStudio session:
 setwd( '/path/to/PCA_practical' )
 ```
 
-### Overview
+## Next steps
 
 When you have the data, [go and read the practical overview](./overview.md).

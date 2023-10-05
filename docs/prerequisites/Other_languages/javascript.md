@@ -25,24 +25,24 @@ this:
 
 (Try creating a new file called `test.html` with the above contents and opening it in your browser.)
 
-This is a standard structur of an HTML document, with the `DOCTYPE`, `html`, `head`, and `body`
-elements. Visible elements (like `h1` above) are put inside the `body`, and javascript code and
-other things can go inside `head` or `body`.
+The file above is the standard structure of an HTML document.  It has a `DOCTYPE` declaration, followed by an `html`
+element that contains everything else.  The `head`, and `body` elements go inside. Visible elements (like `h1` above)
+are put inside the `body`, and javascript code and other things can go inside `head` or `body`.
     
-If you run the above you might be underwhelmed - you won't see the message being printed anywhere.
-To see it you need to turn on the javascript console. This is done by enabling the 'developer
-tools' which you can do in the browser preferences. Once this is on, you can go to the `Develop` ->
-`Show Javascript console` and you should see your message.
+If you run the above you might be a bit underwhelmed - you won't see the 'This is my code!' message being printed
+anywhere. To see it you need to turn on the javascript console. This is done by enabling the 'developer tools' which you
+can do in the browser preferences. Once this is on, you can go to the `Develop` -> `Show Javascript console` and you
+should see your message.
     
 Javascript is interesting to write because
-    
-* it's right there in your browser
-* it's pretty fast and flexible.
-* It is great at manipulating stuff on webpages (and there are rich APIs for this, collectively known as HTML5).
-* and it has a bunch of interesting features (for example *prototypal inheritance*) that make it a bit different to other languages.
 
-It's also very well documented - see the [MDN
-docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript) for example.
+* It's right there in your browser
+* It's pretty fast and flexible.
+* It is great at manipulating stuff on webpages.
+* It has a bunch of interesting features (for example *prototypal inheritance*) that make it a bit different to other languages.
+
+It's also very well documented - see the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript) for
+example.
 
 For example, here's an HTML page that uses javascript to draw a rectangle in an [svg
 element](https://developer.mozilla.org/en-US/docs/Web/SVG) on the screen:
@@ -51,7 +51,8 @@ element](https://developer.mozilla.org/en-US/docs/Web/SVG) on the screen:
 <html>
 <head>
   <script>
-    // "Run this function once the page has loaded"
+
+    // This calls says 'run the code below once the page has loaded'
     window.addEventListener( "load", function() {
       console.log( "Starting my drawing!" ) ;
       // create an svg element to draw in
@@ -97,20 +98,21 @@ In fact there's a lot going on here - we have written in five different language
   
 * **Javascript**: which the main bit of code is written in.
 
-* **DOM** or **document object model*. Most of the javascript code is interacting with the browser
-  through the [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) (i.e.
-  all those calls to create elements and so on).  That's the javascript API to talk to the browser.
+* The **DOM** or **document object model**, which is the abstract model of the structure of the page.  Most of the
+  javascript code is interacting with the browser through the
+  [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) (i.e. all those calls to create elements
+  and so on) **API** (application programming interface).
 
 * **CSS**: We gave the `svg` element a 'style' attribute to give it a thick visible border. The
   syntax of that value is `CSS` ("Cascading style sheets"), another language that is all about
-  visual appearance of elements.
+  visual appearance of elements.  The `setAttribute()` calls above are setting CSS attributes.
   
 * **SVG**: Finally, the draw itself is in a flavour of XML known as **Scalable Vector Graphics** (SVG). That is
   a [language all to itself](https://developer.mozilla.org/en-US/docs/Web/SVG).
 
-Despite all this complexity, once you get your head around this combination of HTML, javascript,
-CSS, SVG and other HTML5 features, it is a really powerful way of building interactive visualisations.
-For example, here's a version that draws a circle instead, but moves it every time you click:
+Once you get your head around this combination of HTML, javascript, CSS, SVG and other HTML5 features, it is a really
+powerful way of building interactive visualisations. For example, here's a version that draws a circle instead, but
+moves it every time you click:
 
 ```
 <!DOCTYPE html>
@@ -148,4 +150,3 @@ For example, here's a version that draws a circle instead, but moves it every ti
 
 Run this in your browser and 'inspect element' to see the document structure. What happens to it
 when you click the circle?
-

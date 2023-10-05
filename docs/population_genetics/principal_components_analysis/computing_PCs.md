@@ -4,10 +4,10 @@ sidebar_position: 6
 
 # Computing principal components
 
-[Up to the table of contents](Introduction.md) / [Back to the relatedness pruning step](relatedness_pruning.md) / [Forward to the global analysis step](global_analysis.md).
-
 If you've reached this page, you should now have downloaded the data,
 [computed an LD-pruned set of SNPs](ld_pruning.md), and also [computed a set of largely unrelated samples to work with](relatedness_pruning.md). Congratulations - you're now ready to compute principal components!
+
+## Computing PCs
 
 Let's go ahead and use plink to compute the PCs:
 
@@ -17,19 +17,23 @@ plink --vcf chr19-clean.vcf.gz --extract chr19-clean.prune.in --remove related_s
 
 Leave this to run for a minute or so.
 
-**Question**. It's always worth inspecting screen output to check things look right.  For example, has plink excluded the right number of samples we told it to?
+**Question**. It's always worth inspecting screen output to check things look right.  For example, has plink excluded
+the right number of samples we told it to?
 
 Towards the end of the output plink will tell us where it has saved the results. These should be in
 the files `chr19-clean.eigenvec` (which stores the actual PCs), `chr19-clean.eigenvec.var` (which
 stores the SNP weights or loadings, reflecting how much each SNP contributes to each PC), and
 `chr19-clean.eigenval` (which says how much of the overall genotypic variance each PC explains).
 
-## An aside on the maths.
+:::tip An aside on the maths
 
-If you want to know more about what is being computed and how - see [this aside on the maths of principal components analysis](the_maths.md).
+If you want to know more about what is being computed and how - see [this aside on the maths of principal components
+analysis](the_maths.md).
 
 And if all this isn't enough
 [try reading this seminal paper on sample genealogies and PCA](https://doi.org/10.1371/journal.pgen.1000686).
+
+:::
 
 ## Plotting the principal components
 
@@ -98,7 +102,7 @@ legend(
 
 **Question**. Do any samples look especially genetically distinct from the other samples? What might be the reason for this?  Is the same set of samples outlying on all the PCs?  Use your R skills to identify these samples.  
 
-### Plotting SNP weights/loadings
+## Plotting SNP weights or 'loadings'
 
 But we are not done yet! If we want to look at population structure, we generally want PCs that
 represent genome-wide variation in allele frequencies (as opposed to variants clustered in specific
