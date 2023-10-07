@@ -17,9 +17,10 @@ detail here.
 **Mac OS X** computers also already have a terminal built-in. You can find it in
 `Applications/Utilities/Terminal`. Drag into your dock to make it easily available.
 
-**Windows computers** don't natively have a UNIX environment, but luckily you can install one
-without difficulty. This is called the 'Windows Subsystem for Linux' and I've given instructions on
-this at the bottom of this page. Once you have this installed, come back and test out your terminal.
+**Windows computers** don't natively have a UNIX environment, but luckily you can install one without difficulty. This
+is called the 'Windows Subsystem for Linux' and I've given instructions on this [at the bottom of this
+page](./UNIX.md#installing-the-windows-subsystem-for-linux). Once you have this installed, come back and test out your
+terminal.
 
 ## Testing the terminal
 
@@ -103,7 +104,7 @@ that sort. These are all part of the standard UNIX filesystem.
 To install the UNIX terminal on Windows 10 or above, the best bet is the Windows Subsystem for
 Linux. It comes with Windows 10 and effectively installs a copy of Ubuntu linux that interoperates
 well with your Windows computer. You can see [full installation
-instructionshere](https://learn.microsoft.com/en-us/windows/wsl/install), but here's a brief guide:
+instructions here](https://learn.microsoft.com/en-us/windows/wsl/install), but here's a brief guide:
 
 * Start a Windows command prompt in "run as administrator" mode. To do this, type 'command' into
   the search box next to the Start menu. Find the 'Command Prompt' app in the results. **Don't
@@ -118,7 +119,7 @@ downloading and installing various components.
 
 * Reboot your computer.
 
-Once you log back in, the installationg will continue - a window will open saying 'Installing:
+Once you log back in, the installation will continue - a window will open saying 'Installing:
 Ubuntu' (i.e. it is installing a recent version of [Ubuntu Linux](https://ubuntu.com).) 
 
 **Note.** When I tested this, this window never disappeared, but the 'Ubuntu' app was nevertheless

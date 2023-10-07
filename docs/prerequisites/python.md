@@ -69,6 +69,52 @@ ipython
 
 It looks pretty much like before, but you'll have a prompt that says `In [1]` instead of `>>>`.  It has helpful features like tab-completion of commands and filenames and syntax colouration.  
 
+## python for data sciecne
+
+To get a relaly good data science experience in python, we need a few packages.  The key ones are
+`numpy` (which provides good support for matrices, arrays, and numeric manipulation), `pandas`
+(which provides data frames), and `matplotlib` which is a plotting library.
+
+To install these, use conda:
+```
+mamba install numpy pandas matplotlib
+```
+
+Once installed, start a python session and let's try it out with some examples [similar to those we
+ran in R](R.md).  First import the needed bits of libraries:
+```
+from matplotlib import pyplot
+import numpy
+import math
+```
+These statement import the libraries and set them so they can be used locally as `pd`, `np`, `plt` etc.
+
+Now, just like in R, we can make a simple plot:
+
+```
+x = numpy.arange( 0, 2 * math.pi, 0.01 )
+pyplot.plot( x, numpy.sin(x) )
+pyplot.xlabel( "x" )
+pyplot.ylabel( "sin(x)" )
+pyplot.show()
+```
+
+![img](images/python_sin.png)
+
+Or generate and histogram a million samples from a Gaussian distribution:
+
+```
+pyplot.hist(
+    numpy.random.randn(1000000),
+    bins = 100
+)
+pyplot.xlabel( "x" )
+pyplot.ylabel( "count" )
+pyplot.show()
+```
+
+![img](images/python_histogram.png)
+
 ## Next steps
 
 To really make interactive python analyses fun, you're probably going to want to install JupyterLab. See [how to install Jupyterlab](Jupyterlab.md).

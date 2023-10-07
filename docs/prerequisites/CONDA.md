@@ -14,20 +14,32 @@ that makes it easy to install software for biomedical research.
 The recommended way is to install `miniconda` which is a minimal environment that lets you install
 the packages you want.  To get it: 
 
-**If you are on Mac OS X or linux**, download the appropriate installer from
-[the miniconda download page](https://docs.conda.io/en/latest/miniconda.html).
+**If you are on Mac OS X or linux**, download the appropriate installer from [the miniconda download
+page](https://docs.conda.io/en/latest/miniconda.html).  (For Mac OS X, we recommend using the 'bash' rather than
+'pkg' installer, and make sure to choose the intel or Apple silicon version depending on your machine.)
 
-**If you are on Windows**, **download the linux 64-bit version anyway**. This is because we will
-install it into the Linux subsystem for Windows.
+**If you are on Windows**, you want to **download the linux 64-bit version** from within your Ubuntu terminal.  (This is
+because we will install it into the Linux subsystem for Windows, rather onto Windows directly.) To do this, copy the
+link to the installer, and use `wget` to download it e.g.
 
-**Note.** The installer is a bash (`.sh`) file. On Mac OS X, there are also OS X packages (`.pkg`)
+ ```
+ % wget <paste your link here>
+ ```
+from the Ubuntu for Windows terminal. 
+
+**Note.** The installer is a bash (`.sh`) file. On Mac OS X, there are also OS X package (`.pkg`)
 installers available - run this instead if you want to and skip to the next section.
 
-**Note.** Because this is an installer downloaded from the internet, you should check it's
-the real thing before installing it. See the
-[page on cryptographic hash verification](https://conda.io/projects/conda/en/latest/user-guide/install/download.html#cryptographic-hash-verification)
-and compare the output to the SHA256 has in the output table. If it's
-different, don't install!
+:::tip Note
+
+Because this is an installer downloaded from the internet, you should check it's the
+real thing before installing it.  Run `sha256sum <miniconda filename>` (linux or Ubuntu for Windows) or `shasum -a 256 <miniconda filename>` (Mac OS X) as described  and compare the output to the SHA256 has in the output table. If it's different, don't install!
+
+See [this
+page](https://conda.io/projects/conda/en/latest/user-guide/install/download.html#cryptographic-hash-verification)
+for more information.
+
+:::
 
 **To install**, start a terminal and change directory to the downloads folder:
 
@@ -49,17 +61,29 @@ You can check what's there by running `ls`.  Now run the installer:
 $ ./Miniconda3-latest-<platform>.sh
 ```
 
+:::tip Note
+You may need to make the file 'executable' first.  Run
+```
+$ chmod u+x ./Miniconda3-latest-<platform>.sh
+```
+to do this.
+:::
+
 You will be asked to accept the license and choose an install location. If in doubt, the defaults
-are fine.  Say 'yes' when asked if you want to initialise the installer.
+install to a folder called `miniconda3` in your home directory, which is fine.  Say 'yes' when asked
+if you want to initialise the installer.
 
-### Activating and deactivating conda
+## Activating and deactivating conda
 
-If you read the blurb this command outputs, you'll see it says it is **activating the
-conda environment by default on startup**. This means, when you start a new terminal, conda is
-managing your environment for you.  You'll see this because in new terminals the command prompt will look like this:
+If you read the blurb this command outputs, you'll see it says it is **activating the conda
+environment by default on startup**. This means, when you start a new terminal, conda is managing
+your environment for you.  You'll see this because in new terminals the command prompt will look
+something like this:
 ```
 (base) <username>@<computer>:~$
 ```
+
+Here 'base' is the name of your conda environment.
 
 You can **deactivate the environment** (going back to normal) with the `conda deactivate` command
 ```
@@ -71,33 +95,58 @@ And you can reactivate it with - you guessed it!
 $ conda activate
 ```
 
-This is a **downside of using conda**: you have to remember what environment you're in at any one
-time.
+:::tip Note
 
-### Using conda to install software
+This is a **downside of using conda**: you have to remember what environment you're in at
+any one time.
 
-Conda makes installing stuff easy. The first thing we'll want is a better (faster) version of `conda`
-itself, called `mamba`:
+:::
+
+## Using conda to install software
+
+Conda makes installing stuff easy.   But before getting started let's add two 'channels' that will
+be really useful for bioinformatics work.  These are ['conda-forge'](https://conda-forge.org) which
+is a 'community-led collection of recipes [...] for the conda package manager', and 'bioconda' which
+'lets you install thousands of software packages related to biomedical research'.   The [bioconda
+page](https://bioconda.github.io) explains how to do this, namely, using these commands:
+```
+conda config --add channels defaults
+conda config --add channels bioconda
+conda config --add channels conda-forge
+conda config --set channel_priority strict
+```
+These commands set up a set of channels with priority going from the bottom to the top. So from now
+on conda will look in `conda-forge` first, then `bioconda`, and finally the base `defaults` channel
+to find software.
+
+## Getting mamba
+
+The first thing we'll want to get is a better (faster) version of `conda` itself, called `mamba`:
 
 ```
-$ conda install -c conda-forge mamba
+$ conda install mamba
 ```
 
-The `mamba` package lives in the `conda-forge` channel, hence the `-c` above.  Type 'y' and press &lt;enter&gt; to install.
+The `mamba` package lives in the `conda-forge` channel.  Type 'y' and press &lt;enter&gt; to install.
 
 Now let's try installing [`samtools`](samtools.github.io), which is a workhorse tool for handling
 next-generation sequencing data. While you *can* download the source code and compile it yourself,
-conda makes this easy. You'll want a fairly recent version, so let's get version `1.15` which is
-available from the [bioconda](https://bioconda.github.io) channel:
+conda makes this easy. You'll want a fairly recent version, so let's get version at least `1.15`
+which is available from the [bioconda](https://bioconda.github.io) channel:
 
 ```
-$ mamba install -c conda-forge -c bioconda 'samtools>=1.15'
+$ mamba install 'samtools>=1.15'
 ```
 
-**Note.** This may not work if you are on an M1 Mac.  If so don't worry, we'll find a workaround later.
+:::tip Note
 
-If you look at the output you'll see that this is getting `htslib` and `samtools` from bioconda,
-but also `libdeflate` from `conda-forge`. Go ahead and install. Running samtools now gives you some
+This may not work if you are on a Mac with Apple silicon.  If so don't worry, we'll find a
+workaround later. For now, you can 
+
+:::
+
+If you look at the output you'll see that this is getting `htslib` and `samtools` from bioconda, but
+also `libdeflate` from `conda-forge`. Go ahead and install. Running samtools now gives you some
 output:
 
 ```
@@ -109,18 +158,6 @@ Version: 1.15.1
 Usage: samtools <command> [options]
 ...
 ```
-
-**Note.** For biomedical work you will use `bioconda` and `conda-forge` a great deal. To avoid version issues it's
-best to go ahead and set these channels up at the start.  The [bioconda page](https://bioconda.github.io) explains how to do this, namely, run:
-```
-conda config --add channels defaults
-conda config --add channels bioconda
-conda config --add channels conda-forge
-conda config --set channel_priority strict
-```
-
-This bit of configuration says: "search conda-forge first, then bioconda, then the default conda
-repository" for packages.  This will help it find up-to-date versions of the software we need.
 
 ## Aside: what even is an 'environment'?
 
