@@ -10,8 +10,7 @@ This short course is designed to teach the basics of the **R programming languag
 
 To use R, the very first thing you'll need to do is get R running.  For this tutorial you can choose one of two options:
 
-**Option 1**: You can run R using the [MSc JupyterHub site](https://mscjupyterhub.bmrc.ox.ac.uk).  To do this, log into the site,
-  start a new tab by pressing the `+` button, and then choose 'R' from the 'Notebook' section.  You should see something like this:
+**Option 1**: You can run R inside JupyterHub - either a hosted instance or your own installation.  (Instructions for setting that up can be found [on the environment setup pages](/prerequisites/Jupyterlab.md).  Start by logging into the site, start a new tab by pressing the `+` button, and then choose 'R' from the 'Notebook' section.  You should see something like this:
 
 ![img](images/r_jupyterhub.png)
 
