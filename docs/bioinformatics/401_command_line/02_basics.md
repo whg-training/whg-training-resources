@@ -193,7 +193,6 @@ We'll come back later to how this works.)
 Where do all these commands live on the filesystem?  Use `which` to find out.
 :::
 
-
 In the next few pages we will walk you through the use of many of these commands.  First, let's learn how to [get help
 on these commands](03_help.md).
 

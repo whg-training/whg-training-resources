@@ -43,15 +43,6 @@ Use the arrows on your keyboard to scroll up and down the manual; then press `q`
 
 Note that options, like commands, are **case-sensitive** - so `-a` and `-A` are different options!
 
-Alternatively, you can try tying the command name followed by `--help` to see how it's used.
-For example to see how `ls` can be used:
-
-```
-ls --help
-```
-
-(or just `ls -h` for short).
-
 :::tip Top tip
 A  useful thing to do in a man page is search - you can do this by pressing `/` and then typing the string you want to search for.
 The `n` key then cycles through the search results.
@@ -60,6 +51,29 @@ For example if you want to know what the `-l` option does, you could type `/-l<e
 of the (lower case) `-l` option.
 
 :::
+
+## Seeing the in-built help for commands
+
+Alternatively, you can often get help by typing the command name followed by `--help` (or sometimes just
+`-h`), to see how it's used. For example to see how `ls` can be used:
+
+```
+ls --help
+```
+
+(This works on some systems and not others.)
+
+## Help!  I'm stuck!
+
+If at any point you seem to be 'stuck', don't panic!  Here are a few things to try:
+
+* If you are inside a man page as described above (or using `less`) - press `q` to quit back to the command prompry.
+* Otherwise, the key combination `ctrl-c` (`<control>` and `c` keys pressed together) will probably
+help.  They will cancel any current command and get you back to the prompt.  See [this
+page](appendices/emergency_brake.md) for more information.
+
+:::
+
 
 ## Next steps
 
