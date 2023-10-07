@@ -22,9 +22,9 @@ Sunday weekend
 
 3. Use `less` or `cat` to view the contents of the file and check they are correct.  If not, use a [text editor](07_working_with_files.md#using-an-editor) to fix any problems.
 
-4. Create a pipeline using `grep` and `cut`, to print out just the *names* of all the weekdays.  **Hint** If your file
-   is space-separated, like the one above, you will need to use the `-f ' '` argument to `cut` to tell it to use spaces
-   instead of `<tab>` characters.  Check the man page for `cut` more details.
+4. Create a pipeline using `cat` and `grep` and `cut`, to print out just the *names* of the *weekdays*. **Note** If
+   your file is space-separated, like the one above, you will need to use the `-f ' '` argument to `cut` to tell it to
+   use spaces instead of `<tab>` characters.  Check the man page for `cut` more details.)
 
 5. Add to your pipeline a command to sort the weekdays in alphabetical order.
 
