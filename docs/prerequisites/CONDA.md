@@ -119,7 +119,7 @@ These commands set up a set of channels with priority going from the bottom to t
 on conda will look in `conda-forge` first, then `bioconda`, and finally the base `defaults` channel
 to find software.
 
-## Getting mamba
+### Getting mamba
 
 The first thing we'll want to get is a better (faster) version of `conda` itself, called `mamba`:
 
@@ -128,6 +128,8 @@ $ conda install mamba
 ```
 
 The `mamba` package lives in the `conda-forge` channel.  Type 'y' and press &lt;enter&gt; to install.
+
+### Installing samtools
 
 Now let's try installing [`samtools`](samtools.github.io), which is a workhorse tool for handling
 next-generation sequencing data. While you *can* download the source code and compile it yourself,
