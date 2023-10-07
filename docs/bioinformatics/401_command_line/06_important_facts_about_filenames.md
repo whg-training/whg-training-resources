@@ -19,7 +19,7 @@ hidden files (if you try `ls -a ~` you may see there are quite a lot of them.)
   numbers, the period (“.”), dash (“-”), and underscore (“_”) are generally good - and to try to avoid using spaces. You
   will thank yourself later for this!
 
-* You should probably avoid using bash command names as filenames: although possible, this might mess up your commands!
+* You should probably avoid using bash command names as filenames: although possible, this might mess up your commands.
 
 ## Next steps
 

@@ -4,11 +4,10 @@ sidebar_position: 8
 
 # Working with files
 
-If you got this far, you've had a first look at moving aronud the filesystem and manipulating files.
-But the files we used were empty... how do you make files with useful data in?  And how do you see the contents?
-Here are three ways:
+If you got this far, you've had a first look at moving aronud the filesystem and manipulating files. But the files we
+used were empty... how do you make files with useful data in?  And how do you see the contents? Here are three ways.
 
-## Using an editor
+## Using an editor
 
 The simplest way to edit a file is to use an editor, such as `nano`.    For example to edit
 our greeting:

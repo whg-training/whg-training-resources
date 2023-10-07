@@ -67,7 +67,8 @@ There's probably nothing much there at the moment! Let's make a few files so we 
 % touch bash_intro1.md  bash_intro_2012.md  bash_intro2.md  bash_introduction.doc  bash_intro.md  bash_intro.md.old .very_secret
 ```
 
-The `touch` command should have created empty files for any which did not previously exist for us:
+The `touch` command should have created empty files for any which did not previously exist for us - use `ls` to check
+this:
 
 ~~~~
 % ls
@@ -107,8 +108,9 @@ Finally, you can find out you've been up to recently with `history`:
 This is a good time to point out that the command line is **case sensitive** - that is, capitalisation matters.  For
 example if you accidentally type:
 
-`$ History
-
+```
+% History
+```
 ... it won't work and you will see an error message, something like:
 
     Command 'History' not found.
@@ -158,32 +160,39 @@ This illustrates a feature of the command line - it does what you tell it, and a
 
 :::
 
-Others like `hostname` and `pwd` (which tells you the current directory) are perfectly safe.  
+Other commands, like `hostname` and `pwd` (which tells you the current directory) are perfectly safe.  
 
 ## A table of useful commands
 
 For this tutorial we will instead focus on a few common and useful commands. We've put a table of these in [in an
-appendix](appendices/table_of_commands.md) but here are a few to get you started:
+appendix](appendices/table_of_commands.md) but here are a few to get you started.  (If you want to try these, create a
+new file first by running this command:
+```
+% echo 'This is my file` > my_file.txt
+```
+We'll come back later to how this works.)
 
 | Command | What it does | Examples |
 | --- | --- | ------- |
 | `hostname` | What computer am I on? | `hostname` |
 | `pwd` | What directory am I in? | `pwd` |
 | `ls` | List files in a directory, or a file or files you specify. | `ls` (current directory) or `ls /bin` |
-| `cp` | **Copy** a file in a new location. | `cp my_file.txt my_file2.txt` |
-| `mv` | **Move** a file to a new location (removing the original). | `mv my_file2.txt my_file3.txt` |
-| `grep` | **Searches** for a snippet of text in a file, showing matching lines. | `grep 'second' my_file.txt` |
+| `cp` | **Copy** a file to a new name or folder. | `cp my_file.txt my_file2.txt` |
+| `mv` | **Move** a file to a new name or folder (removing the original). | `mv my_file2.txt my_file3.txt` |
 | `mkdir` | Create a new directory. | `mkdir new_directory` |
 | `rmdir` | Removes an entire directory. (Fails if the directory is not empty.) | `rmdir new_directory` |
 | `rm` | Removes a file **without asking for confirmation**. | `rm my_file3.txt` |
-| `cat` | Show the contents of a text file. | `cat my_file.txt` |
+| `cat` | Print out the contents of a text file or files. | `cat my_file.txt` |
+| `less` | Iteractively show the contents of a text file. | `less my_file.txt` |
 | `head` | Show the first few lines of a file. | `head my_file.txt` |
 | `tail` | Show the last few lines of a file. | `tail my_file.txt` |
 | `wc` | Counts the lines, words and letters in a file. | `wc my_file.txt` |
+| `grep` | **Searches** for a snippet of text in a file, showing matching lines. | `grep 'second' my_file.txt` |
 
 :::tip Question
 Where do all these commands live on the filesystem?  Use `which` to find out.
 :::
+
 
 In the next few pages we will walk you through the use of many of these commands.  First, let's learn how to [get help
 on these commands](03_help.md).

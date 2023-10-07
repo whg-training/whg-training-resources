@@ -2,7 +2,7 @@
 sidebar_position: 6
 ---
 
-# Making directories and moving about
+# Interacting with the filesystem
 
 Ok, so you have a terminal and you can run some commands... what now?
 

@@ -38,6 +38,6 @@ The general form of a command is therefore:
 % <command name> [options] [positional options]
 ```
 
-## Next steps
+## Next steps
 
-Congratulations!  You now know what a command looks like.  We are ready for a [quick tour of things you can do](05_tour.md).
+Congratulations!  You now know what a command looks like.  Next we'll see how to [make directories and move around the filesystem](05_tour.md).

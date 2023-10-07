@@ -19,14 +19,15 @@ This allows you to built up pipelines of operations that do sophisticated things
 
 By default, stdout from a command is sent to the terminal, and that's what you're seeing when you type `ls`, etc.
 
-However, sometimes you might need instead to
-have this output written to a file.
+However, sometimes you might need instead to have this output written to a file instead.
 
-If you follow a command with `>` and the name of a file, then stdout will go there instead, so
+As we [saw already](07_working_with_files.md#redirecting-output-to-a-file), if you follow a command with `>` and the
+name of a file, then stdout will go there instead, so
 
 `% ls > myfiles.txt`
 
-will send no output to the terminal, but instead creates a file `myfiles.txt`.  We say that the output has been "redirected" to the file.ß
+will send no output to the terminal, but instead creates a file `myfiles.txt`.  We say that the output has been
+"redirected" to the file.
 
 :::warning Warning
 
@@ -36,9 +37,14 @@ Be **CAREFUL**.  Like most operations that write to files, this command will **o
 
 :::
 
-We used this form already to [create simple files](working_with_files.md#redirecting-output-to-a-file).
+If you use `>>` instead of `>`, then the output will be appended to the file rather than overwriting it.  So for example
+to list all files into the file a second time as well:
 
-If you use `>>` instead of `>`, then the output will be appended to the file rather than overwriting it
+`% ls >> myfiles.txt`
+
+:::tip Note
+Remember you can use `cat` to look at the contents of a file.
+:::
 
 ## Pipelines and standard Input
 
@@ -102,6 +108,23 @@ The number of words in the first and last line:
 ...or the number of lines that contain the word 'fair' (using `grep`, which we shall [cpver on the next page](basics.md)).
 ```
 % cat sonnet.txt | grep 'fair' | wc -l
+```
+
+:::tip Quick tip: the command history
+
+As you build these pipelines, you may be getting bored of typing the same commands and filenames over and over again.
+However, one thing that helps is that the command line keeps a **command history**.  To see commands you're run before,
+use `history`:
+
+```
+% history
+```
+Even better is that you can get back to these commands by pressing the up arrow `↑` (or forwards through them again by
+pressing the down arrow `↓`).  Try this now: press `↑` to get back to that previous command and try editing it to use
+`wc -w` in place of `wc -l`.  Bingo, in only a few keypresses you've changed to count words instead of lines.
+
+Using this together with [tab completion](05_tour.md#moving-faster) can save a great deal of typing and makes building pipelines and repeating commands quite quick.  See [this page](appendices/navigating_history.md) for more on the history.
+
 ```
 
 ## Combining pipelines with redirection

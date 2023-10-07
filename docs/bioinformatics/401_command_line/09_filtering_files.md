@@ -210,11 +210,16 @@ George	guitars,vocals,sitar,piano,bass
 Ringo	drums,percussion,vocals
 ~~~~
 
-## Conclusion
-
 By putting together pipelines made out of these commands you can perform complex sorting, filtering, and transformations
 on files.
 
-Now go on an [test yourself](recap_2.md).
 
+## Conclusion
+
+Congratulations!  You reached the end of this tutorial.  Remember you can see everything you've run so far by typing
+```
+% history
+```
+
+Now try some [test questions](10_questions.md) or read some more [advanced topics](./appendices/).
 
