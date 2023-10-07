@@ -87,7 +87,8 @@ print(
 ```
 ![img](images/ggplot_histogram_pretty.png)
 
-Or split so we can better see the upper tail of the distribution:
+Lots of other alterations can be made to the plot like this.  For example, let's split it so we can
+better see the upper tail of the distribution:
 
 ```
 print(
@@ -99,4 +100,3 @@ print(
 )
 ```
 ![img](images/ggplot_histogram_split.png)
-
