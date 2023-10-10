@@ -20,12 +20,12 @@ Ringo	drums,percussion,vocals
 You can get a copy of this file for yourself by running one of these commands:
 
 ```sh
-wget https://www.well.ox.ac.uk/bioinformatics/training/MSc_GM_2022/CM4-2-command_line/data/beatles.tsv
+wget https://www.well.ox.ac.uk/bioinformatics/training/msc_gm/2023/data/beatles.tsv
 ```
 
 or 
 ```sh
-curl -O https://www.well.ox.ac.uk/bioinformatics/training/MSc_GM_2022/CM4-2-command_line/data/beatles.tsv
+curl -O https://www.well.ox.ac.uk/bioinformatics/training/msc_gm/2023/data/beatles.tsv
 ```
 
 ## Sorting files

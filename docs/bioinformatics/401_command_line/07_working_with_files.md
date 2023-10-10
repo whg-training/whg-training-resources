@@ -93,13 +93,13 @@ Finally another very useful way to get data - download it from somewhere else!
 You can download from a url using the `wget` or `curl` commands.  Let's download a file to experiment with now:
 
 ```sh
-wget https://www.well.ox.ac.uk/bioinformatics/training/MSc_GM_2022/CM4-2-command_line/data/sonnet.txt
+wget https://www.well.ox.ac.uk/bioinformatics/training/msc_gm/2023/data/sonnet.txt
 ```
 
 or
 
 ```sh
-curl -O https://www.well.ox.ac.uk/bioinformatics/training/MSc_GM_2022/CM4-2-command_line/data/sonnet.txt
+curl -O https://www.well.ox.ac.uk/bioinformatics/training/msc_gm/2023/data/sonnet.txt
 ```
 
 :::tip Note
