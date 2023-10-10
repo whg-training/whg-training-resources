@@ -74,8 +74,7 @@ This will start the JupyterLab server (which runs in your terminal) and after a 
 
 :::tip Note
 
-If it doesn't start a browser, do this manually by copying the URL shown in the `jupyter lab`
-output and opening it in your browser.
+If it doesn't start a browser, do this manually by copying the URL shown in the `jupyter lab` output and opening it in your browser.
 
 :::
 

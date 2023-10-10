@@ -1,4 +1,4 @@
-# Programming with gene annotations
+# Programming with gene annotations in python
 
 Welcome! This tutorial has two aims. On one hand it is about programming, specifically the type of
 programming we often have to do in bioinformatics. This means - handling large bits of data, making
