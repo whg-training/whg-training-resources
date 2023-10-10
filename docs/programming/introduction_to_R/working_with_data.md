@@ -11,7 +11,7 @@ Let's do that now by downloading and plotting some data on human chromosomes.
 
 We'll use the data in this file:
 
-[GRCh38 sequence report](resources/GRCh38_sequence_data.tsv)
+[GRCh38 sequence report](https://www.well.ox.ac.uk/bioinformatics/training/msc_gm/2023/data/GRCh38_sequence_data.tsv)
 
 To get this file, right-click on the link above and choose 'copy link'.
 
