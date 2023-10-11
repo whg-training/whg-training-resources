@@ -11,13 +11,18 @@ cohort](10.12688/wellcomeopenres.14636.2).
 
 :::tip Can you solve?
 
-Q1: Where is rs601338 in the gene?  What change does it make to the encoded protein?
+Use the [UCSC genome browser](https://genome.ucsc.edu) and [Ensembl](http://www.ensembl.org/index.html), and your gene
+annotation file, to solve:
 
-Q2: Find an individual from the 1000 Genomes Project data with secretor genotype, and an individual with
-non-secretor genotype.
+* Use the genome browser to find out where rs601338 in the gene.  (NB. use GRCh38 assembly coordinates for this.)
 
-(Hint: you can use the [UCSC genome browser](https://genome.ucsc.edu) and the [Ensembl genome
-browser](http://www.ensembl.org/index.html) to answer these questions.)
+* Does this agree with the gene annotation file?  Which exon of *FUT2* is the SNP in?
+
+* Using the genome browser, can you figure out **what amino acid change rs601338 makes to the encoded protein?**
+
+* Using the Ensembl site, can you find an individual from the 1000 Genomes Project data with the secretor genotype?  And an individual with
+non-secretor genotype?
+
 :::
 
 

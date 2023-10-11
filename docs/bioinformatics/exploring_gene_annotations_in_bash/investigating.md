@@ -4,11 +4,19 @@ sidebar_position: 8
 
 # Investigating specific genes
 
-Let's switch track and try to dig out info about a specific gene - [*FUT2*](https://en.wikipedia.org/wiki/FUT2).
-That's an interesting gene because it encodes a fucosyltransferase which is involved the synthesis pathway for
-'soluble' A and B antigens - that is A and B antigens found in blood plasma and other fluids. Mutations in FUT2
-affect whether these antigens are secreted. Because norovirus binds to these antigens, these mutations can
-confer protection against norovirus.
+Let's switch track and try to dig out info about a specific gene -
+[*FUT2*](https://en.wikipedia.org/wiki/FUT2). That's an interesting gene because it encodes a
+fucosyltransferase which is involved the synthesis pathway for 'soluble' A and B antigens - that is
+A and B antigens found in bodily fluids. Quoth
+[wikipedia](https://en.wikipedia.org/wiki/Secretor_status):
+
+*"Secretor status refers to the presence or absence of water-soluble ABO blood group antigens in a person's bodily fluids, such as saliva, tears, breast milk, urine, and semen. People who secrete these antigens in their bodily fluids are referred to as secretors, while people who do not are termed non-secretors. Secretor status is controlled by the FUT2 gene (also called the Se gene), and the secretor phenotype is inherited in an autosomal dominant manner."* - Wikipedia
+
+A specific mutation (rs601338 G>A, at position 48703417 on GRCh38 assembly) in *FUT2* is the major determinant of
+secretor status. Because pathogens including norovirus bind to these secreted antigens, these mutations can confer
+protection against norovirus.
+
+Let's look at *FUT2* in our annotation file now.
 
 ## Finding the gene
 
