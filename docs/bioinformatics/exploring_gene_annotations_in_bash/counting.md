@@ -15,8 +15,6 @@ cut -f3 gencode.v41.annotation.gff3 | sort | uniq -c
 
 This will take a minute or two to run - it's a big file!
 
-:::
-
 Ok - the output is not really useful because of all the metadata.  Let's use `grep -v` to get rid of it:
 ```sh
 grep -v '#' gencode.v41.annotation.gff3 | cut -f3 | sort | uniq -c
@@ -76,17 +74,3 @@ So - there are 1.6 million exons in the file and... *wait a moment*, are there r
 :::tip Question
 The number 60,000 is way too big - why?
 :::
-
-Correct! As we saw above, not all of the genes in this file are protein-coding (the first one said it was a
-'transcribed unprocessed pseudogene'.) Let's try to count just the protein-coding ones. To do this we will use a
-couple of commands - `awk` which we are here using just to select rows with "gene" in the `type` column, and
-`wc` which will count the number of lines:
-
-```sh
-cat gencode.v41.annotation.gff3  | awk '$3=="gene"' | grep 'gene_type=protein_coding' | wc -l
-```
-    20017
-
-This is a much more sensible number - there are about 20,000 protein-coding genes in the human genome.
-That’s a lot but we are big animals!
-    

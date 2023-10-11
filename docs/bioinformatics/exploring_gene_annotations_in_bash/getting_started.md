@@ -4,11 +4,13 @@ sidebar_position: 2
 
 # Getting started
 
-To get started, create a new folder for the tutorial and change dir into it:
+To get started, if you [haven't
+already](./README.md#exploring-gene-annotations-on-the-command-line), create a new folder for the
+tutorial and change dir into it:
 
 ```
-mkdir cmdline_tutorial
-cd cmdline_tutorial
+mkdir genes_tutorial
+cd genes_tutorial
 ```
 
 Now download the gene annotation file from gencode and place it in that folder.  You can either:
