@@ -1,0 +1,101 @@
+
+R version 4.2.1 (2022-06-23) -- "Funny-Looking Kid"
+Copyright (C) 2022 The R Foundation for Statistical Computing
+Platform: aarch64-apple-darwin20 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library( gmsgff )
+> library( unittest )
+> 
+> test_parse_gff3_to_dataframe = function() {
++     test_data = "##gff-version 3
++ #description: test data
++ chr1\tme\tgene\t1\t1000\t.\t+\t.\tID=gene1;other_data=stuff
++ chr1\tme\texon\t10\t900\t.\t+\t.\tID=gene1.1;Parent=gene1
++ "
++     cat( "Using test data:\n" )
++     cat( test_data )
++     # 1. run our function to parse the data:
++     gff = parse_gff3_to_dataframe( test_data )
++     print(gff)
++     # 2. test it:
++     # Check we have all the basic columns
++     columns = c(
++         "seqid", "source", "type", "start", "end",
++         "score", "strand", "phase", "attributes"
++     )
++     stopifnot(
++         length( which( columns %in% colnames(gff) )) == length(columns)
++     )
++     # check some string fields, does it get them right?
++     stopifnot( gff[['seqid']][1] == 'chr1' )
++     stopifnot( gff[['strand']][1] == '+' )
++     stopifnot( gff[['attributes']][1] == 'ID=gene1;other_data=stuff' )
++     stopifnot( gff[['seqid']][2] == 'chr1' )
++     stopifnot( gff[['strand']][2] == '+' )
++     stopifnot( gff[['attributes']][2] == 'ID=gene1.1;Parent=gene1' )
++ 
++     # check that start and end are integers
++ 	stopifnot( gff[['start']][1] == 1 )
++     stopifnot( gff[['end']][1] == 1000 )
++     stopifnot( gff[['start']][2] == 10 )
++     stopifnot( gff[['end']][2] == 900 )
++ 	
++     # check that missing data is handled right
++     # "." indicates missing data in the GFF spec
++     # but we should have translated that to an R missing value
++     stopifnot( is.na( gff[['score']][2] ) )
++ 
++     # check that we extracted `ID` and `Parent` right.
++     stopifnot(
++         length( which( c( "ID", "Parent" ) %in% colnames(gff) )) == 2
++     )
++ 
++     stopifnot( gff[['ID']][1] == 'gene1' )
++     stopifnot( gff[['ID']][2] == 'gene1.1' )
++     stopifnot( gff[['Parent']][2] == 'gene1' )
++     # etc.
++     # add your own checks here!
++ 
++     cat( "\n++ test_parse_gff3_to_dataframe(): Congratulations, all tests passed!\n" )
++ }
+> 
+> 
+> test_parse_gff3_to_dataframe()
+Using test data:
+##gff-version 3
+#description: test data
+chr1	me	gene	1	1000	.	+	.	ID=gene1;other_data=stuff
+chr1	me	exon	10	900	.	+	.	ID=gene1.1;Parent=gene1
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.3     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+# A tibble: 2 × 11
+  seqid source type  start   end score strand phase attributes      ID    Parent
+  <chr> <chr>  <chr> <int> <dbl> <dbl> <chr>  <int> <chr>           <chr> <chr> 
+1 chr1  me     gene      1  1000    NA +         NA ID=gene1;other… gene1 <NA>  
+2 chr1  me     exon     10   900    NA +         NA ID=gene1.1;Par… gene… gene1 
+
+++ test_parse_gff3_to_dataframe(): Congratulations, all tests passed!
+> 
+> proc.time()
+   user  system elapsed 
+  0.582   0.078   1.305 

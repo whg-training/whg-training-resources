@@ -1,0 +1,8 @@
+* using log directory ‘/Users/gav/Projects/teaching/gms/whg-training-resources/docs/programming/programming_with_gene_annotations3/code/R/..Rcheck’
+* using R version 4.2.1 (2022-06-23)
+* using platform: aarch64-apple-darwin20 (64-bit)
+* using session charset: UTF-8
+* checking for file ‘./DESCRIPTION’ ... ERROR
+File DESCRIPTION does not exist
+* DONE
+Status: 1 ERROR

@@ -1,0 +1,77 @@
+* using log directory ‘/Users/gav/Projects/teaching/gms/whg-training-resources/docs/programming/programming_with_gene_annotations3/code/R/gmsgff.Rcheck’
+* using R version 4.2.1 (2022-06-23)
+* using platform: aarch64-apple-darwin20 (64-bit)
+* using session charset: UTF-8
+* checking for file ‘gmsgff/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘gmsgff’ version ‘0.1’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for executable files ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘gmsgff’ can be installed ... WARNING
+Found the following significant warnings:
+  Warning: gmsgff-package.Rd:27: All text must be in a section
+  Warning: gmsgff-package.Rd:28: All text must be in a section
+See ‘/Users/gav/Projects/teaching/gms/whg-training-resources/docs/programming/programming_with_gene_annotations3/code/R/gmsgff.Rcheck/00install.out’ for details.
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Malformed Description field: should contain one or more complete sentences.
+Non-standard license specification:
+  mit_license
+Standardizable: FALSE
+Checking should be performed on sources prepared by ‘R CMD build’.
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... WARNING
+'::' or ':::' imports not declared from:
+  ‘readr’ ‘stringr’
+'library' or 'require' call not declared from: ‘tidyverse’
+'library' or 'require' call to ‘tidyverse’ in package code.
+  Please use :: or requireNamespace() instead.
+  See section 'Suggested packages' in the 'Writing R Extensions' manual.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... WARNING
+prepare_Rd: gmsgff-package.Rd:27: All text must be in a section
+prepare_Rd: gmsgff-package.Rd:28: All text must be in a section
+* checking Rd metadata ... OK
+* checking Rd cross-references ... NOTE
+Unknown package ‘<pkg>’ in Rd xrefs
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... WARNING
+Undocumented arguments in documentation object 'parse_gff3_to_dataframe'
+  ‘filename’
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking examples ... OK
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ... OK
+  Running ‘test_parse_gff_to_dataframe.R’
+* checking PDF version of manual ... OK
+* DONE
+Status: 4 WARNINGs, 2 NOTEs
