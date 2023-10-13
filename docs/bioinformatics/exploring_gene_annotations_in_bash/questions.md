@@ -24,5 +24,3 @@ annotation file, to solve:
 non-secretor genotype?
 
 :::
-
-

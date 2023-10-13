@@ -90,7 +90,7 @@ Adding that up, the two exons have length 119 and 2,997 - so only about 30% of t
 What about the bit that codes for protein? We can find that by looking for the *coding sequence* records - they
 have `type=CDS`:
 ```
-grep 'Parent=ENST00000425340.3' gencode.v41.annotation.gff3 | awk '$3 == "exon"' | cut -f1,3-5
+grep 'Parent=ENST00000425340.3' gencode.v41.annotation.gff3 | awk '$3 == "CDS"' | cut -f1,3-5
 ```
 
 If you look at this you'll see the gene has one annotated coding sequence, and it lives entirely inside the

@@ -25,32 +25,32 @@ Please try to code it yourself first of course!  See the tabs for solutions.
 
 ```r
 parse_gff3_to_dataframe = function( filename ) {
-    library( readr )
-    library( stringr )
     result = readr::read_tsv(
         filename,
         comment = '#',
         na = ".",
         col_names = c( 'seqid', 'source', 'type', 'start', 'end', 'score', 'strand', 'phase', 'attributes' ),
-        col_types = cols(
-            col_character(),
-            col_character(),
-            col_character(),
-            col_integer(),
-            col_double(),
-            col_double(),
-            col_character(),
-            col_integer(),
-            col_character()
+        col_types = readr::cols(
+            readr::col_character(),
+            readr::col_character(),
+            readr::col_character(),
+            readr::col_integer(),
+            readr::col_double(),
+            readr::col_double(),
+            readr::col_character(),
+            readr::col_integer(),
+            readr::col_character()
         )
     )
-	result[['ID']] = str_extract( result[['attributes']], 'ID=([^;]+)', group = TRUE )
-	result[['Parent']] = str_extract( result[['attributes']], 'Parent=([^;]+)', group = TRUE )
+	result[['ID']] = stringr::str_extract( result[['attributes']], 'ID=([^;]+)', group = TRUE )
+	result[['Parent']] = stringr::str_extract( result[['attributes']], 'Parent=([^;]+)', group = TRUE )
 	return( result )
 }
 
 test_parse_gff3_to_dataframe()
 ```
+
+**Note.** Those `readr::` and `stringr::` bits are optional - you could just do `library( tidyverse )` at the top.
 
 </TabItem>
 <TabItem value="python" label="python solution">

@@ -1,3 +1,7 @@
+---
+sidebar_position: 2
+---
+
 # Learn to program with gene annotations!
 
 Welcome! This tutorial has two aims. On one hand it is about programming, specifically the type of
