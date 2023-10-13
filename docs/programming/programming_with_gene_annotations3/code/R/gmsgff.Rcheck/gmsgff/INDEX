@@ -1,3 +1,0 @@
-gmsgff-package          Utilities for loading gene annotation data
-parse_gff3_to_dataframe
-                        Parse a gff file to a tidyverse dataframe
