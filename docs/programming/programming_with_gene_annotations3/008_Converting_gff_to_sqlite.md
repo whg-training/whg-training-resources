@@ -240,7 +240,7 @@ Pandas dataframes have a [`.to_sql()`
 function](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_sql.html) that does this for
 you. To make this work, you open the database and then run it:
 
-```
+```python
 db = sqlite3.connect( args.output )
 data.to_sql( args.table, db, index = False )
 ```
@@ -257,43 +257,70 @@ the ID (or other columns) so lookups are quick. The correct incantation is:
 <TabItem value="R" label="In R">
 
 ```r
-dbGetQuery( db, "CREATE INDEX IF NOT EXISTS `gff_index`` ON `gff`( `ID` ))" )
+dbGetQuery( db, "CREATE INDEX IF NOT EXISTS gff_index ON gff( ID ))" )
+```
+
+</TabItem>
+<TabItem value="python" label="In python">
+
+```python
+db.execute( "CREATE INDEX IF NOT EXISTS gff_index ON gff( ID )" )
+```
+
+</TabItem>
+</Tabs>
+
+### Closing the connection
+We're meant to close the connection at the end:
+
+<Tabs groupId="language">
+<TabItem value="R" label="In R">
+
+```r
+dbDisconnect( db )
+```
+
+</TabItem>
+<TabItem value="python" label="In python">
+
+```
+db.close()
+```
+
+</TabItem>
+</Tabs>
+
+### Trying it out
+
+Put that all into your `process()` function (**Note**: remember the indents in python, or the closing brace in R!)
+
+And to have our program run it, we'd better call it:
+
+```
+process( args )
+```
+
+Job done!  Test it out in your shell again without any arguments, to see what happens.
+
+Now try running it on some real data:
+
+<Tabs groupId="language">
+<TabItem value="R" label="In R">
+
+```r
+Rscript --vanilla gff_to_sqlite.py --input gencode.v41.annotation.gff3 --output genes.sqlite
 ```
 
 </TabItem>
 <TabItem value="python" label="In python">
 
 
-```
-db.execute( "CREATE INDEX IF NOT EXISTS `gff_index` ON `gff`( `ID` )" )
-```
-
-### Closing the connection
-We're meant to close the connection at the end:
-```
-db.close()
-```
-
-### Trying it out
-
-If all that went into a `process()` function, you'd better call it:
-
-```
-process( args )
-```
-
-Job done!  Test it out in your shell like this:
-```
-python gff_to_sqlite.py
-```
-
-    usage: gff_to_sqlite.py [-h] --analysis_name ANALYSIS --input INPUT --output OUTPUT [--table TABLE]
-
-Now try running it on some real data:
-
-```
+```python
 python gff_to_sqlite.py --input gencode.v41.annotation.gff3.gz --analysis_name Pf3D7 --output genes.sqlite
 ```
+
+</TabItem>
+</Tabs>
 
 :::tip Note
 
