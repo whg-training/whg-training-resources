@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3.6
+sidebar_position: 7
 ---
 
 import Tabs from '@theme/Tabs';
@@ -14,7 +14,7 @@ That's already cool but let's go one step further - let's turn it into an R pack
 
 It's pretty easy.
 
-## The easy way
+## Taking the easy way
 
 The simplest way is to just put it in a single file, like this:
 
@@ -59,15 +59,15 @@ Cool!
 </Tabs>
 
 
-## Making an R package
+## Making an R package
 
-Making a single file like this is ok, but it's not really a full package.  If you are working in R, let's make one now. 
+Making a single file like this is ok, but in R it's not a full package.  If you are working in R, let's make one now. 
 
 Making an R package is in fact a big topic - [whole books](https://r-pkgs.org) have been written about it. If you are
 wanting to build and maintain R packages more often, you should definitely read that book (and use the suggested tools).
 But for now, we'll use base R approaches to get it working.  
 
-### Building a 'skeleton' package
+### The skeleton
 
 To get started, first you need to start with an empty R workspace that has **only** the functions you want in it. So,
 start a new R session (quit the old one if you want) and paste in the definition of `parse_gff3_to_dataframe()`.
@@ -99,6 +99,8 @@ Have a look at these files now using your preferred method.  They are:
 * The `gmsgff-package.Rd` and `parse_gff3_to_dataframe.Rd` file contain the package documentation - we'll have to edit these too.
 
 (You can read, and if you wish delete, `Read-md-and-delete-me`.)
+
+### The package metadata
 
 Let's go through these in order.  You can also see a completed version of the package [on
 github](https://github.com/whg-training/whg-training-resources/tree/main/docs/programming/programming_with_gene_annotations3/code/R/gmsgff).
@@ -135,7 +137,7 @@ Imports: stringr, readr
 Make sure and add this to the end.
 :::
 
-### Documenting the package
+### The documentation
 
 To try to install the package, you can run `R CMD INSTALL gmsgff` from the command-line:
 
@@ -195,7 +197,7 @@ needed files.  But we won't do this for now.
 
 :::
 
-### Taking it for a spin
+### Installing the package
 
 Ok let's try it out!  In the command-line run:
 ```
@@ -209,11 +211,13 @@ With luck you should see a bunch of messages ending wtih
 ** testing if installed package keeps a record of temporary installation path
 * DONE (gmsgff)
 ```
-**Congratulations!** You've written an R package.
+**Congratulations!** You've written the **gmsgff** R package.
+
+### Taking it for a spin
 
 Try it like this: start a new R session and type
 ```
-library(R)
+library(gmsgff)
 gencode = parse_gff3_to_dataframe( "gencode.v41.annotation.gff3" )
 ```
 
@@ -222,7 +226,16 @@ Or like this:
 gencode = gmsgff::parse_gff3_to_dataframe( "gencode.v41.annotation.gff3" )
 ```
 
-:::tip Note on tests
+Does it work?
+
+:::tip Note
+
+You can also read the package help - try
+```
+?parse_gff3_to_dataframe
+```
+
+### Adding the tests
 
 If you look in [my
 version](https://github.com/whg-training/whg-training-resources/tree/main/docs/programming/programming_with_gene_annotations3/code/R/gmsgff)
@@ -230,52 +243,15 @@ you'll see some additions I made to add the test code.  In short:
 - I added the test function in `tests/test_parse_gff_to_dataframe.R`, with a little bit of boilerplate
 - I added a `Suggests: unittest` line to the `DESCRIPTION` file.
 
+It's a good idea to keep the test in the package, so go ahead and add your tests now - then use `R CMD INSTALL` to install it again.
+
+:::tip Note
+
 This was pretty easy, however [`r-pks.org` site](https://r-pkgs.org) advises to use another test package called
 `testthat`, which is probably what you should use in real work.
-
 :::
-
-
-* Copy your code into a new file, named `gff.py` using a [text editor](/prerequisites/editor.md). (This file
-  should go in your current directory i.e. the one you started python / jupyterhub from.)
-
-* Congratulations!  You have now written your first python module.
-
-To use your python module, simply import it and use like this:
-
-```python
-import gff
-X = gff.parse_gff3_to_dataframe( 'gencode.v38.annotation.head.gff' )
-```
-
-or if you don't want to type the "`gff.`" before the function name:
-```python
-from gff import parse_gff3_to_dataframe
-X = parse_gff3_to_dataframe( 'gencode.v38.annotation.head.gff' )
-```
-
-Cool!
-
-### Anything else?
-
-Are we done? Well, really you should keep your tests along with your module. That's easy - e.g. [look at my
-version here](solutions/part1/test_gff.py). All I have done there is to collect the test code from the previous
-page - with a slight update to use the python's [unit testing
-framework](https://docs.python.org/3/library/unittest.html). If you save that in a file called `test_gff.py` and
-run it you should see something like:
-
-```
-    $ python ./test_gff.py          
-    .
-    ----------------------------------------------------------------------
-    Ran 2 tests in 0.021s
-    
-    OK
-```
-
-(If the tests fail - you have a problem. Fix it before moving on!)
 
 ## Next steps
 
-Great!  We have a fully functional, fully tested gff-loading module! Now let's use it to
-[write a useful command-line program](Converting_gff_to_sqlite.md).
+Great!  We have a fully functional, fully tested gff-loading package! Now let's use it to [write a useful command-line
+program](Converting_gff_to_sqlite.md).

@@ -10,14 +10,18 @@ import TabItem from '@theme/TabItem';
 Your R package (or python module) is already useful!  To demonstrate this, let's use it to write a **command-line
 utility** - a program you can run on the command-line to do something useful.
 
-Specificaly let's write a program to convert a GFF file to the [sqlite database](https://www.sqlite.org) format. This is
-a great idea!  `sqlite` is a kind of database that lives in a single file on the filesystem (so no servers and so on
-needed) - it's kind of a tab-separated file on steroids.  It is easy to use in lots of languages so (whatever language
-you've used so far) it will make it easy to load bits of data we want.
+Specifically let's write a program to convert a GFF file to the [sqlite database](https://www.sqlite.org) format. There
+are lots of good reasons to do this.  One of them is that `sqlite` will make it easy to load the data we want from
+almost any language, without having to re-write another `parse_gff3_to_dataframe()` function. It will make it easy to
+load bits of data we want.
 
 ## How we'll run the program
 
-We're aiming to have something that works like this from the command-line
+We will develop this a bit differently to the previous code (for which you may have used Jupyter lab, for example, to
+work semi-interactively). Here we are writing a program so you'll want to create a new blank file `gff_to_sqlite.R`
+which we will edit.
+
+Ultimately we are aiming to use the file like this (from the command-line):
 
 <Tabs groupId="language">
 <TabItem value="R" label="In R">
@@ -29,7 +33,7 @@ Rscript --vanilla gff_to_sqlite.R --input my_file.gff --output genes.sqlite
 Here `Rscript --vanilla` is the R way of running a script on the command line, `gff_to_sqlite.R` is our program,
 and the other parts are the command-line options.
 
-To get started, create a new R file named 'gff_to_sqlite.R' in your editor now.
+To get started, create a new R file named `gff_to_sqlite.R` in your editor now.
 
 </TabItem>
 <TabItem value="python" label="In python">
@@ -48,7 +52,8 @@ To get started, create a new R file named 'gff_to_sqlite.py' in your editor now.
 
 ## Importing our code
 
-The first thing we'll need to do is import our code!  And we'll need the sqlite3 library too. Add these line to your file:
+The first thing we'll need to do is import our code.  And we'll need the sqlite3 library too. Add these line to your
+file:
 
 <Tabs groupId="language">
 <TabItem value="R" label="In R">
@@ -124,7 +129,7 @@ args = parse_arguments()
 </TabItem>
 </Tabs>
 
-Your program is already runnable!  Try it:
+Your program is already runnable. Try it from a command-line:
 
 <Tabs groupId="language">
 <TabItem value="R" label="In R">
@@ -145,6 +150,7 @@ Execution halted
 
 </TabItem>
 <TabItem value="python" label="In python">
+
 ```sh
 python gff_to_sqlite.py
 ```
