@@ -342,11 +342,12 @@ dbWriteTable(
     db,
     "gff",
     data,
-    row.names = FALSE,
-    append = TRUE
+    row.names = FALSE
 )
 
 ```
+
+We will also add an `append = TRUE` argument to the above, so that more than one file can be added to the same database.
 
 </TabItem>
 <TabItem value="python" label="In python">
@@ -359,6 +360,9 @@ you. To make this work, you open the database and then run it:
 db = sqlite3.connect( args.output )
 data.to_sql( "gff", db, index = False )
 ```
+
+We will also add the `if_exists = "append"` argument to the above, so that more than one file can be added to the same database.
+
 
 </TabItem>
 </Tabs>
@@ -536,7 +540,7 @@ def process( args ):
 
     # Write the data to the database
     db = sqlite3.connect( args.output )
-    data.to_sql( "gff", db, index = False )
+    data.to_sql( "gff", db, index = False, if_exists = "append" )
 
     # Create the indexes
     db.execute( "CREATE INDEX IF NOT EXISTS gff_id_index ON gff( ID )" )

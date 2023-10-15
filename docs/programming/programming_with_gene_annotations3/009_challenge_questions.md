@@ -17,43 +17,66 @@ That's pretty good - but it could be better.  Here are some challenges to try.
 
 :::tip Note
 
-For these chaleenges we suggest to focus on the GFF files [from
-Ensembl](http://ftp.ensembl.org/pub/current_gff3/homo_sapiens/), at least at first.  Because these are all formatted the
-same way, whereas other data sources like [gencode](https://www.gencodegenes.org/human/) have minor formatting
-differences that will make this task harder.
+For these challenges we suggest to focus on the GFF files [from
+Ensembl](http://ftp.ensembl.org/pub/current_gff3/homo_sapiens/), at least at first.  Files from other sources such as
+[gencode](https://www.gencodegenes.org/human/) have minor formatting differences that will make this task harder.
 
 :::
 
 ## Challenge 1: extract more attributes
 
-Wouldn't it be nice to have other attributes extracted as columns?  For example the [gene name and biotype](https://ftp.ensembl.org/pub/current_gff3/homo_sapiens/README) are useful fields.
+Wouldn't it be nice to have other attributes extracted as columns?  For example in the Ensembl files the `Name` and
+`biotype` are [useful attributes](https://ftp.ensembl.org/pub/current_gff3/homo_sapiens/README) of gene records.
 
-**Challenge**: give `parse_gff3_to_dataframe()` a third 'attributes' argument containing a list of attribute names. For
-each attribute, extract that into a seperate column *in addition to* the `ID` and `Parent` attributes you already
-extract.
+:::tip Challenge
 
-## Challenge 2: split those tables
+Give `parse_gff3_to_dataframe()` a second argument called 'attributes', which should be a list (or in R,
+a vector) of attribute names. For each attribute in the list, you should extract it and add it into a seperate column of
+the result dataframe.  (This should be in addition to the `ID` and `Parent` attributes, which you should always
+extract.)
 
-As you know, the GFF records have different types - genes, transcripts, exons and so on.  And these are linked via the
-`ID` and `Parent` attributes.
+For bonus marks, alter `gff_to_sqlite.R` or `gff_to_sqlite.py` so you can also specify these attributes on the
+command-line. **Hint** You will need to use the `nargs = "+"` option to the argument parser `add_argument()` call, so
+that the option can take several values.  The argument can then be used as a list (in python) or vector (in R).
 
-At the moment our `gff_to_sqlite` program puts all this into a single `gff` table, but maybe that's silly.
-
-Can you write a version of `gff_to_sqlite` (say `gff_to_sqlite_split`) that instead outputs several seperate tables for
-the main different types:
-
-* `gene` for gene records
-* `transcript` for transcript records
-* `exon` for exons
-* `cds` for coding sequence
-* `chromosome` for chromosome records
-* perhaps `other` for anything else?
-
-**Hint.** You can use dataframe filtering to subset out the different parts of the table to write.
-
-:::caution Warning
-As you've already seen, not all GFF files have the same encoding of things like the `type` column.  If you
- focus on the [Ensembl files](http://ftp.ensembl.org/pub/current_gff3/homo_sapiens/) this will be easier, as they're all
- consistently formatted.)
 :::
+
+## Challenge 2: shrink `attributes`
+
+Currently, `parse_gff3_to_dataframe()` extracts `ID` and `Parent` (and, if you do the challenge above, other attributes too).
+But it also leaves these fields in the `attributes` column.  Since the files are so bit, this can waste a lot of space.
+
+:::tip Challenge
+
+Find a way to remove the extracted fields from `attributes` when you extract them.
+
+:::
+
+## Challenge 3: split the output
+
+Currently, our `gff_to_sqlite` outputs all fields into a single table (called `gff`).
+However, wouldn't it be better to split out the different types into different tables?
+For example:
+
+* chromosomes
+* genes
+* transcripts
+* exons
+* CDS
+* utr
+
+may all make sense as seperate tables.
+
+:::tip Challenge
+
+Create a version of `gff_to_sqlite` (say, `gff_to_sqlite_split`) that outputs different gff record types into different
+tables.
+
+**Note** This is easiest if you focus on GFF files from one source (say Ensembl) - since the GFFs from other sources
+(such as gencode) have different types in them.
+
+:::
+
+In fact the best version of this would extract different attributes for each table as well.  For example, the gene name or symbol
+is only needed for gene records.
 

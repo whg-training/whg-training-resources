@@ -40,35 +40,53 @@ get_dataset_name = function( filename ) {
     return( result )
 }
 
+write_records = function( data, db, table_name, record_types ) {
+	echo( "++ write_records(): Writing %s records to table '%s'...\n", paste( record_types, collapse = ", " ), table_name )
+	dbWriteTable(
+		db,
+		table_name,
+		data %>% filter( type %in% record_types ),
+		row.names = FALSE,
+		append = TRUE
+	)
+	echo( "    ...ok, adding indexes...\n" )
+	# Create the indexes
+	dbExecute( db, sprintf( "CREATE INDEX IF NOT EXISTS %s_id_index ON %s( ID )", table_name, table_name ))
+	dbExecute( db, sprintf( "CREATE INDEX IF NOT EXISTS %s_parent_index ON %s( Parent )", table_name, table_name ))
+}
 
 process = function( args ) {
 	echo( "++ process(): loading data from '%s'...\n", args$input )
-    data = gmsgff::parse_gff3_to_dataframe( args$input )
+	data = gmsgff::parse_gff3_to_dataframe( args$input )
 	echo( "++ ok, loaded %d rows and %d columns of data.\n", nrow(data), ncol(data) )
 	echo( "first few rows are:\n" )
 	print( head( data ))
 
 	echo( "++ process(): Adding dataset filename as a column...\n" )
-    add_column(
-        data,
-        dataset = get_dataset_name( args$input ),
-        .before = 1
-    )
+	add_column(
+		data,
+		dataset = get_dataset_name( args$input ),
+		.before = 1
+	)
 
-	echo( "++ process(): Writing data to '%s', gff table...\n", args$output )
-    db = DBI::dbConnect(RSQLite::SQLite(), args$output )
-    dbWriteTable(
-        db,
-        "gff",
-        data,
-        row.names = FALSE,
-		append = TRUE
-    )
+	echo( "++ process(): Connecting to db '%s'...\n", args$output )
+	db = DBI::dbConnect(RSQLite::SQLite(), args$output )
 
-	echo( "++ process(): ok, adding indexes...\n" )
-    # Create the indexes
-    dbExecute( db, "CREATE INDEX IF NOT EXISTS gff_id_index ON gff( ID )" )
-    dbExecute( db, "CREATE INDEX IF NOT EXISTS gff_parent_index ON gff( Parent )" )
+	# Set up some GFF record types that we want to save.
+	# We arrange this in a list so that it works for both Ensembl and gencode files
+	# The name is the table name, and the list value is a vector of GFF types to put in that table.
+	# We here used a 'named' list for this, but other data structures would do (or you could hard-code it).
+	tables_and_types = list(
+		chromosome = 'chromosome',
+		gene = c( 'gene', 'pseudogene' ),
+		transcript = c( gencode = 'transcript', ensembl = 'mRNA' ),
+		exon = 'exon',
+		cds = 'CDS',
+		utr = c( 'five_prime_UTR', 'three_prime_UTR' )
+	)
+	for( table_name in names(tables_and_types) ) {
+		write_records( data, db, table_name, tables_and_types[[table_name]] )
+	}
 
     # close the connection
     dbDisconnect( db )

@@ -187,7 +187,11 @@ types:
 )
 ```
 
-(I've very little idea how it does this: even though `gencode` has 34 million rows, this takes hardly any time at all.)
+**Note**. Another way to do this is R's built-in function `table()`:
+
+```
+table( gencode$type )
+```
 
 </TabItem>
 <TabItem value="python" label="In python">
@@ -221,4 +225,9 @@ this in your system monitor, or by opening a terminal and running:
 
 :::
 
+## Next steps
+
+A better way to solve the memory issue to store the data in a database and only load what's needed into memory - we'll
+see a way to do that [later](./008_Converting_gff_to_sqlite.md).  But first let's [package up the
+code](./007_making_a_module.md).
 

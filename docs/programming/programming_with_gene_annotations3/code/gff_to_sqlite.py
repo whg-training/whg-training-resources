@@ -36,12 +36,12 @@ def process( args ):
     print( "first few rows are:" )
     print( data.head() )
 
-    print( "++ process(): Adding source filename as a column..." )
+    print( "++ process(): Adding dataset filename as a column..." )
     data.insert( loc = 0, column = 'dataset', value = get_dataset_name( args.input ) )
 
     print( "++ process(): Writing data to '%s', gff table..." % args.output )
     db = sqlite3.connect( args.output )
-    data.to_sql( "gff", db, index = False )
+    data.to_sql( "gff", db, index = False, if_exists = "append" )
 
     print( "++ process(): ok, adding indexes..." )
     db.execute( "CREATE INDEX IF NOT EXISTS gff_id_index ON gff( ID )" )
