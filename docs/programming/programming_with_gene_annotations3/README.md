@@ -23,7 +23,11 @@ To begin [go to the introduction](Introduction.md).
 ## Table of contents
 
 1. [Introduction](001_Introduction.md)
-2. [What gene annotation data looks like](What_gene_annotation_data_looks_like.md)
-3. [Getting started writing some code](Getting_started_writing_some_code.md)
-4. [An aside on refactoring code](Refactoring_makes_code_better.md)
-5. [Writing a useful command-line program](Converting_gff_to_sqlite.md)
+2. [What gene annotation data looks like](002_What_gene_annotation_data_looks_like.md)
+3. [Getting started writing some code](003_Getting_started_writing_some_code.md)
+4. [Extracting attributes](004_extracting_attributes.md)
+5. [Testing it out](005_testing_it_out.md)
+6. [A quick recap (how did we do it?)](006_recap.md)
+7. [Packaging up our code](007_making_a_module.md)
+8. [Writing a useful command-line utility](008_Converting_gff_to_sqlite.md)
+8. [Challenges](009_challenge_questions.md)
