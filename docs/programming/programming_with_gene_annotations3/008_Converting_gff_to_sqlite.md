@@ -11,9 +11,9 @@ Your R package (or python module) is already useful!  To demonstrate this, let's
 utility** - a program you can run on the command-line to do something useful.
 
 Specifically let's write a program to convert a GFF file to the [sqlite database](https://www.sqlite.org) format. There
-are lots of good reasons to do this.  One of them is that `sqlite` will make it easy to load the data we want from
-almost any language, without having to re-write another `parse_gff3_to_dataframe()` function. It will make it easy to
-load bits of data we want.
+are lots of good reasons to do this.  One of them is that `sqlite` will make it easy to load the data from
+almost any language without having to re-write another `parse_gff3_to_dataframe()` function. It will make it easy to
+load bits of data we want, solving the issues of using lots of memory that we encountered earlier.
 
 ## How we'll run the program
 
@@ -732,12 +732,14 @@ first few rows are:
 Because we added that `dataset` column - there's nothing to stop us loading multiple datasets into the same database
 file.  Try it now - you should be able to write multiple files into the `genes.sqlite` database.
 
-You can always get the data back again using the `sqlite3` command-line tool:
+You can always get the data back out of the database again using the `sqlite3` command-line tool.  For example
+to get just the first 10 genes:
 ```
-% sqlite3 -mode csv -header 'SELECT * FROM gff LIMIT 10'  genes.sqlite
+% sqlite3 -mode csv -header 'SELECT * FROM gff WHERE type =='gene' LIMIT 10'  genes.sqlite
 ```
 
-For more examples of accessing data from the sqlite file, see the [appendix](appendices/sqlite_access.md).
+You can similarly load pieces of the data into R or python, or other languages.  For more examples of this see the
+[appendix](appendices/sqlite_access.md).
 
 ## Final touches
 
