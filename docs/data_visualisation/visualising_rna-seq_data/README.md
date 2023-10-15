@@ -4,7 +4,7 @@ author: "Eddie Cano-Gamez"
 date: "2022-10-04"
 ---
 
-# Visualising RNA-seq data in R
+# Visualise RNA-seq data in R
 
 **Author**: Eddie Cano-Gamez.
 
