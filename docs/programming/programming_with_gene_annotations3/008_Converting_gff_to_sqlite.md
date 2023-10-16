@@ -469,7 +469,7 @@ process = function( args ) {
     data = gmsgff::parse_gff3_to_dataframe( args$input )
 
     # Add the dataset name as a column
-    add_column(
+    data = add_column(
         data,
         dataset = get_dataset_name( args$input ),
         .before = 1

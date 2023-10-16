@@ -15,9 +15,16 @@ To count exons per gene, I have used a not-very-good approach: taking the averag
 very sensible as there are often one or a few 'major' transcripts, but also sometimes some very short (or very long) transcripts
 listed for a gene that will skew results. Ideally we should take a 'canonical' transcript.
 
-How to do that? Well, Ensembl have files containing a set of representative transcripts for each species [in this
-folder](https://ftp.ensembl.org/pub/current_tsv/).
+How to do that? Well, Ensembl have files containing a set of representative transcripts for each species on the Ensembl FTP site.
 You can also read [more details on what thse contain](https://www.ensembl.org/info/genome/genebuild/canonical.html).
+
+:::tip Note
+
+For some reason these 'canonical transcript' files aren't available in the latest release of Ensembl. You can find them
+in [release 108](https://ftp.ensembl.org/pub/release-108/tsv/), though.  For our purposes we'll use that.
+
+:::
+
 
 An **extra challenge** is therefore to incorporate these 'canonical transcripts' into your program - then you can focus on these
 transcripts in your analysis.

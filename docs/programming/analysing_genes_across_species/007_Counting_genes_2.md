@@ -2,31 +2,23 @@
 sidebar_position: 8
 ---
 
-# Counting genes II: types of protein-coding genes
+# Counting genes I: types of protein-coding genes
 
-[Up to table of contents](README.md)
+If you haven't already, please download the GFF files for some different species that you are interested in, and run
+them through your `gff_to_sqlite.R` program to get them into the database - say `genes.sqlite`. I'm going to assume you
+followed the suggestion to add a column that distinguishes the different species - in my code this is called `dataset`
+and I'll use that below.  A nice feature of this way of working is that you can start with a few species and add more later.
 
-If you've followed so far you will have code `gff.py` that can parse a GFF file, and in the process
-will pull out certain fields from the `attributes` column. This includes the `ID` attribute, the
-`Parent` attribute that says how records are linked, and also the `biotype` column and maybe also
-the `Name` (which contains gene names). In the [Ensembl
-files](http://ftp.ensembl.org/pub/current_gff3/) the `biotype` is useful because it tells us what
-kind of genes they are.
+For the examples here, I used data from
 
-If you haven't already, please download the GFF files for some different species and run them
-through your [sqlite conversion program](Converting_gff_to_sqlite.md) to get them into the
-database. I'm going to assume you followed the suggestion to add a column that distinguishes the
-different species - in my code this is called `analysis` and I'll use that below.
-
-(For reference my version of the code is at
-[solutions/part2/gff_to_sqlite.py](solutions/part2/gff_to_sqlite.py)
-and
-[solutions/part2/gff.py](solutions/part2/gff.py) - feel free to run that
-instead, if needed.)
+* humans
+* chimpanzees
+* 
 
 This sqlite file is now in a good shape to start really exploring genes. First let's look at what `biotypes` there are.
 
 ## What types of protein-coding gene are there?
+
 
 
 ```

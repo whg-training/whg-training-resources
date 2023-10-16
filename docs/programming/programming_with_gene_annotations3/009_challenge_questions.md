@@ -102,3 +102,17 @@ is only needed for gene records.
 
 See [the appendix](appendices/refactoring.md) for this challenge.
 
+## The finished product
+
+If you get through all (or any) of that - congratulations!
+
+For a tutorial that uses this code - see the follow-on [Analysing genes across species
+tutorial](../analysing_genes_across_species/README.md).
+
+:::tip Note
+
+If instead you'd like to see my version of the finished product - the R package and the command-line program with the
+improvements listed here - there's also a link on the [Analysing genes across species
+tutorial](../analysing_genes_across_species/README.md) page.
+
+:::
