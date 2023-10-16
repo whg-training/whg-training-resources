@@ -20,28 +20,29 @@ parse_gff3_to_dataframe = function( filename ) {
 }
 ```
 
-I like this form because it is very easy to see what it does - it is *readable*.
-(You also don't really need code comments when you write code like this - if you can make those function names obvious enough, they document themselves.)
+I like this form because it is very easy to see what it does.
 
-If you've added extra attributes from [the challenge question](../009_challenge_questions.md#challenge-1-extract-more-attributes), it should perhaps instead look something like this:
+::tip Note
 
-```r
-parse_gff3_to_dataframe = function(
-	filename,
-	extra_attributes = c( 'biotype', 'Name' )
-) {
-	result = read_gff_data( filename )
-	add_attributes( result, extra_attributes )
-	return( result )
-}
-```
+Re-writing code for clarity and simplicity like this is known as **refactoring**.  You should aim not to change any
+functionality (use your test to make sure this is true) but will end up much more readable.
 
-:::tip Challenge
-Refactor (i.e. rewrite) the code so the function looks more like the above.
-
-**Hint** To do this, you need to split out bits of the function into other, named functions that do the work - here
-`read_gff_data()` and `add_attributes()`.  You can choose the function names you like, of course, beause the point is to
-make it readable. (Another advantage of this is that you can test these bits of code seperately)
+(After a refactor you also may find you don't need any code comments any more - ideally the code will document itself.)
 
 :::
 
+:::caution Note
+You can indeed do this in the python version.
+
+**Unfortunately**, however, this is difficult to do fully in R.  This is because R doesn't pass function arguments 'by
+reference', meaning that those sub-functions can't really alter the 'result' dataframe.  In some situations this is fine
+(we could just have them return the updated data) but because our data frame is really large (remember it took up ~2.5Gb
+of RAM) we also have to be really careful about making copies of things. Nevertheless you can get some of the way there
+- e.g. you could certainly implement this line:
+```
+result = read_gff_data( filename )
+```
+
+which would already substantially reduce the length of the function.
+
+:::
