@@ -23,6 +23,12 @@ function(
         # Remove from the attributes
         result[['attributes']] = stringr::str_remove( result[['attributes']], regex )
     }
+
+    # Get rid of 'gene:', 'exon:', etc in ID which is just wasting space.
+    echo( "++parse_gff3_to_dataframe(): Removing prefixes from ID fields...\n" )
+    result[['ID']] = stringr::str_remove( result[['ID']], '^(chromosome:|gene:|transcript:|exon:|CDS:)' )
+    result[['Parent']] = stringr::str_remove( result[['Parent']], '^(chromosome:|gene:|transcript:|exon:|CDS:)' )
+
     echo( "++parse_gff3_to_dataframe(): ok.\n" )
     return( result )
 }
