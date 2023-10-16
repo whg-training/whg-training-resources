@@ -1,3 +1,7 @@
+---
+sidebar_position: 1
+---
+
 # Reading results from a sqlite file in any language
 
 In the tutorial you wrote a command-line program to [convert the data into sqlite3

@@ -23,6 +23,17 @@ Ensembl](http://ftp.ensembl.org/pub/current_gff3/homo_sapiens/), at least at fir
 
 :::
 
+:::caution Wartning
+
+Some of these challenges involve changes to your `parse_gff3_to_dataframe()` function. Make sure and test it to ensure
+it still works!
+
+Also, if you like your edits and put them in your **gmsgff** package, remember to run `R CMD INSTALL gmsgff` again to
+install the new version of the package.
+
+:::
+
+
 ## Challenge 1: extract more attributes
 
 Wouldn't it be nice to have other attributes extracted as columns?  For example in the Ensembl files the `Name` and
@@ -49,12 +60,19 @@ But it also leaves these fields in the `attributes` column.  Since the files are
 :::tip Challenge
 
 Find a way to remove the extracted fields from `attributes` when you extract them.
+Make sure to remove the semicolon too, if it's there!
 
 :::
 
+**Hint 1** The [`str_remove()` function](https://stringr.tidyverse.org/reference/str_remove.html) can help with this -
+you will need to use the right regular expression.
+
+**Hint 2** The regular expression syntax '(;|$)' will match *either* a semicolon *or* the end of the string - may be
+useful.
+
 ## Challenge 3: split the output
 
-Currently, our `gff_to_sqlite` outputs all fields into a single table (called `gff`).
+Currently, our `gff_to_sqlite` program outputs all fields into a single table (called `gff`).
 However, wouldn't it be better to split out the different types into different tables?
 For example:
 
@@ -79,4 +97,8 @@ tables.
 
 In fact the best version of this would extract different attributes for each table as well.  For example, the gene name or symbol
 is only needed for gene records.
+
+## Challenge 4: the refactor
+
+See [the appendix](appendices/refactoring.md) for this challenge.
 
