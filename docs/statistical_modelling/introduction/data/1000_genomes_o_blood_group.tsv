@@ -1,0 +1,2505 @@
+sample	population_code	population	sex	genotype
+HG00096	GBR	British	male	-/C
+HG00097	GBR	British	female	C/C
+HG00099	GBR	British	female	-/-
+HG00100	GBR	British	female	-/C
+HG00101	GBR	British	male	-/-
+HG00102	GBR	British	female	-/-
+HG00103	GBR	British	male	-/C
+HG00105	GBR	British	male	-/C
+HG00106	GBR	British	female	-/C
+HG00107	GBR	British	male	-/-
+HG00108	GBR	British	male	-/C
+HG00109	GBR	British	male	-/C
+HG00110	GBR	British	female	-/-
+HG00111	GBR	British	female	-/C
+HG00112	GBR	British	male	-/C
+HG00113	GBR	British	male	-/-
+HG00114	GBR	British	male	-/C
+HG00115	GBR	British	male	-/-
+HG00116	GBR	British	male	-/-
+HG00117	GBR	British	male	-/-
+HG00118	GBR	British	female	-/C
+HG00119	GBR	British	male	-/-
+HG00120	GBR	British	female	-/-
+HG00121	GBR	British	female	-/C
+HG00122	GBR	British	female	-/-
+HG00123	GBR	British	female	-/C
+HG00125	GBR	British	female	-/C
+HG00126	GBR	English	male	-/-
+HG00127	GBR	British	female	-/C
+HG00128	GBR	English	female	-/C
+HG00129	GBR	British	male	-/-
+HG00130	GBR	British	female	-/C
+HG00131	GBR	British	male	-/C
+HG00132	GBR	British	female	-/C
+HG00133	GBR	British	female	C/C
+HG00136	GBR	British	male	-/-
+HG00137	GBR	British	female	-/C
+HG00138	GBR	British	male	-/C
+HG00139	GBR	British	male	-/C
+HG00140	GBR	British	male	-/C
+HG00141	GBR	British	male	-/-
+HG00142	GBR	British	male	-/C
+HG00143	GBR	British	male	-/C
+HG00145	GBR	British	male	C/C
+HG00146	GBR	British	female	-/-
+HG00148	GBR	British	male	-/C
+HG00149	GBR	British	male	-/C
+HG00150	GBR	British	female	-/-
+HG00151	GBR	British	male	-/-
+HG00154	GBR	British	female	-/C
+HG00155	GBR	British	male	-/-
+HG00157	GBR	British	male	-/C
+HG00158	GBR	British	female	-/C
+HG00159	GBR	British	male	-/C
+HG00160	GBR	British	male	-/C
+HG00171	FIN	Finnish	female	-/C
+HG00173	FIN	Finnish	female	C/C
+HG00174	FIN	Finnish	female	-/-
+HG00176	FIN	Finnish	female	-/C
+HG00177	FIN	Finnish	female	-/-
+HG00178	FIN	Finnish	female	-/C
+HG00179	FIN	Finnish	female	-/-
+HG00180	FIN	Finnish	female	-/C
+HG00181	FIN	Finnish	male	-/-
+HG00182	FIN	Finnish	male	C/C
+HG00183	FIN	Finnish	male	-/C
+HG00185	FIN	Finnish	male	-/C
+HG00186	FIN	Finnish	male	C/C
+HG00187	FIN	Finnish	male	-/C
+HG00188	FIN	Finnish	male	-/-
+HG00189	FIN	Finnish	male	-/-
+HG00190	FIN	Finnish	male	-/C
+HG00231	GBR	British	female	-/-
+HG00232	GBR	British	female	-/C
+HG00233	GBR	British	female	-/-
+HG00234	GBR	British	male	-/C
+HG00235	GBR	British	female	-/C
+HG00236	GBR	British	female	-/C
+HG00237	GBR	British	female	-/-
+HG00238	GBR	British	female	-/C
+HG00239	GBR	British	female	-/C
+HG00240	GBR	British	female	-/C
+HG00242	GBR	British	male	-/C
+HG00243	GBR	British	male	C/C
+HG00244	GBR	British	male	-/-
+HG00245	GBR	British	female	-/-
+HG00246	GBR	British	male	-/-
+HG00250	GBR	British	female	-/-
+HG00251	GBR	British	male	-/-
+HG00252	GBR	British	male	-/C
+HG00253	GBR	British	female	-/C
+HG00254	GBR	British	female	-/C
+HG00255	GBR	British	female	C/C
+HG00256	GBR	British	male	-/-
+HG00257	GBR	British	female	-/C
+HG00258	GBR	British	female	-/C
+HG00259	GBR	British	female	-/C
+HG00260	GBR	British	male	-/C
+HG00261	GBR	British	female	C/C
+HG00262	GBR	British	female	-/-
+HG00263	GBR	British	female	-/C
+HG00264	GBR	British	male	-/-
+HG00265	GBR	British	male	-/-
+HG00266	FIN	Finnish	female	C/C
+HG00267	FIN	Finnish	male	-/C
+HG00268	FIN	Finnish	female	-/C
+HG00269	FIN	Finnish	female	-/C
+HG00271	FIN	Finnish	male	-/-
+HG00272	FIN	Finnish	female	-/-
+HG00273	FIN	Finnish	male	-/C
+HG00274	FIN	Finnish	female	-/C
+HG00275	FIN	Finnish	female	-/C
+HG00276	FIN	Finnish	female	-/C
+HG00277	FIN	Finnish	male	C/C
+HG00278	FIN	Finnish	male	-/-
+HG00280	FIN	Finnish	male	-/C
+HG00281	FIN	Finnish	female	C/C
+HG00282	FIN	Finnish	female	-/-
+HG00284	FIN	Finnish	male	-/-
+HG00285	FIN	Finnish	female	C/C
+HG00288	FIN	Finnish	female	C/C
+HG00290	FIN	Finnish	male	C/C
+HG00304	FIN	Finnish	female	-/C
+HG00306	FIN	Finnish	female	-/C
+HG00308	FIN	Finnish	male	-/C
+HG00309	FIN	Finnish	female	-/C
+HG00310	FIN	Finnish	male	-/-
+HG00311	FIN	Finnish	male	-/C
+HG00313	FIN	Finnish	female	-/C
+HG00315	FIN	Finnish	female	C/C
+HG00318	FIN	Finnish	female	C/C
+HG00319	FIN	Finnish	female	-/C
+HG00320	FIN	Finnish	female	-/C
+HG00321	FIN	Finnish	male	-/C
+HG00323	FIN	Finnish	female	-/-
+HG00324	FIN	Finnish	female	C/C
+HG00325	FIN	Finnish	male	-/-
+HG00326	FIN	Finnish	female	-/-
+HG00327	FIN	Finnish	female	-/C
+HG00328	FIN	Finnish	female	-/C
+HG00329	FIN	Finnish	male	-/-
+HG00330	FIN	Finnish	female	-/-
+HG00331	FIN	Finnish	female	-/C
+HG00332	FIN	Finnish	female	-/-
+HG00334	FIN	Finnish	female	-/C
+HG00335	FIN	Finnish	male	C/C
+HG00336	FIN	Finnish	male	C/C
+HG00337	FIN	Finnish	female	C/C
+HG00338	FIN	Finnish	male	-/C
+HG00339	FIN	Finnish	female	-/C
+HG00341	FIN	Finnish	male	-/-
+HG00342	FIN	Finnish	male	C/C
+HG00343	FIN	Finnish	female	-/C
+HG00344	FIN	Finnish	female	-/C
+HG00345	FIN	Finnish	male	-/C
+HG00346	FIN	Finnish	female	C/C
+HG00349	FIN	Finnish	female	-/-
+HG00350	FIN	Finnish	female	-/C
+HG00351	FIN	Finnish	male	-/C
+HG00353	FIN	Finnish	female	-/-
+HG00355	FIN	Finnish	female	-/C
+HG00356	FIN	Finnish	female	C/C
+HG00357	FIN	Finnish	female	-/C
+HG00358	FIN	Finnish	male	-/C
+HG00360	FIN	Finnish	male	C/C
+HG00361	FIN	Finnish	female	-/C
+HG00362	FIN	Finnish	female	-/C
+HG00364	FIN	Finnish	female	-/C
+HG00365	FIN	Finnish	female	C/C
+HG00366	FIN	Finnish	male	-/-
+HG00367	FIN	Finnish	female	C/C
+HG00368	FIN	Finnish	female	C/C
+HG00369	FIN	Finnish	male	C/C
+HG00371	FIN	Finnish	male	-/-
+HG00372	FIN	Finnish	male	C/C
+HG00373	FIN	Finnish	female	C/C
+HG00375	FIN	Finnish	male	-/C
+HG00376	FIN	Finnish	female	C/C
+HG00378	FIN	Finnish	female	-/-
+HG00379	FIN	Finnish	female	-/-
+HG00380	FIN	Finnish	female	-/-
+HG00381	FIN	Finnish	female	-/-
+HG00382	FIN	Finnish	male	-/C
+HG00383	FIN	Finnish	female	-/-
+HG00384	FIN	Finnish	female	-/-
+HG00403	CHS	Southern Han Chinese	male	C/C
+HG00404	CHS	Southern Han Chinese	female	-/-
+HG00406	CHS	Southern Han Chinese	male	-/C
+HG00407	CHS	Southern Han Chinese	female	-/C
+HG00409	CHS	Southern Han Chinese	male	-/-
+HG00410	CHS	Southern Han Chinese	female	-/C
+HG00419	CHS	Southern Han Chinese	female	C/C
+HG00421	CHS	Southern Han Chinese	male	-/C
+HG00422	CHS	Southern Han Chinese	female	-/-
+HG00428	CHS	Southern Han Chinese	female	-/-
+HG00436	CHS	Southern Han Chinese	male	-/C
+HG00437	CHS	Southern Han Chinese	female	-/-
+HG00442	CHS	Southern Han Chinese	male	-/C
+HG00443	CHS	Southern Han Chinese	female	-/-
+HG00445	CHS	Southern Han Chinese	male	-/C
+HG00446	CHS	Southern Han Chinese	female	-/-
+HG00448	CHS	Southern Han Chinese	male	-/C
+HG00449	CHS	Southern Han Chinese	female	-/C
+HG00451	CHS	Southern Han Chinese	male	-/C
+HG00452	CHS	Southern Han Chinese	female	-/C
+HG00457	CHS	Southern Han Chinese	male	-/C
+HG00458	CHS	Southern Han Chinese	female	-/-
+HG00463	CHS	Southern Han Chinese	male	-/C
+HG00464	CHS	Southern Han Chinese	female	C/C
+HG00472	CHS	Southern Han Chinese	male	-/C
+HG00473	CHS	Southern Han Chinese	female	-/-
+HG00475	CHS	Southern Han Chinese	male	-/-
+HG00476	CHS	Southern Han Chinese	female	C/C
+HG00478	CHS	Southern Han Chinese	male	-/-
+HG00479	CHS	Southern Han Chinese	female	C/C
+HG00500	CHS	Southern Han Chinese	male	-/C
+HG00513	CHS	Southern Han Chinese	female	C/C
+HG00524	CHS	Southern Han Chinese	male	-/C
+HG00525	CHS	Southern Han Chinese	female	-/-
+HG00530	CHS	Southern Han Chinese	male	-/C
+HG00531	CHS	Southern Han Chinese	female	-/C
+HG00533	CHS	Southern Han Chinese	male	C/C
+HG00534	CHS	Southern Han Chinese	female	-/C
+HG00536	CHS	Southern Han Chinese	male	C/C
+HG00537	CHS	Southern Han Chinese	female	-/-
+HG00542	CHS	Southern Han Chinese	male	-/-
+HG00543	CHS	Southern Han Chinese	female	-/C
+HG00551	PUR	Puerto Rican	female	-/C
+HG00553	PUR	Puerto Rican	male	-/C
+HG00554	PUR	Puerto Rican	female	-/-
+HG00556	CHS	Southern Han Chinese	male	-/C
+HG00557	CHS	Southern Han Chinese	female	-/C
+HG00559	CHS	Southern Han Chinese	male	C/C
+HG00560	CHS	Southern Han Chinese	female	-/-
+HG00565	CHS	Southern Han Chinese	male	-/C
+HG00566	CHS	Southern Han Chinese	female	-/C
+HG00580	CHS	Southern Han Chinese	male	-/C
+HG00581	CHS	Southern Han Chinese	female	-/C
+HG00583	CHS	Southern Han Chinese	male	-/-
+HG00584	CHS	Southern Han Chinese	female	-/C
+HG00589	CHS	Southern Han Chinese	male	-/-
+HG00590	CHS	Southern Han Chinese	female	-/C
+HG00592	CHS	Southern Han Chinese	male	C/C
+HG00593	CHS	Southern Han Chinese	female	C/C
+HG00595	CHS	Southern Han Chinese	male	-/C
+HG00596	CHS	Southern Han Chinese	female	-/C
+HG00598	CHS	Southern Han Chinese	male	C/C
+HG00599	CHS	Southern Han Chinese	female	C/C
+HG00607	CHS	Southern Han Chinese	male	-/C
+HG00608	CHS	Southern Han Chinese	female	-/C
+HG00610	CHS	Southern Han Chinese	male	-/-
+HG00611	CHS	Southern Han Chinese	female	-/C
+HG00613	CHS	Southern Han Chinese	male	-/-
+HG00614	CHS	Southern Han Chinese	female	-/C
+HG00619	CHS	Southern Han Chinese	male	-/-
+HG00620	CHS	Southern Han Chinese	female	-/C
+HG00622	CHS	Southern Han Chinese	male	-/-
+HG00623	CHS	Southern Han Chinese	female	-/C
+HG00625	CHS	Southern Han Chinese	male	-/-
+HG00626	CHS	Southern Han Chinese	female	-/C
+HG00628	CHS	Southern Han Chinese	male	-/-
+HG00629	CHS	Southern Han Chinese	female	-/C
+HG00631	CHS	Southern Han Chinese	male	-/C
+HG00632	CHS	Southern Han Chinese	female	-/C
+HG00634	CHS	Southern Han Chinese	male	-/-
+HG00637	PUR	Puerto Rican	male	-/C
+HG00638	PUR	Puerto Rican	female	-/C
+HG00640	PUR	Puerto Rican	male	-/-
+HG00641	PUR	Puerto Rican	female	C/C
+HG00650	CHS	Southern Han Chinese	male	-/C
+HG00651	CHS	Southern Han Chinese	female	-/C
+HG00653	CHS	Southern Han Chinese	male	-/C
+HG00654	CHS	Southern Han Chinese	female	-/C
+HG00656	CHS	Southern Han Chinese	male	C/C
+HG00657	CHS	Southern Han Chinese	female	-/C
+HG00662	CHS	Southern Han Chinese	male	C/C
+HG00663	CHS	Southern Han Chinese	female	-/-
+HG00671	CHS	Southern Han Chinese	male	-/-
+HG00672	CHS	Southern Han Chinese	female	-/C
+HG00674	CHS	Southern Han Chinese	male	-/-
+HG00675	CHS	Southern Han Chinese	female	-/-
+HG00683	CHS	Southern Han Chinese	male	-/-
+HG00684	CHS	Southern Han Chinese	female	-/-
+HG00689	CHS	Southern Han Chinese	male	-/C
+HG00690	CHS	Southern Han Chinese	female	C/C
+HG00692	CHS	Southern Han Chinese	male	-/C
+HG00693	CHS	Southern Han Chinese	female	-/C
+HG00698	CHS	Southern Han Chinese	male	-/C
+HG00699	CHS	Southern Han Chinese	female	-/-
+HG00701	CHS	Southern Han Chinese	male	-/-
+HG00704	CHS	Southern Han Chinese	male	C/C
+HG00705	CHS	Southern Han Chinese	female	-/-
+HG00707	CHS	Southern Han Chinese	male	-/-
+HG00708	CHS	Southern Han Chinese	female	C/C
+HG00717	CHS	Southern Han Chinese	female	C/C
+HG00728	CHS	Southern Han Chinese	male	-/-
+HG00729	CHS	Southern Han Chinese	female	-/C
+HG00731	PUR	Puerto Rican	male	-/C
+HG00732	PUR	Puerto Rican	female	-/C
+HG00734	PUR	Puerto Rican	female	-/C
+HG00736	PUR	Puerto Rican	male	-/C
+HG00737	PUR	Puerto Rican	female	-/-
+HG00739	PUR	Puerto Rican	male	C/C
+HG00740	PUR	Puerto Rican	female	-/-
+HG00742	PUR	Puerto Rican	male	C/C
+HG00743	PUR	Puerto Rican	female	-/-
+HG00759	CDX	Dai Chinese	female	-/-
+HG00766	CDX	Dai Chinese	female	-/-
+HG00844	CDX	Dai Chinese	male	-/-
+HG00851	CDX	Dai Chinese	female	-/-
+HG00864	CDX	Dai Chinese	female	C/C
+HG00867	CDX	Dai Chinese	female	-/C
+HG00879	CDX	Dai Chinese	female	-/C
+HG00881	CDX	Dai Chinese	male	-/-
+HG00956	CDX	Dai Chinese	female	-/C
+HG00978	CDX	Dai Chinese	female	-/-
+HG00982	CDX	Dai Chinese	male	-/-
+HG01028	CDX	Dai Chinese	male	-/C
+HG01029	CDX	Dai Chinese	female	-/-
+HG01031	CDX	Dai Chinese	male	-/-
+HG01046	CDX	Dai Chinese	female	-/-
+HG01047	PUR	Puerto Rican	male	-/C
+HG01048	PUR	Puerto Rican	male	-/-
+HG01049	PUR	Puerto Rican	female	-/C
+HG01051	PUR	Puerto Rican	male	-/C
+HG01052	PUR	Puerto Rican	female	-/-
+HG01054	PUR	Puerto Rican	male	-/C
+HG01055	PUR	Puerto Rican	female	-/-
+HG01058	PUR	Puerto Rican	female	-/C
+HG01060	PUR	Puerto Rican	male	-/C
+HG01061	PUR	Puerto Rican	female	-/C
+HG01063	PUR	Puerto Rican	male	-/-
+HG01064	PUR	Puerto Rican	female	-/-
+HG01066	PUR	Puerto Rican	male	-/-
+HG01067	PUR	Puerto Rican	female	-/-
+HG01069	PUR	Puerto Rican	male	-/C
+HG01070	PUR	Puerto Rican	female	-/C
+HG01072	PUR	Puerto Rican	male	-/-
+HG01073	PUR	Puerto Rican	female	-/-
+HG01075	PUR	Puerto Rican	male	-/-
+HG01077	PUR	Puerto Rican	female	-/C
+HG01079	PUR	Puerto Rican	male	-/-
+HG01080	PUR	Puerto Rican	female	-/C
+HG01082	PUR	Puerto Rican	male	-/-
+HG01083	PUR	Puerto Rican	female	-/-
+HG01085	PUR	Puerto Rican	male	-/-
+HG01086	PUR	Puerto Rican	female	-/-
+HG01088	PUR	Puerto Rican	male	-/-
+HG01089	PUR	Puerto Rican	female	-/-
+HG01092	PUR	Puerto Rican	female	-/C
+HG01094	PUR	Puerto Rican	male	-/-
+HG01095	PUR	Puerto Rican	female	-/-
+HG01097	PUR	Puerto Rican	male	-/-
+HG01098	PUR	Puerto Rican	female	C/C
+HG01101	PUR	Puerto Rican	male	-/C
+HG01102	PUR	Puerto Rican	female	-/C
+HG01104	PUR	Puerto Rican	male	C/C
+HG01105	PUR	Puerto Rican	female	-/C
+HG01107	PUR	Puerto Rican	male	-/C
+HG01108	PUR	Puerto Rican	female	C/C
+HG01110	PUR	Puerto Rican	male	-/-
+HG01111	PUR	Puerto Rican	female	-/-
+HG01112	CLM	Colombian	male	-/C
+HG01113	CLM	Colombian	female	-/C
+HG01119	CLM	Colombian	female	-/C
+HG01121	CLM	Colombian	male	-/-
+HG01122	CLM	Colombian	female	-/-
+HG01124	CLM	Colombian	male	-/-
+HG01125	CLM	Colombian	female	-/-
+HG01130	CLM	Colombian	male	-/-
+HG01131	CLM	Colombian	female	-/-
+HG01133	CLM	Colombian	male	-/-
+HG01134	CLM	Colombian	female	-/-
+HG01136	CLM	Colombian	male	-/C
+HG01137	CLM	Colombian	female	-/-
+HG01139	CLM	Colombian	male	-/-
+HG01140	CLM	Colombian	female	-/-
+HG01142	CLM	Colombian	male	-/-
+HG01148	CLM	Colombian	male	-/-
+HG01149	CLM	Colombian	female	-/C
+HG01161	PUR	Puerto Rican	male	-/C
+HG01162	PUR	Puerto Rican	female	-/C
+HG01164	PUR	Puerto Rican	male	-/-
+HG01167	PUR	Puerto Rican	male	-/-
+HG01168	PUR	Puerto Rican	female	-/-
+HG01170	PUR	Puerto Rican	male	-/-
+HG01171	PUR	Puerto Rican	female	-/-
+HG01173	PUR	Puerto Rican	male	-/C
+HG01174	PUR	Puerto Rican	female	-/-
+HG01176	PUR	Puerto Rican	male	-/C
+HG01177	PUR	Puerto Rican	female	-/-
+HG01182	PUR	Puerto Rican	male	-/C
+HG01183	PUR	Puerto Rican	female	-/C
+HG01187	PUR	Puerto Rican	male	-/-
+HG01188	PUR	Puerto Rican	female	-/-
+HG01190	PUR	Puerto Rican	male	-/-
+HG01191	PUR	Puerto Rican	female	-/C
+HG01197	PUR	Puerto Rican	male	-/C
+HG01198	PUR	Puerto Rican	female	-/C
+HG01200	PUR	Puerto Rican	male	C/C
+HG01204	PUR	Puerto Rican	male	-/-
+HG01205	PUR	Puerto Rican	female	-/-
+HG01241	PUR	Puerto Rican	male	-/C
+HG01242	PUR	Puerto Rican	female	-/C
+HG01247	PUR	Puerto Rican	male	-/-
+HG01248	PUR	Puerto Rican	female	-/C
+HG01250	CLM	Colombian	male	-/-
+HG01251	CLM	Colombian	female	-/-
+HG01253	CLM	Colombian	male	-/-
+HG01254	CLM	Colombian	female	-/C
+HG01256	CLM	Colombian	male	C/C
+HG01257	CLM	Colombian	female	C/C
+HG01259	CLM	Colombian	male	-/-
+HG01260	CLM	Colombian	female	-/C
+HG01269	CLM	Colombian	female	-/C
+HG01271	CLM	Colombian	male	C/C
+HG01272	CLM	Colombian	female	-/-
+HG01275	CLM	Colombian	female	-/C
+HG01277	CLM	Colombian	male	-/-
+HG01280	CLM	Colombian	male	-/-
+HG01281	CLM	Colombian	female	-/-
+HG01284	CLM	Colombian	female	-/C
+HG01286	PUR	Puerto Rican	male	-/-
+HG01302	PUR	Puerto Rican	male	-/C
+HG01303	PUR	Puerto Rican	female	-/C
+HG01305	PUR	Puerto Rican	male	-/C
+HG01308	PUR	Puerto Rican	male	-/-
+HG01311	PUR	Puerto Rican	male	-/-
+HG01312	PUR	Puerto Rican	female	-/C
+HG01323	PUR	Puerto Rican	female	C/C
+HG01325	PUR	Puerto Rican	male	-/C
+HG01326	PUR	Puerto Rican	female	-/-
+HG01334	GBR	British	male	-/-
+HG01341	CLM	Colombian	male	-/-
+HG01342	CLM	Colombian	female	-/C
+HG01344	CLM	Colombian	male	-/C
+HG01345	CLM	Colombian	female	-/-
+HG01348	CLM	Colombian	female	-/-
+HG01350	CLM	Colombian	male	-/C
+HG01351	CLM	Colombian	female	-/C
+HG01353	CLM	Colombian	male	-/-
+HG01354	CLM	Colombian	female	-/-
+HG01356	CLM	Colombian	male	-/-
+HG01357	CLM	Colombian	female	-/-
+HG01359	CLM	Colombian	male	-/-
+HG01360	CLM	Colombian	female	-/-
+HG01362	CLM	Colombian	male	-/-
+HG01363	CLM	Colombian	female	-/C
+HG01365	CLM	Colombian	male	-/-
+HG01366	CLM	Colombian	female	-/C
+HG01369	CLM	Colombian	female	-/-
+HG01372	CLM	Colombian	female	-/-
+HG01374	CLM	Colombian	male	-/-
+HG01375	CLM	Colombian	female	-/C
+HG01377	CLM	Colombian	male	-/-
+HG01378	CLM	Colombian	female	-/-
+HG01383	CLM	Colombian	male	-/-
+HG01384	CLM	Colombian	female	-/-
+HG01389	CLM	Colombian	male	-/-
+HG01390	CLM	Colombian	female	-/-
+HG01392	PUR	Puerto Rican	male	-/-
+HG01393	PUR	Puerto Rican	female	-/C
+HG01395	PUR	Puerto Rican	male	-/C
+HG01396	PUR	Puerto Rican	female	-/-
+HG01398	PUR	Puerto Rican	male	-/-
+HG01402	PUR	Puerto Rican	male	-/-
+HG01403	PUR	Puerto Rican	female	-/C
+HG01405	PUR	Puerto Rican	male	-/C
+HG01412	PUR	Puerto Rican	male	-/-
+HG01413	PUR	Puerto Rican	male	-/-
+HG01414	PUR	Puerto Rican	female	-/C
+HG01431	CLM	Colombian	male	-/-
+HG01432	CLM	Colombian	female	-/C
+HG01435	CLM	Colombian	female	-/-
+HG01437	CLM	Colombian	male	C/C
+HG01438	CLM	Colombian	female	-/-
+HG01440	CLM	Colombian	male	-/-
+HG01441	CLM	Colombian	female	-/-
+HG01443	CLM	Colombian	male	-/-
+HG01444	CLM	Colombian	female	-/C
+HG01447	CLM	Colombian	female	C/C
+HG01455	CLM	Colombian	male	C/C
+HG01456	CLM	Colombian	female	-/C
+HG01459	CLM	Colombian	female	-/-
+HG01461	CLM	Colombian	male	-/-
+HG01462	CLM	Colombian	female	-/-
+HG01464	CLM	Colombian	male	-/-
+HG01465	CLM	Colombian	female	C/C
+HG01468	CLM	Colombian	female	-/-
+HG01474	CLM	Colombian	female	-/C
+HG01479	CLM	Colombian	male	-/-
+HG01485	CLM	Colombian	male	-/-
+HG01486	CLM	Colombian	female	-/-
+HG01488	CLM	Colombian	male	-/-
+HG01489	CLM	Colombian	female	-/-
+HG01491	CLM	Colombian	male	-/C
+HG01492	CLM	Colombian	female	-/-
+HG01494	CLM	Colombian	male	-/-
+HG01495	CLM	Colombian	female	-/-
+HG01497	CLM	Colombian	male	-/-
+HG01498	CLM	Colombian	female	-/-
+HG01500	IBS	Iberian	male	-/-
+HG01501	IBS	Iberian	female	-/-
+HG01503	IBS	Spanish	male	C/C
+HG01504	IBS	Spanish	female	-/C
+HG01506	IBS	Iberian	male	-/C
+HG01507	IBS	Iberian	female	C/C
+HG01509	IBS	Iberian	male	-/-
+HG01510	IBS	Iberian	female	-/C
+HG01512	IBS	Iberian	male	-/-
+HG01513	IBS	Iberian	female	-/C
+HG01515	IBS	Iberian	male	-/C
+HG01516	IBS	Iberian	female	-/-
+HG01518	IBS	Iberian	male	-/-
+HG01519	IBS	Iberian	female	-/-
+HG01521	IBS	Iberian	male	-/C
+HG01522	IBS	Iberian	female	-/C
+HG01524	IBS	Iberian	male	-/C
+HG01525	IBS	Iberian	female	-/C
+HG01527	IBS	Iberian	male	-/C
+HG01528	IBS	Iberian	female	-/C
+HG01530	IBS	Iberian	male	-/C
+HG01531	IBS	Iberian	female	-/-
+HG01536	IBS	Iberian	male	-/-
+HG01537	IBS	Iberian	female	-/C
+HG01550	CLM	Colombian	male	-/-
+HG01551	CLM	Colombian	female	-/-
+HG01556	CLM	Colombian	male	-/C
+HG01565	PEL	Peruvian	male	-/-
+HG01566	PEL	Peruvian	female	-/-
+HG01571	PEL	Peruvian	male	-/C
+HG01572	PEL	Peruvian	female	-/-
+HG01577	PEL	Peruvian	male	-/C
+HG01578	PEL	Peruvian	female	-/-
+HG01583	PJL	Punjabi	male	C/C
+HG01586	PJL	Punjabi	male	-/C
+HG01589	PJL	Punjabi	male	C/C
+HG01593	PJL	Punjabi	female	-/C
+HG01595	KHV	Kinh Vietnamese	female	-/-
+HG01596	KHV	Kinh Vietnamese	male	C/C
+HG01597	KHV	Kinh Vietnamese	female	-/C
+HG01598	KHV	Kinh Vietnamese	female	C/C
+HG01599	KHV	Kinh Vietnamese	female	-/-
+HG01600	KHV	Kinh Vietnamese	female	-/C
+HG01602	IBS	Iberian	female	-/C
+HG01603	IBS	Iberian	male	C/C
+HG01605	IBS	Iberian	female	-/-
+HG01606	IBS	Iberian	male	-/-
+HG01607	IBS	Iberian	female	-/C
+HG01608	IBS	Iberian	male	-/-
+HG01610	IBS	Iberian	male	C/C
+HG01612	IBS	Iberian	female	-/C
+HG01613	IBS	Iberian	female	-/-
+HG01615	IBS	Iberian	male	C/C
+HG01617	IBS	Iberian	male	-/-
+HG01618	IBS	Iberian	female	-/C
+HG01619	IBS	Iberian	male	-/-
+HG01620	IBS	Iberian	female	-/C
+HG01623	IBS	Iberian	female	-/C
+HG01624	IBS	Iberian	male	C/C
+HG01625	IBS	Iberian	male	-/-
+HG01626	IBS	Iberian	female	-/-
+HG01628	IBS	Iberian	female	-/-
+HG01630	IBS	Iberian	male	-/C
+HG01631	IBS	Iberian	male	-/C
+HG01632	IBS	Iberian	female	-/-
+HG01668	IBS	Iberian	female	-/C
+HG01669	IBS	Iberian	male	-/C
+HG01670	IBS	Iberian	female	-/-
+HG01672	IBS	Iberian	male	-/-
+HG01673	IBS	Iberian	female	-/-
+HG01675	IBS	Iberian	male	-/C
+HG01676	IBS	Iberian	female	-/C
+HG01678	IBS	Iberian	male	-/-
+HG01679	IBS	Iberian	female	-/-
+HG01680	IBS	Iberian	male	C/C
+HG01682	IBS	Iberian	male	-/-
+HG01684	IBS	Iberian	female	-/C
+HG01685	IBS	Iberian	female	-/-
+HG01686	IBS	Iberian	male	-/C
+HG01694	IBS	Iberian	male	-/C
+HG01695	IBS	Iberian	female	-/C
+HG01697	IBS	Iberian	female	C/C
+HG01699	IBS	Iberian	male	-/C
+HG01700	IBS	Iberian	male	-/C
+HG01702	IBS	Iberian	female	-/-
+HG01704	IBS	Iberian	female	-/C
+HG01705	IBS	Iberian	male	-/-
+HG01707	IBS	Iberian	female	-/-
+HG01708	IBS	Iberian	male	-/-
+HG01709	IBS	Iberian	male	C/C
+HG01710	IBS	Iberian	female	-/-
+HG01746	IBS	Iberian	female	-/C
+HG01747	IBS	Iberian	male	-/C
+HG01756	IBS	Iberian	male	-/C
+HG01757	IBS	Iberian	female	-/-
+HG01761	IBS	Iberian	male	-/-
+HG01762	IBS	Iberian	female	-/C
+HG01765	IBS	Iberian	male	-/C
+HG01766	IBS	Iberian	female	C/C
+HG01767	IBS	Iberian	male	C/C
+HG01768	IBS	Iberian	female	-/-
+HG01770	IBS	Iberian	female	-/-
+HG01771	IBS	Iberian	male	-/-
+HG01773	IBS	Iberian	female	-/-
+HG01775	IBS	Iberian	male	-/C
+HG01776	IBS	Iberian	female	-/-
+HG01777	IBS	Iberian	male	-/C
+HG01779	IBS	Iberian	female	-/C
+HG01781	IBS	Iberian	male	-/C
+HG01783	IBS,MSL	Mende	male	-/C
+HG01784	IBS	Iberian	female	-/C
+HG01785	IBS	Iberian	male	-/-
+HG01786	IBS	Iberian	female	C/C
+HG01789	GBR	British	male	-/-
+HG01790	GBR	British	female	-/C
+HG01791	GBR	British	male	-/-
+HG01794	CDX	Dai Chinese	female	-/C
+HG01795	CDX	Dai Chinese	female	-/-
+HG01796	CDX	Dai Chinese	female	-/-
+HG01797	CDX	Dai Chinese	female	-/-
+HG01798	CDX	Dai Chinese	female	-/C
+HG01799	CDX	Dai Chinese	female	-/-
+HG01800	CDX	Dai Chinese	female	C/C
+HG01801	CDX	Dai Chinese	female	-/-
+HG01802	CDX	Dai Chinese	female	-/-
+HG01804	CDX	Dai Chinese	female	-/-
+HG01805	CDX	Dai Chinese	female	-/C
+HG01806	CDX	Dai Chinese	female	-/-
+HG01807	CDX	Dai Chinese	female	-/-
+HG01808	CDX	Dai Chinese	female	-/C
+HG01809	CDX	Dai Chinese	female	-/-
+HG01810	CDX	Dai Chinese	male	-/C
+HG01811	CDX	Dai Chinese	male	-/C
+HG01812	CDX	Dai Chinese	female	-/-
+HG01813	CDX	Dai Chinese	female	-/C
+HG01815	CDX	Dai Chinese	female	-/-
+HG01816	CDX	Dai Chinese	male	-/C
+HG01817	CDX	Dai Chinese	female	-/C
+HG01840	KHV	Kinh Vietnamese	male	-/C
+HG01841	KHV	Kinh Vietnamese	female	-/-
+HG01842	KHV	Kinh Vietnamese	male	-/-
+HG01843	KHV	Kinh Vietnamese	female	-/-
+HG01844	KHV	Kinh Vietnamese	male	-/C
+HG01845	KHV	Kinh Vietnamese	female	-/C
+HG01846	KHV	Kinh Vietnamese	male	C/C
+HG01847	KHV	Kinh Vietnamese	female	-/C
+HG01848	KHV	Kinh Vietnamese	female	-/C
+HG01849	KHV	Kinh Vietnamese	male	-/C
+HG01850	KHV	Kinh Vietnamese	female	-/-
+HG01851	KHV	Kinh Vietnamese	female	-/-
+HG01852	KHV	Kinh Vietnamese	male	-/C
+HG01853	KHV	Kinh Vietnamese	female	-/C
+HG01855	KHV	Kinh Vietnamese	female	-/-
+HG01857	KHV	Kinh Vietnamese	female	-/-
+HG01858	KHV	Kinh Vietnamese	female	-/C
+HG01859	KHV	Kinh Vietnamese	female	-/C
+HG01860	KHV	Kinh Vietnamese	male	-/C
+HG01861	KHV	Kinh Vietnamese	male	C/C
+HG01862	KHV	Kinh Vietnamese	female	-/-
+HG01863	KHV	Kinh Vietnamese	female	-/-
+HG01864	KHV	Kinh Vietnamese	male	-/-
+HG01865	KHV	Kinh Vietnamese	male	-/C
+HG01866	KHV	Kinh Vietnamese	male	-/-
+HG01867	KHV	Kinh Vietnamese	male	-/C
+HG01868	KHV	Kinh Vietnamese	female	C/C
+HG01869	KHV	Kinh Vietnamese	female	-/C
+HG01870	KHV	Kinh Vietnamese	female	-/-
+HG01871	KHV	Kinh Vietnamese	female	-/C
+HG01872	KHV	Kinh Vietnamese	male	C/C
+HG01873	KHV	Kinh Vietnamese	male	-/C
+HG01874	KHV	Kinh Vietnamese	female	-/C
+HG01878	KHV	Kinh Vietnamese	female	-/C
+HG01879	ACB	African Caribbean	male	-/C
+HG01880	ACB	African Caribbean	female	-/C
+HG01882	ACB	African Caribbean	male	-/-
+HG01883	ACB	African Caribbean	female	-/C
+HG01885	ACB	African Caribbean	male	-/C
+HG01886	ACB	African Caribbean	female	-/-
+HG01889	ACB	African Caribbean	female	-/C
+HG01890	ACB	African Caribbean	male	-/-
+HG01892	PEL	Peruvian	male	-/-
+HG01893	PEL	Peruvian	female	-/-
+HG01894	ACB	African Caribbean	female	-/C
+HG01896	ACB	African Caribbean	female	-/C
+HG01912	ACB	African Caribbean	male	-/C
+HG01914	ACB	African Caribbean	male	-/-
+HG01915	ACB	African Caribbean	female	-/-
+HG01917	PEL	Peruvian	male	-/-
+HG01918	PEL	Peruvian	female	-/-
+HG01920	PEL	Peruvian	male	-/-
+HG01921	PEL	Peruvian	female	-/-
+HG01923	PEL	Peruvian	male	-/C
+HG01924	PEL	Peruvian	female	C/C
+HG01926	PEL	Peruvian	male	-/-
+HG01927	PEL	Peruvian	female	-/-
+HG01932	PEL	Peruvian	male	-/-
+HG01933	PEL	Peruvian	female	-/-
+HG01935	PEL	Peruvian	male	-/C
+HG01936	PEL	Peruvian	female	-/C
+HG01938	PEL	Peruvian	male	-/-
+HG01939	PEL	Peruvian	female	-/-
+HG01941	PEL	Peruvian	male	-/C
+HG01942	PEL	Peruvian	female	-/C
+HG01944	PEL	Peruvian	male	-/-
+HG01945	PEL	Peruvian	female	-/-
+HG01947	PEL	Peruvian	male	C/C
+HG01948	PEL	Peruvian	female	-/-
+HG01950	PEL	Peruvian	male	-/-
+HG01951	PEL	Peruvian	female	-/-
+HG01953	PEL	Peruvian	male	-/-
+HG01954	PEL	Peruvian	female	-/C
+HG01956	ACB	African Caribbean	female	-/C
+HG01958	ACB	African Caribbean	female	-/C
+HG01961	PEL	Peruvian	male	-/-
+HG01965	PEL	Peruvian	female	-/-
+HG01967	PEL	Peruvian	male	-/C
+HG01968	PEL	Peruvian	female	-/-
+HG01970	PEL	Peruvian	male	-/-
+HG01971	PEL	Peruvian	female	-/-
+HG01973	PEL	Peruvian	female	-/C
+HG01974	PEL	Peruvian	male	-/-
+HG01976	PEL	Peruvian	female	-/-
+HG01977	PEL	Peruvian	male	-/-
+HG01979	PEL	Peruvian	male	-/-
+HG01980	PEL	Peruvian	female	-/-
+HG01982	PEL	Peruvian	male	-/-
+HG01985	ACB	African Caribbean	female	-/-
+HG01986	ACB	African Caribbean	male	C/C
+HG01988	ACB	African Caribbean	male	-/C
+HG01989	ACB	African Caribbean	female	-/-
+HG01990	ACB	African Caribbean	male	-/-
+HG01991	PEL	Peruvian	male	-/-
+HG01992	PEL	Peruvian	female	-/-
+HG01997	PEL	Peruvian	female	-/-
+HG02002	PEL	Peruvian	male	-/-
+HG02003	PEL	Peruvian	female	-/-
+HG02006	PEL	Peruvian	female	C/C
+HG02008	PEL	Peruvian	male	-/C
+HG02009	ACB	African Caribbean	male	-/C
+HG02010	ACB	African Caribbean	female	-/-
+HG02012	ACB	African Caribbean	female	-/C
+HG02013	ACB	African Caribbean	male	-/-
+HG02014	ACB	African Caribbean	male	-/-
+HG02016	KHV	Kinh Vietnamese	female	-/-
+HG02017	KHV	Kinh Vietnamese	male	-/C
+HG02019	KHV	Kinh Vietnamese	female	-/C
+HG02020	KHV	Kinh Vietnamese	male	-/C
+HG02023	KHV	Kinh Vietnamese	male	-/C
+HG02025	KHV	Kinh Vietnamese	female	-/C
+HG02026	KHV	Kinh Vietnamese	male	-/-
+HG02028	KHV	Kinh Vietnamese	female	-/-
+HG02029	KHV	Kinh Vietnamese	male	-/-
+HG02031	KHV	Kinh Vietnamese	female	-/C
+HG02032	KHV	Kinh Vietnamese	male	-/-
+HG02035	KHV	Kinh Vietnamese	male	-/C
+HG02040	KHV	Kinh Vietnamese	male	-/-
+HG02047	KHV	Kinh Vietnamese	male	-/C
+HG02048	KHV	Kinh Vietnamese	female	C/C
+HG02049	KHV	Kinh Vietnamese	female	-/C
+HG02050	KHV	Kinh Vietnamese	male	C/C
+HG02051	ACB	African Caribbean	male	-/-
+HG02052	ACB	African Caribbean	female	-/-
+HG02053	ACB	African Caribbean	male	-/-
+HG02054	ACB	African Caribbean	female	-/-
+HG02057	KHV	Kinh Vietnamese	female	-/-
+HG02058	KHV	Kinh Vietnamese	male	-/-
+HG02060	KHV	Kinh Vietnamese	female	C/C
+HG02061	KHV	Kinh Vietnamese	male	-/-
+HG02064	KHV	Kinh Vietnamese	male	-/-
+HG02067	KHV	Kinh Vietnamese	male	C/C
+HG02069	KHV	Kinh Vietnamese	female	-/-
+HG02070	KHV	Kinh Vietnamese	male	-/-
+HG02072	KHV	Kinh Vietnamese	female	-/C
+HG02073	KHV	Kinh Vietnamese	male	-/C
+HG02075	KHV	Kinh Vietnamese	female	-/C
+HG02076	KHV	Kinh Vietnamese	male	-/-
+HG02078	KHV	Kinh Vietnamese	female	-/-
+HG02079	KHV	Kinh Vietnamese	male	-/-
+HG02081	KHV	Kinh Vietnamese	female	-/-
+HG02082	KHV	Kinh Vietnamese	male	-/C
+HG02084	KHV	Kinh Vietnamese	female	-/C
+HG02085	KHV	Kinh Vietnamese	male	-/-
+HG02086	KHV	Kinh Vietnamese	female	-/-
+HG02087	KHV	Kinh Vietnamese	female	C/C
+HG02088	KHV	Kinh Vietnamese	male	-/C
+HG02089	PEL	Peruvian	female	-/-
+HG02090	PEL	Peruvian	male	-/C
+HG02095	ACB	African Caribbean	female	-/C
+HG02102	PEL	Peruvian	female	-/C
+HG02104	PEL	Peruvian	male	-/-
+HG02105	PEL	Peruvian	female	-/-
+HG02107	ACB	African Caribbean	male	-/C
+HG02108	ACB	African Caribbean	female	C/C
+HG02111	ACB	African Caribbean	female	-/-
+HG02113	KHV	Kinh Vietnamese	female	-/-
+HG02116	KHV	Kinh Vietnamese	male	-/C
+HG02121	KHV	Kinh Vietnamese	female	-/-
+HG02122	KHV	Kinh Vietnamese	male	-/-
+HG02127	KHV	Kinh Vietnamese	female	-/-
+HG02128	KHV	Kinh Vietnamese	male	-/C
+HG02130	KHV	Kinh Vietnamese	female	C/C
+HG02131	KHV	Kinh Vietnamese	male	-/-
+HG02133	KHV	Kinh Vietnamese	female	-/C
+HG02134	KHV	Kinh Vietnamese	male	-/C
+HG02136	KHV	Kinh Vietnamese	female	-/C
+HG02137	KHV	Kinh Vietnamese	male	-/-
+HG02138	KHV	Kinh Vietnamese	male	-/C
+HG02139	KHV	Kinh Vietnamese	female	-/C
+HG02140	KHV	Kinh Vietnamese	female	-/-
+HG02141	KHV	Kinh Vietnamese	male	-/C
+HG02142	KHV	Kinh Vietnamese	female	-/C
+HG02143	ACB	African Caribbean	male	-/-
+HG02144	ACB	African Caribbean	female	-/-
+HG02146	PEL	Peruvian	male	-/-
+HG02147	PEL	Peruvian	female	-/-
+HG02150	PEL	Peruvian	male	-/C
+HG02151	CDX	Dai Chinese	female	-/-
+HG02152	CDX	Dai Chinese	female	-/-
+HG02153	CDX	Dai Chinese	female	C/C
+HG02154	CDX	Dai Chinese	female	-/C
+HG02155	CDX	Dai Chinese	female	-/-
+HG02156	CDX	Dai Chinese	female	-/C
+HG02164	CDX	Dai Chinese	female	-/-
+HG02165	CDX	Dai Chinese	female	-/-
+HG02166	CDX	Dai Chinese	female	-/-
+HG02178	CDX	Dai Chinese	female	-/C
+HG02179	CDX	Dai Chinese	female	-/C
+HG02180	CDX	Dai Chinese	female	-/-
+HG02181	CDX	Dai Chinese	female	-/C
+HG02182	CDX	Dai Chinese	female	-/-
+HG02184	CDX	Dai Chinese	female	-/-
+HG02185	CDX	Dai Chinese	female	C/C
+HG02186	CDX	Dai Chinese	female	-/-
+HG02187	CDX	Dai Chinese	female	-/C
+HG02188	CDX	Dai Chinese	female	-/C
+HG02190	CDX	Dai Chinese	female	-/C
+HG02215	GBR	British	female	-/C
+HG02219	IBS	Iberian	male	C/C
+HG02220	IBS	Iberian	female	-/-
+HG02221	IBS	Iberian	male	-/C
+HG02223	IBS	Iberian	female	-/-
+HG02224	IBS	Iberian	male	C/C
+HG02230	IBS	Iberian	female	-/C
+HG02231	IBS	Iberian	male	-/C
+HG02232	IBS	Iberian	female	-/-
+HG02233	IBS	Iberian	male	-/-
+HG02235	IBS	Iberian	female	-/-
+HG02236	IBS	Iberian	male	-/C
+HG02238	IBS	Iberian	male	C/C
+HG02239	IBS	Iberian	female	-/C
+HG02250	CDX	Dai Chinese	male	-/-
+HG02252	PEL	Peruvian	female	C/C
+HG02253	PEL	Peruvian	male	C/C
+HG02255	ACB	African Caribbean	male	-/C
+HG02256	ACB	African Caribbean	female	C/C
+HG02259	PEL	Peruvian	male	-/-
+HG02260	PEL	Peruvian	female	-/-
+HG02262	PEL	Peruvian	male	-/-
+HG02265	PEL	Peruvian	male	-/-
+HG02266	PEL	Peruvian	female	-/-
+HG02271	PEL	Peruvian	male	-/-
+HG02272	PEL	Peruvian	female	-/-
+HG02274	PEL	Peruvian	male	-/C
+HG02275	PEL	Peruvian	female	-/-
+HG02277	PEL	Peruvian	male	-/-
+HG02278	PEL	Peruvian	female	-/-
+HG02281	ACB	African Caribbean	male	C/C
+HG02282	ACB	African Caribbean	female	C/C
+HG02283	ACB	African Caribbean	male	-/-
+HG02284	ACB	African Caribbean	male	-/-
+HG02285	PEL	Peruvian	male	-/-
+HG02286	PEL	Peruvian	female	-/C
+HG02291	PEL	Peruvian	male	-/-
+HG02292	PEL	Peruvian	female	-/-
+HG02298	PEL	Peruvian	female	-/-
+HG02299	PEL	Peruvian	male	-/C
+HG02301	PEL	Peruvian	female	-/-
+HG02304	PEL	Peruvian	male	-/C
+HG02307	ACB	African Caribbean	male	-/C
+HG02308	ACB	African Caribbean	female	-/-
+HG02309	ACB	African Caribbean	female	C/C
+HG02312	PEL	Peruvian	female	-/C
+HG02314	ACB	African Caribbean	male	-/-
+HG02315	ACB	African Caribbean	female	-/C
+HG02317	ACB	African Caribbean	male	-/-
+HG02318	ACB	African Caribbean	female	-/C
+HG02322	ACB	African Caribbean	female	-/C
+HG02323	ACB	African Caribbean	male	-/C
+HG02325	ACB	African Caribbean	female	-/C
+HG02330	ACB	African Caribbean	male	-/-
+HG02332	ACB	African Caribbean	male	-/C
+HG02334	ACB	African Caribbean	male	-/-
+HG02337	ACB	African Caribbean	female	-/-
+HG02339	ACB	African Caribbean	female	-/C
+HG02343	ACB	African Caribbean	male	-/-
+HG02345	PEL	Peruvian	female	-/-
+HG02348	PEL	Peruvian	female	-/-
+HG02351	CDX	Dai Chinese	male	-/C
+HG02353	CDX	Dai Chinese	male	-/C
+HG02355	CDX	Dai Chinese	male	-/C
+HG02356	CDX	Dai Chinese	male	-/-
+HG02360	CDX	Dai Chinese	male	-/C
+HG02364	CDX	Dai Chinese	male	-/-
+HG02367	CDX	Dai Chinese	male	-/-
+HG02371	CDX	Dai Chinese	male	-/C
+HG02373	CDX	Dai Chinese	male	-/C
+HG02374	CDX	Dai Chinese	male	-/-
+HG02375	CDX	Dai Chinese	male	-/C
+HG02379	CDX	Dai Chinese	male	-/C
+HG02380	CDX	Dai Chinese	male	C/C
+HG02382	CDX	Dai Chinese	male	-/C
+HG02383	CDX	Dai Chinese	male	-/-
+HG02384	CDX	Dai Chinese	male	C/C
+HG02385	CDX	Dai Chinese	male	-/-
+HG02386	CDX	Dai Chinese	male	-/C
+HG02389	CDX	Dai Chinese	male	-/C
+HG02390	CDX	Dai Chinese	male	-/-
+HG02391	CDX	Dai Chinese	male	C/C
+HG02392	CDX	Dai Chinese	male	-/C
+HG02394	CDX	Dai Chinese	male	-/-
+HG02395	CDX	Dai Chinese	male	-/-
+HG02396	CDX	Dai Chinese	male	-/-
+HG02397	CDX	Dai Chinese	male	-/C
+HG02398	CDX	Dai Chinese	male	-/C
+HG02399	CDX	Dai Chinese	male	-/C
+HG02401	CDX	Dai Chinese	male	-/C
+HG02402	CDX	Dai Chinese	male	-/C
+HG02406	CDX	Dai Chinese	male	-/-
+HG02407	CDX	Dai Chinese	male	-/-
+HG02408	CDX	Dai Chinese	male	-/-
+HG02409	CDX	Dai Chinese	male	-/C
+HG02410	CDX	Dai Chinese	male	-/-
+HG02419	ACB	African Caribbean	female	-/C
+HG02420	ACB	African Caribbean	male	-/-
+HG02425	PEL	Peruvian	female	-/C
+HG02427	ACB	African Caribbean	female	-/-
+HG02429	ACB	African Caribbean	male	-/C
+HG02433	ACB	African Caribbean	male	-/-
+HG02439	ACB	African Caribbean	male	C/C
+HG02442	ACB	African Caribbean	male	-/-
+HG02445	ACB	African Caribbean	male	-/-
+HG02449	ACB	African Caribbean	male	-/C
+HG02450	ACB	African Caribbean	female	-/C
+HG02455	ACB	African Caribbean	male	-/-
+HG02461	GWD	Gambian Mandinka	male	-/C
+HG02462	GWD	Gambian Mandinka	female	-/-
+HG02464	GWD	Gambian	male	-/-
+HG02465	GWD	Gambian Mandinka	female	-/-
+HG02470	ACB	African Caribbean	male	-/C
+HG02471	ACB	African Caribbean	female	-/-
+HG02476	ACB	African Caribbean	female	-/C
+HG02477	ACB	African Caribbean	female	-/-
+HG02479	ACB	African Caribbean	female	-/C
+HG02481	ACB	African Caribbean	male	C/C
+HG02484	ACB	African Caribbean	male	-/C
+HG02485	ACB	African Caribbean	female	-/C
+HG02489	ACB	African Caribbean	male	-/-
+HG02490	PJL	Punjabi	male	-/C
+HG02491	PJL	Punjabi	female	-/-
+HG02493	PJL	Punjabi	male	-/C
+HG02494	PJL	Punjabi	female	-/-
+HG02496	ACB	African Caribbean	male	C/C
+HG02497	ACB	African Caribbean	female	-/C
+HG02501	ACB	African Caribbean	male	-/-
+HG02502	ACB	African Caribbean	female	C/C
+HG02505	ACB	African Caribbean	female	-/C
+HG02508	ACB	African Caribbean	female	-/-
+HG02511	ACB	African Caribbean	female	C/C
+HG02512	KHV	Kinh Vietnamese	male	-/C
+HG02513	KHV	Kinh Vietnamese	female	-/C
+HG02521	KHV	Kinh Vietnamese	male	-/C
+HG02522	KHV	Kinh Vietnamese	female	-/-
+HG02536	ACB	African Caribbean	male	-/C
+HG02537	ACB	African Caribbean	female	C/C
+HG02541	ACB	African Caribbean	male	-/-
+HG02545	ACB	African Caribbean	male	-/-
+HG02546	ACB	African Caribbean	female	-/C
+HG02549	ACB	African Caribbean	female	-/-
+HG02554	ACB	African Caribbean	male	-/-
+HG02555	ACB	African Caribbean	female	-/-
+HG02557	ACB	African Caribbean	male	-/C
+HG02558	ACB	African Caribbean	female	-/-
+HG02561	GWD	Gambian Mandinka	male	-/C
+HG02562	GWD	Gambian Mandinka	female	-/C
+HG02568	GWD	Gambian Mandinka	female	-/C
+HG02570	GWD	Gambian Mandinka	male	C/C
+HG02571	GWD	Gambian Mandinka	female	-/-
+HG02573	GWD	Gambian Mandinka	male	-/C
+HG02574	GWD	Gambian	female	-/C
+HG02577	ACB	African Caribbean	female	-/C
+HG02580	ACB	African Caribbean	female	-/C
+HG02582	GWD	Gambian Mandinka	male	-/-
+HG02583	GWD	Gambian Mandinka	female	-/-
+HG02585	GWD	Gambian Mandinka	male	-/-
+HG02586	GWD	Gambian Mandinka	female	-/-
+HG02588	GWD	Gambian Mandinka	male	-/C
+HG02589	GWD	Gambian Mandinka	female	-/C
+HG02594	GWD	Gambian Mandinka	male	-/C
+HG02595	GWD	Gambian Mandinka	female	-/C
+HG02597	PJL	Punjabi	male	-/-
+HG02600	PJL	Punjabi	male	-/C
+HG02601	PJL	Punjabi	female	-/C
+HG02603	PJL	Punjabi	male	-/C
+HG02604	PJL	Punjabi	female	C/C
+HG02610	GWD	Gambian Mandinka	male	-/-
+HG02611	GWD	Gambian Mandinka	female	-/-
+HG02613	GWD	Gambian Mandinka	male	-/-
+HG02614	GWD	Gambian Mandinka	female	-/-
+HG02620	GWD	Gambian Mandinka	male	C/C
+HG02621	GWD	Gambian Mandinka	female	-/C
+HG02623	GWD	Gambian Mandinka	male	-/C
+HG02624	GWD	Gambian Mandinka	female	-/C
+HG02628	GWD	Gambian Mandinka	male	C/C
+HG02629	GWD	Gambian Mandinka	female	C/C
+HG02634	GWD	Gambian Mandinka	male	-/C
+HG02635	GWD	Gambian Mandinka	female	-/C
+HG02642	GWD	Gambian Mandinka	male	C/C
+HG02643	GWD	Gambian Mandinka	female	-/-
+HG02645	GWD	Gambian Mandinka	male	C/C
+HG02646	GWD	Gambian Mandinka	female	-/C
+HG02648	PJL	Punjabi	male	-/C
+HG02649	PJL	Punjabi	female	-/C
+HG02651	PJL	Punjabi	male	-/C
+HG02652	PJL	Punjabi	female	C/C
+HG02654	PJL	Punjabi	male	-/C
+HG02655	PJL	Punjabi	female	-/C
+HG02657	PJL	Punjabi	male	C/C
+HG02658	PJL	Punjabi	female	C/C
+HG02660	PJL	Punjabi	male	-/-
+HG02661	PJL	Punjabi	female	-/-
+HG02666	GWD	Gambian Mandinka	male	-/-
+HG02667	GWD	Gambian Mandinka	female	C/C
+HG02675	GWD	Gambian Mandinka	male	-/C
+HG02676	GWD	Gambian Mandinka	female	C/C
+HG02678	GWD	Gambian Mandinka	male	C/C
+HG02679	GWD	Gambian Mandinka	female	-/-
+HG02681	PJL	Punjabi	male	-/-
+HG02682	PJL	Punjabi	female	-/C
+HG02684	PJL	Punjabi	male	-/C
+HG02685	PJL	Punjabi	female	-/C
+HG02687	PJL	Punjabi	male	-/C
+HG02688	PJL	Punjabi	female	-/-
+HG02690	PJL	Punjabi	male	-/C
+HG02691	PJL	Punjabi	female	-/C
+HG02694	PJL	Punjabi	female	-/-
+HG02696	PJL	Punjabi	male	-/C
+HG02697	PJL	Punjabi	female	-/C
+HG02699	PJL	Punjabi	male	-/-
+HG02700	PJL	Punjabi	female	-/-
+HG02702	GWD	Gambian Mandinka	male	-/-
+HG02703	GWD	Gambian Mandinka	female	-/C
+HG02715	GWD	Gambian Mandinka	male	-/C
+HG02716	GWD	Gambian Mandinka	female	-/-
+HG02721	GWD	Gambian Mandinka	male	-/-
+HG02722	GWD	Gambian Mandinka	female	-/C
+HG02724	PJL	Punjabi	male	-/C
+HG02725	PJL	Punjabi	female	-/-
+HG02727	PJL	Punjabi	male	-/C
+HG02728	PJL	Punjabi	female	-/C
+HG02731	PJL	Punjabi	female	-/-
+HG02733	PJL	Punjabi	male	-/C
+HG02734	PJL	Punjabi	female	-/C
+HG02736	PJL	Punjabi	male	-/C
+HG02737	PJL	Punjabi	female	-/C
+HG02756	GWD	Gambian Mandinka	male	C/C
+HG02757	GWD	Gambian Mandinka	female	C/C
+HG02759	GWD	Gambian Mandinka	male	-/C
+HG02760	GWD	Gambian Mandinka	female	C/C
+HG02763	GWD	Gambian Mandinka	female	-/C
+HG02768	GWD	Gambian Mandinka	male	-/C
+HG02769	GWD	Gambian Mandinka	female	-/-
+HG02771	GWD	Gambian Mandinka	male	-/-
+HG02772	GWD	Gambian Mandinka	female	-/C
+HG02774	PJL	Punjabi	male	-/C
+HG02775	PJL	Punjabi	female	-/-
+HG02778	PJL	Punjabi	female	-/-
+HG02780	PJL	Punjabi	male	-/-
+HG02783	PJL	Punjabi	male	-/C
+HG02784	PJL	Punjabi	female	-/-
+HG02786	PJL	Punjabi	male	-/-
+HG02787	PJL	Punjabi	female	-/-
+HG02789	PJL	Punjabi	male	-/C
+HG02790	PJL	Punjabi	female	-/C
+HG02792	PJL	Punjabi	male	-/C
+HG02793	PJL	Punjabi	female	-/-
+HG02798	GWD	Gambian Mandinka	male	-/C
+HG02799	GWD	Gambian Mandinka	female	-/C
+HG02804	GWD	Gambian Mandinka	male	-/C
+HG02805	GWD	Gambian Mandinka	female	-/C
+HG02807	GWD	Gambian Mandinka	male	-/-
+HG02808	GWD	Gambian Mandinka	female	-/-
+HG02810	GWD	Gambian Mandinka	male	-/C
+HG02811	GWD	Gambian Mandinka	female	-/-
+HG02813	GWD	Gambian Mandinka	male	-/-
+HG02814	GWD	Gambian Mandinka	female	C/C
+HG02816	GWD	Gambian Mandinka	male	-/-
+HG02817	GWD	Gambian Mandinka	female	-/C
+HG02819	GWD	Gambian Mandinka	male	-/-
+HG02820	GWD	Gambian Mandinka	female	-/C
+HG02836	GWD	Gambian Mandinka	male	C/C
+HG02837	GWD	Gambian Mandinka	female	-/-
+HG02839	GWD	Gambian Mandinka	male	-/C
+HG02840	GWD	Gambian Mandinka	female	-/-
+HG02851	GWD	Gambian Mandinka	male	-/-
+HG02852	GWD	Gambian Mandinka	female	-/C
+HG02854	GWD	Gambian Mandinka	male	-/C
+HG02855	GWD	Gambian Mandinka	female	-/-
+HG02860	GWD	Gambian Mandinka	male	-/-
+HG02861	GWD	Gambian Mandinka	female	-/C
+HG02870	GWD	Gambian Mandinka	female	-/C
+HG02878	GWD	Gambian Mandinka	male	-/C
+HG02879	GWD	Gambian Mandinka	female	-/C
+HG02881	GWD	Gambian Mandinka	male	-/-
+HG02882	GWD	Gambian Mandinka	female	-/-
+HG02884	GWD	Gambian Mandinka	male	-/-
+HG02885	GWD	Gambian Mandinka	female	-/C
+HG02887	GWD	Gambian Mandinka	male	-/C
+HG02888	GWD	Gambian Mandinka	female	-/-
+HG02890	GWD	Gambian Mandinka	male	-/C
+HG02891	GWD	Gambian Mandinka	female	-/C
+HG02895	GWD	Gambian Mandinka	male	-/-
+HG02896	GWD	Gambian Mandinka	female	-/C
+HG02922	ESN	Esan	female	-/-
+HG02923	ESN	Esan	male	C/C
+HG02938	ESN	Esan	male	-/-
+HG02941	ESN	Esan	male	-/C
+HG02943	ESN	Esan	female	C/C
+HG02944	ESN	Esan	male	-/-
+HG02946	ESN	Esan	female	-/-
+HG02947	ESN	Esan	male	-/-
+HG02952	ESN	Esan	female	-/-
+HG02953	ESN	Esan	male	-/-
+HG02968	ESN	Esan	male	-/C
+HG02970	ESN	Esan	female	C/C
+HG02971	ESN	Esan	male	-/-
+HG02973	ESN	Esan	male	-/-
+HG02974	ESN	Esan	female	-/-
+HG02976	ESN	Esan	female	-/-
+HG02977	ESN	Esan	male	-/C
+HG02979	ESN	Esan	female	-/C
+HG02981	ESN	Esan	male	-/-
+HG02982	GWD	Gambian Mandinka	male	-/C
+HG02983	GWD	Gambian Mandinka	female	-/C
+HG03006	BEB	Bengali	male	-/C
+HG03007	BEB	Bengali	female	-/C
+HG03009	BEB	Bengali	male	-/C
+HG03012	BEB	Bengali	male	-/C
+HG03015	PJL	Punjabi	male	C/C
+HG03016	PJL	Punjabi	female	-/-
+HG03018	PJL	Punjabi	male	C/C
+HG03019	PJL	Punjabi	female	-/-
+HG03021	PJL	Punjabi	male	C/C
+HG03022	PJL	Punjabi	female	-/C
+HG03024	GWD	Gambian Mandinka	male	-/-
+HG03025	GWD	Gambian Mandinka	female	-/-
+HG03027	GWD	Gambian Mandinka	male	-/C
+HG03028	GWD	Gambian Mandinka	female	-/C
+HG03039	GWD	Gambian Mandinka	male	-/-
+HG03040	GWD	Gambian Mandinka	female	-/-
+HG03045	GWD	Gambian Mandinka	male	-/-
+HG03046	GWD	Gambian Mandinka	female	-/C
+HG03048	GWD	Gambian Mandinka	male	-/-
+HG03049	GWD	Gambian Mandinka	female	-/C
+HG03052	MSL	Mende	female	-/-
+HG03054	MSL	Mende	male	-/C
+HG03055	MSL	Mende	female	-/C
+HG03057	MSL	Mende	male	-/-
+HG03058	MSL	Mende	female	-/C
+HG03060	MSL	Mende	male	-/C
+HG03061	MSL	Mende	female	-/C
+HG03063	MSL	Mende	male	-/-
+HG03064	MSL	Mende	female	-/-
+HG03066	MSL	Mende	male	-/-
+HG03069	MSL	Mende	male	-/-
+HG03072	MSL	Mende	male	-/-
+HG03073	MSL	Mende	female	-/-
+HG03074	MSL	Mende	male	C/C
+HG03077	MSL	Mende	male	-/-
+HG03078	MSL	Mende	male	C/C
+HG03079	MSL	Mende	female	-/-
+HG03081	MSL	Mende	male	-/-
+HG03082	MSL	Mende	female	-/-
+HG03084	MSL	Mende	male	-/C
+HG03085	MSL	Mende	female	-/-
+HG03086	MSL	Mende	female	-/C
+HG03088	MSL	Mende	female	-/C
+HG03091	MSL	Mende	female	-/C
+HG03095	MSL	Mende	female	C/C
+HG03096	MSL	Mende	male	-/C
+HG03097	MSL	Mende	female	-/-
+HG03099	ESN	Esan	female	-/C
+HG03100	ESN	Esan	male	-/C
+HG03103	ESN	Esan	male	-/-
+HG03105	ESN	Esan	female	-/C
+HG03108	ESN	Esan	female	-/C
+HG03109	ESN	Esan	male	C/C
+HG03111	ESN	Esan	female	C/C
+HG03112	ESN	Esan	male	-/-
+HG03114	ESN	Esan	female	-/C
+HG03115	ESN	Esan	male	-/C
+HG03117	ESN	Esan	female	-/-
+HG03118	ESN	Esan	male	-/-
+HG03120	ESN	Esan	male	-/-
+HG03121	ESN	Esan	female	C/C
+HG03123	ESN	Esan	female	-/C
+HG03124	ESN	Esan	male	-/C
+HG03126	ESN	Esan	female	-/-
+HG03127	ESN	Esan	male	-/-
+HG03129	ESN	Esan	female	-/-
+HG03130	ESN	Esan	male	-/-
+HG03132	ESN	Esan	female	-/-
+HG03133	ESN	Esan	male	-/-
+HG03135	ESN	Esan	female	-/C
+HG03136	ESN	Esan	male	-/-
+HG03139	ESN	Esan	male	-/-
+HG03157	ESN	Esan	male	-/-
+HG03159	ESN	Esan	female	-/-
+HG03160	ESN	Esan	male	C/C
+HG03162	ESN	Esan	female	-/-
+HG03163	ESN	Esan	male	-/C
+HG03166	ESN	Esan	male	-/C
+HG03168	ESN	Esan	female	-/-
+HG03169	ESN	Esan	male	-/-
+HG03172	ESN	Esan	male	-/-
+HG03175	ESN	Esan	male	-/-
+HG03189	ESN	Esan	female	-/C
+HG03190	ESN	Esan	male	-/-
+HG03193	ESN	Esan	male	-/-
+HG03195	ESN	Esan	female	-/C
+HG03196	ESN	Esan	male	-/C
+HG03198	ESN	Esan	female	-/C
+HG03199	ESN	Esan	male	-/C
+HG03202	ESN	Esan	male	-/-
+HG03209	MSL	Mende	male	-/C
+HG03212	MSL	Mende	female	-/-
+HG03224	MSL	Mende	male	-/-
+HG03225	MSL	Mende	male	-/C
+HG03228	PJL	Punjabi	male	C/C
+HG03229	PJL	Punjabi	female	-/C
+HG03234	PJL	Punjabi	male	-/C
+HG03235	PJL	Punjabi	female	C/C
+HG03237	PJL	Punjabi	male	-/C
+HG03238	PJL	Punjabi	female	-/C
+HG03240	GWD	Gambian Mandinka	male	-/C
+HG03241	GWD	Gambian Mandinka	female	-/-
+HG03246	GWD	Gambian Mandinka	male	-/-
+HG03247	GWD	Gambian Mandinka	female	-/-
+HG03258	GWD	Gambian Mandinka	male	-/-
+HG03259	GWD	Gambian Mandinka	female	-/-
+HG03265	ESN	Esan	male	-/-
+HG03267	ESN	Esan	female	C/C
+HG03268	ESN	Esan	male	-/-
+HG03270	ESN	Esan	female	-/-
+HG03271	ESN	Esan	male	-/C
+HG03279	ESN	Esan	female	-/-
+HG03280	ESN	Esan	male	-/C
+HG03291	ESN	Esan	female	-/C
+HG03294	ESN	Esan	female	-/C
+HG03295	ESN	Esan	male	-/-
+HG03297	ESN	Esan	female	-/-
+HG03298	ESN	Esan	male	-/C
+HG03300	ESN	Esan	female	-/-
+HG03301	ESN	Esan	male	-/-
+HG03303	ESN	Esan	female	-/-
+HG03304	ESN	Esan	male	-/C
+HG03311	ESN	Esan	male	-/-
+HG03313	ESN	Esan	male	-/-
+HG03342	ESN	Esan	female	-/C
+HG03343	ESN	Esan	male	-/-
+HG03351	ESN	Esan	female	-/-
+HG03352	ESN	Esan	male	-/C
+HG03354	ESN	Esan	female	-/-
+HG03363	ESN	Esan	female	-/-
+HG03366	ESN	Esan	female	-/-
+HG03367	ESN	Esan	male	-/C
+HG03369	ESN	Esan	female	-/C
+HG03370	ESN	Esan	male	-/-
+HG03372	ESN	Esan	female	-/-
+HG03376	MSL	Mende	male	-/-
+HG03378	MSL	Mende	female	C/C
+HG03380	MSL	Mende	female	-/-
+HG03382	MSL	Mende	male	-/-
+HG03385	MSL	Mende	male	-/-
+HG03388	MSL	Mende	male	-/C
+HG03391	MSL	Mende	male	-/-
+HG03394	MSL	Mende	male	-/-
+HG03397	MSL	Mende	male	-/-
+HG03401	MSL	Mende	female	-/-
+HG03410	MSL	Mende	female	-/-
+HG03419	MSL	Mende	female	-/C
+HG03428	MSL	Mende	female	C/C
+HG03432	MSL	Mende	male	-/C
+HG03433	MSL	Mende	male	-/C
+HG03436	MSL	Mende	male	-/-
+HG03437	MSL	Mende	female	-/C
+HG03439	MSL	Mende	male	-/C
+HG03442	MSL	Mende	male	-/-
+HG03445	MSL	Mende	male	-/-
+HG03446	MSL	Mende	female	C/C
+HG03449	MSL	Mende	female	-/C
+HG03451	MSL	Mende	male	-/-
+HG03452	MSL	Mende	female	C/C
+HG03455	MSL	Mende	female	-/-
+HG03457	MSL	Mende	male	-/C
+HG03458	MSL	Mende	female	C/C
+HG03460	MSL	Mende	male	-/C
+HG03461	MSL	Mende	female	-/-
+HG03464	MSL	Mende	female	-/C
+HG03469	MSL	Mende	male	-/-
+HG03470	MSL	Mende	female	-/-
+HG03472	MSL	Mende	male	-/-
+HG03473	MSL	Mende	female	-/C
+HG03476	MSL	Mende	female	-/-
+HG03478	MSL	Mende	male	-/-
+HG03479	MSL	Mende	female	-/C
+HG03484	MSL	Mende	male	-/C
+HG03485	MSL	Mende	female	C/C
+HG03488	PJL	Punjabi	female	-/C
+HG03490	PJL	Punjabi	male	C/C
+HG03491	PJL	Punjabi	female	-/-
+HG03499	ESN	Esan	female	-/-
+HG03511	ESN	Esan	female	-/-
+HG03514	ESN	Esan	female	-/C
+HG03515	ESN	Esan	male	-/C
+HG03517	ESN	Esan	female	-/-
+HG03518	ESN	Esan	male	-/-
+HG03520	ESN	Esan	female	-/-
+HG03521	ESN	Esan	male	-/-
+HG03538	GWD	Gambian Mandinka	male	-/-
+HG03539	GWD	Gambian Mandinka	female	-/-
+HG03547	MSL	Mende	male	C/C
+HG03548	MSL	Mende	female	-/-
+HG03556	MSL	Mende	male	-/-
+HG03557	MSL	Mende	female	-/C
+HG03558	MSL	Mende	female	-/C
+HG03559	MSL	Mende	male	-/-
+HG03563	MSL	Mende	female	C/C
+HG03565	MSL	Mende	male	-/C
+HG03567	MSL	Mende	female	-/-
+HG03571	MSL	Mende	male	-/C
+HG03572	MSL	Mende	female	C/C
+HG03575	MSL	Mende	female	-/-
+HG03577	MSL	Mende	male	-/C
+HG03578	MSL	Mende	female	-/C
+HG03583	MSL	Mende	female	-/-
+HG03585	BEB	Bengali	male	C/C
+HG03589	BEB	Bengali	female	-/-
+HG03593	BEB	Bengali	male	-/C
+HG03594	BEB	Bengali	male	-/-
+HG03595	BEB	Bengali	female	-/C
+HG03598	BEB	Bengali	female	-/-
+HG03600	BEB	Bengali	male	-/C
+HG03603	BEB	Bengali	male	-/C
+HG03604	BEB	Bengali	female	-/C
+HG03607	BEB	Bengali	female	-/-
+HG03611	BEB	Bengali	female	-/-
+HG03615	BEB	Bengali	male	-/-
+HG03616	BEB	Bengali	female	-/C
+HG03619	PJL	Punjabi	female	-/-
+HG03624	PJL	Punjabi	male	C/C
+HG03625	PJL	Punjabi	female	-/-
+HG03629	PJL	Punjabi	male	-/-
+HG03631	PJL	Punjabi	female	-/-
+HG03634	PJL	Punjabi	female	-/C
+HG03636	PJL	Punjabi	male	C/C
+HG03640	PJL	Punjabi	female	-/C
+HG03642	STU	Tamil	female	-/-
+HG03643	STU	Tamil	female	-/C
+HG03644	STU	Tamil	male	-/C
+HG03645	STU	Tamil	female	-/C
+HG03646	STU	Tamil	male	-/C
+HG03649	PJL	Punjabi	male	-/-
+HG03652	PJL	Punjabi	male	-/C
+HG03653	PJL	Punjabi	female	-/C
+HG03660	PJL	Punjabi	male	-/-
+HG03663	PJL	Punjabi	male	-/-
+HG03667	PJL	Punjabi	male	-/-
+HG03668	PJL	Punjabi	female	-/-
+HG03672	STU	Tamil	male	-/C
+HG03673	STU	Tamil	female	-/-
+HG03679	STU	Tamil	male	-/C
+HG03680	STU	Tamil	male	-/C
+HG03681	STU	Tamil	male	-/-
+HG03684	STU	Tamil	female	-/-
+HG03685	STU	Tamil	male	-/-
+HG03686	STU	Tamil	male	-/-
+HG03687	STU	Tamil	male	-/C
+HG03689	STU	Tamil	female	-/C
+HG03690	STU	Tamil	female	-/-
+HG03691	STU	Tamil	male	-/C
+HG03692	STU	Tamil	female	-/-
+HG03693	STU	Tamil	male	-/C
+HG03694	STU	Tamil	male	-/-
+HG03695	STU	Tamil	male	-/C
+HG03696	STU	Tamil	male	-/C
+HG03697	STU	Tamil	male	-/C
+HG03698	STU	Tamil	female	-/-
+HG03702	PJL	Punjabi	male	C/C
+HG03703	PJL	Punjabi	female	-/C
+HG03705	PJL	Punjabi	male	C/C
+HG03706	PJL	Punjabi	female	-/C
+HG03708	PJL	Punjabi	male	-/-
+HG03709	PJL	Punjabi	female	-/-
+HG03711	STU	Tamil	male	C/C
+HG03713	ITU	Telugu	male	-/-
+HG03714	ITU	Telugu	female	-/C
+HG03716	ITU	Telugu	male	C/C
+HG03717	ITU	Telugu	female	-/C
+HG03718	ITU	Telugu	male	-/C
+HG03720	ITU	Telugu	male	-/C
+HG03722	ITU	Telugu	female	-/C
+HG03727	ITU	Telugu	male	-/C
+HG03729	ITU	Telugu	male	-/C
+HG03730	ITU	Telugu	female	-/C
+HG03731	ITU	Telugu	female	-/C
+HG03733	STU	Tamil	female	-/C
+HG03736	STU	Tamil	female	C/C
+HG03738	STU	Tamil	male	-/C
+HG03740	STU	Tamil	male	-/-
+HG03741	STU	Tamil	female	C/C
+HG03742	ITU	Telugu	male	C/C
+HG03743	STU	Tamil	male	-/-
+HG03744	STU	Tamil	male	-/-
+HG03745	STU	Tamil	male	-/C
+HG03746	STU	Tamil	male	-/-
+HG03750	STU	Tamil	male	-/C
+HG03752	STU	Tamil	female	-/-
+HG03753	STU	Tamil	male	-/C
+HG03754	STU	Tamil	female	-/C
+HG03755	STU	Tamil	male	-/-
+HG03756	STU	Tamil	female	-/-
+HG03757	STU	Tamil	female	-/-
+HG03760	STU	Tamil	female	-/-
+HG03762	PJL	Punjabi	female	-/C
+HG03765	PJL	Punjabi	female	C/C
+HG03767	PJL	Punjabi	male	-/-
+HG03770	ITU	Telugu	female	-/-
+HG03771	ITU	Telugu	male	-/C
+HG03772	ITU	Telugu	female	-/-
+HG03773	ITU	Telugu	male	-/C
+HG03774	ITU	Telugu	female	C/C
+HG03775	ITU	Telugu	male	-/-
+HG03777	ITU	Telugu	male	-/C
+HG03778	ITU	Telugu	male	-/-
+HG03779	ITU	Telugu	male	-/-
+HG03780	ITU	Telugu	female	-/-
+HG03781	ITU	Telugu	female	C/C
+HG03782	ITU	Telugu	female	-/-
+HG03784	ITU	Telugu	female	-/C
+HG03785	ITU	Telugu	male	-/C
+HG03786	ITU	Telugu	male	-/C
+HG03787	ITU	Telugu	female	-/C
+HG03788	ITU	Telugu	male	-/-
+HG03789	ITU	Telugu	female	-/C
+HG03790	ITU	Telugu	male	-/C
+HG03792	ITU	Telugu	male	-/C
+HG03793	BEB	Bengali	female	-/C
+HG03796	BEB	Bengali	female	-/C
+HG03800	BEB	Bengali	male	-/-
+HG03802	BEB	Bengali	female	-/C
+HG03803	BEB	Bengali	male	-/-
+HG03805	BEB	Bengali	female	C/C
+HG03808	BEB	Bengali	female	-/C
+HG03809	BEB	Bengali	male	-/C
+HG03812	BEB	Bengali	male	-/C
+HG03814	BEB	Bengali	female	C/C
+HG03815	BEB	Bengali	male	-/C
+HG03817	BEB	Bengali	female	-/C
+HG03821	BEB	Bengali	male	C/C
+HG03823	BEB	Bengali	female	C/C
+HG03824	BEB	Bengali	male	-/C
+HG03826	BEB	Bengali	female	-/-
+HG03829	BEB	Bengali	female	C/C
+HG03830	BEB	Bengali	male	-/C
+HG03832	BEB	Bengali	female	C/C
+HG03833	BEB	Bengali	male	-/-
+HG03836	STU	Tamil	female	-/C
+HG03837	STU	Tamil	male	-/C
+HG03838	STU	Tamil	female	-/-
+HG03844	STU	Tamil	male	-/-
+HG03846	STU	Tamil	male	-/C
+HG03848	STU	Tamil	male	-/-
+HG03849	STU	Tamil	female	-/-
+HG03850	STU	Tamil	male	-/C
+HG03851	STU	Tamil	male	-/-
+HG03854	STU	Tamil	male	-/C
+HG03856	STU	Tamil	male	-/C
+HG03857	STU	Tamil	female	-/-
+HG03858	STU	Tamil	female	C/C
+HG03861	ITU	Telugu	female	-/C
+HG03862	ITU	Telugu	female	-/-
+HG03863	ITU	Telugu	female	-/-
+HG03864	ITU	Telugu	male	-/C
+HG03866	ITU	Telugu	male	-/-
+HG03867	ITU	Telugu	male	-/C
+HG03868	ITU	Telugu	female	-/C
+HG03869	ITU	Telugu	male	-/-
+HG03870	ITU	Telugu	male	-/-
+HG03871	ITU	Telugu	male	-/C
+HG03872	ITU	Telugu	male	-/C
+HG03873	ITU	Telugu	female	-/C
+HG03874	ITU	Telugu	female	-/C
+HG03875	ITU	Telugu	male	-/C
+HG03882	ITU	Telugu	female	-/C
+HG03884	STU	Tamil	female	-/C
+HG03885	STU	Tamil	male	-/C
+HG03886	STU	Tamil	female	-/C
+HG03887	STU	Tamil	male	-/C
+HG03888	STU	Tamil	female	C/C
+HG03890	STU	Tamil	male	C/C
+HG03894	STU	Tamil	female	-/-
+HG03895	STU	Tamil	female	-/-
+HG03896	STU	Tamil	male	-/-
+HG03897	STU	Tamil	female	-/C
+HG03898	STU	Tamil	female	-/-
+HG03899	STU	Tamil	male	-/C
+HG03900	STU	Tamil	male	-/-
+HG03902	BEB	Bengali	male	-/-
+HG03905	BEB	Bengali	male	-/-
+HG03907	BEB	Bengali	female	-/C
+HG03908	BEB	Bengali	male	-/C
+HG03910	BEB	Bengali	female	-/-
+HG03911	BEB	Bengali	male	-/C
+HG03913	BEB	Bengali	female	-/C
+HG03914	BEB	Bengali	male	-/C
+HG03916	BEB	Bengali	female	-/-
+HG03917	BEB	Bengali	male	-/C
+HG03919	BEB	Bengali	female	-/-
+HG03920	BEB	Bengali	male	-/C
+HG03922	BEB	Bengali	female	-/C
+HG03925	BEB	Bengali	female	C/C
+HG03926	BEB	Bengali	male	-/C
+HG03928	BEB	Bengali	female	-/-
+HG03931	BEB	Bengali	female	-/C
+HG03934	BEB	Bengali	female	-/C
+HG03937	BEB	Bengali	female	-/C
+HG03940	BEB	Bengali	female	-/C
+HG03941	BEB	Bengali	male	C/C
+HG03943	STU	Tamil	male	-/-
+HG03944	STU	Tamil	female	-/C
+HG03945	STU	Tamil	female	C/C
+HG03947	STU	Tamil	female	C/C
+HG03949	STU	Tamil	female	-/C
+HG03950	STU	Tamil	male	-/C
+HG03951	STU	Tamil	female	-/C
+HG03953	STU	Tamil	male	-/-
+HG03955	STU	Tamil	female	-/C
+HG03960	ITU	Telugu	male	-/-
+HG03963	ITU	Telugu	male	C/C
+HG03965	ITU	Telugu	male	-/-
+HG03967	ITU	Telugu	male	-/C
+HG03968	ITU	Telugu	female	-/C
+HG03969	ITU	Telugu	male	-/C
+HG03971	ITU	Telugu	male	-/-
+HG03973	ITU	Telugu	female	-/-
+HG03974	ITU	Telugu	male	-/-
+HG03976	ITU	Telugu	male	-/C
+HG03977	ITU	Telugu	female	-/-
+HG03978	ITU	Telugu	male	-/C
+HG03985	STU	Tamil	male	-/C
+HG03986	STU	Tamil	female	-/C
+HG03989	STU	Tamil	female	-/-
+HG03990	STU	Tamil	male	-/C
+HG03991	STU	Tamil	male	-/C
+HG03995	STU	Tamil	female	-/-
+HG03998	STU	Tamil	male	-/C
+HG03999	STU	Tamil	male	-/C
+HG04001	ITU	Telugu	female	-/C
+HG04002	ITU	Telugu	male	-/C
+HG04003	STU	Tamil	male	-/C
+HG04006	STU	Tamil	male	-/-
+HG04014	ITU	Telugu	female	-/C
+HG04015	ITU	Telugu	male	-/C
+HG04017	ITU	Telugu	male	-/C
+HG04018	ITU	Telugu	female	-/-
+HG04019	ITU	Telugu	male	C/C
+HG04020	ITU	Telugu	male	-/C
+HG04022	ITU	Telugu	male	-/C
+HG04023	ITU	Telugu	male	-/-
+HG04025	ITU	Telugu	female	-/-
+HG04026	ITU	Telugu	female	-/C
+HG04029	STU	Tamil	female	-/C
+HG04033	STU	Tamil	male	-/-
+HG04035	STU	Tamil	female	-/C
+HG04038	STU	Tamil	female	-/C
+HG04039	STU	Tamil	male	-/-
+HG04042	STU	Tamil	female	-/C
+HG04047	STU	Tamil	female	-/-
+HG04054	ITU	Telugu	female	-/C
+HG04056	ITU	Telugu	male	-/-
+HG04059	ITU	Telugu	female	-/C
+HG04060	ITU	Telugu	male	-/C
+HG04061	ITU	Telugu	male	-/-
+HG04062	ITU	Telugu	female	C/C
+HG04063	ITU	Telugu	female	-/-
+HG04070	ITU	Telugu	female	-/C
+HG04075	STU	Tamil	female	-/C
+HG04076	ITU	Telugu	female	-/C
+HG04080	ITU	Telugu	male	-/-
+HG04090	ITU	Telugu	female	-/C
+HG04093	ITU	Telugu	male	-/-
+HG04094	ITU	Telugu	male	-/C
+HG04096	ITU	Telugu	male	-/-
+HG04098	ITU	Telugu	male	-/-
+HG04099	STU	Tamil	female	-/C
+HG04100	STU	Tamil	male	-/C
+HG04106	STU	Tamil	female	-/-
+HG04107	STU	Tamil	male	-/C
+HG04118	ITU	Telugu	female	-/C
+HG04131	BEB	Bengali	male	-/C
+HG04134	BEB	Bengali	male	-/C
+HG04140	BEB	Bengali	male	C/C
+HG04141	BEB	Bengali	female	C/C
+HG04144	BEB	Bengali	female	C/C
+HG04146	BEB	Bengali	male	-/C
+HG04152	BEB	Bengali	male	C/C
+HG04153	BEB	Bengali	female	-/C
+HG04155	BEB	Bengali	male	C/C
+HG04156	BEB	Bengali	female	C/C
+HG04158	BEB	Bengali	male	-/-
+HG04159	BEB	Bengali	female	-/-
+HG04161	BEB	Bengali	male	-/C
+HG04162	BEB	Bengali	female	-/-
+HG04164	BEB	Bengali	male	-/C
+HG04171	BEB	Bengali	female	-/C
+HG04173	BEB	Bengali	male	-/-
+HG04176	BEB	Bengali	male	C/C
+HG04177	BEB	Bengali	female	-/C
+HG04180	BEB	Bengali	female	-/C
+HG04182	BEB	Bengali	male	-/-
+HG04183	BEB	Bengali	female	-/C
+HG04185	BEB	Bengali	male	C/C
+HG04186	BEB	Bengali	female	-/-
+HG04188	BEB	Bengali	male	-/C
+HG04189	BEB	Bengali	female	-/C
+HG04194	BEB	Bengali	male	-/C
+HG04195	BEB	Bengali	female	-/C
+HG04198	ITU	Telugu	male	-/C
+HG04200	ITU	Telugu	female	C/C
+HG04202	ITU	Telugu	female	-/-
+HG04206	ITU	Telugu	male	-/C
+HG04209	ITU	Telugu	female	-/C
+HG04210	STU	Tamil	male	-/-
+HG04211	ITU	Telugu	male	-/-
+HG04212	ITU	Telugu	female	-/-
+HG04214	ITU	Telugu	female	-/C
+HG04216	ITU	Telugu	female	C/C
+HG04219	ITU	Telugu	male	-/C
+HG04222	ITU	Telugu	male	-/-
+HG04225	ITU	Telugu	male	-/C
+HG04227	STU	Tamil	female	-/C
+HG04229	STU	Tamil	male	-/C
+HG04235	ITU	Telugu	male	-/C
+HG04238	ITU	Telugu	male	-/-
+HG04239	ITU	Telugu	male	-/-
+NA06984	CEU	CEPH	male	-/C
+NA06985	CEU	CEPH	female	-/C
+NA06986	CEU	CEPH	male	-/-
+NA06989	CEU	CEPH	female	-/-
+NA06994	CEU	CEPH	male	-/C
+NA07000	CEU	CEPH	female	-/C
+NA07037	CEU	CEPH	female	-/-
+NA07048	CEU	CEPH	male	-/C
+NA07051	CEU	CEPH	male	C/C
+NA07056	CEU	CEPH	female	-/C
+NA07347	CEU	CEPH	male	-/C
+NA07357	CEU	CEPH	male	-/-
+NA10847	CEU	CEPH	female	C/C
+NA10851	CEU	CEPH	male	-/-
+NA11829	CEU	CEPH	male	-/-
+NA11830	CEU	CEPH	female	-/-
+NA11831	CEU	CEPH	male	-/-
+NA11832	CEU	CEPH	female	-/-
+NA11840	CEU	CEPH	female	C/C
+NA11843	CEU	CEPH	male	-/-
+NA11881	CEU	CEPH	male	-/C
+NA11892	CEU	CEPH	female	-/C
+NA11893	CEU	CEPH	male	-/C
+NA11894	CEU	CEPH	female	-/C
+NA11918	CEU	CEPH	female	-/-
+NA11919	CEU	CEPH	male	-/C
+NA11920	CEU	CEPH	female	-/C
+NA11930	CEU	CEPH	male	-/-
+NA11931	CEU	CEPH	female	-/-
+NA11932	CEU	CEPH	male	-/-
+NA11933	CEU	CEPH	female	-/-
+NA11992	CEU	CEPH	male	-/C
+NA11994	CEU	CEPH	male	-/-
+NA11995	CEU	CEPH	female	-/C
+NA12003	CEU	CEPH	male	C/C
+NA12004	CEU	CEPH	female	-/-
+NA12005	CEU	CEPH	male	-/-
+NA12006	CEU	CEPH	female	-/C
+NA12043	CEU	CEPH	male	-/C
+NA12044	CEU	CEPH	female	-/C
+NA12045	CEU	CEPH	male	-/-
+NA12046	CEU	CEPH	female	C/C
+NA12058	CEU	CEPH	female	C/C
+NA12144	CEU	CEPH	male	-/-
+NA12154	CEU	CEPH	male	-/C
+NA12155	CEU	CEPH	male	-/C
+NA12156	CEU	CEPH	female	-/-
+NA12234	CEU	CEPH	female	C/C
+NA12249	CEU	CEPH	female	C/C
+NA12272	CEU	CEPH	male	-/C
+NA12273	CEU	CEPH	female	-/-
+NA12275	CEU	CEPH	female	C/C
+NA12282	CEU	CEPH	male	-/C
+NA12283	CEU	CEPH	female	-/C
+NA12286	CEU	CEPH	male	-/-
+NA12287	CEU	CEPH	female	C/C
+NA12340	CEU	CEPH	male	-/C
+NA12341	CEU	CEPH	female	C/C
+NA12342	CEU	CEPH	male	-/C
+NA12347	CEU	CEPH	male	-/C
+NA12348	CEU	CEPH	female	-/C
+NA12383	CEU	CEPH	female	-/-
+NA12399	CEU	CEPH	male	-/-
+NA12400	CEU	CEPH	female	-/-
+NA12413	CEU	CEPH	male	-/C
+NA12414	CEU	CEPH	female	-/C
+NA12489	CEU	CEPH	female	C/C
+NA12546	CEU	CEPH	male	C/C
+NA12716	CEU	CEPH	male	C/C
+NA12717	CEU	CEPH	female	-/-
+NA12718	CEU	CEPH	female	-/-
+NA12748	CEU	CEPH	male	-/C
+NA12749	CEU	CEPH	female	-/C
+NA12750	CEU	CEPH	male	-/C
+NA12751	CEU	CEPH	female	-/-
+NA12760	CEU	CEPH	male	C/C
+NA12761	CEU	CEPH	female	-/C
+NA12762	CEU	CEPH	male	-/-
+NA12763	CEU	CEPH	female	-/-
+NA12775	CEU	CEPH	male	-/C
+NA12776	CEU	CEPH	female	-/-
+NA12777	CEU	CEPH	male	-/-
+NA12778	CEU	CEPH	female	C/C
+NA12812	CEU	CEPH	male	-/-
+NA12813	CEU	CEPH	female	-/C
+NA12814	CEU	CEPH	male	-/C
+NA12815	CEU	CEPH	female	-/C
+NA12827	CEU	CEPH	male	-/-
+NA12828	CEU	CEPH	female	-/C
+NA12829	CEU	CEPH	male	-/-
+NA12830	CEU	CEPH	female	-/C
+NA12842	CEU	CEPH	male	-/C
+NA12843	CEU	CEPH	female	-/-
+NA12872	CEU	CEPH	male	-/-
+NA12873	CEU	CEPH	female	-/-
+NA12874	CEU	CEPH	male	-/C
+NA12878	CEU	CEPH	female	-/C
+NA12889	CEU	CEPH	male	-/C
+NA12890	CEU	CEPH	female	-/-
+NA18486	YRI	Yoruba	male	-/C
+NA18488	YRI	Yoruba	female	-/-
+NA18489	YRI	Yoruba	female	-/-
+NA18498	YRI	Yoruba	male	-/-
+NA18499	YRI	Yoruba	female	-/-
+NA18501	YRI	Yoruba	male	-/C
+NA18502	YRI	Yoruba	female	-/-
+NA18504	YRI	Yoruba	male	-/-
+NA18505	YRI	Yoruba	female	-/C
+NA18507	YRI	Yoruba	male	C/C
+NA18508	YRI	Yoruba	female	-/-
+NA18510	YRI	Yoruba	male	-/C
+NA18511	YRI	Yoruba	female	C/C
+NA18516	YRI	Yoruba	male	-/-
+NA18517	YRI	Yoruba	female	-/C
+NA18519	YRI	Yoruba	male	-/-
+NA18520	YRI	Yoruba	female	-/-
+NA18522	YRI	Yoruba	male	-/-
+NA18523	YRI	Yoruba	female	-/-
+NA18525	CHB	Han Chinese	female	-/C
+NA18526	CHB	Han Chinese	female	-/-
+NA18528	CHB	Han Chinese	female	-/-
+NA18530	CHB	Han Chinese	male	-/C
+NA18531	CHB	Han Chinese	female	-/C
+NA18532	CHB	Han Chinese	female	-/C
+NA18533	CHB	Han Chinese	female	-/-
+NA18534	CHB	Han Chinese	male	-/-
+NA18535	CHB	Han Chinese	female	C/C
+NA18536	CHB	Han Chinese	male	-/C
+NA18537	CHB	Han Chinese	female	-/C
+NA18538	CHB	Han Chinese	female	-/-
+NA18539	CHB	Han Chinese	female	-/-
+NA18541	CHB	Han Chinese	female	-/-
+NA18542	CHB	Han Chinese	female	C/C
+NA18543	CHB	Han Chinese	male	-/C
+NA18544	CHB	Han Chinese	male	-/-
+NA18545	CHB	Han Chinese	female	C/C
+NA18546	CHB	Han Chinese	male	-/C
+NA18547	CHB	Han Chinese	female	-/-
+NA18548	CHB	Han Chinese	male	C/C
+NA18549	CHB	Han Chinese	male	-/C
+NA18550	CHB	Han Chinese	female	-/-
+NA18552	CHB	Han Chinese	female	-/C
+NA18553	CHB	Han Chinese	female	-/-
+NA18555	CHB	Han Chinese	female	-/C
+NA18557	CHB	Han Chinese	male	-/C
+NA18558	CHB	Han Chinese	male	-/C
+NA18559	CHB	Han Chinese	male	-/-
+NA18560	CHB	Han Chinese	female	-/-
+NA18561	CHB	Han Chinese	male	C/C
+NA18562	CHB	Han Chinese	male	-/C
+NA18563	CHB	Han Chinese	male	-/C
+NA18564	CHB	Han Chinese	female	-/C
+NA18565	CHB	Han Chinese	female	-/-
+NA18566	CHB	Han Chinese	female	-/C
+NA18567	CHB	Han Chinese	female	-/-
+NA18570	CHB	Han Chinese	female	-/-
+NA18571	CHB	Han Chinese	female	-/-
+NA18572	CHB	Han Chinese	male	-/-
+NA18573	CHB	Han Chinese	female	C/C
+NA18574	CHB	Han Chinese	female	C/C
+NA18577	CHB	Han Chinese	female	-/-
+NA18579	CHB	Han Chinese	female	-/-
+NA18582	CHB	Han Chinese	female	-/-
+NA18591	CHB	Han Chinese	female	C/C
+NA18592	CHB	Han Chinese	female	-/-
+NA18593	CHB	Han Chinese	female	-/-
+NA18595	CHB	Han Chinese	female	C/C
+NA18596	CHB	Han Chinese	female	-/-
+NA18597	CHB	Han Chinese	female	-/C
+NA18599	CHB	Han Chinese	female	-/C
+NA18602	CHB	Han Chinese	female	-/C
+NA18603	CHB	Han Chinese	male	-/C
+NA18605	CHB	Han Chinese	male	-/C
+NA18606	CHB	Han Chinese	male	-/-
+NA18608	CHB	Han Chinese	male	C/C
+NA18609	CHB	Han Chinese	male	-/-
+NA18610	CHB	Han Chinese	female	-/C
+NA18611	CHB	Han Chinese	male	-/C
+NA18612	CHB	Han Chinese	male	C/C
+NA18613	CHB	Han Chinese	male	-/C
+NA18614	CHB	Han Chinese	female	-/C
+NA18615	CHB	Han Chinese	female	-/C
+NA18616	CHB	Han Chinese	female	-/C
+NA18617	CHB	Han Chinese	female	-/-
+NA18618	CHB	Han Chinese	female	C/C
+NA18619	CHB	Han Chinese	female	C/C
+NA18620	CHB	Han Chinese	male	-/-
+NA18621	CHB	Han Chinese	male	C/C
+NA18622	CHB	Han Chinese	male	-/C
+NA18623	CHB	Han Chinese	male	C/C
+NA18624	CHB	Han Chinese	male	-/C
+NA18625	CHB	Han Chinese	female	C/C
+NA18626	CHB	Han Chinese	female	-/C
+NA18627	CHB	Han Chinese	female	-/C
+NA18628	CHB	Han Chinese	female	-/-
+NA18629	CHB	Han Chinese	male	-/C
+NA18630	CHB	Han Chinese	female	-/-
+NA18631	CHB	Han Chinese	female	-/C
+NA18632	CHB	Han Chinese	male	-/C
+NA18633	CHB	Han Chinese	male	-/-
+NA18634	CHB	Han Chinese	female	-/C
+NA18635	CHB	Han Chinese	male	-/C
+NA18636	CHB	Han Chinese	male	-/C
+NA18637	CHB	Han Chinese	male	-/C
+NA18638	CHB	Han Chinese	male	-/C
+NA18639	CHB	Han Chinese	male	-/-
+NA18640	CHB	Han Chinese	female	C/C
+NA18641	CHB	Han Chinese	female	C/C
+NA18642	CHB	Han Chinese	female	-/C
+NA18643	CHB	Han Chinese	male	-/-
+NA18644	CHB	Han Chinese	female	C/C
+NA18645	CHB	Han Chinese	male	-/-
+NA18646	CHB	Han Chinese	female	-/C
+NA18647	CHB	Han Chinese	male	-/-
+NA18648	CHB	Han Chinese	male	-/-
+NA18740	CHB	Han Chinese	male	-/C
+NA18745	CHB	Han Chinese	male	-/-
+NA18747	CHB	Han Chinese	male	-/-
+NA18748	CHB	Han Chinese	male	-/-
+NA18749	CHB	Han Chinese	male	-/-
+NA18757	CHB	Han Chinese	male	-/-
+NA18853	YRI	Yoruba	male	-/-
+NA18856	YRI	Yoruba	male	-/C
+NA18858	YRI	Yoruba	female	-/C
+NA18861	YRI	Yoruba	female	-/-
+NA18864	YRI	Yoruba	female	-/C
+NA18865	YRI	Yoruba	male	-/C
+NA18867	YRI	Yoruba	female	-/-
+NA18868	YRI	Yoruba	male	-/-
+NA18870	YRI	Yoruba	female	-/C
+NA18871	YRI	Yoruba	male	-/C
+NA18873	YRI	Yoruba	female	-/C
+NA18874	YRI	Yoruba	male	-/-
+NA18876	YRI	Yoruba	female	-/C
+NA18877	YRI	Yoruba	male	-/-
+NA18878	YRI	Yoruba	female	-/-
+NA18879	YRI	Yoruba	male	-/-
+NA18881	YRI	Yoruba	female	-/C
+NA18907	YRI	Yoruba	female	-/-
+NA18908	YRI	Yoruba	male	-/-
+NA18909	YRI	Yoruba	female	-/-
+NA18910	YRI	Yoruba	male	-/-
+NA18912	YRI	Yoruba	female	-/C
+NA18915	YRI	Yoruba	male	-/-
+NA18916	YRI	Yoruba	female	-/-
+NA18917	YRI	Yoruba	male	-/-
+NA18923	YRI	Yoruba	male	-/C
+NA18924	YRI	Yoruba	female	-/C
+NA18933	YRI	Yoruba	female	-/-
+NA18934	YRI	Yoruba	male	-/-
+NA18939	JPT	Japanese	female	-/C
+NA18940	JPT	Japanese	male	-/-
+NA18941	JPT	Japanese	female	-/-
+NA18942	JPT	Japanese	female	-/C
+NA18943	JPT	Japanese	male	-/C
+NA18944	JPT	Japanese	male	-/C
+NA18945	JPT	Japanese	male	C/C
+NA18946	JPT	Japanese	female	-/C
+NA18947	JPT	Japanese	female	C/C
+NA18948	JPT	Japanese	male	-/-
+NA18949	JPT	Japanese	female	-/-
+NA18950	JPT	Japanese	female	-/-
+NA18951	JPT	Japanese	female	C/C
+NA18952	JPT	Japanese	male	-/C
+NA18953	JPT	Japanese	male	-/C
+NA18954	JPT	Japanese	female	-/-
+NA18956	JPT	Japanese	female	-/C
+NA18957	JPT	Japanese	female	-/-
+NA18959	JPT	Japanese	male	-/C
+NA18960	JPT	Japanese	male	-/C
+NA18961	JPT	Japanese	male	-/-
+NA18962	JPT	Japanese	male	-/C
+NA18963	JPT	Japanese	female	-/C
+NA18964	JPT	Japanese	female	-/-
+NA18965	JPT	Japanese	male	-/-
+NA18966	JPT	Japanese	male	-/C
+NA18967	JPT	Japanese	male	-/C
+NA18968	JPT	Japanese	female	-/C
+NA18969	JPT	Japanese	female	-/-
+NA18970	JPT	Japanese	male	-/-
+NA18971	JPT	Japanese	male	-/C
+NA18972	JPT	Japanese	female	C/C
+NA18973	JPT	Japanese	female	-/-
+NA18974	JPT	Japanese	male	-/C
+NA18975	JPT	Japanese	female	-/C
+NA18976	JPT	Japanese	female	-/C
+NA18977	JPT	Japanese	male	-/C
+NA18978	JPT	Japanese	female	-/C
+NA18979	JPT	Japanese	female	-/C
+NA18980	JPT	Japanese	female	-/-
+NA18981	JPT	Japanese	female	-/C
+NA18982	JPT	Japanese	male	C/C
+NA18983	JPT	Japanese	male	C/C
+NA18984	JPT	Japanese	male	C/C
+NA18985	JPT	Japanese	male	C/C
+NA18986	JPT	Japanese	male	C/C
+NA18987	JPT	Japanese	female	-/-
+NA18988	JPT	Japanese	male	-/C
+NA18989	JPT	Japanese	male	C/C
+NA18990	JPT	Japanese	male	-/-
+NA18991	JPT	Japanese	female	-/-
+NA18992	JPT	Japanese	female	-/C
+NA18993	JPT	Japanese	female	-/C
+NA18994	JPT	Japanese	male	-/C
+NA18995	JPT	Japanese	male	-/C
+NA18997	JPT	Japanese	female	-/C
+NA18998	JPT	Japanese	female	-/-
+NA18999	JPT	Japanese	female	-/C
+NA19000	JPT	Japanese	male	-/C
+NA19001	JPT	Japanese	female	-/-
+NA19002	JPT	Japanese	female	-/C
+NA19003	JPT	Japanese	female	-/-
+NA19004	JPT	Japanese	male	-/C
+NA19005	JPT	Japanese	male	-/C
+NA19006	JPT	Japanese	male	-/-
+NA19007	JPT	Japanese	male	-/-
+NA19009	JPT	Japanese	male	-/C
+NA19010	JPT	Japanese	female	-/C
+NA19011	JPT	Japanese	female	-/-
+NA19012	JPT	Japanese	male	C/C
+NA19017	LWK	Luhya	female	-/-
+NA19019	LWK	Luhya	female	-/-
+NA19020	LWK	Luhya	male	-/C
+NA19023	LWK	Luhya	female	-/C
+NA19024	LWK	Luhya	female	C/C
+NA19025	LWK	Luhya	male	-/-
+NA19026	LWK	Luhya	male	-/-
+NA19027	LWK	Luhya	male	-/-
+NA19028	LWK	Luhya	male	-/C
+NA19030	LWK	Luhya	female	-/-
+NA19031	LWK	Luhya	male	-/C
+NA19035	LWK	Luhya	male	-/-
+NA19036	LWK	Luhya	female	-/-
+NA19037	LWK	Luhya	female	-/C
+NA19038	LWK	Luhya	female	-/C
+NA19041	LWK	Luhya	male	-/C
+NA19042	LWK	Luhya	female	-/-
+NA19043	LWK	Luhya	male	-/-
+NA19054	JPT	Japanese	female	-/C
+NA19055	JPT	Japanese	male	C/C
+NA19056	JPT	Japanese	male	-/-
+NA19057	JPT	Japanese	female	-/C
+NA19058	JPT	Japanese	male	-/-
+NA19059	JPT	Japanese	female	-/-
+NA19060	JPT	Japanese	male	-/-
+NA19062	JPT	Japanese	male	-/C
+NA19063	JPT	Japanese	male	-/C
+NA19064	JPT	Japanese	female	-/C
+NA19065	JPT	Japanese	female	-/C
+NA19066	JPT	Japanese	male	C/C
+NA19067	JPT	Japanese	male	-/C
+NA19068	JPT	Japanese	male	-/C
+NA19070	JPT	Japanese	male	-/-
+NA19072	JPT	Japanese	male	-/-
+NA19074	JPT	Japanese	female	-/C
+NA19075	JPT	Japanese	male	-/C
+NA19076	JPT	Japanese	male	-/C
+NA19077	JPT	Japanese	female	-/-
+NA19078	JPT	Japanese	female	-/C
+NA19079	JPT	Japanese	male	-/C
+NA19080	JPT	Japanese	female	-/C
+NA19081	JPT	Japanese	female	C/C
+NA19082	JPT	Japanese	male	-/C
+NA19083	JPT	Japanese	male	-/C
+NA19084	JPT	Japanese	female	-/C
+NA19085	JPT	Japanese	male	-/C
+NA19086	JPT	Japanese	male	-/-
+NA19087	JPT	Japanese	female	-/C
+NA19088	JPT	Japanese	male	C/C
+NA19089	JPT	Japanese	male	C/C
+NA19090	JPT	Japanese	female	-/C
+NA19091	JPT	Japanese	male	-/C
+NA19092	YRI	Yoruba	male	-/C
+NA19093	YRI	Yoruba	female	-/-
+NA19095	YRI	Yoruba	female	-/C
+NA19096	YRI	Yoruba	male	-/-
+NA19098	YRI	Yoruba	male	-/C
+NA19099	YRI	Yoruba	female	-/-
+NA19102	YRI	Yoruba	female	C/C
+NA19107	YRI	Yoruba	male	-/-
+NA19108	YRI	Yoruba	female	-/-
+NA19113	YRI	Yoruba	male	-/-
+NA19114	YRI	Yoruba	female	-/C
+NA19116	YRI	Yoruba	female	-/-
+NA19117	YRI	Yoruba	male	-/C
+NA19118	YRI	Yoruba	female	-/-
+NA19119	YRI	Yoruba	male	-/C
+NA19121	YRI	Yoruba	male	C/C
+NA19129	YRI	Yoruba	female	-/-
+NA19130	YRI	Yoruba	male	-/C
+NA19131	YRI	Yoruba	female	-/C
+NA19137	YRI	Yoruba	female	-/C
+NA19138	YRI	Yoruba	male	-/C
+NA19141	YRI	Yoruba	male	-/C
+NA19143	YRI	Yoruba	female	-/-
+NA19144	YRI	Yoruba	male	-/C
+NA19146	YRI	Yoruba	male	-/-
+NA19147	YRI	Yoruba	female	-/-
+NA19149	YRI	Yoruba	female	-/-
+NA19152	YRI	Yoruba	female	-/-
+NA19153	YRI	Yoruba	male	-/-
+NA19159	YRI	Yoruba	female	-/-
+NA19160	YRI	Yoruba	male	-/-
+NA19171	YRI	Yoruba	male	-/C
+NA19172	YRI	Yoruba	female	-/C
+NA19175	YRI	Yoruba	male	-/-
+NA19184	YRI	Yoruba	male	-/C
+NA19185	YRI	Yoruba	female	-/-
+NA19189	YRI	Yoruba	male	-/-
+NA19190	YRI	Yoruba	female	-/-
+NA19197	YRI	Yoruba	female	-/-
+NA19198	YRI	Yoruba	male	-/-
+NA19200	YRI	Yoruba	male	C/C
+NA19201	YRI	Yoruba	female	-/C
+NA19204	YRI	Yoruba	female	-/-
+NA19206	YRI	Yoruba	female	-/-
+NA19207	YRI	Yoruba	male	-/-
+NA19209	YRI	Yoruba	female	-/-
+NA19210	YRI	Yoruba	male	-/C
+NA19213	YRI	Yoruba	male	-/C
+NA19214	YRI	Yoruba	female	-/-
+NA19222	YRI	Yoruba	female	-/-
+NA19223	YRI	Yoruba	male	-/-
+NA19225	YRI	Yoruba	female	-/C
+NA19235	YRI	Yoruba	female	-/-
+NA19236	YRI	Yoruba	male	-/C
+NA19238	YRI	Yoruba	female	-/-
+NA19239	YRI	Yoruba	male	-/-
+NA19247	YRI	Yoruba	female	-/-
+NA19248	YRI	Yoruba	male	-/C
+NA19256	YRI	Yoruba	male	-/C
+NA19257	YRI	Yoruba	female	-/C
+NA19307	LWK	Luhya	male	-/C
+NA19308	LWK	Luhya	male	C/C
+NA19309	LWK	Luhya	male	-/C
+NA19310	LWK	Luhya	female	C/C
+NA19312	LWK	Luhya	male	-/-
+NA19314	LWK	Luhya	female	-/C
+NA19315	LWK	Luhya	female	-/-
+NA19316	LWK	Luhya	female	-/-
+NA19317	LWK	Luhya	male	-/-
+NA19318	LWK	Luhya	male	-/C
+NA19319	LWK	Luhya	male	-/C
+NA19320	LWK	Luhya	female	-/-
+NA19321	LWK	Luhya	female	C/C
+NA19323	LWK	Luhya	female	-/-
+NA19324	LWK	Luhya	female	-/C
+NA19327	LWK	Luhya	female	-/C
+NA19328	LWK	Luhya	female	-/C
+NA19331	LWK	Luhya	male	-/-
+NA19332	LWK	Luhya	female	-/C
+NA19334	LWK	Luhya	male	-/C
+NA19338	LWK	Luhya	female	-/-
+NA19346	LWK	Luhya	male	-/C
+NA19347	LWK	Luhya	male	-/C
+NA19350	LWK	Luhya	male	-/C
+NA19351	LWK	Luhya	female	-/-
+NA19355	LWK	Luhya	female	-/-
+NA19360	LWK	Luhya	male	-/-
+NA19372	LWK	Luhya	male	-/-
+NA19374	LWK	Luhya	male	-/-
+NA19375	LWK	Luhya	male	C/C
+NA19376	LWK	Luhya	male	-/-
+NA19377	LWK	Luhya	female	-/C
+NA19378	LWK	Luhya	female	-/-
+NA19379	LWK	Luhya	female	-/C
+NA19380	LWK	Luhya	male	-/-
+NA19383	LWK	Luhya	male	-/C
+NA19384	LWK	Luhya	male	-/-
+NA19385	LWK	Luhya	male	-/C
+NA19390	LWK	Luhya	female	-/-
+NA19391	LWK	Luhya	female	-/-
+NA19393	LWK	Luhya	male	-/-
+NA19394	LWK	Luhya	male	-/-
+NA19395	LWK	Luhya	female	-/-
+NA19397	LWK	Luhya	male	-/-
+NA19399	LWK	Luhya	female	-/-
+NA19401	LWK	Luhya	female	-/-
+NA19403	LWK	Luhya	female	-/-
+NA19404	LWK	Luhya	female	-/-
+NA19428	LWK	Luhya	male	-/C
+NA19429	LWK	Luhya	male	-/C
+NA19430	LWK	Luhya	male	-/-
+NA19431	LWK	Luhya	female	-/C
+NA19434	LWK	Luhya	female	-/-
+NA19435	LWK	Luhya	female	-/C
+NA19436	LWK	Luhya	female	-/C
+NA19437	LWK	Luhya	female	-/-
+NA19438	LWK	Luhya	female	-/C
+NA19439	LWK	Luhya	female	-/-
+NA19440	LWK	Luhya	female	-/-
+NA19443	LWK	Luhya	male	C/C
+NA19445	LWK	Luhya	female	-/-
+NA19446	LWK	Luhya	female	-/-
+NA19448	LWK	Luhya	male	-/C
+NA19449	LWK	Luhya	female	-/C
+NA19451	LWK	Luhya	male	-/-
+NA19452	LWK	Luhya	male	-/-
+NA19454	LWK	Luhya	male	-/C
+NA19455	LWK	Luhya	male	C/C
+NA19456	LWK	Luhya	female	-/C
+NA19457	LWK	Luhya	female	-/-
+NA19461	LWK	Luhya	male	-/-
+NA19462	LWK	Luhya	female	-/C
+NA19463	LWK	Luhya	female	-/-
+NA19466	LWK	Luhya	male	-/-
+NA19467	LWK	Luhya	female	C/C
+NA19468	LWK	Luhya	female	-/C
+NA19471	LWK	Luhya	female	-/C
+NA19472	LWK	Luhya	female	C/C
+NA19473	LWK	Luhya	female	-/C
+NA19474	LWK	Luhya	female	-/C
+NA19475	LWK	Luhya	female	-/-
+NA19625	ASW	African Ancestry SW	female	-/C
+NA19648	MXL	Mexican Ancestry	female	-/-
+NA19649	MXL	Mexican Ancestry	male	-/-
+NA19651	MXL	Mexican Ancestry	female	-/-
+NA19652	MXL	Mexican Ancestry	male	-/C
+NA19654	MXL	Mexican Ancestry	female	-/-
+NA19655	MXL	Mexican Ancestry	male	-/-
+NA19657	MXL	Mexican Ancestry	female	-/-
+NA19658	MXL	Mexican Ancestry	male	-/-
+NA19661	MXL	Mexican Ancestry	male	-/-
+NA19663	MXL	Mexican Ancestry	female	-/-
+NA19664	MXL	Mexican Ancestry	male	-/-
+NA19669	MXL	Mexican Ancestry	female	-/C
+NA19670	MXL	Mexican Ancestry	male	-/-
+NA19676	MXL	Mexican Ancestry	male	-/-
+NA19678	MXL	Mexican Ancestry	female	C/C
+NA19679	MXL	Mexican Ancestry	male	-/C
+NA19681	MXL	Mexican Ancestry	female	-/C
+NA19682	MXL	Mexican Ancestry	male	-/-
+NA19684	MXL	Mexican Ancestry	female	-/-
+NA19700	ASW	African Ancestry SW	male	-/C
+NA19701	ASW	African Ancestry SW	female	-/-
+NA19703	ASW	African Ancestry SW	male	-/-
+NA19704	ASW	African Ancestry SW	female	-/C
+NA19707	ASW	African Ancestry SW	female	-/C
+NA19711	ASW	African Ancestry SW	male	-/C
+NA19712	ASW	African Ancestry SW	female	C/C
+NA19713	ASW	African Ancestry SW	female	-/-
+NA19716	MXL	Mexican Ancestry	female	C/C
+NA19717	MXL	Mexican Ancestry	male	-/C
+NA19719	MXL	Mexican Ancestry	female	-/-
+NA19720	MXL	Mexican Ancestry	male	-/C
+NA19722	MXL	Mexican Ancestry	female	C/C
+NA19723	MXL	Mexican Ancestry	male	-/-
+NA19725	MXL	Mexican Ancestry	female	-/C
+NA19726	MXL	Mexican Ancestry	male	C/C
+NA19728	MXL	Mexican Ancestry	female	-/C
+NA19729	MXL	Mexican Ancestry	male	-/-
+NA19731	MXL	Mexican Ancestry	female	-/-
+NA19732	MXL	Mexican Ancestry	male	-/-
+NA19734	MXL	Mexican Ancestry	female	-/C
+NA19735	MXL	Mexican Ancestry	male	-/C
+NA19740	MXL	Mexican Ancestry	female	-/-
+NA19741	MXL	Mexican Ancestry	male	-/C
+NA19746	MXL	Mexican Ancestry	female	-/-
+NA19747	MXL	Mexican Ancestry	male	-/C
+NA19749	MXL	Mexican Ancestry	female	-/-
+NA19750	MXL	Mexican Ancestry	male	-/C
+NA19752	MXL	Mexican Ancestry	female	-/-
+NA19755	MXL	Mexican Ancestry	female	-/-
+NA19756	MXL	Mexican Ancestry	male	-/-
+NA19758	MXL	Mexican Ancestry	female	-/C
+NA19759	MXL	Mexican Ancestry	male	-/-
+NA19761	MXL	Mexican Ancestry	female	-/-
+NA19762	MXL	Mexican Ancestry	male	-/-
+NA19764	MXL	Mexican Ancestry	female	-/-
+NA19770	MXL	Mexican Ancestry	female	-/-
+NA19771	MXL	Mexican Ancestry	male	-/C
+NA19773	MXL	Mexican Ancestry	female	C/C
+NA19774	MXL	Mexican Ancestry	male	C/C
+NA19776	MXL	Mexican Ancestry	female	-/C
+NA19777	MXL	Mexican Ancestry	male	-/C
+NA19779	MXL	Mexican Ancestry	female	-/-
+NA19780	MXL	Mexican Ancestry	male	-/C
+NA19782	MXL	Mexican Ancestry	female	-/-
+NA19783	MXL	Mexican Ancestry	male	-/-
+NA19785	MXL	Mexican Ancestry	female	-/-
+NA19786	MXL	Mexican Ancestry	male	-/-
+NA19788	MXL	Mexican Ancestry	female	-/C
+NA19789	MXL	Mexican Ancestry	male	-/C
+NA19792	MXL	Mexican Ancestry	male	-/-
+NA19794	MXL	Mexican Ancestry	female	-/-
+NA19795	MXL	Mexican Ancestry	male	-/-
+NA19818	ASW	African Ancestry SW	male	-/-
+NA19819	ASW	African Ancestry SW	female	-/-
+NA19834	ASW	African Ancestry SW	male	C/C
+NA19835	ASW	African Ancestry SW	female	-/-
+NA19900	ASW	African Ancestry SW	male	-/-
+NA19901	ASW	African Ancestry SW	female	-/C
+NA19904	ASW	African Ancestry SW	male	-/-
+NA19908	ASW	African Ancestry SW	male	-/C
+NA19909	ASW	African Ancestry SW	female	-/C
+NA19913	ASW	African Ancestry SW	female	-/C
+NA19914	ASW	African Ancestry SW	female	-/-
+NA19916	ASW	African Ancestry SW	male	-/C
+NA19917	ASW	African Ancestry SW	female	-/C
+NA19920	ASW	African Ancestry SW	male	-/-
+NA19921	ASW	African Ancestry SW	female	-/-
+NA19922	ASW	African Ancestry SW	male	-/-
+NA19923	ASW	African Ancestry SW	female	-/C
+NA19982	ASW	African Ancestry SW	male	-/-
+NA19984	ASW	African Ancestry SW	male	-/-
+NA20126	ASW	African Ancestry SW	male	-/-
+NA20127	ASW	African Ancestry SW	female	-/-
+NA20274	ASW	African Ancestry SW	female	-/-
+NA20276	ASW	African Ancestry SW	female	-/C
+NA20278	ASW	African Ancestry SW	male	-/-
+NA20281	ASW	African Ancestry SW	male	-/C
+NA20282	ASW	African Ancestry SW	female	-/C
+NA20287	ASW	African Ancestry SW	female	C/C
+NA20289	ASW	African Ancestry SW	female	-/-
+NA20291	ASW	African Ancestry SW	male	C/C
+NA20294	ASW	African Ancestry SW	female	C/C
+NA20296	ASW	African Ancestry SW	female	-/C
+NA20298	ASW	African Ancestry SW	male	-/C
+NA20299	ASW	African Ancestry SW	female	-/-
+NA20314	ASW	African Ancestry SW	female	-/-
+NA20317	ASW	African Ancestry SW	female	-/-
+NA20318	ASW	African Ancestry SW	male	-/-
+NA20320	ASW	African Ancestry SW	female	-/C
+NA20321	ASW	African Ancestry SW	female	-/C
+NA20332	ASW	African Ancestry SW	female	-/C
+NA20334	ASW	African Ancestry SW	female	-/-
+NA20339	ASW	African Ancestry SW	female	-/C
+NA20340	ASW	African Ancestry SW	male	-/C
+NA20342	ASW	African Ancestry SW	male	-/-
+NA20346	ASW	African Ancestry SW	male	-/-
+NA20348	ASW	African Ancestry SW	male	-/-
+NA20351	ASW	African Ancestry SW	male	-/C
+NA20355	ASW	African Ancestry SW	female	-/-
+NA20356	ASW	African Ancestry SW	male	-/-
+NA20357	ASW	African Ancestry SW	female	-/C
+NA20359	ASW	African Ancestry SW	female	-/C
+NA20362	ASW	African Ancestry SW	male	-/C
+NA20412	ASW	African Ancestry SW	female	-/C
+NA20502	TSI	Toscani	female	C/C
+NA20503	TSI	Toscani	female	-/C
+NA20504	TSI	Toscani	female	C/C
+NA20505	TSI	Toscani	female	C/C
+NA20506	TSI	Toscani	female	-/C
+NA20507	TSI	Toscani	female	-/C
+NA20508	TSI	Toscani	female	-/-
+NA20509	TSI	Toscani	male	-/-
+NA20510	TSI	Toscani	male	C/C
+NA20511	TSI	Toscani	male	-/C
+NA20512	TSI	Toscani	male	-/-
+NA20513	TSI	Toscani	male	-/C
+NA20514	TSI	Toscani	female	-/C
+NA20515	TSI	Toscani	male	-/C
+NA20516	TSI	Toscani	male	-/C
+NA20517	TSI	Toscani	female	-/-
+NA20518	TSI	Toscani	male	-/C
+NA20519	TSI	Toscani	male	-/C
+NA20520	TSI	Toscani	male	-/-
+NA20521	TSI	Toscani	male	-/C
+NA20522	TSI	Toscani	female	-/-
+NA20524	TSI	Toscani	male	-/C
+NA20525	TSI	Toscani	male	-/-
+NA20527	TSI	Toscani	male	-/-
+NA20528	TSI	Toscani	male	-/-
+NA20529	TSI	Toscani	female	-/C
+NA20530	TSI	Toscani	female	C/C
+NA20531	TSI	Toscani	female	C/C
+NA20532	TSI	Toscani	male	-/C
+NA20533	TSI	Toscani	female	-/C
+NA20534	TSI	Toscani	male	C/C
+NA20535	TSI	Toscani	female	-/-
+NA20536	TSI	Toscani	male	-/-
+NA20538	TSI	Toscani	male	-/-
+NA20539	TSI	Toscani	male	-/C
+NA20540	TSI	Toscani	female	-/C
+NA20541	TSI	Toscani	female	-/-
+NA20542	TSI	Toscani	female	-/-
+NA20543	TSI	Toscani	male	C/C
+NA20544	TSI	Toscani	male	-/-
+NA20581	TSI	Toscani	male	-/C
+NA20582	TSI	Toscani	female	C/C
+NA20585	TSI	Toscani	female	C/C
+NA20586	TSI	Toscani	male	-/-
+NA20587	TSI	Toscani	female	C/C
+NA20588	TSI	Toscani	male	-/-
+NA20589	TSI	Toscani	female	-/-
+NA20752	TSI	Toscani	male	-/C
+NA20753	TSI	Toscani	female	-/C
+NA20754	TSI	Toscani	male	-/-
+NA20755	TSI	Toscani	male	-/-
+NA20756	TSI	Toscani	female	-/C
+NA20757	TSI	Toscani	female	C/C
+NA20758	TSI	Toscani	male	C/C
+NA20759	TSI	Toscani	male	-/C
+NA20760	TSI	Toscani	female	-/-
+NA20761	TSI	Toscani	female	C/C
+NA20762	TSI	Toscani	male	-/C
+NA20763	TSI	Toscani	male	-/-
+NA20764	TSI	Toscani	female	-/-
+NA20765	TSI	Toscani	male	-/C
+NA20766	TSI	Toscani	female	C/C
+NA20767	TSI	Toscani	male	C/C
+NA20768	TSI	Toscani	female	-/-
+NA20769	TSI	Toscani	female	-/-
+NA20770	TSI	Toscani	male	-/C
+NA20771	TSI	Toscani	female	-/-
+NA20772	TSI	Toscani	female	-/C
+NA20773	TSI	Toscani	female	C/C
+NA20774	TSI	Toscani	female	-/-
+NA20775	TSI	Toscani	female	C/C
+NA20778	TSI	Toscani	male	-/-
+NA20783	TSI	Toscani	male	-/C
+NA20785	TSI	Toscani	male	-/C
+NA20786	TSI	Toscani	female	-/C
+NA20787	TSI	Toscani	male	-/C
+NA20790	TSI	Toscani	female	-/C
+NA20792	TSI	Toscani	male	-/C
+NA20795	TSI	Toscani	female	-/-
+NA20796	TSI	Toscani	male	C/C
+NA20797	TSI	Toscani	female	-/C
+NA20798	TSI	Toscani	male	-/C
+NA20799	TSI	Toscani	female	-/-
+NA20800	TSI	Toscani	female	-/C
+NA20801	TSI	Toscani	male	-/-
+NA20802	TSI	Toscani	female	-/-
+NA20803	TSI	Toscani	male	-/-
+NA20804	TSI	Toscani	female	-/C
+NA20805	TSI	Toscani	male	C/C
+NA20806	TSI	Toscani	male	-/-
+NA20807	TSI	Toscani	female	C/C
+NA20808	TSI	Toscani	female	-/-
+NA20809	TSI	Toscani	male	-/-
+NA20810	TSI	Toscani	male	-/C
+NA20811	TSI	Toscani	male	-/C
+NA20812	TSI	Toscani	male	-/C
+NA20813	TSI	Toscani	female	-/C
+NA20814	TSI	Toscani	male	-/-
+NA20815	TSI	Toscani	male	-/-
+NA20818	TSI	Toscani	female	-/C
+NA20819	TSI	Toscani	female	-/-
+NA20821	TSI	Toscani	female	-/-
+NA20822	TSI	Toscani	female	-/-
+NA20826	TSI	Toscani	female	-/C
+NA20827	TSI	Toscani	male	-/-
+NA20828	TSI	Toscani	female	-/C
+NA20832	TSI	Toscani	female	-/C
+NA20845	GIH	Gujarati	male	-/-
+NA20846	GIH	Gujarati	male	-/-
+NA20847	GIH	Gujarati	female	C/C
+NA20849	GIH	Gujarati	female	C/C
+NA20850	GIH	Gujarati	male	-/-
+NA20851	GIH	Gujarati	female	C/C
+NA20852	GIH	Gujarati	male	-/C
+NA20853	GIH	Gujarati	female	-/C
+NA20854	GIH	Gujarati	female	-/-
+NA20856	GIH	Gujarati	female	-/-
+NA20858	GIH	Gujarati	male	-/C
+NA20859	GIH	Gujarati	female	C/C
+NA20861	GIH	Gujarati	male	-/-
+NA20862	GIH	Gujarati	female	C/C
+NA20863	GIH	Gujarati	male	-/C
+NA20864	GIH	Gujarati	male	-/C
+NA20866	GIH	Gujarati	male	-/C
+NA20867	GIH	Gujarati	male	-/C
+NA20868	GIH	Gujarati	female	-/-
+NA20869	GIH	Gujarati	female	-/C
+NA20870	GIH	Gujarati	male	-/C
+NA20872	GIH	Gujarati	female	-/C
+NA20874	GIH	Gujarati	female	-/-
+NA20875	GIH	Gujarati	female	C/C
+NA20876	GIH	Gujarati	female	-/C
+NA20877	GIH	Gujarati	female	-/-
+NA20878	GIH	Gujarati	female	-/-
+NA20881	GIH	Gujarati	female	C/C
+NA20882	GIH	Gujarati	female	-/-
+NA20884	GIH	Gujarati	male	-/C
+NA20885	GIH	Gujarati	male	-/-
+NA20886	GIH	Gujarati	female	-/C
+NA20887	GIH	Gujarati	male	-/-
+NA20888	GIH	Gujarati	female	-/C
+NA20889	GIH	Gujarati	male	-/C
+NA20890	GIH	Gujarati	male	-/C
+NA20891	GIH	Gujarati	male	-/-
+NA20892	GIH	Gujarati	female	-/C
+NA20894	GIH	Gujarati	female	-/C
+NA20895	GIH	Gujarati	male	-/-
+NA20896	GIH	Gujarati	female	C/C
+NA20897	GIH	Gujarati	male	-/-
+NA20899	GIH	Gujarati	female	C/C
+NA20900	GIH	Gujarati	female	-/-
+NA20901	GIH	Gujarati	male	-/C
+NA20902	GIH	Gujarati	female	-/C
+NA20903	GIH	Gujarati	male	-/C
+NA20904	GIH	Gujarati	male	-/C
+NA20905	GIH	Gujarati	male	C/C
+NA20906	GIH	Gujarati	female	-/C
+NA20908	GIH	Gujarati	female	-/-
+NA20910	GIH	Gujarati	female	-/C
+NA20911	GIH	Gujarati	male	-/-
+NA21086	GIH	Gujarati	female	-/-
+NA21087	GIH	Gujarati	male	-/-
+NA21088	GIH	Gujarati	female	-/C
+NA21089	GIH	Gujarati	female	-/C
+NA21090	GIH	Gujarati	male	-/-
+NA21091	GIH	Gujarati	male	-/C
+NA21092	GIH	Gujarati	male	-/C
+NA21093	GIH	Gujarati	male	-/C
+NA21094	GIH	Gujarati	male	-/C
+NA21095	GIH	Gujarati	male	-/C
+NA21097	GIH	Gujarati	female	-/-
+NA21098	GIH	Gujarati	male	-/-
+NA21099	GIH	Gujarati	male	C/C
+NA21100	GIH	Gujarati	male	-/-
+NA21101	GIH	Gujarati	female	-/C
+NA21102	GIH	Gujarati	female	-/C
+NA21103	GIH	Gujarati	female	C/C
+NA21104	GIH	Gujarati	male	C/C
+NA21105	GIH	Gujarati	male	-/C
+NA21106	GIH	Gujarati	female	-/-
+NA21107	GIH	Gujarati	male	C/C
+NA21108	GIH	Gujarati	female	-/C
+NA21109	GIH	Gujarati	male	-/C
+NA21110	GIH	Gujarati	female	-/C
+NA21111	GIH	Gujarati	male	-/-
+NA21112	GIH	Gujarati	male	-/C
+NA21113	GIH	Gujarati	male	-/C
+NA21114	GIH	Gujarati	male	C/C
+NA21115	GIH	Gujarati	male	-/C
+NA21116	GIH	Gujarati	male	-/C
+NA21117	GIH	Gujarati	male	-/C
+NA21118	GIH	Gujarati	male	-/-
+NA21119	GIH	Gujarati	male	-/C
+NA21120	GIH	Gujarati	female	-/C
+NA21122	GIH	Gujarati	female	-/C
+NA21123	GIH	Gujarati	male	C/C
+NA21124	GIH	Gujarati	male	-/-
+NA21125	GIH	Gujarati	female	-/-
+NA21126	GIH	Gujarati	male	-/-
+NA21127	GIH	Gujarati	male	-/-
+NA21128	GIH	Gujarati	male	-/-
+NA21129	GIH	Gujarati	male	C/C
+NA21130	GIH	Gujarati	male	-/C
+NA21133	GIH	Gujarati	male	-/C
+NA21135	GIH	Gujarati	male	-/C
+NA21137	GIH	Gujarati	female	-/C
+NA21141	GIH	Gujarati	female	C/C
+NA21142	GIH	Gujarati	female	-/-
+NA21143	GIH	Gujarati	female	-/-
+NA21144	GIH	Gujarati	female	C/C
