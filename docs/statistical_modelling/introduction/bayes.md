@@ -1,5 +1,8 @@
-# The most important formula in science
+---
+sidebar_position: 3
+---
 
+# The most important formula in science
 
 The most important formula is... Bayes theorem!
 

@@ -2,7 +2,7 @@
 sidebar_position: 10
 ---
 
-# Bayesian example
+# What to make of a COVID test
 
 Let's apply Bayes formula to this question:
 
