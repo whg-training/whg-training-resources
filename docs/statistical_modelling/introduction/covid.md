@@ -39,7 +39,6 @@ For example for Oxfordshire, UK the [numbers in September 2023](https://www.oxfo
 
 (To be conservative, I suggest we err on the side of caution and imagine the true rate to be substantially larger than this - say 100 in 100,000.)
 
-
-
+**Can you use Bayes' theorem to answer the question? **
 
 
