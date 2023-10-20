@@ -17,7 +17,7 @@ formula](./bayes.md).  Let's try now:
 
 $$
 
-P\left(\text{infected}|{\text{+ve test result}}\right) = \frac{P\left(\text{+ve test result}\right) \cdot \text{prior}(\text{infected})}{\text{denominator}}
+P\left(\text{infected}|{\text{+ve test result}}\right) = \frac{P\left(\text{+ve test result}|\text{infected}\right) \cdot \text{prior}(\text{infected})}{\text{denominator}}
 
 $$
 
@@ -42,3 +42,14 @@ For example for Oxfordshire, UK the [numbers in September 2023](https://www.oxfo
 **Can you use Bayes' theorem to answer the question? **
 
 
+:::tip Note
+
+Remember we can compute the denominator by **summing over the possibilities in the numerator**.
+Here the possibilities are 'is infected' or 'isn't infected'.  So the denominator is:
+$$
+
+\text{denominator}
+= P\left( \text{+ve}|\text{infected}\right) \cdot P\left(\text{infected} \right)
++ P\left( \text{+ve}|\text{not infected}\right)\cdot P\left(\text{not infected} \right)
+
+$$
