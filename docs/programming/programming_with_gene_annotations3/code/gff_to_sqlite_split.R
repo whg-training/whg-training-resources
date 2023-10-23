@@ -63,7 +63,7 @@ process = function( args ) {
 	print( head( data ))
 
 	echo( "++ process(): Adding dataset filename as a column...\n" )
-	add_column(
+	data = add_column(
 		data,
 		dataset = get_dataset_name( args$input ),
 		.before = 1
