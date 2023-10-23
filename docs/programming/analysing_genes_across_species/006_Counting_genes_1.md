@@ -75,19 +75,19 @@ you created in the last step:
 *Note.* I ran the above command interactively in sqlite3 - you get there by typing `sqlite3 genes.sqlite` in the shell.
 Type `.quit` to quit.)
 
-If you followed the suggestions, or used my version of the code, your file will also have an `analysis` column
+If you followed the suggestions, or used my version of the code, your file will also have an `dataset` column
 that lets you differentiate the records for different species. So you can make these counts for multiple species:
 
 ```
 sqlite> .mode column
 sqlite> .header on
-sqlite> SELECT analysis, COUNT(*) FROM gff WHERE type=='gene' GROUP BY analysis ;
+sqlite> SELECT dataset, COUNT(*) FROM gff WHERE type=='gene' GROUP BY dataset ;
 ```
 
 In my data, which includes spiny chromis, dromedary camels, red junglefowl, humans, mice, chimpanzees, and
 malaria parasites, this gives:
 
-    analysis                                     COUNT(*)  
+    dataset                                      COUNT(*)  
     -------------------------------------------  ----------
     Acanthochromis_polyacanthus.ASM210954v1.104  24027     
     Camelus_dromedarius.CamDro2.104.chr.gff3     18919     
@@ -103,7 +103,7 @@ PlasmoDB](https://plasmodb.org/plasmo/app/downloads/Current_Release/), I kludged
 ```
 UPDATE genes
 SET type = 'gene', biotype = 'protein_coding_gene'
-WHERE analysis == 'PlasmoDB-54_Pfalciparum3D7'
+WHERE dataset == 'PlasmoDB-54_Pfalciparum3D7'
 AND type == 'protein_coding_gene' ;
 ```
 
@@ -122,7 +122,7 @@ db = sqlite3.connect( "genes.sqlite" )
 genes = pandas.read_sql( "SELECT * FROM gff WHERE type == 'gene'", db )
 (
     genes
-    .groupby( "analysis" )
+    .groupby( "dataset" )
     .size()
 )
 ```
@@ -138,7 +138,7 @@ db = dbConnect( dbDriver( "SQLite" ), "genes.sqlite" )
 genes = dbGetQuery( db, "SELECT * FROM gff WHERE type == 'gene'" )
 (
     genes
-    %>% group_by( analysis )
+    %>% group_by( dataset )
     %>% summarise( count = n() )
 )
 ```
@@ -148,7 +148,7 @@ genes = dbGetQuery( db, "SELECT * FROM gff WHERE type == 'gene'" )
 
 This produces:
 
-    analysis
+    dataset
     Acanthochromis_polyacanthus.ASM210954v1.104    24027
     Camelus_dromedarius.CamDro2.104.chr.gff3       18919
     Gallus_gallus.GRCg6a.104                       16666
@@ -185,7 +185,7 @@ types (those with no `Parent`) in the file like this:
 import pandas, sqlite3
 db = sqlite3.connect( "genes.sqlite" )
 types = pandas.read_sql(
-    "SELECT analysis, type, COUNT(*) FROM gff WHERE Parent IS NULL GROUP BY analysis, type",
+    "SELECT dataset, type, COUNT(*) FROM gff WHERE Parent IS NULL GROUP BY dataset, type",
     db
 )
 print( types )

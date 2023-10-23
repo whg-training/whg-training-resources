@@ -23,10 +23,10 @@ data$length = data$end - data$start + 1
 
 p = (
    ggplot( data = data )
-   + geom_point( aes( x = end - start + 1, y = average_number_of_exons, col = analysis ))
+   + geom_point( aes( x = end - start + 1, y = average_number_of_exons, col = dataset ))
    + xlab( "Gene length" )
    + ylab( "Number of exons" )
-   + facet_wrap( ~analysis )
+   + facet_wrap( ~dataset )
 )
 
 ggsave( p, file = "gene_length_versus_number_of_exons.pdf", width = 8, height = 5 )

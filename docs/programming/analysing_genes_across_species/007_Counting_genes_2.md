@@ -25,11 +25,11 @@ This sqlite file is now in a good shape to start really exploring genes. First l
 sqlite> .mode column
 sqlite> .header on
 sqlite> .width 50 25 25
-sqlite> SELECT analysis, biotype, COUNT(*) FROM gff_data WHERE type=='gene' GROUP BY analysis, biotype ;
+sqlite> SELECT dataset, biotype, COUNT(*) FROM gff_data WHERE type=='gene' GROUP BY dataset, biotype ;
 ```
 With the current data I have this gives:
 
-    analysis                                            biotype                    COUNT(*)                 
+    dataset                                             biotype                    COUNT(*)                 
     --------------------------------------------------  -------------------------  -------------------------
     Acanthochromis_polyacanthus.ASM210954v1.104         IG_J_gene                  2                        
     Acanthochromis_polyacanthus.ASM210954v1.104         IG_V_gene                  4                        
@@ -98,7 +98,7 @@ these in the rest of this tutorial.
 import pandas, sqlite3
 db = sqlite3.connect( "genes.sqlite" )
 data = pandas.read_sql( "SELECT * FROM gff_data WHERE type IN ( 'gene' )", db )
-data.groupby( [ 'analysis', 'biotype' ] ).size()
+data.groupby( [ 'dataset', 'biotype' ] ).size()
 ```
 
 ## What do genes look like?
@@ -317,8 +317,8 @@ queries (in a way that mimics what we would do in python) we can 'bake' the rele
 their own tables first:
 
 ```
-CREATE TABLE genes AS SELECT analysis, ID, Parent, Name, biotype, seqid, start, end, strand FROM gene_view ;
-CREATE TABLE transcript_summary AS SELECT analysis, ID, Parent, Name, biotype, seqid, start, end, strand, number_of_exons FROM transcript_summary_view ;
+CREATE TABLE genes AS SELECT dataset, ID, Parent, Name, biotype, seqid, start, end, strand FROM gene_view ;
+CREATE TABLE transcript_summary AS SELECT dataset, ID, Parent, Name, biotype, seqid, start, end, strand, number_of_exons FROM transcript_summary_view ;
 CREATE INDEX transcript_summary_Parent_INDEX ON transcript_summary( Parent ) ;
 ```
 

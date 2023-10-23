@@ -10,14 +10,14 @@ To figure out how much of the genome is covered by genes, or by exons, we face a
 In principle we could just add together the gene lengths.
 ```
 genes['length'] = genes['end'] - genes['start']
-genes.groupby('analysis').agg(
+genes.groupby('dataset').agg(
     covered_length = pandas.NamedAgg( column = 'length', aggfunc = lambda w: w.sum() )
 )
 ```
 
 Then we could compare to the sequence lengths
 ```
-sequence_lengths = pandas.read_sql( "SELECT analysis, SUM(end-start) AS sequence_length FROM sequences GROUP BY analysis", db )
+sequence_lengths = pandas.read_sql( "SELECT dataset, SUM(end-start) AS sequence_length FROM sequences GROUP BY dataset", db )
 ```
 
 So this would say for example that about 44% of the human genome is covered by genes.
@@ -91,10 +91,10 @@ We're ready to answer this! Let's use the above to write function that counts th
 ```
 # Add this to your gff.py file
 def compute_genome_bases_covered( regions, sequences ):
-   """Given a set of regions (as a dataframe with analysis, seqid, and start, and end columns),
-   and a set of sequences (as a dataframe with analysis, seqid and sequence_length columns, return
+   """Given a set of regions (as a dataframe with dataset, seqid, and start, and end columns),
+   and a set of sequences (as a dataframe with dataset, seqid and sequence_length columns, return
    a dataframe showing the total number and proportion of sequence bases covered by the regions in
-   each analysis."""
+   each dataset."""
    def sum_region_lengths( regions ):
       # We convert from pandas to a list...
       aslist = regions[['start', 'end']].values.tolist()
@@ -111,18 +111,18 @@ def compute_genome_bases_covered( regions, sequences ):
    def compute_bases_covered_in_one_chromosome( regions ):
       return (
          regions
-         .groupby( [ "analysis", "seqid" ])
+         .groupby( [ "dataset", "seqid" ])
          .apply( sum_region_lengths )
       )
    def add_sequence_lengths( coverage, sequences ):
       return pandas.merge(
          coverage,
          sequences,
-         left_on = [ "analysis", "seqid" ],
-         right_on = [ "analysis", "seqid" ]
+         left_on = [ "dataset", "seqid" ],
+         right_on = [ "dataset", "seqid" ]
       )
    def sum_over_chromosomes( coverage ):
-      result = coverage.groupby( "analysis" ).agg(
+      result = coverage.groupby( "dataset" ).agg(
          bases_covered = pandas.NamedAgg( column = "bases_covered", aggfunc = sum ),
          sequence_length = pandas.NamedAgg( column = "sequence_length", aggfunc = sum )
       )
@@ -146,20 +146,20 @@ Let's try it out:
 import pandas, sqlite3, gff
 db = sqlite3.connect( "genes.sqlite" )
 genes = pandas.read_sql( """
-   SELECT analysis, ID, Parent, seqid, start, end, strand, Name, biotype
+   SELECT dataset, ID, Parent, seqid, start, end, strand, Name, biotype
    FROM gff_data
    WHERE type == 'gene'
    AND biotype == 'protein_coding'
 """, db
 )
-sequences = pandas.read_sql( "SELECT analysis, seqid, ( end - start ) AS sequence_length FROM sequences", db )
+sequences = pandas.read_sql( "SELECT dataset, seqid, ( end - start ) AS sequence_length FROM sequences", db )
 gff.compute_genome_bases_covered( genes, sequences )
 ```
 
 This gives:
 
                                                 bases_covered  sequence_length  proportion
-    analysis                                                                               
+    dataset                                                                               
     Acanthochromis_polyacanthus.ASM210954v1.104      415285145        830196730    0.500225
     Camelus_dromedarius.CamDro2.104.chr.gff3         815783547       2052758671    0.397408
     Gallus_gallus.GRCg6a.104                         480522985       1050156563    0.457573
@@ -178,12 +178,12 @@ as follows (as usual this could be done in sql as well, if we wanted):
 
 ```
 transcripts = pandas.read_sql( """
-   SELECT analysis, ID, Parent, seqid, start, end
+   SELECT dataset, ID, Parent, seqid, start, end
    FROM gff_data WHERE type == 'mRNA'
 """, db )
 
 exons = pandas.read_sql( """
-   SELECT analysis, ID, Parent, seqid, start, end
+   SELECT dataset, ID, Parent, seqid, start, end
    FROM gff_data WHERE type == 'exon'
 """, db )
 
@@ -203,7 +203,7 @@ gff.compute_genome_bases_covered( exons, sequences )
 This gives:
 
                                                  bases_covered  sequence_length  proportion
-    analysis                                                                               
+    dataset                                                                               
     Acanthochromis_polyacanthus.ASM210954v1.104       64427980        830196730    0.077606
     Camelus_dromedarius.CamDro2.104.chr.gff3          44585999       2052758671    0.021720
     Gallus_gallus.GRCg6a.104                          41635090       1050156563    0.039647
@@ -222,7 +222,7 @@ This is easy now:
 
 ```
 cds = pandas.read_sql( """
-   SELECT analysis, ID, Parent, seqid, start, end, strand, Name, biotype
+   SELECT dataset, ID, Parent, seqid, start, end, strand, Name, biotype
    FROM gff_data WHERE type == 'CDS'
 """, db)
 cds = cds[ cds["Parent"].isin( transcripts['ID'])]
@@ -232,7 +232,7 @@ gff.compute_genome_bases_covered( cds, sequences )
 This gives:
 
                                                  bases_covered  sequence_length  proportion
-    analysis                                                                               
+    dataset                                                                               
     Acanthochromis_polyacanthus.ASM210954v1.104       37182784        830196730    0.044788
     Camelus_dromedarius.CamDro2.104.chr.gff3          31455083       2052758671    0.015323
     Gallus_gallus.GRCg6a.104                          28472131       1050156563    0.027112

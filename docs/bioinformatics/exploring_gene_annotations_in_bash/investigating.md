@@ -94,14 +94,16 @@ grep 'Parent=ENST00000425340.3' gencode.v41.annotation.gff3 | awk '$3 == "CDS"' 
 ```
 
 If you look at this you'll see the gene has one annotated coding sequence, and it lives entirely inside the
-second exon. Its length is 1032 base pairs. So **only about $\tfrac{1}{10}$th of the gene codes for protein.
+second exon. Its length is 1032 base pairs. So **only about $\tfrac{1}{10}$th of the gene codes for protein**.
 
 :::tip Note
 If we've got this right then the nucleotide length of the coding sequence should be a multiple of something - what?
 Is 1032 an appropriate multiple?
 :::
 
-:::tip Challenge question Now repeat the above process for another gene and see if things look similar. For
-example, try the genes that encode [alpha globin](https://en.wikipedia.org/wiki/Hemoglobin_subunit_alpha),
-named `HBA1` and `HBA2`.
+:::tip Challenge question
+
+Now repeat the above process for another gene and see if things look similar. For example, try the genes that encode
+[alpha globin](https://en.wikipedia.org/wiki/Hemoglobin_subunit_alpha), named `HBA1` and `HBA2`.
+
 :::
