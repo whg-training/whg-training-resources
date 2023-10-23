@@ -33,7 +33,7 @@ the allele frequency and/or the O blood group frequency across all populations a
 
 Add the posterior mean and lower and upper values forming a 95% credible set to the data frame.
 
-Add 95% credible intervals for each population to the data frame, using `pbeta()`, and then plot these as the estimates
+Add 95% credible intervals for each population to the data frame, using `qbeta()`, and then plot these as the estimates
 (points) and 95% confidence intervals
 
 :::
