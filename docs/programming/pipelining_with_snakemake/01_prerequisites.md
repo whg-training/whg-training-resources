@@ -64,8 +64,9 @@ install.packages(
 (You can then re-install your own version later if you made additional changes).
 :::
 
-**Finally**, please download [this R script](https://raw.githubusercontent.com/whg-training/whg-training-resources/main/docs/programming/pipelining_with_snakemake/code/summarise_ensembl_gff.R).  You should save it as `summarise_ensembl_gff.R` in the current directory.
-
+**Finally**, please download [this R
+script](https://raw.githubusercontent.com/whg-training/whg-training-resources/main/docs/programming/pipelining_with_snakemake/code/summarise_ensembl_gff.R).
+(For example by copying the link and using `curl -O`).  You should save it as `summarise_ensembl_gff.R` in the current directory.
 
 :::tip Note
 You can check this is working by running it:
