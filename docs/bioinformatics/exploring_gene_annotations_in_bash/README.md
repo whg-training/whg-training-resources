@@ -25,12 +25,12 @@ them. Try the example commands now in your terminal:
 | `ls`       | Lists files in a directory                           | `ls`                                   |
 | `mkdir`    | Make a new directory                                 | `mkdir genes_tutorial`                 |
 | `cd`       | Changes the current directory                        | `cd genes_tutorial`                    |
-| `echo`     | Print some text (that cna be redirected to a file.)  | `echo "Hello all\ngenes" > file.txt`   |
+| `echo`     | Print some text (that can be redirected to a file.)  | `echo "Hello all\ngenes" > file.txt`   |
 | `cat`      | Print the output of one or more files.               | `cat file.txt`                         |
 | `less`     | Interactively explore a file (press `q` to quit)     | `less file.txt`                        |
-| `cut`      | Extract specific columns from a file                 | `cut -d' ' -f1 file.txt`.              |
-| `grep`     | Search for a string (or *regulare expression*        | `grep "Hello" file.txt`                |
-| `awk`      | General-purpose tool                                 | `awk '$1 == "Hello" file.txt`          |
+| `cut`      | Extract specific columns from a file                 | `cut -d' ' -f1 file.txt`               |
+| `grep`     | Search for a string (or *regular expression*)        | `grep "Hello" file.txt`                |
+| `awk`      | General-purpose tool. (We'll use to select lines with specific values in a column.) | `awk '$1 == "Hello"' file.txt`          |
 | `sort`     | Sort rows alphabetically                             | `sort file.txt`                        |
 | `uniq`     | Gather and count unique values                       | `uniq -c file.txt`                     |
 | `gzip`/`gunzip`  | General-purpose compression/decompression.     | `gzip file.txt`                        |
