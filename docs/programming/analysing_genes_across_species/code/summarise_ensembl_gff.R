@@ -54,17 +54,20 @@ process = function( args ) {
         .before = 1
     )
 
-	echo( "++ Summarising data by type and biotype...\n")
+	echo( "++ Summarising data by type and biotype...\n" )
     summary = (
         data
         %>% group_by( dataset, type, biotype )
         %>% summarise(
             number_of_features = n(),
-            min_length = sprintf( "%.2fkb", min( end-start+1 ) / 1000 ),
-            max_length = sprintf( "%.2fkb", max( end-start+1 ) / 1000 ),
             median_length = sprintf( "%.2fkb", median( end-start+1 ) / 1000 )
         )
-    )
+    ) %>% arrange( number_of_features )
+
+    # Encode type and biotype together
+    w = which( !is.na( summary$biotype ))
+    summary$type[w] = sprintf( "%s (%s)", summary$type[w], summary$biotype[w])
+    summary = summary[,c(1:2,4:ncol(summary))]
 
 	echo( "++ process(): Writing data to '%s'...\n", args$output )
 	write_tsv( summary, args$output )
@@ -77,5 +80,4 @@ args = parse_arguments()
 echo( "++ summarise_ensembl_gff.R: processing...\n" )
 process( args )
 
-echo( "++ Success!\n" )
 echo( "++ Thank you for using summarise_ensembl_gff.R.\n" )
