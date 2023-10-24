@@ -1,7 +1,5 @@
-library(
-	tidyverse,
-	quietly = TRUE
-)
+options(tidyverse.quiet = TRUE)
+library( tidyverse )
 library( RSQLite )
 library( gmsgff )
 
