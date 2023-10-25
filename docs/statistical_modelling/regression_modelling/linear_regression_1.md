@@ -52,8 +52,10 @@ genotypes - including at the SNP rs1419114 - are associated with expression chan
 
 :::tip Note
 
-Gene quantification is usually measured in more sophisticated units - `TMP` or `FPKM`. They involve scaling by the computed value
-across all genes, which helps to normalise for variation in expression of other genes. We'll skip that here.
+Gene quantification is usually measured in more sophisticated units - 'transcripts per million' (TPM) or 'fragments per
+kilobase per million'`(FPKM). They involve scaling by the computed value across all genes, which helps to normalise for
+variation in expression of other genes.   We'll skip that here but you should consider it if doing a real transcriptomic
+study.
 
 :::
 
