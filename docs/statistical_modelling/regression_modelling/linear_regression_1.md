@@ -26,7 +26,7 @@ folder](https://github.com/whg-training/whg-training-resources/tree/main/docs/st
 download the file `atp2b4_per_gene_data.tsv` and place it in your folder:
 
 ```
-curl -O https://github.com/whg-training/whg-training-resources/tree/main/docs/statistical_modelling/regression_modelling/data/atp2b4_per_gene_data.tsv
+curl -O https://raw.githubusercontent.com/whg-training/whg-training-resources/main/docs/statistical_modelling/regression_modelling/data/atp2b4_per_gene_data.tsv
 ```
 
 (Or use the [direct link](./data/atp2b4_per_gene_data.tsv).)
