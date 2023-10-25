@@ -325,19 +325,30 @@ fit: namely it determines a *joint distribution over the parameters*.
 
 In the above, the estimate was $0.0209$ with a standard error of $0.0125$.  What does that standard error mean?
 
-One way of thinking about this is to imagine that the standard error tells us how spread-out the *sampling distribution of the
-estimate is*. To understand this you have to think, not just of this dataset we have analysed, but of all the infinitely many other
-datasets we could have obtained in the study.
+Here are two ways of thinking about it.  First, in the context of bayes' theorem, this is really expressing the
+variation in the posterior distribution.  Roughtly speaking, it is saying that the posterior is (approximately) a
+Gaussian distribution with the given estimate as mode and standard deviation as the standard error.  (For linear
+regression it's actually a T distribution not a gaussian, but that doesn't matter very much.)  In other words this is
+describing what we should believe about the 'true' parameter estimate given the data we've seen.  This is a **good way**
+of thinking about it.
+
+Another useful way of thinking about the standard error is that it tells us the **sampling error** of the estimate.  To
+understand this, you have to think not just of the dataset we have loaded, but also imagine what would happen if we
+generated and estimated in other datasets generated the same way.  Each dataset would generate its own estimate, which
+would differ a bit from our estimate due to all the random noise and so on.  The **standard error** tells us how much
+variability we should expect in that estimate.
 
 :::tip Note
-An odd feature of linear regression is that it treats the predictors (i.e. the genotypes) as fixed - they are treated as known
-beforehand rather than as part of the 'observed data' for statistical purposes. So this is really about imagining possible
-expression values for samples with the given genotypes.
+
+In this context, an odd feature of linear regression is that it treats the predictors (i.e. the genotypes) as fixed - they are treated as
+known beforehand rather than as part of the 'observed data' for statistical purposes. So this is really about imagining
+possible expression values for samples with the given genotypes.
+
 :::
 
-So: suppose there's actually no association and suppose - hypothetically - we were to repeat our estimate on a million different
-sets of 24 samples (with the same genotypes). The *sampling distribution* of the estimate we would obtain would look something like
-this:
+To explore this **sampling distribution** interopretation, suppose there's actually no association and suppose -
+hypothetically - we were to repeat our estimate on a million different sets of 24 samples (with the same genotypes). The
+*sampling distribution* of the estimate we would obtain would look something like this:
 
 ```
 sampling_distribution = tibble(
@@ -383,8 +394,12 @@ print(
 for linear regression, the distribution is actually T not gaussian. However, this doesn't matter much and gets less important as
 the sample size grows, so I'm going to ignore it.
 
-The point I am making here is that **the P-value gives no new information relative to the estimate and its standard error**. If you
-had to choose what to report, it should be the estimate of $\beta$ and its standard error.
+Becuase of this mass-under-the-tails behaviour, the p-value is interpreted as 'the probability of seeing an effect as
+large as *or larger than* the one we actually saw, if there wasn't any true effect.  
+
+However, the real point I am making here is that **the P-value gives no new information relative to the estimate and its
+standard error**. If you had to choose what to report, it should be the estimate of $\beta$ and its standard error, and
+you can also think of that as summarising the posterior.
 
 :::
 
