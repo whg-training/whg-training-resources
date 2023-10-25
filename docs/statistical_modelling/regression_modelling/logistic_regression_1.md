@@ -11,14 +11,14 @@ Before moving on let's try a different type of regression: *logistic regression*
 continuously varying outcome variable (such as expression levels), logistic regression models a binary 0/1 outcome - or more
 generally *binomial* (count) or *multinomial* (categorical) outcome.
 
-### Prerequisites
+## Prerequisites
 
 To get started, download the file 'o_bld_group_data.csv' from [this folder](The data can be found in [this
 folder](https://github.com/whg-training/whg-training-resources/tree/main/docs/statistical_modelling/regression_modelling/data/) - 
 and place it in your folder.  E.g. from the command line:
 
 ```
-curl -O https://github.com/whg-training/whg-training-resources/tree/main/docs/statistical_modelling/regression_modelling/data/o_bld_group_data.tsv
+curl -O https://raw.githubusercontent.com/whg-training/whg-training-resources/main/docs/statistical_modelling/regression_modelling/data/o_bld_group_data.tsv
 ```
 
 (Or use the [direct link](./data/o_bld_group_data.tsv).)
@@ -28,7 +28,7 @@ Now load it into your R session:
 data = read_delim( "o_bld_group_data.tsv", delim = "\t" )
 ```
 
-### What's in the data?
+## What's in the data?
 
 The data contains genotype calls for the genetic variants rs8176719 and rs8176746, measured in a set of severe malaria cases and
 population controls from several African countries. These variants lie in the *ABO* gene and together encode the most common ABO
@@ -58,8 +58,6 @@ In non-O individuals, B blood group is encoded by the 'T' allele of rs8176746. W
 non-O-blood group individuals in each country?
 :::
 
-::tip Note
-
 If you want to see what the genetic effect of these variants is, I highly recommend looking it up in the [UCSC genome
 browser](https://genome-euro.ucsc.edu/) and/or the [Ensembl genome
 browser](https://www.ensembl.org/homo_sapiens/Variation/Summary?v=rs8176719) . You should see that rs8176719 is a *frameshift
@@ -67,7 +65,6 @@ variant* within *ABO* gene. (Which exon is it in?). Chromosomes with the deletio
 produce a malformed enzyme that prevents synthesis of A or B antigens (they cause a loss of glycosyltransferase activity). 
 
 (Of course, humans have two copies so if the sample is heterozygous then it's quite possible the other copy does express A or B.)
-:::
 
 :::tip Question
 
@@ -112,7 +109,7 @@ summary(fit)$coeff
 
 Woah.  The estimate is $-0.334 / 0.039 = 8.6$ standard errors from zero!
 
-### Including covariates.
+## Including covariates.
 
 But wait!  Just as before there are some covariates in the data.
 
