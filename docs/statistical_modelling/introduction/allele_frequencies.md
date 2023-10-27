@@ -38,88 +38,231 @@ Add 95% credible intervals for each population to the data frame, using `qbeta()
 
 :::
 
-## Plotting multiple populations
+## Plotting the posterior
 
-To get `ggplot()` to plot densities for multiple populations, you have to make a giant dataframe that for each
-population has one value per `x` axis value.  So you may need a loop to do this.  For example, here is one approach
-(we'll plot the O blood group variant allele frequency here.)
+To get `ggplot()` to plot a posterior density for the whole dataset, or for individual populations, is not conceptually
+difficult - we're just plotting the beta distribution after all.  But does require a bit of complexity in terms of code.
+In short, `ggplot()` takes a single data frame as data, so you have to build a big dataframe that represents the
+posterior density at a grid of x axis values, for each population you want to plot.
 
-First let's create a data frame to hold the result, and a grid of x values to work with:
-```
-plot_data = tibble()
-x = seq( from = 0, to = 1, by = 0.01 )
-```
+You could find lots of ways to do this, but here's one way that is fairly re-useable.  Let's write a function that reads
+in one row of data and generates the dataframe we need.  Rather than hard-code this for the O blood group example, we'll
+make it work with generic 'reference' and 'alternate' counts (e.g. non-O blood group, and O blood group counts) so it
+can be re-used for other examples:
 
-Now loop over populations and evaluate the distribution. We use `bind_rows()` (part of [dplyr](dplyr.tidyverse.org)) to
-expand our data frame.  (Although `rbind()` from base R also works.).
-
-```
-for( i in 1:nrow( data )) {
-	row = data[i,]
-	population = row[['population']]
-	nonO = row[['C/C']] + row[['-/C']]
-	O = row[['-/-']]
-	plot_data = dplyr::bind_rows(
-		plot_data,
-		tibble(
-			population = population,
-			`nonO` = nonO,
-			`O` = O,
-			x = x,
-			value = dbeta( x, shape1 = O+1, shape2 = nonO+1 )
-		)
+```r
+generate_posterior = function(
+	row,
+	at= seq( from = 0, to = 1, by = 0.01 )
+) {
+	posterior_distribution = dbeta(
+		at,
+		shape1 = row$alternate_count + 1,
+		shape2 = row$reference_count + 1
+	)
+	tibble(
+		population = row$population,
+		reference_count = row$reference_count,
+		alternative_count = row$alternate_count,
+		at = at, 
+		value = posterior_distribution
 	)
 }
 ```
 
-Now the distributions can be plotted:
-```
-p = (
-	ggplot( data = plot_data )
-	+ geom_line( aes( x = x, y = value ))
-	+ facet_grid( population ~ ., scales = "free_y" )
-	+ theme_minimal()
-)
-print( p )
-```
-
-As usual this can be improved with a bit of ggplot theming.  Let's rotate the facet 'strip' labels:
-
-```
-print(
-	p + theme(
-		strip.text.y.right = element_text(angle = 0, hjust = 0)
+For example, for the O blood group data you could apply this to the whole dataset like this:
+```r
+overall_counts = (
+	X
+	%>% summarise(
+		population = 'all',
+		reference_count = sum( `C/C` + `-/C` ),
+		alternate_count = sum( `-/-` )
 	)
 )
-```
-
-Whilst we're at it, let's get rid of the actual tick numbers on the left.  (After all, all [distributions sum to
-1](./some_distributions.md) so the y axis scale is not really important for this visualisation.)
-```
-print(
-	p + theme(
-		axis.text.y = element_blank(),
-		strip.text.y.right = element_text(angle = 0, hjust = 0),
-		axis.title.y = element_text(angle = 0, vjust = 0.5)
-	)
-	+ xlab( "x" )
-	+ ylab( "posterior density" )
+print( overall_counts )
+overall_posterior = generate_posterior(
+	overall_counts,
+	at = seq( from = 0, to = 1, by = 0.01 )
 )
 ```
 
-:::caution Note
+If you print this, you should see a data frame with 101 rows (one for each of those `at` values) showing the posterior
+distribution.
 
-Most of those distributions are quite well-defined but a few are much more spread out.  Why is this?  (Look back at the
-data.)  
+:::tip Note
 
-(You could merge the data for those populations into the corresponding larger sets, if you wanted to - or remove them.)
+Make sure you understand what that data frame is showing.  To recap, it's the *posterior distribution of the frequency of O blood
+group across all populations*, evaluated at a grid of 101 points between zero and one.
+
+The posterior is a [beta distribution](./some_distributions.md) so we used `dbeta()` to compute it.
 
 :::
 
-:::tip Order the points
+Want to plot it?  No problem!
+```r
+p = (
+	ggplot( data = overall_posterior )
+	+ geom_line( aes( x = at, y = value ))
+)
+print(p)
+```
 
-Wouldn't it be nicer to order the populations by allele frequency? To get ggplot to do this you will need to  turn the
-`population` column into a **factor** - that is a set of strings with a definite set of **levels**, which you can order.
+Ok that's not good enough.  Let's zoom in:
+
+```r
+print( p + xlim( 0.35, 0.55 ))
+```
+
+:::tip Challenge
+
+Ok that's not good enough either.  Here are some things you should do to fix it.
+
+1. Does your plot look kind of jagged-y?  That's because the posterior distribution is concentrated around a small region (almost all the mass is between about 0.4 and 0.47), but we have only evaluated on a grid of 101 points across the interval.  To fix this, *increase the number of grid points* (i.e. the `at` variable above) and replot.
+
+2. **Always give your plots meaningful x axis and y axis labels**.  (Otherwise you'll just waste people's time making them ask what they are).  The `xlab()` and `ylab()` functions can be used for this, e.g.:
+```r
+p = (
+	ggplot( data = overall_posterior )
+	+ geom_line( aes( x = at, y = value ))
+	+ xlab( "My x axis label" )
+	+ ylab( "My y axis label" )
+)
+print(p)
+```
+
+3. Let's get rid of the grey background and make the text bigger, using 'theme_minimal()`:
+```
+print( p + theme_minimal(16) )
+```
+
+4. Personally, I don't like that the y axis label is printed at 90 degrees to the reading direction - do you?  That can
+   be fixed too with a bit of ggplot magic, which I always have to [look up in the
+   documentation](https://ggplot2.tidyverse.org) - it looks like this:
+
+```r
+print(
+	p
+	+ theme_minimal(16)
+	+ theme(
+		axis.title.y = element_text( angle = 0, vjust = 0.5 )
+	)
+)
+```
+
+**Note**. you have to do this call to `theme()` *after* `theme_minimal()`, otherwise it resets this property.
+
+**Challenge** Put all this together to make a final plot of the posterior distribution now.  It should look something like this:
+
+![img](images/o_bld_group_posterior.png)
+
+:::
+
+Congratulations!  
+
+
+## Plotting multiple populations
+
+Plotting multiple populations ought to be easy now - we just somehow need to call `generate_posterior()` for each row of
+our data, instead of for the whole set.  One way to do that is simple to loop over the rows and accumulate the results:
+```
+per_population_posterior = tibble()
+for( i in 1:nrow( data )) {
+	# summarise one row, as before
+	population_data = (
+		X[i,]	
+		%>%
+		summarise(
+			population = population,
+			reference_count = sum( `C/C` + `-/C` ),
+			alternate_count = sum( `-/-` )
+		)
+	)
+	per_population_posterior = bind_rows(
+		per_population_posterior,
+		generate_posterior( population_data )
+	)
+}
+```
+
+If you look at `per_population_data` you should see it has thousands of rows (or tens of thousands if you increased the
+number of `at` values), the same number of rows per population.  You could count them like this:
+```
+per_population_posterior %>% group_by( population ) %>% summarise( number_of_rows = n() )
+```
+
+Getting ggplot to plot this is now easy - we use a **facet**:
+```
+p = (
+	ggplot( data = per_population_posterior )
+	+ geom_line( aes( x = at, y = value ))
+	+ facet_grid( population ~ . )
+)
+print(p)
+```
+
+![img](images/o_bld_group_posterior_by_population.png)
+
+Cool!
+
+:::tip Note
+
+That `facet_grid()` call works like this.  You give it two variables to facet over rows and columns of the result, and write `variable1 ~ variable2`.
+In our case, we just want to facet over one variable rows, so we do `population ~ .`.  
+
+`ggplot()` then does all the work of splitting up the data up into each of the facets and arranges the plot into rows and columns.
+It's a very powerful feature for quickly exploring datasets.
+
+:::
+
+As usual, this initial plot isn't quite good enough to start with.  We should do several things:
+
+1. Those y axis scales are useless - too hard to see. We should get rid of them.
+2. The facet labels (on the right) are useless as well!  We can't see the population names.
+3. A more subtle bug is that the posteriors all have slightly different heights (depending on how spread-out the
+   distribution is).  But at the moment they all have the same scale.
+
+All this can be fixed with suitable calls to ggplot - see the comments below:
+
+```r
+p = (
+	ggplot( data = per_population_posterior )
+	+ geom_line( aes( x = at, y = value ))
+	+ facet_grid(
+		population ~ .,
+		# Make y axis facets have their own scales, learnt from the data
+		scales = "free_y"
+	)
+	+ theme_minimal(16)
+	+ xlab( "O blood group frequency" )
+	+ ylab( "Posterior density" )
+	+ theme(
+		# remove Y axis tick labels
+		axis.text.y = element_blank(),
+		# rotate facet labels on right of plot
+		strip.text.y.right = element_text(angle = 0, hjust = 0),
+		# rotate overall y axis label 90
+		axis.title.y = element_text(angle = 0, vjust = 0.5)
+	)
+
+)
+print(p)
+```
+
+![img](images/o_bld_group_posterior_by_population2.png)
+
+## Ordering populations
+
+That's all very well, but wouldn't it be nicer to order the populations by allele frequency? 
+
+In ggplot you have to do this by ordering the actual data itself.  Somehow we have to turn the `population` column
+(which is text, i.e. alphabetically ordered at present) into something that is ordered in a custom way.
+
+In R, there is a specific way to do this known as a **factor**.  A fac
+
+To get ggplot to do this
+you will need to  turn the `population` column into a **factor** - that is a set of strings with a definite set of
+**levels**, which you can order.
 
 For example:
 ```
