@@ -253,28 +253,44 @@ print(p)
 
 ## Ordering populations
 
-That's all very well, but wouldn't it be nicer to order the populations by allele frequency? 
+That's all very well, currently the populations are sorted in alphabetical order.  Wouldn't it be nicer to order the
+populations by allele frequency? 
 
-In ggplot you have to do this by ordering the actual data itself.  Somehow we have to turn the `population` column
-(which is text, i.e. alphabetically ordered at present) into something that is ordered in a custom way.
+The way to do this in ggplot is not obvious at first glance - you have to re-order the data itself.  In R, there is a
+specific way to do this known as a **factor**.  A factor is a set of string values that take one of a set of levels.
+You specify the order of the levels, and voila, the data is ordered.
 
-In R, there is a specific way to do this known as a **factor**.  A fac
+Let's do that now.  First let's compute the frequency in the original data:
 
-To get ggplot to do this
-you will need to  turn the `population` column into a **factor** - that is a set of strings with a definite set of
-**levels**, which you can order.
-
-For example:
 ```
 data$O_bld_grp_frequency = data[['-/-']] / ( data[['C/C']] + data[['-/C']] + data[['-/-']])
-populations = (data %>% arrange( O_allele_frequency ))$population
-data$population = factor( data$population, levels = populations )
 ```
 
-If you use `str(data)` you'll see that the `population` column has turned into a factor.
+Now let's use that to get an ordered list of populations.  An easy way is to use the [dplyr `arrange()` function](https://dplyr.tidyverse.org/reference/arrange.html) to order the dataframe by the frequency, then get the populations:
 
-Now if you regenerate the data frame and plot, things should be in order.
+```r
+ordered_populations = (
+	data
+	%>% arrange( O_bld_grp_frequency )
+)$population
+```
+
+Finally, we'll convert the `population` column of `per_population_posterior` to a factor with these levels:
+
+```r
+
+per_population_posterior$population = factor(
+	per_population_posterior$population,
+	levels = ordered_populations 
+)
+```
+
+That's it!  (If you try `str(data)` you'll see that the `population` column is now a factor.)
+
+Now if you regenerate the above plot, things should be in order.
+
+:::tip Question
+
+In which populations is O blood group at lowest frequency?  In which populations at highest frequency?
 
 :::
-
-

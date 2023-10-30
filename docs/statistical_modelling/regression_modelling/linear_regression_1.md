@@ -374,7 +374,7 @@ Whichever way you look at this it's hard to get excited about the association.
 
 :::tip Note
 
-The P-value given is a two-tailed p-value, and it is just compute as the **mass of our estimate under the two tails above**. That
+The P-value given is a two-tailed p-value, and it is just computed as the **mass of our estimate under the two tails above**. That
 looks like this:
 
 ![img](images/sampling_distribution_shaded.png)

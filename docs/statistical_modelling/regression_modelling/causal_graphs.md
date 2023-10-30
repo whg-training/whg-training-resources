@@ -19,7 +19,7 @@ To start, let's look at the 'three worlds' of scientific inference:
 
 <center>
 
-![img](images/three_worlds.pdf)
+![img](images/three_worlds.png)
 
 </center>
 
@@ -85,7 +85,7 @@ variance to make $C$ have variance $1$.
 
 Consider the nine causal diagrams below:
 
-![img](images/causal_diagrams.pdf)
+![img](images/causal_diagrams.png)
 
 Suppose all variables are gaussian with variance 1, all effects are linear and all effect sizes are 0.5.
 
@@ -108,7 +108,7 @@ data distribution is fully determined by the covariances between the three varia
 
 :::
 
-See if you can complete these before going further
+See if you can complete these before going further.
 
 ### Worked example
 
