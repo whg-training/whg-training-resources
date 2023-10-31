@@ -2,7 +2,7 @@
 sidebar_position: 8
 ---
 
-# Appendix - how accurate is Illumina sequencing?
+# Bonus tutorial: how accurate is Illumina sequencing?
 
 **Note.** Only do this section if you have plenty of time left, and/or have already read the
 [section on QC](Quality_control.md) and the section on [aligning reads](Aligning_reads.md). Other
@@ -104,7 +104,7 @@ grid()
 
 It should look something like this (I've done a bit of extra visual tweaking):
 
-![img](./images/NA12878_Illumina-NovaSeq6000_chr19_48145971-49255951.jf.histogram.jpg)
+![img](./images/NA12878_Illumina-NovaSeq6000_chr19:48145971-49255951.jf.histogram.jpg)
 
 ### Interpreting the histogram
 

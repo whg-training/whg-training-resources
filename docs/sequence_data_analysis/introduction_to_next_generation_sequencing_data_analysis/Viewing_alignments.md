@@ -2,7 +2,7 @@
 sidebar_position: 6
 ---
 
-# Viewing alignments
+# Step 4: Viewing alignments
 
 If you got this far, you should have a file called `QG0033-C.bam` containing aligned,
 duplicate-marked reads.  And we'd like to see how they stack up on the genome.
@@ -66,6 +66,3 @@ sickle-associated alleles like `Pf3D7_02_v3:814288`.
 
 Now go [back to the practical](Pipeline_outline.md#the-practical-in-a-nutshell) and try the [challenge
 questions](Challenge_questions.md).
-
-
-

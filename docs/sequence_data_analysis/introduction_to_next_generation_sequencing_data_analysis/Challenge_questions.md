@@ -6,8 +6,11 @@ sidebar_position: 7
 
 We have three challenges.:
 
-* If you want more practice running the pipelines outlined in the practical, try Challenge 1:
-* If you have `IGV` installed on your laptop, and want experience visualising reads in the desktop application (IGV), try Challenge 2.  (Recommended)
+* If you want more practice running the pipelines outlined in the practical, try Challenge 1.
+
+* If you have `IGV` installed on your laptop, and want experience visualising reads in the desktop application (IGV),
+  try Challenge 2.
+
 * If you want a real challenge understanding the [GC bump](Quality_control.md#per-sequence-gc-content), try Challenge 3.
 
 ## Challenge 1: analyse some human data
@@ -18,15 +21,12 @@ In the folder `human/` you'll find some data from a human sample - NA12878:
 ls ~sequence_data_analysis/human/
 ```
 
-You should see two files called `NA12878_ERR3239334-Illumina_Novaseq_6000-chr19_subsampled-read1.fastq.gz`
-and `NA12878_ERR3239334-Illumina_Novaseq_6000-chr19_subsampled-read2.fastq.gz`.
-
 **Challenge.** QC and align this data using the methods described in the practical. Then look at the result 
 using `samtools tview`.
 
-**Note.** This data is subsampled to chromosome 19. It is a about the same size as the malaria data. To speed things up you can
-probably get away with using more threads in the `bwa mem` step - but if you are running it on one of our JupyterHub instances,
-no more than 4 threads please!
+**Note.** This data is subsampled to chromosome 19. It is a bit bigger than the malaria data; to
+speed this up you can probably get away with using up to 4 threads in the `bwa mem` step - but no
+more than 4 please!
 
 A good region to view is around the gene *FUT2*, which is at `chr19:48645971-48755951`.
 
@@ -117,10 +117,10 @@ Do the reads align?  To what organism?  What's going on?
 
 **Note**. For example this was one result I got:
 
-![img](images/BLAST result.png)
+![img](images/BLAST_result.png)
 
-You can try looking at where these reads align to (here `Pf3D7_08_v3:1525593-1525692`) e.g. in
-[PlasmoDB browser](https://plasmodb.org/plasmo/app/jbrowse?data=/a/service/jbrowse/tracks/default&tracks=gene) or the
-[Pf3k browser](https://www.malariagen.net/apps/pf3k/release_3/index.html#genomebrowser).
+You can try looking at where these reads align to (here `Pf3D7_08_v3:1525593-1525692`) e.g. in [PlasmoDB
+browser](https://plasmodb.org/plasmo/app/jbrowse?data=/a/service/jbrowse/tracks/default&tracks=gene) or the [Pf3k
+browser](https://www.malariagen.net/apps/pf3k/release_3/index.html#genomebrowser). What could be going on?
 
 

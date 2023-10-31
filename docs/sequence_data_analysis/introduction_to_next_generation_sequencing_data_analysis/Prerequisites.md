@@ -23,15 +23,21 @@ You can get this software in a few different ways:
   you should be able to install everything except IGV with the command
 
 ```sh
+conda install samtools fastqc bwa jellyfish
+```
+
+or if mamba isn't working,
+```sh
 mamba install samtools fastqc bwa jellyfish
 ```
 
-run in your [UNIX terminal](/prerequisites/UNIX.md). (The IGV desktop application has to be
-downloaded and installed seperately - see [the IGV website](https://igv.org).)
+run in your [UNIX terminal](/prerequisites/UNIX.md).
 
-If neither of these work, you may be able to install using your system's package manager or by
-building from source. Doing This is out of scope of this tutorial but if you know what you're doing, feel
-free to try this.
+The IGV desktop application has to be downloaded and installed seperately - see [the IGV website](https://igv.org).
+
+If neither of these work, you may be able to install using your system's package manager (such as `apt` on Ubuntu) or by
+building from source. Doing this is out of scope of this tutorial but if you know what you're doing, feel free to try
+this.
 
 **Testing it.** To check that you have the right software, open a bash terminal and try getting
 them to print their version information.  You should see something like:
