@@ -9,9 +9,3 @@ sequencing data. We will start with raw data in a FASTQ file, inspect quality co
 align the data, and then use it to look for genetic variation.
 
 To get started, go [to and get the prerequisites](Prerequisites.md).
-
-## Contributors
-
-* Gavin Band
-* Matthieu Miossec
-* Annie Forster

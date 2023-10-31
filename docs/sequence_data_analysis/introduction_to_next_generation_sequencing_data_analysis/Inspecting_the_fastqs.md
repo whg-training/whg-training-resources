@@ -72,8 +72,13 @@ Spot the difference?
 zcat malaria/QG0033-C_Illumina-HiSeq_read1.fastq.gz | wc -l
 ```
 
-This might take a minute or so to run - it is decompressing the whole file of course. The number
-output is the number of lines in the file - so what is the number of reads?
+This might take a minute or so to run - it is decompressing the whole file of course. 
+
+:::tip Note
+
+The number output is the number of lines in the file - so what is the number of reads?
+
+:::
 
 * To count the read length you could inspect the first read - which is on the 2nd line of the file:
 ```
@@ -81,8 +86,11 @@ zcat malaria/QG0033-C_Illumina-HiSeq_read1.fastq.gz | head -n 2 | tail -n 1 | wc
 ```
 The number output is the number of characters in the second line of the file, i.e. the read length.
 
-**Note.** If you don't yet have facility with these types of command - don't worry, you will gain
-it.  However, don't worry because we'll move to using more sophisticated graphical packages in the next step.
+:::tip Note
+If you don't yet have facility with these types of command - you need the [introduction to the command-line tutorial](/bioinformatics/401_command_line/README.md).
+
+However, don't worry because we'll move to using more sophisticated graphical packages in the next step.
+:::
 
 When you're ready to move on, [get started inspecting sequence data quality](./Quality_control.md).
 
