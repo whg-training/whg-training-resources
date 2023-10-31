@@ -89,13 +89,13 @@ example, for this project you could use a `config.json` that looks like this:
 {
 	"reference": "data/reference/Pf3D7_v3.fa.gz",
 	"fastq_filename_template": "data/reads/subsampled/{ID}_{read}.fastq.gz",
-	"samples": [
-		{ "name": "QG0033-C", "ID": "ERR377582" },
-		{ "name": "QG0041-C", "ID": "ERR377591" },
-		{ "name": "QG0049-C", "ID": "ERR417627" },
-		{ "name": "QG0056-C", "ID": "ERR417621" },
-		{ "name": "QG0088-C", "ID": "ERR377629" }
-	]
+	"samples": {
+		"QG0033-C": { "accession": "ERR377582" },
+		"QG0041-C": { "accession": "ERR377591" },
+		"QG0049-C": { "accession": "ERR417627" },
+		"QG0056-C": { "accession": "ERR417621" },
+		"QG0088-C": { "accession": "ERR377629" }
+	}
 }
 ```
 
@@ -139,12 +139,12 @@ pretty easy, right?  Something like:
 
 ```
 rule run_fastqc
-	input:
-		fq1 = "data/reads/{ID}_1.fq.gz",
-		fq2 = "data/reads/{ID}_2.fq.gz"
 	output:
 		html1 = "results/qc/{ID}_1_fastqc.html",
 		html2 = "results/qc/{ID}_2_fastqc.html"
+	input:
+		fq1 = "data/reads/{ID}_1.fq.gz",
+		fq2 = "data/reads/{ID}_2.fq.gz"
 	params:
 		outputdir = "results/qc/"
 	shell: """
@@ -155,23 +155,23 @@ rule run_fastqc
 
 This is what I've done in my solution.
 
-However, this dataset has an annoying property: the files aren't named quite the way we would want
+**However**, this dataset has an annoying property: the files aren't named quite the way we would want
 them. In our case, we want to name them after the samples, but they are currently named after
 accessions.
 
 Therefore another way to start is to have a first rule that renames the files to have the right
 names. (This is great because it gets done once, at the top, and all the other rules never have to
 worry about the accession at all.) In practice it'd be better to leave the original files and
-instead copy of symlink them into the right names - like this:
+instead copy or symlink them into the right names - like this:
 
 ```
 rule copy_data_by_sample
+	output:
+		fq1 = "results/reads/{ID}_1.fq.gz",
+		fq2 = "results/reads/{ID}_2.fq.gz"
 	input:
 		fq1 = "data/reads/{something}_1.fq.gz",
 		fq2 = "data/reads/{something}_2.fq.gz"
-	output:
-		fq1 = "results/reads/{ID}_1.fq.gz"
-		fq2 = "results/reads/{ID}_2.fq.gz"
 	shell: """
 		cp {input.fq1} {output.fq1}
 		cp {input.fq2} {output.fq2}
@@ -184,64 +184,55 @@ To get this right you have to remember that snakemake works backwards from its o
 wildcards (i.e. `{ID}`) to its input files. You therefore need a way to compute the accession from
 the supplied `ID`.
 
-All this info is in `config['samples']` though, so that should be easy, right? Let's make a
-function that looks up the info by sample name:
+All this info is in `config['samples']` though, so that should be easy, right? 
 
-```
-def find_sample_with_name( name ):
-	samples = config['samples']
-	result = None
-	for x in samples:
-		if x['name'] == name:
-			return x
-
-	raise( "Uh-oh, no sample with name \"%s\" could be found." % name )
-```
-
-:::tip Note
-This of course a terrible implementation, but it works for this example.
-If you loaded the sample sheet as a pandas dataframe, you could use pandas subsetting to find the sample instead.
-:::
-
-Now your input filenames can use a function:
+To do this, let's turn the input rule into a **function** instead of a string.  The function reads in the wildcards and
+returns the right filename.  And to make this even easier, let's just use a 'lambda' function (i.e. an un-named
+function, defined right there in the rule):
 
 ```python
-def get_input_filename_for_sample( wildcards ):
-	return "data/reads/{ID}_1.fq.gz".format( 
-		ID = find_sample_with_name( wildcards.name )['ID']
-	)
-```
-
-And the rule is:
-```
 rule copy_data_by_sample
 	input:
-		fq1 = get_input_filename_for_sample
-		(etc.)
-```
-
-:::tip Note
-
-A slicker way that involves less function-writing is to just use a *lambda function* (i.e. an
-unnamed function). So it would look like:
-
-```
-rule copy_data_by_sample
-	input:
-		fq1 = lambda w: "data/reads/{ID}_1.fq.gz".format(
-			ID = find_sample_with_name( w.name )['ID']
+		fq1 = lambda wildcards: "data/reads/{accession}_1.fq.gz".format(
+			accession = config['samples'][wildcards.ID]['accession']
+		),
+		fq2 = lambda wildcards: "data/reads/{accession}_2.fq.gz".format(
+			accession = config['samples'][wildcards.ID]['accession']
 		)
 		(etc.)
 ```
-:::
-
-In my solutions I've used a slightly different approach where the fastq files themselves aren't copied/renamed, but the renaming
-gets done by the alignment step. This has the advantage that we don't copy the data, but it's not as simple because all major
-'output' rules have to figure out how to rename the output file appropriately.
 
 :::tip Note
 
-Another way to avoid copying is to use symbolic links ("*symlinks*") instead. The `ln` command can be used to do this. For example:
+If you don't like the "lambda" function, make it a named function instad:
+
+```python
+def get_fq1_name( wildcards ):
+	return "data/reads/{accession}_{read}.fq.gz".format(
+		accession = config['samples'][wildcards.ID]['accession']
+	)
+```
+
+and use that instead of the lambda function above = `fq1 = `
+```
+rule copy_data_by_sample
+	input:
+		fq1 = get_fq1_name
+	(etc)
+```
+
+but it's slicker just to use a lambda function, it think.
+
+:::
+
+In my solutions I've used a slightly different approach where the fastq files themselves aren't copied/renamed, but the
+renaming gets done by the alignment step. This has the advantage that we don't copy the data, but it's not as simple
+because all major 'output' rules have to figure out how to rename the output file appropriately.
+
+:::tip Note
+
+Another way to avoid copying is to use symbolic links ("*symlinks*") instead. The `ln` command can be used to do this.
+For example:
 
 ```
 ln -s file.txt link_name.txt
@@ -249,12 +240,14 @@ ln -s file.txt link_name.txt
 
 will create a symlink called `link_name.txt` that points to the original file.
 
-This is helpful because it avoids copying data, but it comes with a big caveat: having multiple names referencing the same file in
-the filesystem can quickly get very confusing. (For example, what happens if you delete the symlink above - does the file get
-deleted? What happens to the symlink if you delete the original file?)
+This is helpful because it avoids copying data, but it comes with a big caveat: having multiple names referencing the
+same file in the filesystem can quickly get very confusing. (For example, what happens if you delete the symlink above -
+does the file get deleted? What happens to the symlink if you delete the original file?)
 
-I typically don't use symlinks now except in rare cases where I name them `something.symlink` so it's completely obvious that they
-are symbolic links.
+I typically don't use symlinks now except in rare cases where I name them `something.symlink` so it's completely obvious
+that they are symbolic links.  It can be ok in snakemake pipelines though as long as those links are tucked away
+somewhere pipeline-y.
+
 :::
 
 
