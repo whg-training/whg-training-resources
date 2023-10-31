@@ -4,7 +4,7 @@ sidebar_position: 8
 
 # Appendix 1: Paired-end sequencing in theory and practice
 
-## What paired-end sequence data should lool like
+## What paired-end sequence data should look like
 
 You'll know that typical short-read datasets are made up of pairs of reads representing sequencing
 of both ends of short DNA fragments. The basic model is that we should be generating short DNA
@@ -24,7 +24,7 @@ size (often around 400-500bp). In an ideal world these would be randomly sampled
 genome of interest, so generating approximately uniform coverage.
 
 
-### What paired-end data actually looks like
+## What paired-end data actually looks like
 
 In real data things are not quite so simple. To understand this you have to know a bit about the
 chemistry. It works like this (I'm describing Illumina sequencing here, other technologies may be
@@ -71,6 +71,8 @@ if you want to - for Illumina has a
 [list of adapter and index barcodes](https://support-docs.illumina.com/SHARE/AdapterSeq/Content/SHARE/AdapterSeq/AdapterSequencesIntro.htm).
 Tools like `fastqc` use these known sequences to look for adapter contamination.
 
+You can also watch [Illumina's short video on the sequencing process](https://youtu.be/fCd6B5HRaZ8).
+
 To generate enough intensity for imaging, the ligated fragments above undergo
 *amplification on the flowcell* that generates multiple copies of each fragment - called a
 **cluster**. This process keeps the fragments local (they stay within the imaging 'tile') so that
@@ -84,11 +86,11 @@ on until the read is complete.
 
 **Note.** See the [useful links page](Useful_links.md) for links to other resources on sequencing.
 
-### So what goes wrong?
+## So what goes wrong?
 
 Well here are a few common issues:
 
-#### The fragments are too short
+### The fragments are too short
 
 If the fragments are too short you'll start to see **overlapping reads**, **adapter contamination**,
 or maybe **failed sequencing bases**.
@@ -125,7 +127,15 @@ as the Novaseq use a '2-color' imaging process, which does not distinguish betwe
 lack of intensity, so this type of read-through leads to long sequences of apparent 'G' bases in
 the reads.  See the [QC page](Quality_control.md) for some examples.
 
-#### The adapter chemistry goes wrong
+### The fragments are too long
+
+Having too-long fragments doesn't cause the *same* problems as too-short fragments, but it does turn out to hurt read 2.
+In particular the efficiency of the turnover step (where the fragments get reversed before read 2 is sequenced) seems to
+depend heavily on having fragments that are around 500bp in length or less.
+
+As fragments get longer, it's typical to see [elevated error rates in read 2](https://www.nature.com/articles/s41598-019-39076-7#:~:text=Abstract,error%20rate%20below%201%2F1000).
+
+### The adapter chemistry goes wrong
 
 There's a bit of asymmetry in the process between the two reads. This is because if the read 1
 chemistry doesn't work out, then the fragment may not anneal to the flowcell so won't start a cluster at all. But if read 2
@@ -136,7 +146,7 @@ bases. (As in
 sequenced during workflow testing, for which I presume the read 2 primers are not properly ligated leading to low intensities for
 the second read.
 
-#### The library has too little input DNA
+### The library has too little input DNA
 
 If the library has too little input DNA then we will end up sequencing the same fragments over and
 over again - generating **duplicate reads**.
@@ -152,18 +162,24 @@ artifactual duplicates above is that they sequence the **exact same fragment**, 
 read 2 will appear to be duplicated. Because there is generally a spread of fragment sizes, this is
 very unlikely even for high-coverage sequencing.
 
-#### There is spillover between clusters
+### There is spillover between clusters
 
 Even with PCR duplicates, some clusters on the flowcell may end up large enough that they get
 imaged as two or more clusters. (Another version of this is that the original amplified fragment
-moves off and forms another nearby cluster.) This has the effect of also generating duplicate reads
-- known as **optical duplicates**. (One way to detect these is identical or very similar reads that
-lie in nearby physical locations.) These duplicates occur even if the library preparation does not
-use PCR amplification. See
+moves off and forms another nearby cluster.) This has the effect of also generating duplicate reads,
+known as **optical duplicates**. 
+
+:::tip Note
+
+The way these are detected is as identical or very similar reads that lie in nearby physical locations on the flowcell. 
+
+:::
+
+These duplicates can occur even if the library preparation steps do not use PCR amplification. See
 [sequencing.qcfail.com](https://sequencing.qcfail.com/articles/illumina-patterned-flow-cells-generate-duplicated-sequences/)
 for an analysis of this.
 
-#### Incorporation of bases gets out of sync
+### Incorporation of bases gets out of sync
 
 The sequencing process relies on generating large clusters of identical DNA molecules that are all
 imaged together. However, as the process proceeds along the read, it can happen that the different
@@ -171,13 +187,13 @@ copies get out of 'sync'. As the read proceeds this affects a larger and larger 
 copies leading to **worse sequencing toward the end of the read**. This is often reflected in the
 lowered base qualitites.
 
-#### The fragmentation / chemistry introduces biases
+### The fragmentation / chemistry introduces biases
 
 It is thought that common fragmentation methods themselves introduce bias in the DNA content at the
 start of the fragments. It is generally true that there is some bias in the GC content of the first
 few bases in the reads, as seen in this file.
 
-### Next steps
+## Next steps
 
 Now get back [back to the practical](Pipeline_outline.md#the-practical-in-a-nutshell), or
 see the [examples on the QC page](./Quality_control.md/#a-survey-of-sequencing-performance).
