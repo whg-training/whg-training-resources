@@ -8,23 +8,61 @@ You should now have load some data into IGV (if not, go and [do that now](./READ
 You'll probably see something like this:
 
 
-
 To see the reads you will need to zoom into a location on the genome. For example, let's zoom into the gene that
 harbours the famous chloroquine resistance mutation, [Chloroquine resistance transporter
 (*CRT*)](https://plasmodb.org/plasmo/app/record/gene/PF3D7_0709000). To search for it you will need its ID, which is
 `PF3D7_0709000`. Voila! Some reads.
 
-IGV has lots of options that let you visualise reads in different ways. Here are some things to try (most available by
-right-clicking on the reads panel).
+:::tip IGV hints
 
-* These reads are from paired-end sequencing.  If you right-click and choose 'view as pairs', IGV will show you this structure.
-* Often there are too many reads to see.  Try using 'squished' mode to squish them up.
-* On the other hand the `genes` track can be annoying when it is squished.  Right-click and choose 'expanded' to see the genes.
+This is a good point to try a few options to get used to IGV.
+
+* For paired-end data, try the 'view as pairs' option. It can be found in the context menu, obtained by right-clicking
+  anywhere on the track.
+
+* If you don't like how reads are displayed, try 'collapsed', 'expanded', or 'squished' from the context menu.  Which one do you like best?
+
+* Try clicking on a read.  What is all that info?  Where does it come from?  What does it mean?
+
+* Try moving around and zooming in/out.  
+
+* There's also a `genes` track - it can be annoying when it is squished.  Try right-clicking and choose 'expanded' to see the
+  genes.
+
+:::
+
+## Basics
+
+Scroll around a bit to look at the reads.
+
+Can you find:
+
+- a sequencing error?
+- a SNP?
+- an insertion / deletion variant?
+
+What makes you think so?
+
+:::
+
+:::tip Note
+
+By default you are looking at all reads (including those that didn't map very well.)  There's an option hidden away
+under `Preferences` -> `Alignment` that lets you set a mapping quality threshold.  A good default value to put here is
+20 (but remember that by doing this you are filtering some reads!)
+
+:::
+
 
 ## Looking at SNPs
 
-**Question.** The mutation that causes [chloroquine resistance](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2954758/) is `CRT
+Let's try looking some SNPs
+
+The mutation that causes [chloroquine resistance](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2954758/) is `CRT
 K76>T`, at `Pf3D7_07_v3:403,625`. (It actually involves a small haplotype including other nearby mutations).
+
+:::tip Questions
+
 
 * Can you find these mutations?
 
@@ -32,9 +70,8 @@ K76>T`, at `Pf3D7_07_v3:403,625`. (It actually involves a small haplotype includ
 
 * Zoom into this location to look at the sequence.  Can you figure out the amino acid change(s)?
 
-* How many reads support this in each sample?  What alleles do they carry?  What are their IDs?  Are they well mapped?  Are they properly paired?  Where is their pair?
-
-**Note.** By default you are looking at all reads (including those that didn't map very well.)  There's an option hidden away under `Preferences` -> `Alignment` that lets you set a mapping quality threshold.  A good default value to put here is 20 (but remember that by doing this you are filtering some reads!)
+* How many reads support this in each sample?  What alleles do they carry?  What are their IDs?  Are they well mapped?
+  Are they properly paired?  Where is their pair?
 
 **Note.** 'properly paired' means that the two reads in the pair align to the same region in the right orientation, and roughly fall within the distribution of insert sizes inferred from all the read pairs in the data.  The aligner (`bwa` in this case) sets a flag in the BAM file to reflect this.
 
@@ -46,9 +83,19 @@ K76>T`, at `Pf3D7_07_v3:403,625`. (It actually involves a small haplotype includ
 
 ## The trouble with mapping is...
 
-**Question.** If you scroll around a bit, after a while you'll come across regions where no reads (or very few reads) seem to align.  Can you find one?  What could cause this? 
+**Question.** If you scroll around a bit, after a while you'll come across regions where no reads (or very few reads)
+seem to align.  Can you find one?  What could cause this? 
 
-**Hint.** Try searching for the relevant piece of genome sequence using [NCBI BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi).  For example, I tried this:
+:::tip Hint
+
+If you can't find any, try the ends of chromosomes, or the gene `PF3D7_0223500` (which encodes one of the highly
+polymorphic / duplicated 'var' genes.)
+
+:::
+
+
+**Hint.** You could also try searching for the relevant piece of genome sequence using [NCBI
+BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi).  For example, I tried this for one such location:
 
 ```
 $ samtools faidx data/reference/Pf3D7_v3.fa.gz Pf3D7_07_v3:343,180-343,380
@@ -86,9 +133,15 @@ To take this further there is an additional option.  If the read in the pair act
 
 ## Figuring out the structural variant structure
 
-**Extra hard challenge.** Can you figure out the structure of the structural variant genomes from these reads?
+::tip Extra hard challenge
 
-**Warning.** This really is hard!  If you want some inspiration, see Figure 6 of [this paper on the Dantu blood group](https://doi.org/10.1126/science.aam6393) to see a similar process applied to a human structural variant.
+Figure out the structure of the structural variant genomes from these reads.
+
+**Note.** Good luck!  This really is difficult.
+
+If you want some inspiration, see Figure 6 of [this paper on the Dantu blood group](https://doi.org/10.1126/science.aam6393) to see a similar process applied to a human structural variant.
+
+:::
 
 ## Summary
 

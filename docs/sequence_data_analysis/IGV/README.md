@@ -28,13 +28,15 @@ You are also welcome to load and look at others as well.
 Alternatively, my versions of the aligned files can be found [in this
 folder](https://www.well.ox.ac.uk/~gav/projects/whg-training-resources/data/sequence_data_analysis/building_an_ngs_pipeline/results/aligned).
 
-You'll need to download one or more of these to your computer - make sure to download the corresponding BAM index (`.bai`) files as well.  The download may take a few minutes to complete.
+An easy way to load these into IGV is to use the `File -> Load from URL` option.  Then paste in the link to the BAM file.
+
+**Alternatively** you can download the `.bam` and `.bai` files to your computer first.
 
 :::
 
 If you followed the [snakemake tutorial](../building_an_ngs_pipeline), you should also be able to look at:
 
-* Your coverage (`.bedgraph`) files for the above samples. (ALthough this isn't very important because IGV shows you coverage anyway.)  You can find them in [this folder](https://www.well.ox.ac.uk/~gav/projects/whg-training-resources/data/sequence_data_analysis/building_an_ngs_pipeline/results/coverage) if you don't have them already.
+* Your coverage (`.bedgraph`) files for the above samples. (Although this isn't very important because IGV shows you coverage anyway.)  You can find them in [this folder](https://www.well.ox.ac.uk/~gav/projects/whg-training-resources/data/sequence_data_analysis/building_an_ngs_pipeline/results/coverage) if you don't have them already.
 
 * Your `variants.vcf.gz` file containing the variant calls from Octopus. (If yours doesn't work, this may be due to an Octopus issue that has now been fixed. I filtered out the problem variants in [my
   version](https://www.well.ox.ac.uk/~gav/projects/whg-training-resources/data/sequence_data_analysis/building_an_ngs_pipeline/results/variants) which you can try instead.)
