@@ -72,8 +72,10 @@ generate_posterior = function(
 
 For example, for the O blood group data you could apply this to the whole dataset like this:
 ```r
+data = read_tsv( "https://raw.githubusercontent.com/whg-training/whg-training-resources/main/docs/statistical_modelling/introduction/data/1000_genomes_o_blood_group_grouped.tsv" )
+
 overall_counts = (
-	X
+	data
 	%>% summarise(
 		population = 'all',
 		reference_count = sum( `C/C` + `-/C` ),
@@ -294,3 +296,4 @@ Now if you regenerate the above plot, things should be in order.
 In which populations is O blood group at lowest frequency?  In which populations at highest frequency?
 
 :::
+

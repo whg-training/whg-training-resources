@@ -196,13 +196,16 @@ The loadings are in a sense 'dual' to the PCs, and have a specific interpretatio
 In fact the $i$th loading expresses how much each row contributes to the $i$th principal component.  Specifically
 **to get the $i$th PC, you project samples onto the $i$th loading**.
 
-In fact, the PCs are the **projections** (or 'dot products') of the matrix columns onto the loadings, after the right
+In fact, the PCs are the **projections** (dot products) of the matrix columns onto the loadings, after the right
 scaling.  You can check this as follows.  First compute the projections like this:
 
 ```r
 projections = t(X) %*% loadings$vectors
 ```
-Now let's divide the each projection by the corresponding eigen alues
+Now let's divide the each projection by the corresponding eigenvalues:
+```
+t(projections) %*% diag( 1 / sqrt(pca$values ))
+```
 
 
 
