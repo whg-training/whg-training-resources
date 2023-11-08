@@ -68,7 +68,7 @@ Why do we plot $-\log_{10}(\text{p-value})$ instead of just the p-value?
 
 :::
 
-### A cleaner GWAS
+## A cleaner GWAS
 
 It's not really surprising we saw all that noise - after all, we have used the raw data above. Quality control issues are one
 of the main potential confounders in GWAS studies; since we are looking for small differences in frequency between cases and
@@ -106,7 +106,7 @@ previous analysis?
 
 :::
 
-### The distribution of association test statistics
+## The distribution of association test statistics
 
 In addition to using data cleaning to remove strong false positive associations, we are also interested in checking whether
 the overall distribution of test statistics seems sensible. One way to look at this is to compare the observed association
@@ -157,7 +157,7 @@ What does this plot tell us about our current association analysis?
 There's clearly still something odd about this test - maybe there are other confounders?
 To find out, let's try [controlling for population structure](population_structure.md).
 
-### Aside on other tests
+## Aside on other tests
 
 :::tip Challenge question
 

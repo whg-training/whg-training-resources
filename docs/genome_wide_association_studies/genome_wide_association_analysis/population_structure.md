@@ -19,8 +19,8 @@ The file `chr19-example.pca` contains the principal components for this dataset.
 
 :::tip Note
 
-If you completed the [principal components practical](/population_genetics/principal_components/), these are the same PCs you
-computed there.  If not don't worry as we have provided them.
+If you completed the [principal components practical](../population_genetics/principal_components/README.md), these are
+the same PCs you computed there.  If not don't worry as we have provided them.
 
 :::
 

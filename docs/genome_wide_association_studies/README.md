@@ -6,6 +6,6 @@ sidebar_position: 7
 
 In this folder are:
 
-* A practical session on [computing principal components in a GWAS study](./principal_components_analysis)
-* A practical session on [running a simulated GWAS](./genome_wide_association_analysis)
-* A practical session on [meta-analysis and fine-mapping](./meta-analysis_and_fine-mapping)
+* A practical session on [computing principal components in a GWAS study](../population_genetics/principal_components_analysis/README.md)
+* A practical session on [running a simulated GWAS](./genome_wide_association_analysis/README.md)
+* A practical session on [meta-analysis and fine-mapping](./meta-analysis_and_fine-mapping/README.md)
