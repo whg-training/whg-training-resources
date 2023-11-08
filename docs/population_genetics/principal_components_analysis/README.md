@@ -15,35 +15,26 @@ potentially control for environmental confounding in genome-wide association stu
 
 ## How PCA works
 
-Imagine we have genotyped `N` samples genome-wide at `L` SNPs.  We get a matrix of genotypes that looks
-something like this:
+Imagine we a giant matrix of numbers - say one with $L$ rows and $N$ columns, like this:
 
 $$
 
 X = \begin{array}{c|cccc}
-& \text{sample 1} & \text{sample 2} & \cdots & \text{sample $N$} \\
+& \text{column 1} & \text{column 2} & \cdots & \text{column $N$} \\
 \hline
-\text{SNP $1$} & g_{11} & g_{12} & \cdots & g_{1N} \\
-\text{SNP $2$} & g_{21} & g_{22} & \cdots & g_{2N} \\
+\text{row $1$} & x_{11} & x_{12} & \cdots & x_{1N} \\
+\text{row $2$} & x_{21} & x_{22} & \cdots & x_{2N} \\
 \vdots & \vdots & & \ddots & \\
-\text{SNP $L$} & g_{L1} & g_{L2} & \cdots & g_{LN}
+\text{row $L$} & x_{L1} & x_{L2} & \cdots & x_{LN}
 \end{array}
 $$
 
-The $g_{ij}$ here means "the genotype at SNP $i$ of individual $j$."
+For example - it could be a matrix of genotypes in a genome-wide association study (rows are SNPs and columns are samples).  Or it could ba a matrix of expression levels (rows are genes and columns are samples).  Whatever it is, it it's a big multidimensional object, and it would be nice to have a simple way to visualise and analyse its structure.
 
-Typically in a genome-wide analysis, that matrix is huge!  It could have millions of variants ($L \sim 10^6$) and
-thousands or hundreds of thousands of samples ($N \sim 10^5$ perhaps) - so billions of genotypes in total. 
+Principal components analysis (PCA) does this by re-writing the matrix in terms of a small number of 'principal components' - directions in space. The directions are *orthogonal* to each other (i.e. at right angles) so, in a sense, they each represent a seperate part of the matrix.
+Together, the principal components capture the major structure of the matrix and often reveal the most important features.
 
-PCA helps to make sense of this by rewriting the matrix in terms of a few specific 'directions' in $L$-dimensional
-space.  Those 'directions' are 'SNP loadings': each is a vector saying how much each SNP contributes to the component.
-The value of the principal component for a given sample is just what you get by multiplying the SNP loadings by the
-sample's genotypes.
 
-Importantly the directions are chosen to maximise the amount of variation they capture, and the first few principal
-components can often capture the main features of a dataset.  In  many cases they reflect population structure.  But
-they might also reflect cryptic relationships, poorly QC'd samples, or other effects that lead to differences in
-genotype distribution between samples.
 
 ## Principal components for GWAS
 

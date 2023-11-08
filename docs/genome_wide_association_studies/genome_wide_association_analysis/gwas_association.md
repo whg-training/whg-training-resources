@@ -8,27 +8,33 @@ Now we will test for association between the SNPs in our dataset and the disease
 
 ## Conducting a basic GWAS
 
-### Testing in the original data
-
-Basic association tests using logistic regression can be carried as follows:
+As before, basic association tests using logistic regression can be carried as follows:
 
 ```sh
 ./plink --bfile chr19-example --logistic beta --out basic-test --keep-allele-order
 ```
 
-:::tip question
 Load these results in R...
 ```
-data = read.table( "basic-test.assoc.logistic", header = TRUE )
+data = read_table( "basic-test.assoc.logistic" )
 ```
-...and explore them further.
+...and explore them further now.
+
+:::caution Note
+
+The above might print out a number of warnings - these have to do with the trialing spaces, and you can safely ignore
+them on this occasion.
+
+:::
+
+:::tip Question
 
 How many SNPs seem to be associated (e.g. at $P=0.01$, or $P=0.0001$)? Is this what you expect? Why?
 
 :::
 
-Let's create a **manhattan plot** to visualise these results. This plots the evidence for association (as summarise in the
-P-value) on the y axis, against the position of the variant on the x axis:
+Let's create a **manhattan plot** to visualise these results. This plots the evidence for association (as summarise in
+the P-value) on the y axis, against the position of the variant on the x axis:
 
 ```R
 # In R:
@@ -54,8 +60,12 @@ Which of these statements do you agree with?
 * Wow - lots of genetic variants on chromosome 19 are associated with the disease!
 * Some genetic variants on chromosome 19 are associated, but it's hard to tell which ones.
 * Something is confounding the results - they are much too noisy.
+:::
 
-(Also - why do we plot $-\log_{10}(\text{p-value})$ instead of just the p-value here?)
+:::tip Question
+
+Why do we plot $-\log_{10}(\text{p-value})$ instead of just the p-value?
+
 :::
 
 ### A cleaner GWAS

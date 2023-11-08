@@ -1,9 +1,9 @@
+---
+sidebar_position: 0.5
+---
+
 # Genome-wide association study practical
 
-Welcome! In this practical we will run a basic genome-wide association analysis using some
-simulated data with a binary trait.  When you're ready to start, go [here](gwas_analysis_plink.md).
-
-## Table of contents
-
-
+Welcome!  This practical will introduce you to analyzing Genome Wide Association Study (GWAS) datasets using a program
+called PLINK, which is a freely available GWAS analysis toolkit. To get started, go [here](./getting_setup.md).
 

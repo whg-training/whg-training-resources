@@ -2,19 +2,22 @@
 sidebar_position: 2
 ---
 
-# GWAS quality control
+# Analysing a GWAS
 
 We will now work with a set of data files containing many SNPs from chromosome 19 genotyped on controls and cases. Data from a
 GWAS would contain SNPs at this density across the entire genome, but we will focus on just one chromosome to make the
 exercises more tractable.
 
+Our first task will be to **quality control** the dataset to remove unusual SNPs and samples.
+
 ## Basic quality control using plink
 
 ### Converting data to binary format
 The key files are `chr19-example.vcf.gz` and `chr19-example.samples`. If you followed the [getting started
-section](./gwas_analysis_plink.md), you should already have these in your folder.
+section](./getting_setup.md), you should already have these in your folder.
 
-Before getting started, let's convert these files from VCF format to a 'binary PED' format that PLINK can read more easily:
+Before getting started, let's convert these files from VCF format to a 'binary PED' format that PLINK can read more
+easily:
 
 ```sh
 ./plink --make-bed \
@@ -37,14 +40,14 @@ plink and other software tools can understand.
 
 :::tip Note
 
-We added the `--keep-allele-order` option here to the above command to make sure plink preserves the two alleles at each SNP in
-the same order as in the VCF file. This is **important** because we will want to be able to keep track of the direction of
-estimated effects.
+We added the `--keep-allele-order` option here to the above command to make sure plink preserves the two alleles at each
+SNP in the same order as in the VCF file. This is **important** because in a GWAS analysis you will want to be able to
+keep track of the direction of estimated effects.
 
 :::
 
-We can tell `plink` to load data in the binary plink format using the `--bfile` option. For instance, to calculate allele
-frequencies we now use:
+We can tell `plink` to load data in the binary plink format using the `--bfile` option. For instance, to calculate
+allele frequencies we now use:
 
 ```sh
 ./plink --bfile chr19-example --freq --out chr19-example
@@ -63,8 +66,8 @@ format](http://www.bgenformat.org). Learning how to deal with these is part of t
 
 ### Computing and analysing QC metrics
 
-There are many useful QC metrics that we can calculate for our dataset. These metrics can tell us about the quality of loci
-(i.e. SNPs), and of samples. For instance, we can calculation information about missingness:
+There are many useful QC metrics that we can calculate for our dataset. These metrics can tell us about the quality of
+loci (i.e. SNPs), and of samples. For instance, we can calculation information about missingness:
 
 ```sh
 ./plink --bfile chr19-example --missing --out miss-info
@@ -78,21 +81,15 @@ Another QC metric is sample heterozygosity:
 ./plink --bfile chr19-example --het --out het-info
 ```
 
-Let's use R to visualize these results. Launch an RStudio session now and make sure it is working in the `gwas_practical`
-directory.  If you followed the instructions above this should work:
-```
-setwd( '/Users/<your user name>/Desktop/gwas_practical' )
-```
-(or you can use the `Session -> Set Working Directory` memu option.)
+Let's use R to visualize these results. 
 
-You can load the output into R to look at them in more detail - we'll use `tidyverse` in some of the examples, so load that now
-as well:
+You can load the output into R to look at them in more detail - we'll use `tidyverse` in some of the examples, so load that now as well:
 
 ```
 # In R:
 library( tidyverse )
-MissData = read.table( "miss-info.imiss", header = TRUE, check.names = FALSE )
-HetData <- read.table( "het-info.het", header = TRUE, check.names = FALSE )
+MissData = read_table( "miss-info.imiss", col_types = "ccciid" )
+HetData <- read_table( "het-info.het", col_types = "ccdddd" )
 ```
 
 :::note Note
@@ -119,7 +116,7 @@ command is called `--het`, plink does not actually output the heterzygosity rate
 
 ```
 # in R
-HetData$heterozygosity = ( HetData[,'N(NM)'] - HetData[,'O(HOM)'] ) / HetData[,'N(NM)']
+HetData$heterozygosity = ( HetData[['N(NM)']] - HetData[['O(HOM)']] ) / HetData[['N(NM)']]
 print(
     ggplot(
         data = HetData,
@@ -132,9 +129,23 @@ print(
 )
 ```
 
-The graph you see shows the distribution of heterozygosity across samples. QC plots often look like this; there is a large peak
-of samples that lie within a range of normal values (the normal samples), and then a small number of outlier samples that are
-usually poor quality samples. To improve the plot without losing any data, let's *clamp* the values into a smaller x axis range:
+The graph you see shows the distribution of *heterozygosity* across samples. QC plots often look like this; there is a large peak of samples that lie within a range of normal values (the normal samples), and then a small number of outlier samples that are usually poor quality samples. 
+
+:::tip Note
+
+The idea here is that in any reasonable homogenous population, the level of heterozygosity - that is, the chance that
+the two chromosomes in an individual differ at a randomly chosen SNP - will be roughtly similar across individuals.
+Or, if the population is structured, we might see subsets of the population with different values.
+
+If single individuals appear to have drastically different heterozygosity, this could be for example because
+
+- the samples was contaminated (it contains more than one person's DNA); or
+- the person was somewhat inbred (contains more homozygosity than expected); or
+- the DNA sample was poor quality (so that genotype calling was poor).
+
+:::
+
+To improve the plot without losing any data, let's *clamp* the values into a smaller x axis range:
 
 ```
 clamp <- function( x, lower = -Inf, upper = Inf ) {
@@ -194,9 +205,10 @@ print(
 )
 ```
 
-Again, most of the samples have low missingness (close to zero), with a number of outliers above 0.025. You can see some other
-features there as well such as the two bumps in the distribution which looks a bit suspicious. For now, let's combine the two QC
-metrics (missingness and heterozygosity) to select outlying samples:
+Again, most of the samples have low missingness (close to zero), with a number of outliers above 0.025. You can see some
+other features there as well such as the two bumps in the distribution which looks a bit suspicious - in a real study
+you would want to look into this. For now, let's combine the two QC metrics (missingness and heterozygosity) to select
+outlying samples:
 
 ```R
 # In R:
@@ -206,13 +218,8 @@ qcFails <- MissData[
     | HetData$heterozygosity > 0.22,
     c(1:2)                   # Just capture the sample identifier fields
 ]
-write.table(
-    qcFails,
-    file = "qcFails.txt",
-    quote = FALSE,
-    row.names = FALSE,
-    col.names = FALSE,
-)
+write_delim( qcFails, file = "qcFails.txt" )
+
 ```
 
 Here's a plot showing the thresholds we've chosen:
@@ -285,7 +292,7 @@ how many SNPs did we keep - does this number look sensible?
 
 :::
 
-::: Important question
+:::tip Important question
 
 Re-compute the sample missingness and heterozygosity metrics and re-create the above QC plot using the clean data. Have the SNP
 QC filters dealt with the issue that showed two clusters of samples?
