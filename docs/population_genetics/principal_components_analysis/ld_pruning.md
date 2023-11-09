@@ -4,9 +4,11 @@ sidebar_position: 4
 
 # Removing highly-correlated SNPs
 
-If you followed the [population genetics simulation tutorial](/population_genetics/simulation/), you'll know that correlation between
-nearby SNPs arises naturally as a result of genetic drift (or selection). This can lead to patterns of local
-variation that dominate principal components. Because for our purposes we want to capture 'genome-wide' patterns
+If you followed the [population genetics simulation tutorial](/population_genetics/simulation/), you'll know that
+correlation between nearby SNPs arises naturally as a result of genetic drift (or selection). This can lead to patterns
+of local variation that dominate principal components. 
+
+Because for our purposes we want to capture 'genome-wide' patterns
 of relationships, we will first get rid of any too-correlated groups of SNPs.
 
 LD pruning removes correlated pairs of SNPs so that the remaining SNPs are roughly independent. (It also helps

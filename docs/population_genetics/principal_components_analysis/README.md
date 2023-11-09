@@ -38,12 +38,17 @@ Together, the principal components capture the major structure of the matrix and
 
 ## Principal components for GWAS
 
-In this tutorial you will carry out many of the steps that are commonly done in computing PCs for a genome-wide
-association study, including *pruning SNPs for local correlation patterns*, *identifying closely-related individuals*,
-and *comparing samples to a global reference panel*.  When you're ready, go and [get setup](./getting_setup.md) for the
-practical.  The complete set of pages is as follows:
+In this tutorial you will carry out principal components analysis on a set of human samples using the plink software
+package.  Because this is for use in a [GWAS
+study](../../genome_wide_association_studies/genome_wide_association_analysis/README.md), we will carry out many of the
+steps that are usually done in those studies, including  including *pruning SNPs for local correlation patterns*,
+*identifying and excluding closely-related individuals*, and *comparing samples to a global reference panel*.   Before
+doing that, however, we'll also try a simple simulated PCA example in R.
+
+When you're ready, go and [get setup](./getting_setup.md) for the practical.  The complete set of pages is as follows:
 
 * [Introduction](README.md) (this page)
+* Try a [PCA warm-up in R](./simulated_pca_example.md)
 * [Getting the software and data](./getting_setup.md)
 * [Practical overview](./overview.md)
 * [Linkage disequilibrium pruning](./ld_pruning.md)
