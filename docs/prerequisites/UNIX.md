@@ -24,8 +24,11 @@ terminal.
 
 ## Testing the terminal
 
-Whichever method you use, you should now be able to start your terminal and check it is working.
-Here are a few practice commands to try.
+Whichever method you use, you should now be able to start your terminal, will look something like this:
+
+[!img](/bioinformatics/401_command_line/)
+
+Now let's check it is working - here are a few practice commands to try.
 
 1. **To find out where we are in the filesystem** use the `pwd` ('present working
 directory') command:
