@@ -2,7 +2,7 @@
 sidebar_position: 0.5
 ---
 
-# Plotting haplotypes in R
+# Visualising haplotypes in R
 
 In this page you will load up some real haplotype data (from the 1000 Genomes Project) and plot it in R.
 
