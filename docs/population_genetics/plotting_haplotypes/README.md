@@ -76,6 +76,8 @@ distance = dist(
 )
 ```
 
+![img](images/haplotypes.png)
+
 Here we've used 'manhattan' distance, that is, the distance between two haplotypes is the number of mutational
 differences between them.
 
@@ -122,6 +124,149 @@ image(
 )
 ```
 
-## How much diversity?
+## Computing diversity
 
-One way to assess the amount of variation is to 
+How much variation is there?  Here are a few ways to look at it.
+
+First we could look at the frequencies of all the variants in the data:
+
+```r
+frequencies = rowSums( GT ) / ncol( GT )
+hist(
+	frequencies,
+	breaks = 25,
+	xlab = "Alt allele frequency",
+	ylab = "Count",
+	main = "Site frequency spectrum"
+)
+```
+
+![img](images/sfs.png)
+
+This picture is pretty typical - most variant alleles are pretty rare, and a few are common.
+
+:::tip Note
+
+These are the frequencies at **variable sites** only.  If we computed at every site, there would be an even bigger spike
+at zero - counting all the sites that are not variable between people in our data. (How many of these are there in this
+region?)
+
+:::
+
+This picture is for *alternate* alleles (versus reference alleles).  A better plot would show the frequencies of
+ **derived** alleles (i.e. those that have arisen trhough mutation compared to the common ancestor).  To do that, we
+ would need an ancestral allele, which we don't have right now.  So instead let's plot hte **folder site frequency spectrum**:
+
+
+```r
+hist(
+	pmin( frequencies, 1 - frequencies ),
+	breaks = 25,
+	xlab = "Minor allele frequency",
+	ylab = "Count",
+	main = "Folded site frequency spectrum"
+)
+
+```
+
+![img](images/folded_sfs.png)
+
+Another natural metric is to compute evolutionary distances between haplotypes by **counting mutations**.
+
+The idea is that (ignoring recombination for a moment) - mutations that seperate two samples represent those that have
+occurred since their most recent common ancestor.  Roughtly speaking the number of mutations 'counts' the evolutionary
+distance between the haplotypes.  A natural metric is thus **number of pairwise differences** between the
+two haplotypes.
+
+Let's see how distantly related the haplotypes are on average, by computing the  **average number of pairwise
+differences** between different haplotypes - also known as **nucleotide diversity** - now. To do this we'll write a
+function which loops over all pairs of haplotypes in the data.
+
+:::tip Note
+
+How many pairs of distinct haplotypes are there?  The answer is of course the number of ways of drawing two things from $N$ things - known as '$N$ choose 2':
+$$
+N\quad\text{choose}\quad2 = \frac{N\cdot(N-1)}{2} \\
+
+$$
+
+...also known as the 2nd diagonal in pascal's triangle:
+```
+N
+0           1
+1         1   1   ↙
+2       1   2   1
+3     1   3   3   1
+4   1   4   6   4   1
+          etc.
+```
+
+In R, you can  compute this using the `choose()` function - or just do `N*(N-1)/2` as above, which is what I've done in
+the function below.
+
+:::
+
+and so on.  
+
+```r
+average_number_of_pairwise_differences = function(
+	haplotypes
+) {
+	N = ncol(haplotypes)
+	total = 0
+	# Sum over all pairs
+	for( i in 1:(N-1) ) {
+		for( j in (i+1):N ) {
+			a = haplotypes[,i]
+			b = haplotypes[,j]
+			total = total + sum( a != b )
+		}
+	}
+	# The total 
+	return( total / (N*(N-1)/2))
+}
+
+average_number_of_pairwise_differences( GT )
+```
+
+```
+1811.239
+```
+
+So haplotypes differ by about 1800 mutations on average, across this 1.1Mb region - or about 1.6 mutations per kilobase.
+
+## Challenge questions
+
+Here are some challenges:
+
+:::tip Challenge 1
+
+The *FUT2* gene is in this data around positions 48,695,971 - 48,705,951.
+
+Can you make a version of the haplotype plot that shows all haplotypes as before, but the ordering is based only on the
+SNPs in *FUT2* or a small region around it?
+
+:::
+
+:::tip Challenge 2
+
+In the [genome-wide association study
+practical](../../genome_wide_association_studies/genome_wide_association_analysis/README.md) you found an association in
+the *FUT2* gene. Can you make a two-panel version of the haplotype plot, with the top panel being haplotypes that carry
+the alternate allele of this associated SNP, and the lower panel being haplotypes that don't?
+
+**Hints**:
+
+* You can look up the position of the lead GWAS SNPs in the `metadata` variable.  (Both datasets are in GRCh37 'build 37' coords.)
+
+* You can get the genotypes for the SNP (of course) out of the `GT` matrix.
+
+* Use `layout()` in R to make a two-panel plot, e.g.:
+```r
+layout( matrix( 1:2, ncol = 1 ))
+```
+and then plot the panels in order.
+
+:::
+
+Good luck!
