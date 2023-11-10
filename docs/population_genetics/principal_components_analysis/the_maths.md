@@ -114,7 +114,7 @@ So PCA pulls out the **directions of maximal variance in the data**.
 PCA](https://doi.org/10.1371/journal.pgen.1000686).
 
 **Computing in big cohorts**. In this tutorial we used the eigendecompose-the-relatedness-matrix approach to compute
-principal components. While this works in many studies, very large cohorts such as the [UK
-Biobank[(https://www.nature.com/articles/s41586-018-0579-z) typically require other methods such as
+principal components. While this works in many studies, very large cohorts such as the
+[UK Biobank](https://www.nature.com/articles/s41586-018-0579-z) typically require other methods such as
 [flashPCA](https://github.com/gabraham/flashpca) that avoid computing either of the matrices directly.
 

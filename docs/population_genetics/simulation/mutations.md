@@ -9,10 +9,11 @@ If this was all that was going on, we'd all be identical!
 
 Of course in real populations there is an opposing force: **mutation**.  To see how this plays out let's add mutations to our model now.
 
-## Starting again
+## Starting over
 
-This time let's give ourselves a long stretch of chromosome to work over - say 5kb.
-As before we'll initialise the simulation with a set of 10 possible haplotypes:
+Let's build our simulation again, and this time let's give ourselves a long stretch of chromosome to work over - say
+5kb. As before we'll initialise the simulation with a set of 10 possible haplotypes:
+
 ```r
 L = 5000
 H = 10
@@ -20,8 +21,8 @@ haplotypes = matrix( NA, nrow = H, ncol = L )
 haplotypes[,] = rbinom( n = H*L, size = 1, prob = 0.01 )
 ```
 
-Now let's pick a population size and initialise the simulation - I will pick 100 samples over 1000 generations.
-
+Now let's pick a population size and initialise the simulation - for a first go I will pick 250 samples over 1000
+generations.
 
 ```r
 N = 250 # number of individuals
