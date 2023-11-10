@@ -17,14 +17,14 @@ As before we'll initialise the simulation with a set of 10 possible haplotypes:
 L = 5000
 H = 10
 haplotypes = matrix( NA, nrow = H, ncol = L )
-haplotypes[,] = rbinom( n = H*L, size = 1, prob = 0.05 )
+haplotypes[,] = rbinom( n = H*L, size = 1, prob = 0.01 )
 ```
 
 Now let's pick a population size and initialise the simulation - I will pick 100 samples over 1000 generations.
 
 
 ```r
-N = 100 # number of individuals
+N = 250 # number of individuals
 G = 500 # number of generations
 population = matrix(
   NA, nrow = G, ncol = N,
@@ -36,7 +36,7 @@ population = matrix(
 ```
 
 And let's initialise our population:
-```
+```r
 population[1,] = sample( 1:nrow(haplotypes), N, replace = TRUE )
 ```
 
@@ -126,22 +126,20 @@ mutate <- function( which_haplotype ) {
 
 :::caution Note
 
-The syntax `<<-` is important here!  We are using this to mutate the **global `haplotypes` variable**.  In general, mutating a global variable like this is bad programming practice, but it will work for our simulation so we're going with for the moment...
+The syntax `<<-` is important here!  We are using this to alter the global `haplotypes` variable.  In general, using a global variable like this is **bad programming practice**, but it will work for our simulation so we're going with for the moment...
 
 :::
 
 :::tip Note
 
 Most entries of the haplotypes are 0 or 1, but in `mutate()` I chose to mutate to a value of 2!  The reason for this is that these new mutations will appear a different colour on our output plots, so we can easily see the effect of mutations on the population
-:::
 
+:::
 If you call `mutate()`, say like this: `mutate(5)`, you ought now to find that:
 
 * `haplotypes` now has an extra row (row 11 presumably).
-* the new row is the same as row 5, except for one mutation in it.
-````
+* the new row is the same as row 5, except for one mutation in it.`
 
-:::
 
 With mutations in place we can write an updated `evolve()` function.  We will take in a **mutation rate** parameter and, after each inheritance takes place, randomly decide whether a mutation occurs.
 
@@ -207,7 +205,7 @@ for( generation in 2:G ) {
     plot.haplotypes( haplotypes[population[generation,],], sort = TRUE )
     dev.off()
   
-    # !! IMPORTANT!! return memory to operating system!
+    # !! IMPORTANT!! Use gc() to return memory to operating system!
 	# Without this you may use up all your RAM
     gc()
   }
@@ -224,6 +222,8 @@ While it's going, point your operating system's image viewer at the output direc
 
 ## Assessing diversity
 
+
+
 Let's also implement two ways of measuring the amount of genetic diversity.  These are:
 
 * The **average number of mutational differences between pairs of haplotypes**, also known as the nucleotide diversity.  In popgen literature this is often denoted by $\pi$.
@@ -233,30 +233,35 @@ Let's also implement two ways of measuring the amount of genetic diversity.  The
 Here are two functions to compute these quantities:
 
 ```r
-compute.mean_number_of_pairwise_differences = function( generation ) {
-  N = nrow(generation)
-  total = 0
-  for( i in 1:(N-1) ) {
-    for( j in (i+1):N ) {
-      a = generation[i,]
-      b = generation[j,]
-      total = total + sum( a != b )
-    }
-  }
-  return( total / (N*(N-1)/2))
+compute.mean_number_of_pairwise_differences = function(
+	population,
+	haplotypes = haplotypes
+) {
+	generation = haplotypes[population,]
+	N = nrow(generation)
+	total = 0
+	for( i in 1:(N-1) ) {
+		for( j in (i+1):N ) {
+			a = generation[i,]
+			b = generation[j,]
+			total = total + sum( a != b )
+		}
+	}
+	return( total / (N*(N-1)/2))
 }
 ```
 
 ```r
-compute.heterozygosity = function( population ) {
-  N = length(generation)
-  A = table(population)
-  n = sum(A)
-  result = 1
-  for( i in 1:max(population)) {
-    result = result - (A[i] / n)*((A[i]-1)/(n-1))
-  }
-  return( result ) 
+compute.heterozygosity = function(
+	population
+) {
+	A = table(population)
+	n = sum(A)
+	result = 1
+	for( i in 1:length(A)) {
+		result = result - (A[i]/n) * ((A[i]-1)/(n-1))
+	}
+	return( result ) 
 }
 ```
 
@@ -265,14 +270,14 @@ Let's plot these for our simulation now.  We'll use the `layout()` function to m
 pi = sapply(
   1:G,
   function(i) {
-    compute.mean_number_of_pairwise_differences( haplotypes[population[i,],] )
+    compute.mean_number_of_pairwise_differences( population[i,] )
   }
 )
 
 heterozygosity = sapply(
   1:G,
   function(i) {
-    compute.heterozygosity( haplotypes[population[i,],] )
+    compute.heterozygosity( population[i,] )
   }
 )
 
@@ -283,16 +288,22 @@ plot(
 	pi,
 	xlab = "Generation",
 	ylab = "Nucleotide diversity",
-	bty = 'n'
+	bty = 'n',
+	type = 'l',
+	lwd = 2
 )
+abline( h = 2 * N * mutation_rate, lty = 2, col = 'red' )
 grid()
 plot(
 	1:G,
 	heterozygosity,
 	xlab = "Generation",
 	ylab = "Heterozygosity",
-	bty = 'n'
+	bty = 'n',
+	type = 'l',
+	lwd = 2
 )
+abline( h = (2 * N * mutation_rate) / (2*N*mutation_rate + 1), lty = 2, col = 'red' )
 grid()
 ```
 
