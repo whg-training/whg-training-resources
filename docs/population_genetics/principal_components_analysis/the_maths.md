@@ -39,17 +39,47 @@ This duality appears in principal components analysis too. Specifically:
 * The two are related by the following: the principal component for sample $i$ is the projection of that sample's genotypes onto
   the *i*th principal component loading vector.  
 
+In other words **relatedness and LD are dual to each other** - and this is reflected in principal components just like
+in other aspects of population genetics.
+
 :::tip Note
-To see why this works, consider an eigenvector $z$ of $Z$, i.e a vector satisyfing
+
+There are actually two sources or types of LD that could turn up here. 
+
+The one we are often interested in in PCA is *linkage disequilibrium due to population structure* - sometimes thought of
+as 'admixture LD'. This is where variants are correlated to each other because the population is sub-structured, and the
+variant frequencies vary between sub-populations.  This type of LD might exist between variants anywhere in the genome
+(not just locally in a particular region).
+
+The other source of LD is the local patterns of LD that arise from genetic drift, even in an unstructured population.
+(You can see how this arises by following the [genetic drift simulation tutorial](../simulation/README.md).)
+
+In one sense these two types of LD are both *sort of* the same thing - they both arise from patterns of relatedness in
+the data, generating haplotype sharing.  However, LD caused by structure clearly arises from demographic features of the
+populations, while local LD is just a basic feature of genetic drift.
+
+For PCA, as used in a GWAS, we typically are interested in population structure, so it is often appropriate to thin data
+to look at sets of 'independent' SNPs (not too close together) to avoid capturing the local LD effects.  This is why we
+LD-thinned our data in practice.
+
+:::
+
+
+## The maths
+
+To see why PCA works, consider an eigenvector $z$ of $Z = X X^t$, i.e one of the 'loading' vectors.  It's an eigenvector, which means:
 
 $$
 X X^t z = \lambda z
 $$
 
-where $\lambda$ is the eigenvalue. The projection of $X$ onto $z$ is $X^t z$. Now $X^t z$ must be an eigenvector of $R$ because
+where $\lambda$ is some number - the **eigenvalue** corresponding to $z$.
+
+The projection of $X$ onto $z$ is $X^t z$. Now it turns out that $X^t z$ must in fact be an eigenvector of the
+relatedness matrix $R = X^t X$, because:
 
 $$
-X^t X (X^t z) =  = X^t (X X^t) z = \lambda (X^t z)
+R(X^t z) = X^t X (X^t z) = X^t (X X^t) z = X^t (Z z) = \lambda (X^t z)
 $$
 
 Conversely, if $s$ is an eigenvector of $R$ with eigenvalue $\gamma$, that is $X^t X s = \gamma s$, then
@@ -58,76 +88,33 @@ $$
 X X^t (X s) = \gamma X s
 $$
 
-In other words **the eigenvalues of $R$ and $Z$ are the same** - and the eigenvectors are related by projecting the rows
+for similar reasons.
+
+What this says is that **the eigenvalues of $R$ and $Z$ are the same** - and the eigenvectors are related by projecting the rows
 and columns onto the eigenvectors respectively.
 
-:::
 
-Relatedness and LD are dual to each other!
+Moreover this eigenvalue decomposition of the relatedness matrix has particular properties that make it useful:
 
-### 
+* The first principal component has the maximum possible variance (that is, if you project the samples
+  onto any vector other than the first loading vector $z_1$, you get something with less variance).
 
-It turns out that these eigenvectors have a property which makes them useful:
-
-* The first loading vector $z_1$ picks out the direction in genotype space (a linear combinations of SNPs) so that the first
-  principal component $X^t z$ has the maximum possible variance (among all such projections).
-
-* The second loading vector then picks out the direction in genotype space *orthogonal to the first* that makes the second
-principal component have the maximum possible variance - and so on. These vectors thus pick out *the directions of greatest
-variance in the genotype data*.
+* The second principal component is then chosen to have the maximum possible variance after accounting for the first.
+  (That is, if you project the samples onto any vector orthogonal to (i.e. at right angles to) $z_1$, other than the
+  second loading vector $z_2$, you get a lower variance.)
 
 * and so on.
 
-:::tip Note
-
-There are actually two sources of LD that could turn up here. 
-
-The one we are usually interested in in PCA is linkage disequilibrium due to population structure - sometimes thought of as
-'admixture LD'. This is where variants (even those a long way away from each other in the genome) are correlated to each other
-because they are at higher frequencies in some individuals than others.
-
-The other source of LD (as discussed this morning) is the local patterns of LD that arise from genetic drift. In one sense
-these are both *sort of* the same thing - relatedness is the same as haplotype sharing which is what underlies correlations
-between variants. But the former clearly arises from demographic features of the populations, while the latter is just a
-feature of genetic drift even in homogenous populations. For PCA we typically look at sets of 'independent' SNPs (not too
-close together) to avoid capturing local LD effects - this is why we LD-thinned our data.
-
-:::
+So PCA pulls out the **directions of maximal variance in the data**.
 
 
-### Computing principal components in practice
+## More reading
 
-Typically $Z$ is huge (it's $L\times L$), while $R$ is smaller at only $N \times N$. (Although this is less true for
-biobank-scale data, where special methods have to be used.). To compute the PCs it therefore makes sense to focus on $R$
-first. This is what tools like plink do. They:
+**More PCA theory** If all this hasn't melted your brain, [try reading Gil McVean's paper on genealogies and
+PCA](https://doi.org/10.1371/journal.pgen.1000686).
 
-* First, compute the matrix $R$ by traversing the SNPs in the data.
-* Then form the eigendecomposition to compute the right eigenvectors.
-* Finally, use the equation above to compute the loading vectors.
-
-So tools like `plink` compute *R*, use this to compute the principal
-components, and then compute loadings using a second pass through the data.
-
-You can easily do this in R as well, for example:
-```
-X = (load data here, convert to a matrix and standardise...)
-L = nrow(X)
-R = (1/L) * t(X) %*% X
-PCs = eigen(R)$vectors
-plot( PCs[,1], PCs[,2], xlab = "PC 1", ylab = "PC 2" )
-# etc.
-```
-
-The `eigen()` step will take quite a while on any real dataset, but is generally manageable up to around a few thousand
-samples.
-
-**Computing in big cohorts**. While the above works in many studies, very large cohorts such as the
-[UK Biobank[(https://www.nature.com/articles/s41586-018-0579-z) typically require other methods such as [flashPCA](https://github.com/gabraham/flashpca) that avoid computing either of the matrices directly.
-
-**Note.** If all this hasn't melted your brain, [try reading
-Gil McVean's paper on genealogies and PCA](https://doi.org/10.1371/journal.pgen.1000686).
-
-#### Back to the computation...
-
-When you're ready, [go back to the page on computing PCs](computing_PCs.md).
+**Computing in big cohorts**. In this tutorial we used the eigendecompose-the-relatedness-matrix approach to compute
+principal components. While this works in many studies, very large cohorts such as the [UK
+Biobank[(https://www.nature.com/articles/s41586-018-0579-z) typically require other methods such as
+[flashPCA](https://github.com/gabraham/flashpca) that avoid computing either of the matrices directly.
 
