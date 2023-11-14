@@ -1,6 +1,5 @@
 ---
 sidebar_position: 10
-title: Structure and admixture
 ---
 
 # Population structure and admixture
