@@ -20,29 +20,47 @@ parse_gff3_to_dataframe = function( filename ) {
 }
 ```
 
-I like this form because it is very easy to see what it does.
+This form is **much better** because it is very easy to see what it does.
 
-::tip Note
+Rewriting code like this is known as a **refactor**.  It makes it easier to read, and often ends up making it easier to
+test and to alter as well.   After a refactor you may also find you don't need any code comments any more - so delete
+them!  This is because the function names (if you get them right) will document themselves.
 
-Re-writing code for clarity and simplicity like this is known as **refactoring**.  You should aim not to change any
-functionality (use your test to make sure this is true) but will end up much more readable.
+:::tip Note
 
-(After a refactor you also may find you don't need any code comments any more - ideally the code will document itself.)
+Of course, this doesn't change the fact that the code still has to do the same things - you'll still need all the bits
+you had previously.  However, you push the details down into smaller, named units (functions) so that it's obvious what
+the high-level code does.  
 
 :::
 
 :::caution Note
-You can indeed do this in the python version.
+You can indeed undertake this challenge in the python version.
 
 **Unfortunately**, however, this is difficult to do fully in R.  This is because R doesn't pass function arguments 'by
-reference', meaning that those sub-functions can't really alter the 'result' dataframe.  In some situations this is fine
-(we could just have them return the updated data) but because our data frame is really large (remember it took up ~2.5Gb
-of RAM) we also have to be really careful about making copies of things. Nevertheless you can get some of the way there
-- e.g. you could certainly implement this line:
+reference', meaning that those sub-functions can't really alter the 'result' dataframe.  In many situations this is
+fine, i.e. we could just have the function return the updated data like this:
+
+```r
+result = add_attributes( result )
+```
+
+However, because our data frame is really large (remember it took up ~2.5Gb of RAM!) we also have to be really careful
+about making copies of it.  (A hidden factor of writing the code as above, is that you end up making a copy of result,
+modify it, and then store it back into result - while that's happening your program is using 5Gb.)
+
+A solution to this might rely on R's [reference classes](http://adv-r.had.co.nz/OO-essentials.html#rc), but is beyond
+the scope of this tutorial.
+
+Nevertheless you can get some of the way there, e.g. yu can certainly implement this line:
+
 ```
 result = read_gff_data( filename )
 ```
 
-which would already substantially reduce the length of the function.
+which would already substantially reduce the length / complexity of the function.
+
+
+In **python** things are easier because python passes its arguments in a way that lets them be modified.
 
 :::
