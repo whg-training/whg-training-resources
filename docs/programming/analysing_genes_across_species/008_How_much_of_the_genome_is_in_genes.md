@@ -110,3 +110,68 @@ Why is it wrong?
 
 :::
 
+## A correct approach
+
+[THIS SECTION IS UNDER CONSTUCTION]
+
+The reason this is wrong is that **genes overlap each other**.  So we have over-counted the length.
+
+This happens either because there genuinely are different genes encoded by the same bit of DNA, or because of additional
+annotated 'genes' that arise due to the computational gene annotation process. (We saw one of those earlier - [a tiny annotated
+gene inside *SLC4A2*](./).)
+
+To handle this we have to compute the regions covered by a bunch of overlapping genes, and for that
+we need to be able to compute this overlap.
+
+:::tip Challenge
+Write a function `compute_union_of_regions()` that computes the total region covered
+by a set of (possibly overlapping ranges). Both the input and output should be a list of pairs of
+the form `[ start, end ]` (where `end` >= `start` and the coordinates are all non-negative
+integers. The output should contain a set of non-overlapping ranges that cover the same set of
+positions as the input ranges. And for testability reasons, let's also require the output to be
+sorted (by the region start position).
+
+Here is a test:
+```
+class TestRanges(unittest.TestCase):
+    def test_union_of_ranges( self ):
+        # check some simple cases first
+        self.assertEqual( compute_union_of_regions( [[1,10]] ) == [[1,10]] )
+        self.assertEqual( compute_union_of_regions( [] ) == [] )
+        self.assertEqual( compute_union_of_regions( [[1,10], [11,11]] ) == [[1,11]] )
+
+        test_data = [
+            [1, 10],
+            [19,199],
+            [5, 6],
+            [9, 15],
+            [20, 25]
+        ]
+        result = compute_union_of_ranges( test_data )
+        self.assertEqual( len( result ), 2 )
+        self.assertEqual( result[0] = [ 1, 15 ] )
+        self.assertEqual( result[1] = [ 19, 15 ] )
+```
+
+**Hints.** 
+
+* First [sort the list of regions by the start point](https://docs.python.org/3/howto/sorting.html).
+(But be aware that python functions can mutate their arguments). You may want to use the `sorted()` function rather than sorting
+  in-place.
+  
+* Now traverse the list of regions, keeping track of the current interval and extending it if
+  necessary when you encounter overlapping input regions.
+
+**Important note.** The coordinates in the GFF file are defined to [follow the 1-based
+convention](http://www.ensembl.org/info/website/upload/gff.html). This means that the genome
+coordinates start at 1, and also that regions are defined to be closed - i.e. they contain both
+their endpoints. A region like [1,10] therefore contains 10 base positions.
+
+(If this sounds obvious, I'm raising it because in other contexts a 0-based, half-open convention is
+used instead (in which the region [1,10) would contain only 9 positions, and would miss the 1st
+genome location at zero). This is true for [the database that underlies the [UCSC Genome
+Browser](https://genome-blog.soe.ucsc.edu/blog/the-ucsc-genome-browser-coordinate-counting-systems/)
+ for example (but not the browser itself, which converts coordinates to 1-based), and is
+common in programming generally.)
+:::
+
