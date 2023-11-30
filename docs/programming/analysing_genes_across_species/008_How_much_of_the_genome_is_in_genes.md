@@ -4,7 +4,41 @@ sidebar_position: 10
 
 # How much of the genome is in genes?
 
-[Up to table of contents](README.md)
+If you've followed so far you should have:
+
+- a table `genes` of genes (with some statistics from the ['canonical' transcript](./extreme_genes/003_canonical_transcripts.md)).
+- a table `regions` of regions including chromosomes or other contigs, describing the assembly.
+- and you should have (or know how to get) other things like a dataframe of `transcripts` and an `exons`.
+
+Let's use this to try to figure out how much of the genome is actually covered by genes.
+
+## Naive approach
+
+You can probably think of a simple approach to this right now using [the dplyr data verbs](./004_filter_join_merge.md). We could
+
+1. group genes by species and chromosome
+2. compute the total length by summing
+3. join to the `regions` dataset to compute total chromosome/region length
+4. and then summarise.
+
+Like this:
+
+```r
+lengths = (
+   genes
+   %>% group_by( dataset, seqid )
+   %>% summarise(
+      number_of_genes = n(),
+      total_length = sum( end - start + 1 )
+   )
+   %>% left_join(
+      regions,
+      by = join_by( seqid = ")
+   )
+)
+```
+
+
 
 To figure out how much of the genome is covered by genes, or by exons, we face a problem.
 In principle we could just add together the gene lengths.

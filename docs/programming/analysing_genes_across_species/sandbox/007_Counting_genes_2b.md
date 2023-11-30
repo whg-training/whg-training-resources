@@ -1,5 +1,5 @@
 ---
-sidebar_position: 8
+sidebar_position: 80
 ---
 
 # Counting genes I: types of protein-coding genes

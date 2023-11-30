@@ -43,10 +43,9 @@ get_dataset_name = function( filename ) {
     # [.] matches a dot
     # [^.]* matches any number of things that are NOT dots
     # $ matches the end of the string
-    result = gsub( "[.][^.]*$", "", result )
+    result = gsub( "[.][^.]*(.gz)?$", "", result )
     return( result )
 }
-
 
 process = function( args ) {
 	echo( "++ process(): loading data from '%s'...\n", args$input )
