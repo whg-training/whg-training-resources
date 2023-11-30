@@ -51,14 +51,16 @@ table( genes$dataset, genes$seqid %in% regions$seqid )
 
 Good!
 
-This suggests we can compute the genome lengths:
+This suggests we can compute the genome lengths.
 ```r
+regions$sequence_length = regions$end - regions$start + 1
+
 (
 	regions
 	%>% group_by( dataset, type )
 	%>% summarise(
 		number = n(),
-		length = sum(end - start + 1)
+		length = sum(sequence_length)
 	)
 	%>% mutate(
 		length_in_mb = sprintf( "%.1fMb", length / 1E6 )

@@ -36,6 +36,10 @@ SQL query syntax to rename them appropriately:
 <TabItem value="R" label="R code">
 
 ```r
+library( RSQLite )
+library( dplyr )
+db = DBI::dbConnect( RSQLite::SQLite(), "genes.sqlite" )
+
 genes = dbGetQuery(
 	db,
 	"SELECT dataset, ID AS gene_id,
@@ -60,6 +64,11 @@ transcripts = dbGetQuery(
 <TabItem value="dbplyr" label="dbplyr code">
 
 ```r
+library( RSQLite )
+library( dplyr )
+library( dbplyr )
+db = DBI::dbConnect( RSQLite::SQLite(), "genes.sqlite" )
+
 genes = (
 	db
 	%>% tbl( "gff" )

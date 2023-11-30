@@ -36,7 +36,7 @@ As a starting point I suggest making histograms of these variables and plot them
 )
 ```
 
-::tip Note
+:::tip Note
 
 The histogram above has weird-looking artifacts around length 1,000 in some species.  What are those?
 
