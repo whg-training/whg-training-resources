@@ -4,6 +4,12 @@ sidebar_position: 10
 
 # How much of the genome is in genes?
 
+:::warning Warning - This page is under construction!
+
+It is not complete yet!
+
+:::
+
 If you've followed so far you should have:
 
 - a table `genes` of genes (with some statistics from the ['canonical' transcript](./extreme_genes/003_canonical_transcripts.md)).
@@ -37,8 +43,6 @@ lengths = (
    )
 )
 ```
-
-
 
 To figure out how much of the genome is covered by genes, or by exons, we face a problem.
 In principle we could just add together the gene lengths.
