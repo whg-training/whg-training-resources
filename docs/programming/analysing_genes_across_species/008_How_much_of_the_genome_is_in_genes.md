@@ -2,6 +2,9 @@
 sidebar_position: 10
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # How much of the genome is in genes?
 
 :::warning Warning - This page is under construction!
@@ -69,7 +72,7 @@ the chromosome or contig) in the same dataframe:
 
 Now all we have to do is sum them up across chromosomes:
 ```r
-(
+proportions = (
    lengths
    %>% group_by( dataset )
    %>% summarise(
@@ -80,6 +83,7 @@ Now all we have to do is sum them up across chromosomes:
       proportion_in_genes = total_gene_length / total_genome_length
    )
 )
+print( proportions )
 ```
 
 ```
@@ -100,78 +104,497 @@ Now all we have to do is sum them up across chromosomes:
 To figure out how much of the genome is covered by genes, or by exons, we face a problem.
 In principle we could just add together the gene lengths.
 ```
-Unfortunately this is **wrong**. 
+
+```
+(
+   ggplot( data = proportions )
+   + geom_col(
+      aes(
+         x = proportion_in_genes,
+         y = dataset
+      )
+   )
+   + ylab( "Species" )
+   + xlab( "Proportion of genome in genes" )
+   + theme_minimal(16)
+)
+```
+
+![img](images/propn_wrong.png)
+
+
+Pretty cool huh!  Most species have... wait, 40-60% of the genome in genes?  Is this right?
+
+
 
 :::tip Question
 
-Why is it wrong?
-
-**Hint**: the numbers are much too large - why?
+Unfortunately this calculation is **wrong**.   Why?
 
 :::
 
 ## A correct approach
 
-[THIS SECTION IS UNDER CONSTUCTION]
-
 The reason this is wrong is that **genes overlap each other**.  So we have over-counted the length.
 
-This happens either because there genuinely are different genes encoded by the same bit of DNA, or because of additional
-annotated 'genes' that arise due to the computational gene annotation process. (We saw one of those earlier - [a tiny annotated
-gene inside *SLC4A2*](./).)
+This happens either because there genuinely are different genes encoded by the same bit of DNA. (Or, sometimes, there
+may be annotated 'genes' that arise mainly due to the computational gene annotation process). We saw some of those
+[earlier](./extreme_genes/001_long_genes_1.md).  For example [here is the smallest annotated
+gene](https://genome-euro.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr10%3A66926269%2D66926385), inside an exon of the
+larger gene *LRRTM3* - and you can also see that *LRRTM3* clearly overlaps *CTNNA3* there.
 
-To handle this we have to compute the regions covered by a bunch of overlapping genes, and for that
-we need to be able to compute this overlap.
+To handle this we will have to write some code to compute the total length of a set of genes, allowing for overlap.
 
 :::tip Challenge
-Write a function `compute_union_of_regions()` that computes the total region covered
-by a set of (possibly overlapping ranges). Both the input and output should be a list of pairs of
-the form `[ start, end ]` (where `end` >= `start` and the coordinates are all non-negative
-integers. The output should contain a set of non-overlapping ranges that cover the same set of
-positions as the input ranges. And for testability reasons, let's also require the output to be
-sorted (by the region start position).
 
-Here is a test:
-```
-class TestRanges(unittest.TestCase):
-    def test_union_of_ranges( self ):
-        # check some simple cases first
-        self.assertEqual( compute_union_of_regions( [[1,10]] ) == [[1,10]] )
-        self.assertEqual( compute_union_of_regions( [] ) == [] )
-        self.assertEqual( compute_union_of_regions( [[1,10], [11,11]] ) == [[1,11]] )
+Write a function `compute_length_of_regions()` that computes the total region covered by a set of (possibly overlapping
+ranges). 
 
-        test_data = [
-            [1, 10],
-            [19,199],
-            [5, 6],
-            [9, 15],
-            [20, 25]
-        ]
-        result = compute_union_of_ranges( test_data )
-        self.assertEqual( len( result ), 2 )
-        self.assertEqual( result[0] = [ 1, 15 ] )
-        self.assertEqual( result[1] = [ 19, 15 ] )
-```
+The input will be a dataframe with `start` and `end` columns.
+The output should be the total length of the regions, accounting for overlaps (i.e. a single number).
 
-**Hints.** 
-
-* First [sort the list of regions by the start point](https://docs.python.org/3/howto/sorting.html).
-(But be aware that python functions can mutate their arguments). You may want to use the `sorted()` function rather than sorting
-  in-place.
-  
-* Now traverse the list of regions, keeping track of the current interval and extending it if
-  necessary when you encounter overlapping input regions.
-
-**Important note.** The coordinates in the GFF file are defined to [follow the 1-based
-convention](http://www.ensembl.org/info/website/upload/gff.html). This means that the genome
-coordinates start at 1, and also that regions are defined to be closed - i.e. they contain both
-their endpoints. A region like [1,10] therefore contains 10 base positions.
-
-(If this sounds obvious, I'm raising it because in other contexts a 0-based, half-open convention is
-used instead (in which the region [1,10) would contain only 9 positions, and would miss the 1st
-genome location at zero). This is true for [the database that underlies the [UCSC Genome
-Browser](https://genome-blog.soe.ucsc.edu/blog/the-ucsc-genome-browser-coordinate-counting-systems/)
- for example (but not the browser itself, which converts coordinates to 1-based), and is
-common in programming generally.)
 :::
+
+How to write this?  As you know a good place to start is to write a test!  Here is one that tries out a few combinations
+of regions:
+
+```
+test_compute_length_of_regions <- function() {
+
+   # Test on a single region
+   stopifnot(
+      compute_length_of_regions(
+         tibble(
+            start = 1,
+            end = 1
+         )
+      ) == 1
+   )
+
+   # Test on non-overlapping regions
+   stopifnot(
+      compute_length_of_regions(
+         tribble(
+            ~start, ~end,
+                 1,   10,
+                21,   30
+         )
+      ) == 20
+   )
+
+   # Test on overlapping regions
+   stopifnot(
+      compute_length_of_regions(
+         tribble(
+            ~start, ~end,
+                 1,   10,
+                 6,   15
+         )
+      ) == 15
+   )
+
+   # Complicated example with multiple overlaps
+   stopifnot(
+      compute_length_of_regions(
+         tribble(
+            ~start,  ~end,
+                50,   100,   # A long region
+                60,    80,   # A region enclosed in the larger one
+                90,   120,   # A region overlapping the end of the larger one
+                 1,    10    # A region not overlapping the others, but out of order.
+         )
+      ) == (10 + 71)
+   )
+}
+```
+
+It will of course fail:
+
+```r
+> test_compute_length_of_regions()
+Error in compute_length_of_regions(tibble(start = 1, end = 1)) : 
+  could not find function "compute_length_of_regions"
+```
+
+Once the test passes, your function is ready!
+
+You can have a go at this challenge yourself, but if you're not used to this kind of coding it might be a bit tricky.
+The rest of this page describes a way of solving this.
+
+## Implementing `compute_length_of_regions()`
+
+Here is a guide on how to do it.
+
+First let's break the problem down by writing `compute_length_of_regions()` in terms another function `merge_regions()`:
+```r
+compute_length_of_regions <- function( regions ) {
+   merged_regions = merge_regions( regions )
+   sum( merged_regions$end - merged_regions$start + 1 )
+}
+```
+
+Of course this just shifts the problem:
+```r
+test_compute_length_of_regions()
+Error in compute_union_of_regions() : 
+  could not find function "merge_regions"
+```
+
+Given this, we want the function to output these two merged regions: `[50,120]`, `[150,190]` and `[200,220]`.  Then our
+`compute_length...` function above will sum up their lengths.
+
+For example, consider this small test dataset of overlapping regions:
+
+```r
+test_regions = tribble(
+   ~start,  ~end,
+         50,   100,   # A big long region
+         90,   120,   # A region overlapping the end of the larger one
+         60,    80,   # A region enclosed in the larger one (and out of order)
+         200,  220,   # A region not overlapping the others
+         205,  215,   # A region enclosed in the larger one
+         150,  190    # A region not overlapping the others (and out of order)
+)
+```
+
+
+We now have to write `merge_regions()`.  It's job is to read in a dataframe of regions, and output another
+dataframe of regions that covers all the same bases but has no overlaps.  How?
+
+### An algorithm to union regions
+
+Here is an algorithm that could do that.  For example, consider this small test dataset of overlapping regions:
+
+```r
+test_regions = tribble(
+   ~start,  ~end,
+         50,   100,   # A big long region
+         90,   120,   # A region overlapping the end of the larger one
+         60,    80,   # A region enclosed in the larger one (and out of order)
+         200,  220,   # A region not overlapping the others
+         205,  215,   # A region enclosed in the larger one
+         150,  190    # A region not overlapping the others (and out of order)
+)
+```
+
+Given this, we want the function to output these two merged regions: `[50,120]`, `[150,190]` and `[200,220]`.  Then our
+`compute_length...` function above will sum up their lengths.
+
+How to do this?  We need something we haven't tried so far in this tutorial - an **algorithm**! A basic idea is to
+**order** the regions along the chromosome, then walk through them keeping track of whether you are 'in' or 'out' of a
+region.  Whenever we move 'out' we store the region we've just been through.
+
+For example, here is a diagram of the first few steps of the algorithm in our example,  (Click the tabs to see the
+algorithm steps):
+
+<Tabs>
+<TabItem value="0" label="Input regions">
+
+```
+              region 1:      ----------------
+              region 2:                    -------
+              region 3:            ----
+              region 4:                                          ------
+              region 5:                                        ------
+              region 6:                              -----
+```
+</TabItem>
+<TabItem value="1" label="Sort the regions">
+The first step is to sort the regions so we can move through them in the right order:
+```
+              region 1:      ----------------
+              region 3:            ----
+              region 2:                    -------
+              region 6:                              -----
+              region 5:                                        ------
+              region 4:                                          ------
+```
+</TabItem>
+<TabItem value="2" label="2nd step">
+Next we initialise a 'current' merged region starting with the first:
+```
+          (*) region 1:      ----------------
+              region 3:            ----
+              region 2:                    -------
+              region 6:                              -----
+              region 5:                                        ------
+              region 4:                                          ------
+current region, step 1:      ↑              ↑
+```
+</TabItem>
+<TabItem value="3" label="3rd step">
+Now we 'walk' through the intervals assessing whether we should extend the interval...
+```
+              region 1:      ----------------
+          (*) region 3:            ----
+              region 2:                    -------
+              region 6:                              -----
+              region 5:                                        ------
+              region 4:                                          ------
+current region, step 1:      ↑              ↑
+current region, step 2:      ↑              ↑                              ← (no change)
+```
+</TabItem>
+<TabItem value="4" label="4th step">
+Now we 'walk' through the intervals assessing whether we should extend the interval...
+```
+              region 1:      ----------------
+              region 3:            ----
+          (*) region 2:                    -------
+              region 6:                              -----
+              region 5:                                        ------
+              region 4:                                          ------
+current region, step 1:      ↑              ↑
+current region, step 2:      ↑              ↑                              ← (no change)
+current region, step 3:      ↑                   ↑                         ← (extend)
+```
+</TabItem>
+<TabItem value="5" label="5th step">
+If the next interval doesn't overlap - we store the current merged interval in the output, and start with the next one interval:
+```
+              region 1:      ----------------
+              region 3:            ----
+              region 2:                    -------
+          (*) region 6:                              -----
+              region 5:                                        ------
+              region 4:                                          ------
+current region, step 1:      ↑              ↑
+current region, step 2:      ↑              ↑                              ← (no change)
+current region, step 3:      ↑                   ↑                         ← (record this...)
+current region, step 4:                              ↑    ↑                ← (..and start a new interval)
+```
+</TabItem>
+<TabItem value="6" label="6th & 7th steps">
+...and so on:
+```
+              region 1:      ----------------
+              region 3:            ----
+              region 2:                    -------
+              region 6:                              -----
+              region 5:                                        ------
+          (*) region 4:                                          ------
+current region, step 1:      ↑              ↑
+current region, step 2:      ↑              ↑                              ← (no change)
+current region, step 3:      ↑                   ↑                         ← (record this...)
+current region, step 4:                              ↑    ↑                ← (record this...)
+current region, step 5:                                        ↑    ↑      ← (start new interval)
+current region, step 6:                                        ↑      ↑    ← (extend)
+```
+</TabItem>
+<TabItem value="7" label="Final step">
+As a last step - we should **remember to store the last inteval**:
+```
+              region 1:      ----------------
+              region 3:            ----
+              region 2:                    -------
+              region 6:                              -----
+              region 5:                                        ------
+              region 4:                                          ------
+current region, step 1:      ↑              ↑
+current region, step 2:      ↑              ↑                              ← (no change)
+current region, step 3:      ↑                   ↑                         ← (record this...)
+current region, step 4:                              ↑    ↑                ← (record this...)
+current region, step 5:                                        ↑    ↑      ← (start new interval)
+current region, step 6:                                        ↑      ↑    ← (record this too!)
+    ...end of algorthm.
+```
+</TabItem>
+
+</Tabs>
+
+Can you implement it?
+
+## Implementing the algorithm
+
+### Setting up
+
+We should start by sorting the regions:
+```r
+test_regions = test_regions %>% arrange( start, end )
+```
+
+Let's also create a variable `result` to keep track of the merged regions so far, and another variable
+`current_merged_region` to track the start and end point of the 'current' region we are working on:
+
+```r
+result = tibble()
+current_merged_region = test_regions[1,]
+```
+
+Now how should we 'walk' through the remaining regions?  The obvious way is a loop:
+```r
+for( 2 in 1:nrow(test_regions)) {
+   next_region = test_regions[i,]
+
+   # do something here!
+}
+```
+
+### Testing for overlap
+
+So what should go in the loop?  Evidently what should happen is:
+
+* If `next_region` *overlaps* the current region we are merging, then the current region isn't big enough - we'd better extend it
+* Otherwise, we'd better record the current region we've been merging, and start a new 'current' region.
+
+So something like this might go in the loop:
+```r
+for( i in 2:nrow(test_regions)) {
+   next_region = test_regions[i,]
+
+   overlapping = (next_region$start <= current_merged_region$end)
+   if( overlapping ) {
+      # Extend the current region
+   } else {
+      # Store the current region
+      # and start a new one
+   }
+}
+```
+
+What goes in the `if()` statement?  Well, extending the region is easy:
+```r
+# Extend the current region
+current_merged_region$end = max( current_merged_region$end, next_region$end )
+```
+
+And storing the old one is also easy:
+```r
+# Store the current region
+result = rbind(
+   result,
+   current_merged_region
+)
+# and start a new one
+current_merged_region = next_region
+```
+
+### Putting it all together
+
+Let's put this all together in a function now:
+```r
+merge_regions = function( regions ) {
+   # Sort regions
+   regions = regions %>% arrange( start, end )
+
+   # Create variables to put the result in
+   result = tibble()
+   current_merged_region = regions[1,]
+
+   # Loop over regions
+   for( i in 2:nrow(regions)) {
+      next_region = regions[i,]
+
+      overlapping = (next_region$start <= current_merged_region$end)
+      if( overlapping ) {
+         # Extend the current region
+         current_merged_region$end = max( current_merged_region$end, next_region$end )
+      } else {
+         result = rbind(
+            result,
+            current_merged_region
+         )
+         # Start a new region!
+         current_merged_region = next_region
+      }
+   }
+   return( result )
+}
+```
+
+So does it work?
+
+:::tip Note
+Try this out now:
+```r
+test_compute_length_of_regions()
+```
+
+Did it work?  No it didn't!
+
+In fact there are two problems here.  First, the `merge_regions`() function is not handling the case where there is only one input region:
+```r
+merge_regions( test_regions[1,])
+```
+
+Why not?  Can you fix it?   (**Hint:** if there's only one region, you might as well just return it straight away.)
+
+The second problem is that we forgot to handle the last interval!  You can see that by running it our test dataset:
+
+```r
+merge_regions( test_regions )
+```
+
+```
+# A tibble: 1 × 2
+  start   end
+  <dbl> <dbl>
+1    50   120
+2   150   190
+```
+
+If you compare this to `test_regions` you'll see it's missed the last interval `[200,220]`.
+
+Can you fix it?
+
+:::
+
+## Finishing it
+
+Your final function should look something like this:
+
+```r
+merge_regions = function( regions ) {
+   # Catch the case where there's only one region
+   if( nrow( regions ) == 1 ) {
+      return( regions ) ;
+   }
+
+   # Otherwise, sort regions
+   regions = regions %>% arrange( start, end )
+
+   # create variables to put the result in
+   result = tibble()
+   current_merged_region = regions[1,]
+
+   # Loop over regions
+   for( i in 2:nrow(regions)) {
+      next_region = regions[i,]
+
+      overlapping = (next_region$start <= current_merged_region$end)
+      if( overlapping ) {
+         # Extend the current region
+         current_merged_region$end = max( current_merged_region$end, next_region$end )
+      } else {
+         result = rbind(
+            result,
+            current_merged_region
+         )
+         # Start a new region!
+         current_merged_region = next_region
+      }
+   }
+
+   # Add the last region
+   result = rbind(
+      result,
+      current_merged_region
+   )
+
+   return( result )
+}
+```
+
+This is looking good!
+```r
+> merge_regions( test_regions )
+# A tibble: 3 × 2
+  start   end
+  <dbl> <dbl>
+1    50   120
+2   150   190
+3   200   220
+
+> test_compute_length_of_regions()
+```
 
