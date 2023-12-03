@@ -1,0 +1,702 @@
+---
+title: "Introduction to Markov Chain Monte Carlo (MCMC)"
+author: "Azim Ansari"
+date: "03/11/2022"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 4
+  pdf_document:
+    toc: yes
+    toc_depth: 4
+---
+
+### Prerequisite
+```{r,echo = F}
+library(rethinking)
+library(coda)
+```
+
+# Quick introduction to MCMC
+
+## 1. Background
+
+MCMC methods are a collection of algorithms to sample from a distribution. Why do we want to sample from a distribution?
+
+In the context of Bayesian statistics, the posterior distribution is the object of inference. Once your model produces a posterior distribution, the model’s work is done. But your work has just begun. It is necessary to summarize and interpret the posterior distribution. Exactly how it is summarized depends upon your purpose. But common questions include:
+
+  - How much posterior probability lies below some parameter value?
+  - How much posterior probability lies between two parameter values?
+  - Which parameter value marks the lower 5% of the posterior probability?
+  - Which range of parameter values contains 90% of the posterior probability? 
+  - Which parameter value has highest posterior probability?
+
+To answer the above questions, one needs to know integral calculus as you need to calculate the area under the posterior function. However we can convert this into a counting problem with sampling from posterior distribution. The posterior distribution is a probability distribution. And like all probability distributions, we can imagine drawing samples from it. The sampled events in this case are parameter values. The posterior defines the expected frequency that different parameter values will appear, once we start plucking samples out of it. 
+
+Working with samples transforms a problem in calculus into a problem in data summary, into a frequency format problem. An integral in a typical Bayesian context is just the total probability in some interval. That can be a challenging calculus problem. But once you have samples from the probability distribution, it’s just a matter of counting values in the interval. An empirical attack on the posterior allows the scientist to ask and answer more questions about the model, without relying upon a captive mathematician. For this reason, it is easier and more intuitive to work with samples from the posterior, than to work with probabilities and integrals directly.
+
+** In essence: if you have a good set of samples from a distribution, then you know everything about that distribution and just by counting you can produce any summary about that distribution.**
+
+## 2. MCMC algorithms
+
+  - Markov chain Monte Carlo (MCMC), a powerful collection of algorithms that enable us to simulate from complicated distributions.
+  - The development of MCMC has revolutionized statistics and scientific computation by vastly expanding the range of possible distributions that we can simulate from, including joint distributions in high dimensions. 
+  - I am not going to talk about the theory and how these methods work. Instead we will learn the algorithms and how to implement them to sample from some target distribution (posterior distribution).
+  
+### 2.1 Metropolis algorithm
+
+The grandparent of MCMC algorithms. To run the algorithm, you need to make some choices:
+
+ 1. The aim is to draw samples from an unknown and usually complex target distribution $p(x)$, like a posterior probability distribution. Hopefully you know what is that target distribution that you want to sample from.
+ 
+ 2. Choose a symmetric proposal distribution $q$. Mathematically $q(A|B) = q(B|A)$. i.e. there is an equal chance of proposing A conditioning on B, and proposing B conditioning on A. A good example is a Normal distribution with a known standard deviation where the mean parameter can be the value A or B. 
+ 
+```{r}
+ # let's look at this in R. let's assume that the propsoal distribution is Normal(mean = ?, sd = 1).
+A = 2
+B = 4
+
+# pdf of A when mean is B is the same as the pdf of B when mean is A.
+dnorm(A,mean = B, sd = 1) == dnorm(B, mean = A, sd = 1 )
+
+# let's plot these.
+# let's define the range of values to plot
+x = seq(-5,10,length.out = 1000)
+# let's calculate the probability density function (pdf) for each case.
+y1 = dnorm(x,mean = A, sd = 1)
+y2 = dnorm(x,mean=B,sd = 1)
+
+# let's make the plots.
+plot(y1 ~ x, ylab = 'density',type = 'l',lwd = 3 )
+lines(y2 ~ x, lwd = 3, col = 2)
+
+# let's plot A and B location.
+abline(v = A,lwd = 2,lty = 3)
+abline(v = B,lwd = 2,lty = 3)
+
+# let's plot the pdf q(A|B) and q(B|A).
+points(B,dnorm(B,mean = A, sd = 1),pch = 16,cex = 1.5)
+points(A,dnorm(A,mean = B, sd = 1),pch = 16,cex = 1.5,col = 2)
+
+```
+
+  3. Choose a starting value for your samples $x_0$ and how many steps do you want the chain to take $T$.
+
+
+Now you an run the Metropolis algorithm to sample from the target distribution:
+
+ 
+**Metropolis Algorithm**  
+
+* for t in 1 to T  
+  + Generate a random sample $x^*$ from the proposal distribution given the previous value $x_{t-1}$. i.e. $x^* \sim q(.|x_{t-1})$  
+  + Generate a random sample $u$ from the uniform distribution. i.e. $u \sim$ $\text{Unif(0,1)}$.  
+  + if $u<\frac{p(x^*)}{p(x_{t-1})}$, then $x_t = x^*$ else $x_t = x_{t-1}$.
+
+So if $u<\frac{p(x^*)}{p(x_{t-1})}$ then the new sample from the target distribution is $x^*$ and if $u>\frac{p(x^*)}{p(x_{t-1})}$ then the new sample from the target distribution is $x_{t-1}$, i.e. the previous sample and the new sample are the same.
+
+Let's look at an example.
+
+
+#### 2.1.1 Example: Sample from mixture of two normal distributions.
+
+We would like to sample from a mixture of two Normal distributions with known mean and standard deviations. Target distribution is a mixture of two Normals $p(x) = 0.5 \times \text{Normal}(\mu_1=-1,\sigma_1 = 2) + 0.5 \times \text{Normal}(\mu_2=3,\sigma_2 = 1)$.
+
+$$
+p(x) = 0.5\frac{1}{\sigma_1 \sqrt(2\pi)} e^{-\frac{(x-\mu_1)^2}{2\sigma_1^2}} + 0.5\frac{1}{\sigma_2 \sqrt(2\pi)} e^{-\frac{(x-\mu_2)^2}{2\sigma_2^2}}
+$$
+
+1. The target distribution is known to us $p(x)$.
+2. Proposal distribution: choose something which is easy to sample from and is symmetric. Let's use a normal centred on the previous sample with standard deviation of 0.5. Our proposal distribution which we use to generate random samples from, based on previous samples is going to be $q(x^*|x_{t-1}) = \text{Normal}(\text{mean}=x_{t-1},\text{sd}=0.5)$.
+3. Choose a starting value $x_0 = 10$ and run the chain for 10000 iterations.
+
+Here are the mechanics of **Metropolis Algorithm** and the code in R.
+
+* Use previous sample and proposal distribution to generate the random proposal $x^\star$. I.e. Generate a random sample from Normal$(x_0,0.5)$ = Normal$(10,0.5)$, in the following R code we get. $x^\star=10.27716$.
+
+```{r}
+set.seed(13) 
+x_0 = 10
+proposal_sd = 0.5
+x_star = rnorm(1, mean = x_0, sd = proposal_sd)
+x_star
+```
+
+* Generate a random sample from uniform distribution $u$. in the following R code we get  $u=0.3896344$.
+
+```{r}
+u = runif(1)
+u
+```
+
+* calculate the ratio of $\frac{p(x^\star)}{p(x_0)} = \frac{p(10.27716)}{p(10)}= \frac{0.5\frac{1}{2* \sqrt(2\pi)} e^{-\frac{(10.27716-(-1))^2}{2*4}} + 0.5\frac{1}{1* \sqrt(2\pi)} e^{-\frac{(10.27716-3)^2}{2*1}}}{ 0.5\frac{1}{2* \sqrt(2\pi)} e^{-\frac{(10-(-1))^2}{2*4}} + 0.5\frac{1}{1* \sqrt(2\pi)} e^{-\frac{(10-3)^2}{2*1}}}=0.4621245$
+
+```{r}
+t_ratio = (0.5*dnorm(x_star,mean=-1,sd = 2) + 0.5*dnorm(x_star, mean = 3,sd = 1)) / (0.5*dnorm(x_0,mean=-1,sd = 2) + 0.5*dnorm(x_0,mean = 3,sd = 1))
+t_ratio
+```
+
+* The value of $u=0.3896344$ is less than 0.4621245, so accept $x^\star = 10.27716$ as a new sample from this distribution. i.e. $\theta_1 = 10.27716$.
+
+* if the value of $u \ge \frac{p(x^\star)}{p(x_0)}$ then we reject $x^\star$ as a sample and set $x_1 = 10$.
+        
+* we have a new sample from the target distribution, go to t= 2 step and repeat for 10000 iterations.
+
+Let's see all of the above in R.
+
+```{r}
+# PDF of target distribution . I am using "dnorm" function from R, 
+# but you can write down the formula for the mixture of normals in R as in the above.
+mu <- c(-1, 3)
+sd <- c(2, 1)
+p <- function(x) {
+  0.5     * dnorm(x, mu[1], sd[1]) +
+    0.5 * dnorm(x, mu[2], sd[2])
+}
+
+# plot the target distribution.
+curve(p(x), col=2, from=-8, to=8, n=100, lwd=3,frame.plot = FALSE)
+
+# decide on a proposal distribution: normal with SD=0.5
+q <- function(x) {
+  rnorm(n = 1, mean = x, sd = 4)
+}
+
+# how many steps do you want to run the algorithm for.
+nStep = 10000
+
+# Set starting value for x.
+x_0 = 10
+
+# set a vector to store the samples generated by the algorithm
+xs = rep(0,nStep)
+xs[1] = x_0
+
+# Run the metropolis algorithm.
+for (i in 2:nStep) {
+  # draw a sample from proposal distribution using previous sample.
+  x_star = q(xs[i-1])
+  
+  # draw a random sample from uniform(0,1) distribution.
+  u = runif(n=1)
+  
+  # calculate the ratio of the proposed sample to the previous sample
+  alpha = p(x_star) / p(xs[i-1])
+  
+  # compare the random uniform number to the ratio and store the next sample as appropriate.
+  if (u < alpha) {
+    xs[i] = x_star
+  } else { 
+    xs[i] = xs[i-1]
+  }
+}
+
+
+############### This section is just plotting things.
+
+# let's see what the first few samples look like.
+plot(xs[1:50],type="s", xpd=NA, ylab="Parameter", xlab="Sample", las=1)
+points(xs[1:50],pch = 1,col = 4)
+
+# make a plot of all the samples.
+layout(matrix(c(1, 2), 1, 2), widths=c(4, 1))
+par(mar=c(4.1, .5, .5, .5), oma=c(0, 4.1, 0, 0))
+plot(xs, type="s", xpd=NA, ylab="Parameter", xlab="Sample", las=1)
+usr <- par("usr")
+xx <- seq(usr[3], usr[4], length=301)
+plot(p(xx), xx, type="l", yaxs="i", axes=FALSE, xlab="")
+
+
+# make a histogram to compare to the target distribution.
+hist(xs, 50, freq=FALSE, main="", ylim=c(0, .4), las=1,
+     xlab="x", ylab="Probability density")
+z <- integrate(p, -Inf, Inf)$value
+curve(p(x) / z, add=TRUE, col="red", n=200)
+```
+
+
+#### 2.1.2 What happens if we change the proposal distribution.
+
+What are the impact of changing the variance of the proposal distribution?
+
+Let's go to R and have a look to see what we get when we change the standard deviation of the proposal distribution. let's write some helper functions first.
+
+```{r}
+# I am going to write some functions to make running the MCMC much easier. rather than copy pasting the code every time I change something.
+
+# function for the core of the MCMC.
+step <- function(x, p, q) {
+  ## Generate a random sample from the proposal conditional on previous sample.
+  xp <- q(x)
+  ## calculate the acceptance probability:
+  alpha <- min(1, p(xp) / p(x))
+  ## Accept new point with probability alpha otherwise return the previous point.
+  if (runif(1) < alpha)
+    x <- xp
+  ## Returning the sampled value:
+  return(x)
+}
+
+# function to run MCMC for n steps
+run <- function(x, p, q, nSteps) {
+  res <- matrix(NA, nSteps, 1)
+  for (i in seq_len(nSteps))
+    res[i,] <- x <- step(x, p, q)
+  drop(res)
+}
+```
+
+
+let's change the proposal distribution and see what the draw look like. There is only one parameter in our proposal distribution that we can change and that is the variance (or SD).
+
+```{r}
+# large moves: A large sd means the proposed values will be far away from the current value.
+res.fast <- run(-10, p, function(x) rnorm(1, mean = x,  sd = 33), 10000)
+
+# small moves: A small variance means the proposed values are not that different from the current value.
+res.slow <- run(-10, p, function(x) rnorm(1, mean = x,  sd = .3), 10000)
+
+
+## make plots of the results to see what they look like:
+layout(matrix(c(1, 2), 1, 2), widths=c(4, 1))
+par(mar=c(4.1, .5, .5, .5), oma=c(0, 4.1, 0, 0))
+# plot the first 100 samples from the initial run where proposal had sd = 0.5.
+plot(xs[1:100], type="s", xpd=NA, ylab="Parameter", xlab="Sample", las=1,
+     col="grey",ylim=c(-10,10))
+# plot the new chains with the big and small sd in the proposal distribution.
+lines(res.fast[1:100], col=2)
+lines(res.slow[1:100], col=3)
+usr <- par("usr")
+xx <- seq(usr[3], usr[4], length=301)
+plot(p(xx), xx, type="l", yaxs="i", axes=FALSE)
+
+```
+
+#### 2.1.3 Rule of thumb for running Metropolis algorithm.
+
+Optimising certain criteria leads to the suggestion that the proposal distribution \(q(.|x) = N(x,\sigma^2)\) has to be chosen such that 
+
+  - acceptance rate is $\approx$ 0.5 for \(d=1,2\).
+  - acceptance rate is $\approx$ 0.25 for \(d \geq 3\).
+
+  - To reduce the correlation between the samples:
+    - we can use thinning which means using every nth sample and discarding the others.
+
+We usually don't know when the chain will reach its stationary distribution:
+
+  - Run multiple instance of the chain with different starting points and see if they converge to the same distribution.
+
+Remove the initial part of the chain (Burn-in) as it is likely to be far away from where the main distribution is.
+
+Let's go to R and see what we get.
+
+```{r}
+
+# calculate the acceptance rate for each MCMC chain.
+library(coda)
+
+# for large moves.
+mcmc.trace.fast <- mcmc(res.fast)
+#  summary(mcmc.trace)
+1-rejectionRate(mcmc.trace.fast)
+
+# for small moves
+mcmc.trace.slow <- mcmc(res.slow)
+# summary(mcmc.trace)
+1-rejectionRate(mcmc.trace.slow)
+
+# for intermediate moves
+mcmc.trace <- mcmc(xs)
+# summary(mcmc.trace)
+1-rejectionRate(mcmc.trace)
+
+# plot autocorrelation
+par(mfrow=c(1, 3), mar=c(4, 2, 3.5, .5))
+acf(res.slow,100, las=1, main="Small steps")
+acf(xs,100, las=1, main="Intermediate")
+acf(res.fast,100, las=1, main="Large steps")
+```
+
+Let's bring everything together and use burn-in and thinning and a good proposal and run the chain for a long time to see what we get.
+
+
+```{r,cache=T}
+# run for 500000 steps.
+res.long <- run(-10, p, q, 500000)
+# make plots.
+hist(res.long, 100, freq=FALSE, main="", ylim=c(0, .4), las=1,
+     xlab="x", ylab="Probability density", col="grey")
+z <- integrate(p, -Inf, Inf)$value
+curve(p(x) / z, add=TRUE, col="red", n=200)
+
+# remove the first 5000 steps as burn-in. To thin use every 10th step.
+res.long.burn.thin = res.long[seq(5001,length(res.long),by=10)]
+length(res.long.burn.thin)
+
+# plot figure for the chain after burn-in and thinning.
+hist(res.long.burn.thin, 100, freq=FALSE, main="", ylim=c(0, .4), las=1,
+     xlab="x", ylab="Probability density", col="grey")
+z <- integrate(p, -Inf, Inf)$value
+curve(p(x) / z, add=TRUE, col="red", n=200)
+
+# look at autocorrelation of the two chains.
+par(mfrow=c(1, 2), mar=c(4, 2, 3.5, .5))
+acf(res.long,100, las=1, main="original chain")
+acf(res.long.burn.thin,100, las=1, main="after burn-in and thinning")
+```
+
+#### 2.1.1 Example: Number of de novo mutations
+
+We have measured the number of de novo mutations in the genome of 10 children (by comparing their genome to their parents genome). Data: 42, 49, 40, 36, 50, 37, 39, 43, 54, 55. Also by looking at literature our prior knowledge is that the mean number of de novo mutations in the population is 70 with standard deviation of 5. What is the mean number of mutations and its 90% percentile interval given the data above and the prior knowledge about the number of mutations?
+
+We are going to model the data and infer the parameters of that model, i.e. use Bayesian statistics. We have already seen this problem previously. Please go to Introduction to Bayesian statistics to see how we dereived the posterior distribution. Now we are going to use Metropolis algorithm to sample from the posterior distribution.
+
+- What is the target distribution? The target is the posterior distribution.
+
+$$
+\begin{aligned}
+P(\lambda |X_1 =42, ...,X_{10} = 55 ) &\propto \prod_1^{10} \frac{e^{-\lambda} \lambda^{x_i}} {x_i!} \times \frac{1}{5 \sqrt(2\pi)} e^{-\frac{(\lambda-70)^2}{2\times25}}  \\
+&\propto \frac{e^{-\lambda}\lambda^{42}}{42!} ...\frac{e^{-\lambda}\lambda^{55}}{55!} \times \frac{1}{5 \sqrt(2\pi)} e^{-\frac{(\lambda-70)^2}{2\times25}}\\
+&\propto e^{-10\lambda} \lambda^{(42+...+55)} e^{-\frac{(\lambda-70)^2}{2\times25}}
+\end{aligned}
+$$
+
+  - We ignored the $P$(data) in the denominator of the posterior distribution. Can you explain why?
+
+  - Choose a proposal distribution. We can use a Normal with sd=1.
+  
+  - Choose a starting value,$\lambda_0=70$.
+  
+let's go to R and write our Metroplolis sampler.
+
+```{r}
+# the data. mutation in children genomes.
+pois_data = c(42, 49, 40, 36,50, 37, 39, 43, 54, 55)
+
+# target distribution. I have ignored the normalizing constant
+p <- function(lambda, pois_data){
+  if (lambda >= 0){
+    lambda^(sum(pois_data)) * exp(-length(pois_data) *lambda) * exp(-(lambda - 70)^2/(2*25))
+  }else{
+    0
+  }
+}
+
+# does the above work?
+p(10,pois_data)
+
+# The lambda^(445) is such a large number that we get an overflow error. The computer memory cannot store it. So we are going to work in the log space to make sure we don't have the overflow issue.
+
+# We get an overflow error in the above. So need to work in the log space.
+logp <- function(lambda, pois_data){
+  if (lambda >= 0 ){
+    (sum(pois_data) * log(lambda)) + (-length(pois_data) * lambda) + (-(lambda - 70)^2 / (2*25))
+  }else{
+    0
+  }
+}
+
+# let's test the log of the target distribution:
+logp(10,pois_data)
+
+# decide on a proposal distribution:
+q <- function(x) {
+  rnorm(n = 1, mean = x, sd = 1)
+}
+
+# how many steps do you want to run the algorithm for.
+nStep = 10000
+
+# Set starting value for theta.
+lambda_0 = 10
+
+# set a vector to store the samples generated by the algorithm
+lambdas = rep(0,nStep)
+lambdas[1] = lambda_0
+
+# Run the metropolis algorithm.
+for (i in 2:nStep) {
+  # draw a sample from proposal distribution using previous sample.
+  lambda_star = q(lambdas[i-1])
+  
+  # draw a random sample from uniform(0,1) distribution.
+  u = runif(n=1)
+  
+  # calculate the ratio of the proposed sample to the previous sample
+  log_alpha = logp(lambda_star,pois_data) - logp(lambdas[i-1],pois_data)
+  
+  # compare the random uniform number to the ratio and store the next sample as approporiate.
+  if (log(u) < log_alpha) {
+    lambdas[i] = lambda_star
+  } else { 
+    lambdas[i] = lambdas[i-1]
+  }
+}
+
+############# make a plot
+layout(matrix(c(1, 2), 2, 2), widths=c(2, 2))
+par(mar=c(4.1, .5, .5, .5), oma=c(0, 4.1, 0, 0))
+hist(lambdas, 100, freq=FALSE, main="", ylim=c(0, .4), las=1,
+     xlab="x", ylab="Probability density", col="grey")
+plot(lambdas, type="l", xpd=NA, ylab="Parameter", xlab="Sample", las=1,
+     col="red",ylim=c(10,60))
+
+###### what is the probability that mutation rate > 45 mutations per genome.
+final_res = lambdas[seq(1000,length(lambdas),10)]
+length(final_res)
+
+mean(final_res)
+quantile(final_res,prob = c(0.05,0.95))
+```
+
+The mean is 48.7 and the 90% percentile interval is (45.2, 52.2).
+
+
+#### 2.1.1 Example: linear regression for weight
+
+We are going to look at census data for the Dobe area !Kung San, compiled from interviews conducted by Nancy Howell in the late 1960s. The !Kung San are the most famous foraging population of the twentieth century, largely because of detailed quantitative studies by people like Howell. We are goign to look only at the adult population here.
+
+```{r}
+data(Howell1)
+d = Howell1
+d1 = d[d$age >=18,]
+head(d1)
+```
+
+We are going to model weight as a linear function of height. The strategy is to make the parameter for the mean of a Gaussian distribution, $\mu$, into a linear function of the predictor variable and other, new parameters that we invent. This strategy is often simply called the linear model. The linear model strategy iassumes that the predictor variable has a constant and additive relationship to the mean of the outcome. We then compute the posterior distribution of this constant relationship. Mathematically we are assuming:
+
+$$
+\begin{aligned}
+w_i &\sim \text{Normal}(\mu_i, \sigma) \\
+\mu_i &= \alpha + \beta (h_i −  \bar{h}) \\
+\end{aligned}
+$$
+
+So what is the likelihood? Our likelihood for one data point is:
+
+$$
+p(w_i|\alpha,\beta,\sigma) = \text{Normal}(\alpha+\beta(h_i-\bar{h}),\sigma)
+$$
+
+Assuming the adults are not related to each other we can assume that they are independent samples so that the likelihood for the whole data is:
+
+$$
+\begin{aligned}
+p(w_1 = 151,...,w_{352}=158 | \alpha,\beta,\sigma) &= \prod_1^{352} \text{Normal}(\alpha+\beta(h_i-\bar{h}),\sigma) \\
+& = \prod_1^{352} \frac{1}{\sigma \sqrt(2\pi)} e^{-\frac{(w_i-(\alpha+\beta(h_i-\bar{h}))^2}{2\sigma^2}}
+\end{aligned}
+$$
+
+Next we need the define prior distribution for the model parameters $\alpha, \beta$ and  $\sigma$.
+
+
+$$
+\begin{aligned}
+\alpha &\sim \text{Normal}(172, 20) \\
+\beta &\sim \text{Normal}(0, 10) \\
+\sigma &\sim \text{Uniform}(0, 50)
+\end{aligned}
+$$
+
+Now we get our posterior distribution.
+
+$$
+\begin{aligned}
+p( \alpha,\beta,\sigma |w_1 = 151,...,w_{352}=158  ) \propto \prod_1^{352} \frac{1}{\sigma \sqrt(2\pi)} e^{-\frac{(w_i-(\alpha+\beta(h_i-\bar{h}))^2}{2\sigma^2}} \times \frac{1}{20 \sqrt(2\pi)} e^{-\frac{(\alpha - 172)^2}{2\times20^2}} \times \frac{1}{10 \sqrt(2\pi)} e^{-\frac{(\beta - 0)^2}{2\times10^2}} \times 1
+\end{aligned}
+$$
+
+Now we have the posterior, we can write our Metropolis algorithm to sample from the posterior distribution.
+
+```{r}
+# we are going to work in the log space as otherwise we will get an overflow error.
+data = d1[,1:2]
+names(data) = c('h','w')
+h_bar = mean(data$h)
+
+logprior_a = function(a){
+  dnorm(a,mean=172,sd = 20,log =TRUE)
+}
+
+logprior_b = function(b){
+  dnorm(b,mean=0,sd = 10,log =TRUE)
+}
+
+logprior_s = function(s){
+  if((s<0) || (s>50)){  # || here means "or"
+    return(0)}
+  else{
+    return(log(1/50))}
+}
+
+likelihood = function(a,b,s,data){
+  return(sum(dnorm(data$w, mean=a+b*(data$h - h_bar), sd = s,log=TRUE)))
+}
+
+n_iter = 10000
+a_start_val = 50
+b_start_val = 2
+s_start_val = 5
+
+a_b_s_sampler = function(data, n_iter, a_start_val, b_start_val, s_start_val, a_proposal_sd, b_proposal_sd,s_proposal_sd){
+  a = rep(0,n_iter)
+  b = rep(0,n_iter)
+  s = rep(0,n_iter)
+  
+  a[1] = a_start_val
+  b[1] = b_start_val
+  s[1] = s_start_val
+  
+  for(i in 2:n_iter){
+    current_a = a[i-1]
+    current_b = b[i-1]
+    current_s = s[i-1]
+    
+    new_a = current_a + rnorm(1,0,a_proposal_sd)
+    new_b = current_b + rnorm(1,0,b_proposal_sd)
+    new_s = current_s + rnorm(1,0,s_proposal_sd)
+    
+    # let's calculate the acceptance ratio in log space
+    A = (likelihood(new_a,new_b,new_s,data) + logprior_a(new_a) + logprior_b(new_b) + logprior_s(new_s)) - (likelihood(current_a,current_b,current_s,data) + logprior_a(current_a) + logprior_b(current_b) + logprior_s(current_s))
+      
+    if(log(runif(1))<A){
+      a[i] = new_a
+      b[i] = new_b # accept move with probabily min(1,A)
+      s[i] = new_s
+    } else {
+      a[i] = current_a        # otherwise "reject" move, and stay where we are
+      b[i] = current_b
+      s[i] = current_s
+    }
+  }
+  return(list(a=a,b=b,s=s)) # return a "list" with 3 elements for the parameters in the model
+}
+
+# let's run the metropolis sampler.
+out = a_b_s_sampler(data, n_iter, a_start_val, b_start_val, s_start_val, a_proposal_sd=0.1, b_proposal_sd=0.1,s_proposal_sd=0.1)
+
+par(mfrow=c(3, 2), mar=c(4, 2, 3.5, .5))
+plot(out$a,type='n')
+lines(out$a)
+hist(out$a,30)
+
+
+plot(out$b,type='n')
+lines(out$b)
+hist(out$b,30)
+
+plot(out$s,type='n')
+lines(out$s)
+hist(out$s,30)
+
+# dev.off()
+par(mfrow=c(1, 1), mar=c(4, 2, 3.5, .5))
+smoothScatter(out$a,out$b,xlab = 'a',ylab = 'b')
+lines(out$a,out$b)
+
+final_out = list()
+final_out$a = out$a[seq(1000,n_iter,by = 10)]
+final_out$b = out$b[seq(1000,n_iter,by = 10)]
+final_out$s = out$s[seq(1000,n_iter,by = 10)]
+
+pairs(final_out)
+```
+
+Now we have our samples from posterior distribution. What do they mean and how can we understand them. Let's use the samples to perform posterior predictive checks.
+
+```{r}
+# let's plot the data.
+plot(w~h,data=data,col = 2,frame.plot=F)
+
+# we can use the samples to plot the mean lines.
+h_seq = seq(min(data$h),max(data$h),length.out = 20)
+
+# but our samples from a and b indicate lots of plausible lines that could fit the data. let's plot some more of these lines.
+
+for(i in 1:20)
+  lines(h_seq, with(final_out, a[i] + b[i] *(h_seq - h_bar)),lwd=1,col = col.alpha('black',0.4))
+
+# let's fit the best fit line also.
+a_mean = mean(final_out$a)
+b_mean = mean(final_out$b)
+lines(h_seq, a_mean +b_mean *(h_seq - h_bar),lwd=3,col = 'black')
+
+```
+
+We have plotted some mean lines from the posterior distribution. But  we can plot the mean line and its 90% credible interval.
+
+```{r}
+# let's do a nicer plot with the best mean line and also it 90% credible interval. Each a and b sampled from the posterior show a posterior mean line.
+
+mu = matrix(NA,nrow=length(final_out$a),ncol = length(h_seq))
+for(i in 1:length(h_seq)){
+  mu[,i] = with(final_out,a+b*(h_seq[i] - h_bar))
+  
+}
+
+mu_PI = apply(mu,2,quantile,prob = c(0.05,0.95))
+mu_mean = apply(mu,2,mean)
+
+plot(w~h,data=data,col = 2,frame.plot=F)
+lines(h_seq,mu_mean,lwd = 2)
+shade(mu_PI,h_seq)
+
+```
+
+So far we have not used the $s$ parameter from the model. We have estimated the standard deviation of the Normal distribution, but we have not used. If we want to simulate samples from the posterior distribution we need to use the $s$ parameter. let's see what the posterior prediction is from our model. To do that we just have to put the samples through the data generating process (likelihood).
+
+```{r}
+# let's get the prediction
+
+# somewhere to store the predictions.
+w_pred = matrix(NA,nrow=length(final_out$a),ncol = length(h_seq))
+
+# for each value of height, use the samples from the posterior to simulate weights.
+for(i in 1:length(h_seq)){
+  w_pred[,i] = with(final_out,rnorm(n =length(a) ,mean=a+b*(h_seq[i] - h_bar),sd =s))
+  
+}
+
+# let's get the 90% percentile for weight predictions at each height.
+w_pred_PI = apply(w_pred,2,quantile,prob = c(0.05,0.95))
+
+# let's plot everything.
+plot(w~h,data=data,col = 2,frame.plot=F)
+lines(h_seq,mu_mean,lwd = 2)
+shade(mu_PI,h_seq)
+shade(w_pred_PI,h_seq)
+
+```
+
+
+## 3. Practice questions to work on.
+
+### 3.1 Practice 1: Estimating allele frequency from genotype data
+
+A standard assumption when modelling genotypes of bi-allelic loci (e.g. loci with alleles A and a) is that the population is “randomly mating”. From this assumption it follows that the population will be in “Hardy Weinberg Equilibrium” (HWE), which means that if p is the frequency of the allele a then the genotypes aa, ab and bb will have frequencies $p^2, 2p(1 − p)$ and $(1 − p)^2$ respectively. Suppose that we sample n individuals, and observe $n_{aa}$ with genotype aa, $n_{ab}$ with genotype ab and $n_{bb}$ with genotype bb.
+
+- Use the following data: $n_{aa} = 50, n_{ab} = 29, n_{bb} = 21$
+- Model the data and derive the posterior distribution of $p$.
+- Write MCMC routine to sample from the posterior distribution of $p$.
+
+hint: likelihood is $f(n_{aa},n_{ab},n_{bb}|p)\propto p^{2n_{aa}} ×(2p(1−p))^{n_{ab}} ×(1−p)^{2n_{bb}}$
+
+- How does prediction from the posterior compares to the observed data?
+
+### 3.1 Practice 2: Estimating allele frequency from genotype data with inbreeding coefficien
+
+A slightly more complex alternative than HWE is to assume that there is a tendency for people to mate with others who are slightly more closely-related than “random” (as might happen in a geographically-structured population, for example). This will result in an excess of homozygotes compared with HWE. A simple way to capture this is to introduce an extra parameter, the “inbreeding coefficient” g, and assume that the genotypes aa, ab and bb have frequencies $gp+(1−g)p^2,(1−g)2p(1−p)$  and $g(1−p)+(1−g)(1−p)^2$.
+
+Suppose that we sample n individuals, and observe $n_{aa}$ with genotype aa, $n_{ab}$ with genotype ab and $n_{bb}$ with genotype bb.
+
+  - Use the following data: $n_{aa} = 50, n_{ab} = 29, n_{bb} = 21$
+  - Model the joint posterior distribution of $(p,g)$.
+  - Write MCMC routine to sample from the joint posterior distribution of $(p,g)$.
+
+
+You need to check your model fit to the data:
+
+- How does prediction from the posterior compares to the observed data?
+
+
+
