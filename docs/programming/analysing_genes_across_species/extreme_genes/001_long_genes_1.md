@@ -23,7 +23,12 @@ print(p)
 ```
 
 :::tip Note
-Gene lengths vary so widely that this can be a bit hard to read.  Try transforming the x axis to a [log10 scale](https://ggplot2.tidyverse.org/reference/scale_continuous.html) to see the distribution better.  You may also want to [facet by dataset](https://ggplot2.tidyverse.org/reference/facet_wrap.html) to separate the species.
+Gene lengths vary so widely that this can be a bit hard to read.  Try transforming the x axis to a [log10 scale](https://ggplot2.tidyverse.org/reference/scale_continuous.html) to see the distribution better.  You might end up with something like this:
+
+![img](images/gene_length.png)
+
+You could also [facet by dataset](https://ggplot2.tidyverse.org/reference/facet_wrap.html) (add `facet_wrap( ~dataset
+)`) to separate the species.
 
 :::
 
@@ -53,7 +58,8 @@ Is there anything odd about the histogram of gene lengths?  Use your detective s
 
 Look for the shortest genes as well - what are they?
 
-In humans, the shortest annotated gene seems to be only 39 basepairs long!  Look it up on the genome browsers - is there anything unusual about it?  Is it similar picture for the other short genes?
+In humans, the shortest annotated genes seem to be tiny - only a few tens of basepairs long!  Look them up on the genome
+browsers - is there anything unusual about them?  Do all short genes look similar?
 
 :::
 

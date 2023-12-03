@@ -36,9 +36,9 @@ As a starting point I suggest making histograms of these variables and plot them
 )
 ```
 
-:::tip Note
+:::caution Note
 
-The histogram above has weird-looking artifacts around length 1,000 in some species.  What are those?
+This histogram above has weird-looking artifacts around length 1,000 in some species.  What are those?
 
 :::
 
@@ -52,33 +52,40 @@ genes$length = genes$end - genes$start + 1
 		y = cds_length,
 		col = dataset
 	))
+	+ scale_x_log10()
+	+ scale_y_log10()
 	+ xlab( "Genome length of gene" )
 	+ ylab( "Coding sequence length" )
 )
 ```
 
+![img](images/coding_length_vs_gene_length.png)
+
 :::tip Note
 
-In this plot, all the points lie under the diagonal - why?
-:::
+I used log scales above - what does the plot look like without that?  What id you facet over the datasets instead of
+colouring them?  As always, experiment until you like the plot.
 
-As always you can try using log scales on the axes, or facet over the datasets to split these up.  Experiment until you
-like the plot.
+In this plot, all the points lie under the diagonal - why?
+
+:::
 
 You can then use filtering and sorting (`arrange()`) to identify the outlying genes in question, and investigate.
 
 Good luck!  For example, here are some things I noticed:
 
-* In all the data I looked at, there's only one gene with > 100 transcripts. It is the human gene [*MAPK10*, "Mitogen-activated
-  protein kinase 10"](https://www.uniprot.org/uniprot/P53779) and it has 151 transcripts! It has so many that it takes a while to load in
-  [Ensembl](http://www.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000109339;r=4:85990007-86594625) and the
-  [UCSC Genome browser](https://genome-euro.ucsc.edu/cgi-bin/hgTracks?db=hg38&lastVirtModeType=default&lastVirtModeExtraState=&virtModeType=default&virtMode=0&nonVirtPosition=&position=chr4%3A86016491%2D86594110&hgsid=275896231_HieWdPQTMOsgYQUFAnwTALgAECs0).
-  If you explore these genome browsers you will find a wealth of information on this gene including its expression patterns and function. Is there much published literature about it?
-  What does it look like in other species?
+* In all the data I looked at, there's only one gene with > 100 transcripts. It is the human gene [*MAPK10*,
+  "Mitogen-activated protein kinase 10"](https://www.uniprot.org/uniprot/P53779) and it has >151 transcripts. (It has so
+  many that it takes a while to load in
+  [Ensembl](http://www.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000109339;r=4:85990007-86594625) or the
+  [UCSC Genome
+  browser](https://genome-euro.ucsc.edu/cgi-bin/hgTracks?db=hg38&lastVirtModeType=default&lastVirtModeExtraState=&virtModeType=default&virtMode=0&nonVirtPosition=&position=chr4%3A86016491%2D86594110&hgsid=275896231_HieWdPQTMOsgYQUFAnwTALgAECs0).)
+  If you explore these genome browsers you will find a wealth of information on this gene including its expression
+  patterns and function. Is there much published literature about it? What does it look like in other species?
 
 * Only one gene has a coding sequence length over 100kb - the phenomenal [*Titin*](https://en.wikipedia.org/wiki/Titin).
-  It is a bit shorter, but still by far the longest gene in chimpanzees, camels and mice.  It *also* stands out in terms
-of number of exons - having a slightly incredible 184 exons in Chimpanzees (*Pan troglodytes*) and ~113 in humans.
+  It is also by far the longest gene in chimpanzees, camels and mice.  It *also* stands out in terms of number of exons
+- having a slightly incredible 184 exons in Chimpanzees (*Pan troglodytes*) and ~113 in humans.
 
 * Another gene with lots of exons is [*Nebulin*](https://en.wikipedia.org/wiki/Nebulin). These genes seem especially huge in Chimpanzees. Are
 they big in all species? In all great apes? Is there literature that might explain the results for these genes, or other
@@ -96,4 +103,4 @@ genes with lots of exons?
   longer [*SLC4A2* Anion exhange protein 2](https://genome-euro.ucsc.edu/cgi-bin/hgTracks?db=hg38&lastVirtModeType=default&lastVirtModeExtraState=&virtModeType=default&virtMode=0&nonVirtPosition=&position=chr7%3A151061877%2D151062029&hgsid=275886241_mxgWOGDr4elcf2SdW0zGz6ukwVJW).
   I'm not quite sure what this means...)
 
-Essentially everything you look at is
+Essentially everything you look at is interesting here...
