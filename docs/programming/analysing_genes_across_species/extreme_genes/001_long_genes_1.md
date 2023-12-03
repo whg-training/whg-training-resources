@@ -4,19 +4,16 @@ sidebar_position: 1
 
 # Gene length
 
-:::caution Note
 
-On this page we're assuming you have loaded genes and transcripts and computed a `transcript_summary`, as on [this page](../004_filter_join_merge.md#transcripts-example).  If not, go and do that now.
-
-:::
-
-To find the longest genes *as measured by length on the genome*, a good place to start would be to histogram gene length.  Here is a basic version:
+To find the longest genes *as measured by length on the genome*, a good place to start would be to histogram gene
+length.  Here is a basic version:
 
 ```r
+genes$length = end - start + 1
 p = (
-	ggplot( data = transcript_summary )
+	ggplot( data = genes )
 	+ geom_histogram(
-		aes( x = gene_length ),
+		aes( x = length ),
 		bins = 100
 	)
 	+ xlab( "Length of gene on chromosome" )

@@ -56,7 +56,22 @@ cds = (
 	%>% collect()
 )
 
-# 2. Compute 'canonical' transcripts
+# 2. Count transcripts per gene
+transcripts_per_gene = (
+	genes
+	%>% left_join(
+		transcripts,
+		by = c( 'dataset', 'gene_id' )
+	)
+	%>% group_by( dataset, gene_id )
+	%>% summarise(
+		number_of_transcripts = n(),
+		min_transcript_length = min( transcript_end - transcript_start + 1 ),
+		max_transcript_length = min( transcript_end - transcript_start + 1 )
+	)
+)
+
+# 3. Compute 'canonical' transcripts
 transcripts_and_cds = (
 	transcripts
 	%>% left_join(
@@ -92,7 +107,7 @@ canonical_transcripts = (
 	)
 )
 
-# 3. Compute exons summary for each transcript
+# 4. Compute exons summary for each transcript
 exon_counts = (
 	transcripts
 	%>% inner_join(
@@ -108,11 +123,15 @@ exon_counts = (
 	)
 )
 
-# 4. Add sumaries for canonical transcript to genes:
+# 5. Add sumaries to genes table:
 genes$length = genes$end - genes$start + 1
 
 genes = (
 	genes
+	%>% left_join(
+		transcripts_per_gene,
+		by = c( "dataset", "gene_id" )
+	)
 	%>% left_join(
 		canonical_transcripts,
 		by = c( "dataset", "gene_id" )
@@ -127,4 +146,3 @@ genes = (
 )
 
 ```
-

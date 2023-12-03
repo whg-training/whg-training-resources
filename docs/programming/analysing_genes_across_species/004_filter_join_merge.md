@@ -150,7 +150,7 @@ To make this work, `left_join()` has repeated each gene record several times, on
 Now we're all set to summarise:
 ```
 transcript_summary = (
-	genes_and_transcripts[1:20,,drop=FALSE]
+	genes_and_transcripts
 	%>% group_by( dataset, gene_id, start, end )
 	%>% summarise(
 		gene_length = ( end - start + 1 ),
@@ -169,7 +169,7 @@ transcript_summary = (
 			x = number_of_transcripts
 		)
 	)
-	+ xlab( "NUmber of transcripts per gene" )
+	+ xlab( "Number of transcripts per gene" )
 	+ ylab( "Number of transcripts" )
 	+ facet_wrap( ~ dataset )
 	+ theme_bw( 16 )
