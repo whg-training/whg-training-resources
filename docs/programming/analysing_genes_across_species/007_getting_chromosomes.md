@@ -15,10 +15,10 @@ Happily, this data is already in the GFF files - though it's a bit awkward to ge
   (Luckily there are files from [Ensembl protists](https://ftp.ensemblgenomes.ebi.ac.uk/pub/protists/current/) which we
   can use instead.)
 
-Here is some [dbplyr](https://dbplyr.tidyverse.org) code to load these chromosomes:
+Here is some [dbplyr](https://dbplyr.tidyverse.org) code to load these chromosomes.
 
 ```r
-regions = (
+contigs = (
 	db
 	%>% tbl( 'gff' )
 	%>% filter(  type %in% c( 'chromosome', 'region', 'supercontig' ))
@@ -31,7 +31,7 @@ As a sanity check let's make sure that this really does capture the `seqid` valu
 We'll use [the trusy `stopifnot()`](../programming_with_gene_annotations3/003_Getting_started_writing_some_code.md#test-driven-development) for this:
 
 ```
-table( genes$dataset, genes$seqid %in% regions$seqid )
+table( genes$dataset, genes$seqid %in% contigs$seqid )
 ```
 
 ```
@@ -53,10 +53,10 @@ Good!
 
 This suggests we can compute the genome lengths.
 ```r
-regions$sequence_length = regions$end - regions$start + 1
+contigs$sequence_length = contigs$end - contigs$start + 1
 
 (
-	regions
+	contigs
 	%>% group_by( dataset, type )
 	%>% summarise(
 		number = n(),

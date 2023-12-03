@@ -40,7 +40,7 @@ exons = (
 	db
 	%>% tbl( "gff" )
 	%>% filter( type == 'exon' )
-	%>% select( exon_id = ID, transcript_id = Parent, exon_start = start, exon_end = end )
+	%>% select( dataset, exon_id = ID, transcript_id = Parent, seqid, exon_start = start, exon_end = end )
 	%>% collect()
 )
 
@@ -97,7 +97,7 @@ exon_counts = (
 	transcripts
 	%>% inner_join(
 		exons,
-		by = "transcript_id"
+		by = c( "dataset", "transcript_id" )
 	)
 	%>% group_by( dataset, transcript_id )
 	%>% summarise(

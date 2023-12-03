@@ -56,12 +56,12 @@ exons = (
 	db
 	%>% tbl( "gff" )
 	%>% filter( type == 'exon' )
-	%>% select( exon_id = ID, transcript_id = Parent, exon_start = start, exon_end = end )
+	%>% select( dataset, exon_id = ID, transcript_id = Parent, exon_seqid, exon_start = start, exon_end = end )
 	%>% collect()
 )
 
 # Link to transcripts
-transcripts_and_exons = inner_join( transcripts, exons, by = "transcript_id" )
+transcripts_and_exons = inner_join( transcripts, exons, by = c( "dataset", "transcript_id" ))
 
 # Count exons
 exon_counts = (
