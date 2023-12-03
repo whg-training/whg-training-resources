@@ -11,9 +11,7 @@ For simplicity, from here on in we will work with the GFF3 files from the [Ensem
 site](http://ftp.ensembl.org/pub/current_gff3/) (vertebrate genomes) or from [Ensembl
 genomes](https://ftp.ensemblgenomes.ebi.ac.uk/pub/) (non-vertebrate genomes). These use the terminology `mRNA` for a
 gene transcript, and they also have the genome sequence lengths written in the metadata, making life easy for us. Before
-starting, download some of these files now.  A guide to the species can be found in the [Ensembl species
-list](https://www.ensembl.org/info/about/species.html) and the [Ensembl species
-tree](https://www.ensembl.org/info/about/speciestree.html).
+starting, download some of these files now. 
 
 We will focus on protein-coding genes, and their transcripts, exons and coding sequence. They have type `gene`, `mRNA`,
 `exon` and `CDS` in the files Ensembl respectively. They come in a basic hierarchy:
@@ -57,6 +55,24 @@ There are a lot to choose from.  For example you can get:
 
 Yet another place to look is the [Darwin Tree of Life Data Portal](https://portal.darwintreeoflife.org), which at the
 time of writing has nearly 300 genomes in 'Annotation complete' state.
+:::
+
+:::tip What are all those species?
+
+If you're confused about how all those species relate, it's time to look at [OneZoom.org](http://www.onezoom.org):
+
+<iframe src="http://www.onezoom.org" width ="100%" height="800px"> 
+</iframe>
+
+For example, did you know that Dolphins, like Camels, are [cloven-hoofed
+ungulates](http://www.onezoom.org/life/@Cetartiodactyla=622916)?  Did you know that all species of ape - except humans -
+are [endangered or critically
+endangered](http://www.onezoom.org/life/@Catarrhini=842867?img=best_any&anim=flight#x-1130,y379,w6.2977)?
+
+Another place to look is  the [Ensembl species list](https://www.ensembl.org/info/about/species.html) and the [Ensembl
+species tree](https://www.ensembl.org/info/about/speciestree.html).  There are also similar pages for each of the
+branches of life on the [Ensembl Genomes](https://ensemblgenomes.org) site.
+
 :::
 
 Pick some genomes to start with and load them into your database.  Once done, you are actually in a good shape for many
@@ -132,7 +148,7 @@ I wouldn't generally recommend this type of manually-fix-the-data-until-it-works
 ## Counting genes in R or python
 
 So how would we do this in R or python?  One of the messages of this tutorial is that the same operations are generally
-possible in different languages, with minor differences in syntax.  Let's try:
+possible in different languages, with minor differences in syntax.  The tabs below show a few different ways:
 
 <Tabs>
 <TabItem value="R" label="R code">
@@ -168,8 +184,6 @@ You should see the same output as above, but now in R:
 6 Pan_troglodytes.Pan_tro_3.0.110.chr.gff3               22056
 7 PlasmoDB-65_Pfalciparum3D7                              5318
 ```
-
-**Note**: another way to do this is to use sql within R.  See the next tab.
 
 </TabItem>
 <TabItem value="Rsql" label="R and sql combined">
