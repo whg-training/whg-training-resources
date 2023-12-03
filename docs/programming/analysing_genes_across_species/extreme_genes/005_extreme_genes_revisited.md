@@ -63,7 +63,7 @@ genes$length = genes$end - genes$start + 1
 
 :::tip Note
 
-I used log scales above - what does the plot look like without that?  What id you facet over the datasets instead of
+I used log scales above - what does the plot look like without that?  What if you facet over the datasets instead of
 colouring them?  As always, experiment until you like the plot.
 
 In this plot, all the points lie under the diagonal - why?
